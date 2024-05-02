@@ -4,7 +4,8 @@ body {
 }
 
 .header {
-    width: 1440px;
+    width: 100%;
+    box-sizing: border-box;
     height: 96px;
     padding: 20px 16px 20px 16px;
     display: flex;
@@ -19,20 +20,15 @@ body {
     height: 39.02px;
     gap: 10px;
     opacity: 0px;
+    display: none;
 }
 
-.logo.desktop {
-    display: flex;
-    justify-content: space-between;
-    
-}
 
 #joinProfil {
     width: 40px;
     height: 40px;
     top: 20px;
     left: 372px;
-    gap: 0px;
     border: 2px solid #2A3647;
     color: #269dcf;
     border-radius: 100%;
@@ -42,6 +38,13 @@ body {
     justify-content: center;
     align-items: center;
     Padding: 20px, 16px, 20px, 16px;
+}
+
+#loginHelp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 #menuBar {
@@ -63,12 +66,50 @@ body {
     top: 94px;
 }
 
+#contentMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+}
 
 nav {
     display: flex;
-    justify-content: center;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    gap: 15px;
+}
+
+.linkSection {
+    display: flex;
     align-items: center;
-    
+    gap: 15px;
+}
+
+.linkSection:hover {
+    cursor: pointer;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
+    position: fixed;
+    top: 85%;
+}
+
+a {
+    text-decoration: none;
+    color: #cdcdcd;
 }
 
 /*The Add Tasks container starts here :*/
