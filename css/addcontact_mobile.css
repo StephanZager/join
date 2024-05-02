@@ -1,4 +1,6 @@
-body {}
+body {
+    
+}
 
 .profilImgAddContact {
     position: absolute;
@@ -46,6 +48,7 @@ p {
 }
 
 .addcontact-container {
+   
     width: 396px;
     height: 760px;
     gap: 49px;
