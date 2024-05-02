@@ -102,19 +102,25 @@ form {
     margin-bottom: 15px;
     margin-left: 16px;
     margin-right: 16px;
-    border: 1px solid #D1D1D1;   
+    border: 1px solid #D1D1D1;
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-    color: #D1D1D1;
+    color: #000000;
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
 
 }
+
 #addcontact_name::placeholder {
     color: #D1D1D1;
+}
+
+#addcontact_name:focus {
+    outline: none;
+    border-color: #29ABE2 !important;
 }
 
 #addcontact_email {
@@ -130,7 +136,7 @@ form {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-    color: #D1D1D1;
+    color: #000000;
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
@@ -138,6 +144,11 @@ form {
 
 #addcontact_email::placeholder {
     color: #D1D1D1;
+}
+
+#addcontact_email:focus {
+    outline: none;
+    border-color: #29ABE2 !important;
 }
 
 #addcontact_phone {
@@ -153,17 +164,22 @@ form {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-    color: #D1D1D1;
+    color: #000000;
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
-    
+
 
 }
 
 #addcontact_phone::placeholder {
     color: #D1D1D1;
-    
+
+}
+
+#addcontact_phone:focus {
+    outline: none;
+    border-color: #29ABE2 !important;
 }
 
 
@@ -178,7 +194,7 @@ form {
     height: 51px;
     border-radius: 10px;
     background-color: #2A3647;
-    color: #FFFFFF;
+    color: white;
     font-size: 21px;
     font-weight: 700;
     line-height: 25.2px;
@@ -189,6 +205,10 @@ form {
     gap: 4px;
 }
 
-.addcontact_Button:hover{
+.addcontact_Button:hover {
+    cursor: pointer;
+}
+
+.close-botton-addcontact:hover {
     cursor: pointer;
 }
