@@ -24,13 +24,15 @@
             </div>
         </div>
 
-        <form action="" method="post">            
-            <input type="text" id="name" name="name" required placeholder="Name">            
-            <input type="email" id="email" name="email" required placeholder="Email">            
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone"
-                required>
+        <form action="" method="post">
+            <input type="text" id="addcontact_name" name="name" required placeholder="Name">
+            <input type="email" id="addcontact_email" name="email" required placeholder="Email">
+            <input type="tel" id="addcontact_phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="Phone" required>
 
-            <input class="addContactButton" type="submit" value="Create contact">
+            <button type="submit" class="addcontact_Button">
+                <img src="/assets/img/check.addcontact.png.png" alt="check">Create Contact
+            </button>
         </form>
 
     </main>

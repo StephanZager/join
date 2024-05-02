@@ -85,8 +85,6 @@ p {
     border-radius: 3px;
     border: 3px solid #29ABE2;
     margin-top: 16px;
-
-
 }
 
 form {
@@ -96,41 +94,43 @@ form {
 
 }
 
-#name {
+#addcontact_name {
     height: 41px;
     margin-bottom: 15px;
     margin-left: 16px;
     margin-right: 16px;
 }
 
-#email {
+#addcontact_email {
     height: 41px;
     margin-bottom: 15px;
     margin-left: 16px;
     margin-right: 16px;
 }
 
-#phone {
+#addcontact_phone {
     height: 41px;
     margin-bottom: 32px;
     margin-left: 16px;
     margin-right: 16px;
 }
 
-.addContactButton {
+.addcontact_Button {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
     width: 202px;
     height: 51px;
-    top: 629px;
-    margin-left: 97px;
-    margin-right: 97px;
     border-radius: 10px;
     background-color: #2A3647;
     color: #FFFFFF;
-    width: 154px;   
     font-size: 21px;
     font-weight: 700;
     line-height: 25.2px;
-    text-align: left;
+    text-align: center;
+    padding: 18px 10px;
+    margin-left: 97px;
+    margin-right: 97px;
+    gap: 4px;
 }
