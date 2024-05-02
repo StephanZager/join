@@ -1,3 +1,7 @@
+const TOKEN = 'SR7ETKIIMOF0UAFXU7RGQEUDCFY4VF3S8A6QP30H';
+
+
+
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {

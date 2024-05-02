@@ -4,23 +4,27 @@ body {
 }
 
 .header {
-    width: Fixed (428px);
-    height: 80px;
+    width: 1440px;
+    height: 96px;
     padding: 20px 16px 20px 16px;
-    gap: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     opacity: 0px;
     box-shadow: 0px 4px 4px 0px #0000001A;
-
 }
 
-.logo {
+.logo.mobile {
     width: 32px;
     height: 39.02px;
     gap: 10px;
     opacity: 0px;
+}
+
+.logo.desktop {
+    display: flex;
+    justify-content: space-between;
+    
 }
 
 #joinProfil {
@@ -44,50 +48,27 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2A3647;
     position: fixed;
-    height: 80px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+    top: 0;
+    flex-direction: column;
+    background-color: #2A3647;
+    height: 1024px;  
+    width: 232px;
+    box-shadow: 0, 0, 4, 0 #000000;
+    padding: 64px, 0, 64px, 0;
 }
 
-#contentMenu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;  
-    width: 100%;  
+#logoDesktop {
+    position: fixed;
+    top: 94px;
 }
+
 
 nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 428px;
-    gap: 15px;
-}
-
-.menuSection {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.menuSection:hover {
-    cursor: pointer;
-}
-
-a {
-    display: block;
-    text-decoration: none;
-    color: white;
-}
-
-a:hover {
-    cursor: pointer;
+    
 }
 
 /*The Add Tasks container starts here :*/
