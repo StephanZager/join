@@ -1,6 +1,4 @@
-body {
-    margin: 0 auto;
-}
+body {}
 
 .profilImgAddContact {
     position: absolute;
@@ -47,7 +45,7 @@ p {
     padding-left: 24px;
 }
 
-.addContactContainer {
+.addcontact-container {
     width: 396px;
     height: 760px;
     gap: 49px;
@@ -55,6 +53,7 @@ p {
     opacity: 0px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 4px 0px #0000001A;
+
 }
 
 .aboveSection {

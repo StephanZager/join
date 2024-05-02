@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact</title>
+    <title>Add contact</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/css/addcontact.css">
+    <link rel="stylesheet" href="/css/addcontact_mobile.css">
 
     <script src="script.js"></script>
 </head>
 
 <body onload="includeHTML()">
 
-    <main class="addContactContainer">
+    <main class="addcontact-container">
         <img class="profilImgAddContact" src="/assets/img/profil.img.addcontact.png.png" alt="" srcset="">
         <div class="aboveSection">
             <img class="close-botton-addcontact" src="assets/img/close.button.addcontact.png.png" alt="" srcset="">
@@ -25,10 +25,10 @@
         </div>
 
         <form action="" method="post">
-            <input type="text" id="addcontact_name" name="name" required placeholder="Name" >
-            <input type="email" id="addcontact_email" name="email" required placeholder="Email">
+            <input type="text" id="addcontact_name" name="name" required placeholder="Name"  maxlength="20">
+            <input type="email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">
             <input type="tel" id="addcontact_phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="Phone" required>
+                placeholder="Phone" required maxlength="20">
 
             <button type="submit" class="addcontact_Button">
                 <img src="/assets/img/check.addcontact.png.png" alt="check">Create Contact
