@@ -106,7 +106,8 @@ a:hover {
 }
 
 .input-edit {
-    width: 324px;
+    max-width: 324px;
+    width: auto;
     height: 20px;
     border-radius: 8px;
     padding: 8px 15px;
@@ -114,7 +115,8 @@ a:hover {
 }
 
 .select-edit {
-    width: 354px;
+    max-width: 354px;
+    width: auto;
     height: 35px;
     border-radius: 8px;
     border: 1px solid gray;
