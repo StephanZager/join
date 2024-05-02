@@ -90,3 +90,55 @@ a:hover {
     cursor: pointer;
 }
 
+/*The Add Tasks container starts here :*/
+
+.first-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 40px;
+    gap: 20px;
+}
+
+.inputfield-headcontainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-edit {
+    width: 324px;
+    height: 20px;
+    border-radius: 8px;
+    padding: 8px 15px;
+    border: 1px solid gray;
+}
+
+.select-edit {
+    width: 354px;
+    height: 35px;
+    border-radius: 8px;
+    border: 1px solid gray;
+}
+
+.date-edit[type="date"] {
+    color: black;
+}
+
+.date-edit[type="date"]:invalid {
+    color: rgb(185, 181, 181); 
+}
+
+.prio-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.assigned-to-section {
+    display: flex;
+    flex-direction: column;
+}
