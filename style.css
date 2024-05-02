@@ -22,7 +22,7 @@ body {
     opacity: 0px;
 }
 
-.link {
+#join-profil {
     width: 40px;
     height: 40px;
     top: 20px;
@@ -37,23 +37,37 @@ body {
     align-items: center;
 }
 
-ul {
+#menubar {
+    position: fixed;
+    left: 0;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    list-style-type: none;
-    padding: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 232px;
+    height: 100vh;
+    padding: 64px, 0, 64px, 0;
     background-color: #2A3647;
+};
+
+#contentMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
-.navbar-icons {
-    width: 24px;
-    height: 24px;
-}
-
-li {
+nav {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+li:hover {
+    cursor: pointer;
 }
 
 li a {
