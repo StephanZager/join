@@ -1,6 +1,8 @@
 body {
     margin: 0;
     font-family: "inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .header {
@@ -13,6 +15,12 @@ body {
     align-items: center;
     opacity: 0px;
     box-shadow: 0px 4px 4px 0px #0000001A;
+}
+
+.txtLogo {
+    display: flex;
+    align-items: center;
+    gap: 310px;
 }
 
 .logo.mobile {
@@ -186,6 +194,18 @@ a {
         display: none;
     }
 
+    #toolText {
+        display: none;
+    }
+
+    .logo.mobile {
+        display: block !important;
+    }
+
+    #help {
+        display: none;
+    }
+
     #contentMenu {
         display: flex;
         justify-content: center;
@@ -202,6 +222,7 @@ a {
 
     .linkSection {
         display: flex;
+        gap: 5px;
     }
 
     ul {
@@ -223,12 +244,18 @@ a {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 435px) {
     ul {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
         padding: 0;
         gap: 15px;
+    }
+}
+
+@media (max-width: 345px) {
+    .linkSection {
+        font-size: 16px;
     }
 }
