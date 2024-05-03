@@ -98,6 +98,7 @@ form {
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
+    width: 100%;
 
 }
 
@@ -127,6 +128,7 @@ form {
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
+    width: 100%;
 }
 
 #addcontact_email::placeholder {
@@ -155,6 +157,7 @@ form {
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
+    width: 100%;
 
 
 }
@@ -318,7 +321,7 @@ form {
         top: 0px;
         left: 0px;
         gap: 0px;
-        margin-left: 16px;
+
 
     }
 
@@ -339,6 +342,7 @@ form {
         padding-left: 18px;
         padding-top: 4.5px;
         padding-bottom: 4.5px;
+        width: 348px;
 
     }
 
@@ -368,6 +372,7 @@ form {
         padding-left: 18px;
         padding-top: 4.5px;
         padding-bottom: 4.5px;
+        width: 348px;
     }
 
     #addcontact_email::placeholder {
@@ -396,7 +401,7 @@ form {
         padding-left: 18px;
         padding-top: 4.5px;
         padding-bottom: 4.5px;
-
+        width: 348px !important;
 
     }
 
