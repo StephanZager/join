@@ -86,9 +86,7 @@ form {
     background-repeat: no-repeat;
     background-position: right 18px center;
     height: 41px;
-    margin-bottom: 15px;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-bottom: 32px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     font-size: 20px;
@@ -117,9 +115,7 @@ form {
     background-position: right 18px center;
     border: 1px solid #D1D1D1;
     height: 41px;
-    margin-bottom: 15px;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-bottom: 32px;
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;
@@ -146,9 +142,8 @@ form {
     background-repeat: no-repeat;
     background-position: right 18px center;
     height: 41px;
-    margin-bottom: 32px;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-bottom: 48px;
+
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;
@@ -187,8 +182,7 @@ form {
     line-height: 25.2px;
     text-align: center;
     padding: 18px 10px;
-    margin-left: 97px;
-    margin-right: 97px;
+    margin-left: 24px;
     gap: 4px;
 }
 
@@ -198,6 +192,22 @@ form {
 
 .close-botton-addcontact:hover {
     cursor: pointer;
+}
+
+.form-button {
+    display: flex;
+    align-items: center;
+}
+
+.addcontact_cancel_Button {
+    width: 126px;
+    height: 56px;
+    
+    gap: 4px;
+    border-radius: 10px;
+    border: 1px ;
+    opacity: 0px;
+
 }
 
 
@@ -217,6 +227,15 @@ form {
 
 
 @media (max-width: 800px) {
+
+    .form-button {
+        display: block;
+    }
+
+    .addcontact_cancel_Button {
+        display: none;
+    }
+
     .profilImgAddContact {
         position: absolute;
         width: 120px;
