@@ -1,8 +1,38 @@
 .contactList {
+    display: flex;
+    justify-content: center;
     width: 428px;
     height: 766px;
     top: 80px;
     padding: 0px 14px 0px 14px;
-    gap: 0px;
+    margin-left: 232px;
+    overflow: scroll;
+    background-color: #FFFFFF;
+}
+
+.add-new-contact-button{   
+    width: 352px;
+    height: 56px;
+    gap: 4px;
+    border-radius: 10px;    
+    background-color: #2A3647;
     opacity: 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    color: white;
+    margin-top: 22.5px;
+    background-image: url("/assets/img/person.add.contact.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-position: calc(100% - 65px) center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 64px;
 }
