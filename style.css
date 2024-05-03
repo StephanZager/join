@@ -166,3 +166,69 @@ a {
     display: flex;
     flex-direction: column;
 }
+
+@media (max-width: 799px) {
+    #menuBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 846px;
+        flex-direction: column;
+        background-color: #2A3647;
+        height: 232px;  
+        width: 100%;
+        box-shadow: 0, 0, 4, 0 #000000;
+        padding: 64px, 0, 64px, 0;
+    }
+
+    #logoDesktop {
+        display: none;
+    }
+
+    #contentMenu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 846px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .linkSection {
+        display: flex;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 0;
+        gap: 45px;
+    }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .links {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    ul {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 0;
+        gap: 15px;
+    }
+}
