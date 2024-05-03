@@ -73,4 +73,24 @@
     background-color: #F6F7F8;
     padding: 10px 20px;
     z-index: 999;
+    gap: 15px;
+    border: #F6F7F8;
+}
+
+.footer-span {
+    font-size: 16px;
+}
+
+.finish-create-taks {
+    width: 183px;
+    height: 56px;
+    border-radius: 10px;
+    background: #2A3647;
+    color: white;
+    font-weight: 700;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }
