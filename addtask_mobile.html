@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Task</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/addtasks.css">
+    <link rel="stylesheet" href="/css/contact.css">
+    <script src="script.js"></script>
+</head>
+<body onload="includeHTML()">
+    <div w3-include-html="assets/templates/mobile_header_template.html"></div>
+    <main class="main-container"> 
+        <div class="interaction-field">
+            <h1 class="headline">Add Task</h1>
+        
+            <div class="inputfield-headcontainer">
+                <span class="subheadline"><b>Title</b><span style="color: red;">*</span></span>
+                <input class="input-edit" required placeholder="Enter a title" type="text">
+            </div>
+
+            <div class="inputfield-headcontainer">
+                <span class="subheadline"><b>Description</b></span>
+                <input class="input-edit" placeholder="Enter a Description" type="text">
+            </div>
+
+            <div class="assigned-to-section">
+                <span class="subheadline"><b>Assigned to</b></span>
+                <select class="select-edit">
+                	<option>beispiel1</option>
+                    <option>beispiel2</option>
+                    <option>beispiel3</option>
+                </select>
+            </div>
+            
+            <div class="inputfield-headcontainer">
+                <span class="subheadline"><b>Due Date</b><span style="color: red;">*</span></span>
+                <input class="date-edit select-edit" required type="date">
+            </div>
+
+            <div>
+                <div class="prio-section">
+                    <span class="subheadline"><b>Prio</b></span>
+                    <div class="prio-buttons">
+                        <button class="urgent-button">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
+                        <button class="medium-button">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
+                        <button class="low-button">Low<img class="prio-icons" src="./assets/img/prio-low-icon.unclicked.png"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <span class="subheadline"><b>Category</b><span style="color: red;">*</span></span>
+                <select class="select-edit">
+                    <option disabled selected hidden>Select task category</option>
+                    <option>Technical Task</option>
+                    <option>User Story</option>
+                </select>
+            </div>
+
+            <div class="inputfield-headcontainer">
+                <span class="subheadline"><b>Subtasks</b></span>
+                <input class="input-edit" type="text">
+            </div>
+        </div>
+    </main>
+
+    <div class="footer-bar">
+        <span><span style="color: red;">*</span>This field is required</span>
+        <button>Create Task</button>
+    </div>
+    
+    <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
+</body>
+</html>
