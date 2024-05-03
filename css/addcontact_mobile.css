@@ -24,6 +24,7 @@ h2 {
     line-height: 73.2px;
     text-align: left;
     color: #FFFFFF;
+    margin-top: 12.5px;
 }
 
 p {
@@ -173,7 +174,7 @@ form {
     flex-direction: row-reverse;
     justify-content: center;
     width: 202px;
-    height: 51px;
+    height: 57px;
     border-radius: 10px;
     background-color: #2A3647;
     color: white;
@@ -202,12 +203,43 @@ form {
 .addcontact_cancel_Button {
     width: 126px;
     height: 56px;
-    
     gap: 4px;
     border-radius: 10px;
-    border: 1px ;
+    border: 1px solid #2A3647;
+    background-color: white;
     opacity: 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
 
+
+}
+
+.close-botton-addcontact {
+    display: none;
+}
+
+.addcontact_cancel_Button:hover {
+    cursor: pointer;
+}
+
+.close-botton-addcontact-destop {
+    position: absolute;
+    width: 13.5px;
+    height: 13.5px;
+    top: 57px;
+    left: 1165px;
+    
+
+}
+
+.close-botton-addcontact-destop:hover{
+    cursor: pointer;
 }
 
 
@@ -227,6 +259,10 @@ form {
 
 
 @media (max-width: 800px) {
+
+    .close-botton-addcontact-destop {
+        display: none;
+    }
 
     .form-button {
         display: block;
@@ -311,8 +347,8 @@ form {
     }
 
     .aboveSection img {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
         top: 24px;
         left: 348px;
         gap: 0px;
@@ -459,6 +495,11 @@ form {
 
     .addcontact_Button:hover {
         cursor: pointer;
+    }
+
+    .close-botton-addcontact {
+        display: block;
+        
     }
 
     .close-botton-addcontact:hover {
