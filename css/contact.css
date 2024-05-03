@@ -2,12 +2,14 @@
     display: flex;
     justify-content: center;
     width: 428px;
-    height: 766px;
-    top: 80px;
+    height: 928px;
+    position: fixed;
+    top: 96px;
     padding: 0px 14px 0px 14px;
     margin-left: 232px;
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: #FFFFFF;
+    box-shadow: 4px 0px 6px 0px #0000001A;
 }
 
 .add-new-contact-button{   
