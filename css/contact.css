@@ -5,11 +5,16 @@
     height: 928px;
     position: fixed;
     top: 96px;
-    padding: 0px 14px 0px 14px;
+
     margin-left: 232px;
     overflow-y: scroll;
     background-color: #FFFFFF;
     box-shadow: 4px 0px 6px 0px #0000001A;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    box-shadow: 0px 4px 4px 0px #0000001A;
 }
 
 .add-new-contact-button {
@@ -36,4 +41,31 @@
 .add-new-contact-button img {
     width: 29.33px;
     height: 20.91px;
+}
+
+.add-new-contact-button:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 799px) {
+    .contactList {
+        width: 100%;
+        margin-left: 0px;
+       
+    }
+
+    .button-text {
+        display: none;
+        /* Standardmäßig den Text ausblenden */
+    }
+
+    .add-new-contact-button {
+        width: 56px;
+        height: 56px;                     
+        border-radius: 46px ;
+        border: 1px;
+        position: absolute;
+        bottom: 220px;
+        right: 16px;
+    }
 }
