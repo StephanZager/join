@@ -1,3 +1,19 @@
+.d-none{
+    display: none;
+}
+
+.bg {
+    background-color: rgba(76, 70, 70, 0.137);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    
+}
+
+
 .contactList {
     display: flex;
     align-items: center;
