@@ -87,6 +87,7 @@ form {
 }
 
 #addcontact_name {
+    box-sizing: border-box;
     background-image: url('/assets/img/person.addcontact.png');
     background-repeat: no-repeat;
     background-position: right 18px center;
@@ -115,6 +116,7 @@ form {
 }
 
 #addcontact_email {
+    box-sizing: border-box;
     background-image: url(/assets/img/mail.addcontact.png);
     background-repeat: no-repeat;
     background-position: right 18px center;
@@ -142,6 +144,7 @@ form {
 }
 
 #addcontact_phone {
+    box-sizing: border-box;
     background-image: url(/assets/img/call.addcontact.png);
     border: 1px solid #D1D1D1;
     background-repeat: no-repeat;
