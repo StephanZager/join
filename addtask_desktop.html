@@ -6,12 +6,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/addtasks.css">
+    <script src="script.js"></script>
 </head>
-<body class="body-class-addtask">
+<body class="body-class-addtask" onload="includeHTML()">
     <header>
         <h1>Add Task</h1>
     </header>
-
+    <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <main class="maincontainer-desktop">
         <div class="left-field-section">
             <div class="addtaks-desktop">
@@ -65,6 +66,6 @@
             </div>
         </div>
     </main>
-    
+    <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
 </body>
 </html>
