@@ -12,11 +12,11 @@
     box-shadow: 4px 0px 6px 0px #0000001A;
 }
 
-.add-new-contact-button{   
+.add-new-contact-button {
     width: 352px;
     height: 56px;
-    gap: 4px;
-    border-radius: 10px;    
+    gap: 16px;
+    border-radius: 10px;
     background-color: #2A3647;
     opacity: 0px;
     display: flex;
@@ -29,12 +29,11 @@
     text-align: left;
     color: white;
     margin-top: 22.5px;
-    background-image: url("/assets/img/person.add.contact.png");
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-position: calc(100% - 65px) center;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-left: 64px;
+}
+
+.add-new-contact-button img {
+    width: 29.33px;
+    height: 20.91px;
 }
