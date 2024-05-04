@@ -6,8 +6,7 @@
     align-items: center;
     flex-direction: column;
     width: 428px;
-    height: 928px;
-    
+        
     overflow-y: scroll;
     background-color: #FFFFFF;
     box-shadow: 4px 0px 6px 0px #0000001A;
@@ -63,20 +62,19 @@ h3 {
 
 }
 
-.contactList-container {
-    width: 100%;
-    height: 928px;
-    display: flex;
-    flex: auto;
-   
+.contactList-container {   
+    display: flex;    
+    margin-left: 232px;
+    flex-direction: row;
 }
 
 .contact-info{
     display: flex;
     gap: 30px;
     align-items: center;
-    margin-left: 64px;
-    margin-top: 80px;
+    margin-left: 55px;
+    
+    
 }
 
 .seperator-contact-info {
