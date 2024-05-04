@@ -66,6 +66,7 @@ h3 {
     display: flex;    
     margin-left: 232px;
     flex-direction: row;
+    height: 1024px;
 }
 
 .contact-info{
