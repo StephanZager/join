@@ -11,19 +11,34 @@
 <body  onload="includeHTML()">
         <div w3-include-html="assets/templates/mobile_header_template.html"></div>
         <main>
-            <div class="boardHead">
-                <h1>Board</h1>
-                <div class="searchTaskBar">
-                    <div id="searchTaskInput">
-                        <input placeholder="Find Task">
-                        <div class="separator"></div>
-                        <button id="searchTaskBtn"><img src="../assets/img/search.png"></button>
+            <div class="board">
+                <div class="boardHead">
+                    <h1 class="headlineBoard">Board</h1>
+                    <div class="searchTaskBar">
+                        <div id="searchTaskInput">
+                            <input placeholder="Find Task">
+                            <div class="separator"></div>
+                            <button id="searchTaskBtn"><img src="../assets/img/search.png"></button>
+                        </div>
+                        <button id="addTaskBtn">Add task<img src="../assets/img/board.add.png"></button>    
                     </div>
-                    <button id="addTaskBtn">Add task<img src="../assets/img/board.add.png"></button>    
                 </div>
-                
-                <div class="columnTitle">
-
+            </div>
+            <div class="columnTitle">
+                <div class="toDo">
+                    <h4>To do</h4>
+                    <button class="addTaskBtnSmall"><img src="../assets/img/board.add.headline.png" alt=""></button>
+                </div>
+                <div class="inProgress">
+                    <h4>In progress</h4>
+                    <button class="addTaskBtnSmall"><img src="../assets/img/board.add.headline.png" alt=""></button>
+                </div>
+                <div class="awaitFeedback">
+                    <h4>Await feedback</h4>
+                    <button class="addTaskBtnSmall"><img src="../assets/img/board.add.headline.png" alt=""></button>
+                </div>
+                <div class="done">
+                    <h4>Done</h4>
                 </div>
             </div>
             <div class="showTask"></div>

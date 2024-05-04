@@ -1,11 +1,26 @@
-.boardHead {
+.board {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1208px;
+    width: 100%;
     position: fixed;
-    top: 96px;
-    left: 232px;
+    left: 296px;
+    margin: 0;
+}
+
+.boardHead {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 80px;
+   margin-bottom: 48px;
+   width: 1208px;
+   height: 48px;
+}
+
+h1 {
+    font-size: 61px;
+    font-weight: 700;
 }
 
 .searchTaskBar {
@@ -13,6 +28,7 @@
     justify-content: center;
     align-items: center;
     gap: 32px;
+    padding-right: 139px;
 }
 
 #searchTaskInput {
@@ -58,4 +74,64 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.columnTitle {
+    position: fixed;
+    left: 296px;
+    top: 248px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+}
+
+.toDo {
+    width: 244px;
+    height: 24px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #42526E;
+}
+
+.inProgress {
+    width: 244px;
+    height: 24px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #42526E;
+}
+
+.awaitFeedback {
+    width: 244px;
+    height: 24px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #42526E;
+}
+
+.done {
+    width: 244px;
+    height: 24px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #42526E;
+}
+
+.addTaskBtnSmall {
+    border: none;
+    background-color: transparent;
+}
+
+.showTodos {
+    display: flex;
+    flex-direction: column;
 }
