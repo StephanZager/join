@@ -1,4 +1,4 @@
-
+/** MOBILE VERSION **/
 .main-container {
     max-width: 428px;
     margin: 0px;
@@ -93,4 +93,46 @@
     justify-content: center;
     align-items: center;
     gap: 4px;
+}
+
+/*DESKTOP VERSION*/
+
+.body-class-addtask {
+    background-color: #F6F7F8;
+    margin-left: 62px;
+}
+
+.maincontainer-desktop {
+    display: flex;
+    max-width: 976px;
+    width: auto;
+    height: 424px;
+}
+
+.left-field-section {
+    width: 440px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.parting-line {
+    width: 1px;
+    height: 424px;
+    background-color: #D1D1D1;
+    margin: 0 40px;
+}
+
+.right-field-section {
+    width: 440px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.addtaks-desktop {
+    display: flex;
+    flex-direction: column;
 }

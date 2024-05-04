@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/addtasks.css">
+</head>
+<body class="body-class-addtask">
+    <header>
+        <h1>Add Task</h1>
+    </header>
+
+    <main class="maincontainer-desktop">
+        <div class="left-field-section">
+            <div class="addtaks-desktop">
+                <span>Title<span style="color: red;">*</span></span>
+                <input placeholder="Enter a title" type="text">
+            </div>
+
+            <div class="addtaks-desktop">
+                <span>Description</span>
+                <input placeholder="Enter a Description" type="text">
+            </div>
+
+            <div class="addtaks-desktop">
+                <span>Assigned to</span>
+                <select class="select-edit">
+                    <option disabled selected hidden>Select contact to assign</option>
+                    <option>beispiel 1</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="parting-line"></div>
+
+        <div class="right-field-section">
+            <div class="addtaks-desktop">
+                <span>Due Date <span style="color: red;">*</span></span>
+                <input type="date">
+            </div>
+
+            <div class="prio-section">
+                <span class="subheadline"><b>Prio</b></span>
+                <div class="prio-buttons">
+                    <button class="urgent-button">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
+                    <button class="medium-button">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
+                    <button class="low-button">Low<img class="prio-icons" src="./assets/img/prio-low-icon.unclicked.png"></button>
+                </div>
+            </div>
+
+            <div class="addtaks-desktop">
+                <span>Category<span style="color: red;">*</span></span>
+                <select>
+                    <option disabled selected hidden> Select task category</option>
+                    <option>Technical Task</option>
+                    <option>User Story</option>
+                </select>
+            </div>
+
+            <div class="addtaks-desktop">
+                <span>Subtasks</span>
+                <input placeholder="Add new Subtasks">
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>
