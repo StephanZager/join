@@ -8,38 +8,86 @@
     <title>contact</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/css/contact.css">
+    <link rel="stylesheet" href="/css/addcontact.css">
     <script src="script.js"></script>
+    <script src="/js/addcontact.js"></script>
 </head>
 
 <body onload="includeHTML()">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
-    
+
+    <div id="bg_add_new_contact" class="bg d-none" onclick="cloeAddNewContactwindow()">
+
+
+        <div id="add_contact_container" class="addcontact-container" onclick="doNotClose(event)">
+            <img class="close-botton-addcontact-destop" src="/assets/img/x.button.addcontact.black.png" alt="check">
+            <img class="profilImgAddContact" src="/assets/img/profil.img.addcontact.png.png" alt="" srcset="">
+            <div class="aboveSection">
+                <img class="close-botton-addcontact" src="assets/img/close.button.addcontact.png.png" alt="" srcset="">
+
+                <div class="headline">
+                    <img class="join-logo" src="/assets/img/logo.desktop.png" alt="">
+                    <h2>Add contact</h2>
+                    <p>Tasks are better with a team!</p>
+                    <div class="seperator"></div>
+                </div>
+
+
+            </div>
+            <form action="" method="post">
+                <input type="text" id="addcontact_name" name="name" required placeholder="Name" maxlength="20">
+                <input type="email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">
+                <input type="tel" id="addcontact_phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    placeholder="Phone" required maxlength="20">
+                <div class="form-button">
+                    <button type="submit" class="addcontact_cancel_Button">
+                        <img src="/assets/img/x.button.addcontact.black.png" alt="check">Cancel
+                    </button>
+
+                    <button type="submit" class="addcontact_Button">
+                        <img src="/assets/img/check.addcontact.png.png" alt="check">Create Contact
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
     <div class="contactList-container">
         <main class="contactList">
             <div>
-                <button class="add-new-contact-button" type="button">
+                <button onclick="openAddNewContactwindow()" class="add-new-contact-button" id="add_new_contact"
+                    type="button">
                     <img src="/assets/img/person.add.contact.png" alt="Bildbeschreibung">
                     <span class="button-text">Add new contact</span>
-                </button>                
+                </button>
             </div>
-            max mustermann<br>
-            max mustermann<br>
-            max mustermann<br>
-            max mustermann<br>
-            max mustermann<br>
-            max mustermann<br>
+            Kreis max mustermann<br>
+            ---------------------------<br>
+            Kreis max mustermann<br>
+            ---------------------------<br>
+            Kreis max mustermann<br>
+            ---------------------------<br>
+            Kreis max mustermann<br>
+            ---------------------------<br>
+            Kreis max mustermann<br>
+            ---------------------------<br>
 
         </main>
 
         <div>
             <div class="contact-info">
-            <h2 class="contact-info-h2">Contacts</h2>
-            <div class="seperator-contact-info"></div>
-            <span class="contact-info-span">Better with a team</span>
+                <h3 class="contact-info-h2">Contacts</h3>
+                <div class="seperator-contact-info"></div>
+                <span class="contact-info-span">Better with a team</span>
             </div>
         </div>
     </div>
-    
+
+
+
+
 
 
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
