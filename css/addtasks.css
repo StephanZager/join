@@ -1,4 +1,4 @@
-/** MOBILE VERSION **/
+/** MOBILE VERSION
 .main-container {
     max-width: 428px;
     margin: 0px;
@@ -93,7 +93,7 @@
     justify-content: center;
     align-items: center;
     gap: 4px;
-}
+}**/
 
 /*DESKTOP VERSION*/
 
@@ -107,11 +107,13 @@
     max-width: 976px;
     width: auto;
     height: 424px;
+
 }
 
 .left-field-section {
     width: 440px;
-    height: 376px;
+    max-height: 376px;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -135,4 +137,88 @@
 .addtaks-desktop {
     display: flex;
     flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.prio-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.prio-buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 136px;
+    height: 56px;
+    gap: 16px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    font-weight: 400;
+    font-size: 20px;
+
+}
+
+.maincontainer-desktop span {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.maincontainer-desktop input {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+}
+
+.maincontainer-desktop input::placeholder {
+    color: #D1D1D1;
+}
+
+.title-select-or-input:focus {
+    outline: none;
+    border-color: #29ABE2 !important;
+}
+
+.addtaks-desktop input.title-select-or-input {
+    padding: 12px 21px; 
+    box-sizing: border-box;
+}
+
+.urgent-button:hover {
+    background-color: #FF3D00;
+}
+
+.medium-button:hover {
+    background-color: #FFA800;
+}
+
+.low-button:hover {
+    background-color: #7AE229;
+}
+
+.maincontainer-desktop select {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.required-info{
+    font-size: 12px !important;
+    color: #FF8190;
+    margin-top: 4px;
+}
+
+@media (max-width: 799px) {
+    .parting-line {
+        display: none;
+    }
+
+    .maincontainer-desktop {
+        flex-direction: column;
+        margin: 0;
+    }
 }

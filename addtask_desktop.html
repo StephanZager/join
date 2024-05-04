@@ -17,17 +17,18 @@
         <div class="left-field-section">
             <div class="addtaks-desktop">
                 <span>Title<span style="color: red;">*</span></span>
-                <input placeholder="Enter a title" type="text">
+                <input class="title-select-or-input" placeholder="Enter a title" type="text">
+                <span class="required-info">This field is required</span>
             </div>
 
             <div class="addtaks-desktop">
                 <span>Description</span>
-                <input placeholder="Enter a Description" type="text">
+                <input class="title-select-or-input" placeholder="Enter a Description" type="text">
             </div>
 
             <div class="addtaks-desktop">
                 <span>Assigned to</span>
-                <select class="select-edit">
+                <select class="select-edit title-select-or-input">
                     <option disabled selected hidden>Select contact to assign</option>
                     <option>beispiel 1</option>
                 </select>
@@ -39,10 +40,11 @@
         <div class="right-field-section">
             <div class="addtaks-desktop">
                 <span>Due Date <span style="color: red;">*</span></span>
-                <input type="date">
+                <input class="title-select-or-input" type="date">
+                <span class="required-info">This field is required</span>
             </div>
 
-            <div class="prio-section">
+            <div class="prio-section addtaks-desktop">
                 <span class="subheadline"><b>Prio</b></span>
                 <div class="prio-buttons">
                     <button class="urgent-button">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
@@ -53,16 +55,17 @@
 
             <div class="addtaks-desktop">
                 <span>Category<span style="color: red;">*</span></span>
-                <select>
+                <select class="title-select-or-input">
                     <option disabled selected hidden> Select task category</option>
                     <option>Technical Task</option>
                     <option>User Story</option>
                 </select>
+                <span class="required-info">This field is required</span>
             </div>
 
             <div class="addtaks-desktop">
                 <span>Subtasks</span>
-                <input placeholder="Add new Subtasks">
+                <input class="title-select-or-input" placeholder="Add new Subtasks">
             </div>
         </div>
     </main>
