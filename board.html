@@ -10,18 +10,16 @@
 </head>
 <body  onload="includeHTML()">
         <div w3-include-html="assets/templates/mobile_header_template.html"></div>
-        <main>
-            <div class="board">
-                <div class="boardHead">
-                    <h1 class="headlineBoard">Board</h1>
-                    <div class="searchTaskBar">
-                        <div id="searchTaskInput">
-                            <input placeholder="Find Task">
-                            <div class="separator"></div>
-                            <button id="searchTaskBtn"><img src="../assets/img/search.png"></button>
-                        </div>
-                        <button id="addTaskBtn">Add task<img src="../assets/img/board.add.png"></button>    
+        <main class="board">
+            <div class="boardHead">
+                <h1 class="headlineBoard">Board</h1>
+                <div class="searchTaskBar">
+                    <div id="searchTaskInput">
+                        <input placeholder="Find Task">
+                        <div class="separator"></div>
+                        <button id="searchTaskBtn"><img src="../assets/img/search.png"></button>
                     </div>
+                    <button id="addTaskBtn">Add task<img src="../assets/img/board.add.png"></button>    
                 </div>
             </div>
             <div class="columnTitle">
@@ -41,7 +39,11 @@
                     <h4>Done</h4>
                 </div>
             </div>
-            <div class="showTask"></div>
+            <div class="showTask">
+                <div class="toDoTask">
+                    <a>Test</a>
+                </div>
+            </div>
         </main>
         <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
 </body>
