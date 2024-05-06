@@ -40,13 +40,18 @@ h1 {
     border: 1px solid #d1d1d1;
     border-radius: 10px;
     gap: 10px;
+    background-color: #ffffff;
 }
 
-input{
+input {
     border: none;
     width: 312px;
     padding: 8px, 16px, 8px, 16px;
     gap: 10px;
+}
+
+input:focus {
+    outline: none;
 }
 
 .separator {
