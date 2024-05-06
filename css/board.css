@@ -50,10 +50,6 @@ input {
     gap: 10px;
 }
 
-input:focus {
-    outline: none;
-}
-
 .separator {
     height: 32px;
     width: 1px;
