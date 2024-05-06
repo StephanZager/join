@@ -8,86 +8,77 @@
     <link rel="stylesheet" href="./css/addtasks.css">
     <script src="script.js"></script>
 </head>
-<<<<<<< HEAD
 <body class="body-class-addtask">
 
     <h1>Add Task</h1>
+    <form>
+        <main class="maincontainer-desktop">
+            <div class="left-field-section">
+                <div class="addtaks-desktop">
+                    <span>Title<span style="color: red;">*</span></span>
+                    <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text" required>
+                    <span class="required-info">This field is required</span>
+                </div>
 
-=======
-<body class="body-class-addtask" onload="includeHTML()">
-    <header>
-        <h1>Add Task</h1>
-    </header>
-    <div w3-include-html="assets/templates/mobile_header_template.html"></div>
->>>>>>> be6745f74d1ec7524dc299e6347bf8354a7854db
-    <main class="maincontainer-desktop">
-        <div class="left-field-section">
-            <div class="addtaks-desktop">
-                <span>Title<span style="color: red;">*</span></span>
-                <input class="title-select-or-input" placeholder="Enter a title" type="text">
-                <span class="required-info">This field is required</span>
-            </div>
+                <div class="addtaks-desktop">
+                    <span>Description</span>
+                    <input id="description" class="title-select-or-input" placeholder="Enter a Description" type="text">
+                </div>
 
-            <div class="addtaks-desktop">
-                <span>Description</span>
-                <input class="title-select-or-input" placeholder="Enter a Description" type="text">
-            </div>
-
-            <div class="addtaks-desktop">
-                <span>Assigned to</span>
-                <select class="select-edit title-select-or-input">
-                    <option disabled selected hidden>Select contact to assign</option>
-                    <option>beispiel 1</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="parting-line"></div>
-
-        <div class="right-field-section">
-            <div class="addtaks-desktop">
-                <span>Due Date <span style="color: red;">*</span></span>
-                <input class="title-select-or-input" type="date">
-                <span class="required-info">This field is required</span>
-            </div>
-
-            <div class="prio-section addtaks-desktop">
-                <span class="subheadline"><b>Prio</b></span>
-                <div class="prio-buttons">
-                    <button class="urgent-button">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
-                    <button class="medium-button">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
-                    <button class="low-button">Low<img class="prio-icons" src="./assets/img/prio-low-icon.unclicked.png"></button>
+                <div class="addtaks-desktop">
+                    <span>Assigned to</span>
+                    <select id="assigned" class="select-edit title-select-or-input" required>
+                        <option disabled selected hidden>Select contact to assign</option>
+                        <option>beispiel 1</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="addtaks-desktop">
-                <span>Category<span style="color: red;">*</span></span>
-                <select class="title-select-or-input">
-                    <option disabled selected hidden> Select task category</option>
-                    <option>Technical Task</option>
-                    <option>User Story</option>
-                </select>
-                <span class="required-info">This field is required</span>
+            <div class="parting-line"></div>
+
+            <div class="right-field-section">
+                <div class="addtaks-desktop">
+                    <span>Due Date <span style="color: red;">*</span></span>
+                    <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy" required>
+                    <span class="required-info">This field is required</span>
+                </div>
+
+                <div class="prio-section addtaks-desktop">
+                    <span class="subheadline"><b>Prio</b></span>
+                    <div class="prio-buttons">
+                        <button class="urgent-button">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
+                        <button class="medium-button">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
+                        <button class="low-button">Low<img class="prio-icons" src="./assets/img/prio-low-icon.unclicked.png"></button>
+                    </div>
+                </div>
+
+                <div class="addtaks-desktop">
+                    <span>Category<span style="color: red;">*</span></span>
+                    <select id="category" class="title-select-or-input" required>
+                        <option disabled selected hidden> Select task category</option>
+                        <option>Technical Task</option>
+                        <option>User Story</option>
+                    </select>
+                    <span class="required-info">This field is required</span>
+                </div>
+
+                <div class="addtaks-desktop">
+                    <span>Subtasks</span>
+                    <input id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
+                </div>
             </div>
 
-            <div class="addtaks-desktop">
-                <span>Subtasks</span>
-                <input class="title-select-or-input" placeholder="Add new Subtasks">
-            </div>
-        </div>
-
-    </main>
-<<<<<<< HEAD
-    
+        </main>
+        
         <div class="last-section">
             <span class="required-bottom-info"><span style="color: red;">*</span>This field is required</span>
             <div class="button-last-section">
-                <button class="clear-button">Clear <img src="./assets/img/clear-button-add-task.png" alt=""></button>
-                <button class="create-task-button">Create Task <img src="./assets/img/check-button-add-task.png" alt=""></button>
+                <button type="reset" class="clear-button">Clear <b>x</b></button>
+                <button type="submit" class="create-task-button">Create Task <img src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
         </div>
-=======
-    <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
->>>>>>> be6745f74d1ec7524dc299e6347bf8354a7854db
+    </form>     
+
 </body>
+
 </html>

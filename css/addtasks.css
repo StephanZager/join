@@ -188,14 +188,17 @@
 
 .urgent-button:hover {
     background-color: #FF3D00;
+    cursor: pointer;
 }
 
 .medium-button:hover {
     background-color: #FFA800;
+    cursor: pointer;
 }
 
 .low-button:hover {
     background-color: #7AE229;
+    cursor: pointer;
 }
 
 .maincontainer-desktop select {
@@ -204,6 +207,7 @@
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;
+    border: 1px solid #D1D1D1;
 }
 
 .required-info{
@@ -266,6 +270,23 @@
     gap: 4px;
 }
 
+.clear-button:hover {
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.create-task-button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.title-select-or-input[type="date"] {
+    font-family: Arial, sans-serif;
+}
+
 @media (max-width: 799px) {
     .parting-line {
         display: none;
@@ -274,5 +295,9 @@
     .maincontainer-desktop {
         flex-direction: column;
         margin: 0;
+    }
+
+    .last-section {
+        margin-top: 170px;
     }
 }
