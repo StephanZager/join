@@ -6,9 +6,10 @@
     <title>Board</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../css/board.css">
+    <script src="../js/draganddrop.js"></script>
     <script src="script.js"></script>
 </head>
-<body  onload="includeHTML()">
+<body onload="includeHTML();    " >
         <div w3-include-html="assets/templates/mobile_header_template.html"></div>
         <main class="board">
             <div class="boardHead">
@@ -23,38 +24,57 @@
                 </div>
             </div>
             <div class="columnTitle">
-                <div class="toDo">
+                <div class="title">
                     <h4>To do</h4>
                     <button class="addTaskBtnSmall"><img src="../assets/img/board.add.headline.png" alt=""></button>
                 </div>
-                <div class="inProgress">
+                <div class="title">
                     <h4>In progress</h4>
                     <button class="addTaskBtnSmall"><img src="../assets/img/board.add.headline.png" alt=""></button>
                 </div>
-                <div class="awaitFeedback">
+                <div class="title">
                     <h4>Await feedback</h4>
                     <button class="addTaskBtnSmall"><img src="../assets/img/board.add.headline.png" alt=""></button>
                 </div>
-                <div class="done">
+                <div class="title">
                     <h4>Done</h4>
                 </div>
             </div>
             <div class="showTask">
-                <div class="toDoTask">
-                    <a>Test</a>
-                    <a>Test2</a>
+                <div class="task" id="toDo" ondrop="moveTo('')" ondragleave="removeHighlight('')" ondragover="allowDrop(''); highlith('')">
+                    <div class="taskCard">
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a href="">4</a>
+                        <a href="">5</a>                                                
+                    </div>
                 </div>
-                <div class="inProgressTask">
-                    <a>Test</a>
-                    <a>Test2</a>
+                <div class="task" id="inProgress" ondrop="moveTo('')" ondragleave="removeHighlight('')" ondragover="allowDrop(''); highlith('')">
+                    <div class="taskCard">
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a href="">4</a>
+                        <a href="">5</a>
+                        <a href="">6</a>                                                 
+                    </div>
                 </div>
-                <div class="awaitFeedbackTask">
-                    <a>Test</a>
-                    <a>Test2</a>
+                <div class="task" id="awaitFeedback" ondrop="moveTo('')" ondragleave="removeHighlight('')" ondragover="allowDrop(''); highlith('')">
+                    <div class="taskCard">
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>                                                
+                    </div>
                 </div>
-                <div class="doneTask">
-                    <a>Test</a>
-                    <a>Test2</a>
+                <div class="task" id="done" ondrop="moveTo('')" ondragleave="removeHighlight('')" ondragover="allowDrop(''); highlith('')">
+                    <div class="taskCard">
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a href="">4</a>
+                        <a href="">5</a>                                                
+                    </div>
                 </div>
             </div>
         </main>
