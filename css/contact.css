@@ -1,3 +1,9 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+
 .d-none{
     display: none;
 }
@@ -82,8 +88,8 @@ h3 {
 .contactList-container {
     display: flex;
     margin-left: 232px;
-    flex-direction: row;
-    height: 1024px;
+    flex-direction: row;    
+    flex: 1;
 }
 
 .contact-info {
