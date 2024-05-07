@@ -4,6 +4,7 @@ body {
     font-weight: 400;
     font-size: 20px;
     background-color: #f6f7f8;
+    overflow: hidden;
 }
 
 input:focus {

@@ -102,12 +102,21 @@
     
 }
 
+h1 {
+    margin-top: 110px;
+    margin-left: 328px;
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+    text-align: left;
+}
+
 .maincontainer-desktop {
     display: flex;
     max-width: 976px;
     width: auto;
     height: 424px;
-
+    margin-left: 328px;
 }
 
 .left-field-section {
