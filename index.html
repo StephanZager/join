@@ -3,17 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start</title>
-
+    <title>LogIn</title>
+    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="./js/login.js"></script>
 </head>
 <body>
-    
-    
+    <main>
+        <img id="logo" src="./assets/img/Login-img.png" alt="Logo"> 
 
+        <div>
+            <form id="login-form" class="blur ">
+                <div class="headline">
+                    <h1>Log in</h1>
+                    <div class="underline"></div>
+                </div>
+                <div class="login-field">   
+                    <input id="emailInput" required type="email" placeholder="Email" autocomplete="email">
+                    <input id="passwordInput" required type="password" placeholder="Password" autocomplete="current-password">
+                </div>
 
-
-
+                <label>
+                    <input type="checkbox"><span>Remember me</span>
+                </label>
+                 <div class="button-section-for-entry">
+                    <button class="login-button">Log in</button>
+                    <button class="guest-login-button" formnovalidate>Guest Log in</button>
+                </div>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
