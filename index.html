@@ -9,16 +9,21 @@
     <script src="./js/login.js"></script>
 </head>
 <body>
+    <div class="signup-section">
+        <span>Not a Join user?</span>
+        <button class="login-signup-button hover-effects-button">Sign Up</button>
+    </div>
+
     <main>
-        <img id="logo" src="./assets/img/Login-img.png" alt="Logo"> 
+        <img id="logo" src="./assets/img/Login-img.png" alt="Logo">
 
         <div>
-            <form id="login-form" class="blur ">
+            <form id="login-form" class="blur">
                 <div class="headline">
                     <h1>Log in</h1>
                     <div class="underline"></div>
                 </div>
-                <div class="login-field">   
+                <div class="login-field">
                     <input id="emailInput" required type="email" placeholder="Email" autocomplete="email">
                     <input id="passwordInput" required type="password" placeholder="Password" autocomplete="current-password">
                 </div>
@@ -26,12 +31,17 @@
                 <label>
                     <input type="checkbox"><span>Remember me</span>
                 </label>
-                 <div class="button-section-for-entry">
-                    <button class="login-button">Log in</button>
-                    <button class="guest-login-button" formnovalidate>Guest Log in</button>
+                <div class="button-section-for-entry">
+                    <button class="login-signup-button hover-effects-button">Log in</button>
+                    <button class="guest-login-button " formnovalidate>Guest Log in</button>
                 </div>
             </form>
         </div>
     </main>
+
+    <footer>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Legal Notice</a>
+    </footer>
 </body>
 </html>
