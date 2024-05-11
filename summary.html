@@ -6,11 +6,47 @@
     <title>Summary</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/summary.css">
     <script src="script.js"></script>
 </head>
 <body  onload="includeHTML()">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
-    <main></main>
+    <main>
+        <div class="headline-summary">
+            <h2 class="headline-summary-h2">Join 360</h2>
+            <div class="headline-summary-seperator"></div>
+            <span class="headline-summary-info">Key Merricas at a Glance</span>
+        </div>
+
+        <!-- this is for java script, innnerHTML. id have not yet been assigned -->
+
+        <div class="summary-stats">
+            <div style="display: flex;justify-content: space-between;">
+                <div class="summary-todo-info">
+                    <img src="assets/img/summary-pen.png" alt="pen">
+                    <div class="summary-todo-info-open">
+                        <span class="how-much-todos-done">1</span>
+                        <span class="summary-to-do-done">To-do</span>
+                    </div>
+                </div>
+                <div class="summary-done-info">
+                    <img src="assets/img/summary-check.png" alt="check">
+                    <div class="summary-todo-info-open">
+                        <span class="how-much-todos-done">1</span>
+                        <span class="summary-to-do-done">Done</span>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-stats- center">
+            </div>
+            <div class="summary-stats-below">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+    </main>
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
 </body>
 </html>
