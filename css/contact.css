@@ -23,13 +23,17 @@ body{
     
 }
 
+.contact-info-container{
+    height: 100vh;
+}
+
 
 .contactList {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 428px;
-    height: 854px;
+    height: 100vh;
     overflow-y: scroll;
     background-color: #FFFFFF;
     box-shadow: 4px 0px 6px 0px #0000001A;
@@ -139,7 +143,7 @@ h3 {
     }
 
     .contact-info {
-
+        gap: 25px;
         margin-left: 30px;
     }
 }

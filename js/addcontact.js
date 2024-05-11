@@ -9,3 +9,4 @@ function cloeAddNewContactwindow() {
 function doNotClose(event) {
     event.stopPropagation();
 }
+
