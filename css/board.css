@@ -1,137 +1,127 @@
 .board {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
+    position: absolute;
+    top: 96px;
+    left: 232px;
     height: 100%;
-    position: fixed;
-    left: 296px;
-    margin: 0;
+    width: 100%;
 }
 
-.boardHead {
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.headlineBoard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1204px;
+    height: 232px;
+    position: relative;
+    left: 64px;
+}
+
+.inputSearchBar {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   margin-top: 80px;
-   margin-bottom: 48px;
-   width: 1208px;
+   border: 1px solid lightgrey;
+   width: 312px;
    height: 48px;
+   border-radius: 10px;
+   padding: 8px 16px 8px 16px;
+   gap: 10px;
 }
 
-h1 {
-    font-size: 61px;
-    font-weight: 700;
-}
-
-.searchTaskBar {
+.seperator  {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    padding-right: 139px;
-}
-
-#searchTaskInput {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 48px;
     border: 1px solid #d1d1d1;
-    border-radius: 10px;
-    gap: 10px;
-    background-color: #ffffff;
+    height: 31px;
 }
 
-input {
+.searchTaskBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    width: 312px;
-    padding: 8px, 16px, 8px, 16px;
-    gap: 10px;
-}
-
-.separator {
-    height: 32px;
-    width: 1px;
-    background-color: #d1d1d1;
-}
-
-#searchTaskBtn {
     background-color: transparent;
-    border: none;
-    padding-top: 15px;
-    padding-right: 23px;
-    padding-bottom: 15px;
+    
 }
 
-#addTaskBtn {
+
+.addTaskBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 160px;
     height: 48px;
     border-radius: 10px;
     border: 1px;
-    color: #ffffff;
-    background-color: #2A3647;
-    font-size: 21px;
+    padding: 8px 16px 8px 16px;
+    gap: 4px;   
     font-weight: 700;
+    font-size: 21px;
+    color: #ffffff;
+    background-color: #2a3647;
+}
+
+
+.columnTitle {
+   display: flex;
+   align-items: center;
+   position: relative;
+   left: 64px;
+   gap: 35px;
+   color: #42525E;
+}
+
+.taskHeadline {
+    display: flex;
+    justify-content: space-between;
+    width: 244px;
+    gap: 32px;
+}
+
+.smallBtn {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+input {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.columnTitle {
-    position: fixed;
-    left: 296px;
-    top: 248px;
-    width: 1208px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 35px;
-}
-
-.title {
-    width: 244px;
-    height: 24px;
-    margin-top: 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #42526E;
-}
-
-.addTaskBtnSmall {
     border: none;
-    background-color: transparent;
-    padding: 0;
+    background-color: #f6f7f8;
 }
 
-.showTask {
+.tasksBoard {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 320px;
+    position: relative;
+    left: 64px;
     width: 1208px;
-    margin-top: 8px;
+    
     gap: 24px;
 }
 
-.task {
+.showTasksBoard{
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    color: black;
+    justify-content: space-between;
     width: 252px;
-    height: 688px;
     gap: 16px;
-    border: 1px dashed grey;
+    border: 1px dashed black;
 }
 
 .taskCard {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     flex-direction: column;
     width: 252px;
     border-radius: 24px;
-    background-color: #ffffff;
+    padding: 16px;
+    gap: 10px;
+    background-color: #FFFFFF;
 }
