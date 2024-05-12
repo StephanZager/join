@@ -52,6 +52,14 @@
     box-shadow: 0px 0px 4px 0px #0000001A;
     width: 264px;
     height: 168px;
+    transition: transform 100ms ease-in-out;
+}
+
+.summary-todo-info:hover {
+    cursor: pointer;    
+    background-color: #2A3647;
+    color: #FFFFFF;
+    transform: scale(1.05);
 }
 
 /* Summary done  Info */
@@ -66,6 +74,14 @@
     box-shadow: 0px 0px 4px 0px #0000001A;
     width: 264px;
     height: 168px;
+    transition: transform 100ms ease-in-out;
+}
+
+.summary-done-info:hover {
+    cursor: pointer;    
+    background-color: #2A3647;
+    color: #FFFFFF;
+    transform: scale(1.05);
 }
 
 /* Summary To-do and done  Info */
@@ -106,7 +122,18 @@
     gap: 61px;
     margin-top: 28px;
     margin-bottom: 28px;
+    transition: transform 100ms ease-in-out;
 }
+
+.summary-stats-urgent:hover,
+.summary-stats-urgent:hover .summary-urgent-date,
+.summary-stats-urgent:hover .summary-urgent-date-deadline  {
+    cursor: pointer;    
+    background-color: #2A3647;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
 
 .summary-urgent-info {
     display: flex;
@@ -122,7 +149,7 @@
 }
 
 .summary-urgent-date-container {
-    display: flex;   
+    display: flex;
     flex-direction: column;
 }
 
@@ -134,7 +161,7 @@
     color: #2A3647;
 }
 
-.summary-urgent-date-deadline {  
+.summary-urgent-date-deadline {
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
@@ -142,3 +169,51 @@
     color: #2A3647;
 
 }
+
+/* Summary below Info */
+
+.summary-stats-below {
+    display: flex;
+    text-align: center;
+    justify-content: space-between
+}
+
+.summary-stats-below-container {
+    padding: 25px;
+    box-sizing: border-box;
+    width: 168px;
+    height: 168px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 100ms ease-in-out;
+}
+
+.summary-stats-below-container:hover,
+.summary-stats-below-container:hover .summary-stats-below-tasks
+ {
+    cursor: pointer;    
+    background-color: #2A3647;
+    color: #FFFFFF; 
+    transform: scale(1.05);
+    
+}
+
+.summary-stats-below-howmuch {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+    text-align: center;
+}
+
+.summary-stats-below-tasks {
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 25.2px;
+    color: #2A3647;
+}
+
