@@ -52,14 +52,14 @@
     box-shadow: 0px 0px 4px 0px #0000001A;
     width: 264px;
     height: 168px;
-    transition: transform 100ms ease-in-out;
+    transition: transform 200ms ease-in-out;
 }
 
 .summary-todo-info:hover {
     cursor: pointer;    
     background-color: #2A3647;
     color: #FFFFFF;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 /* Summary done  Info */
@@ -74,14 +74,14 @@
     box-shadow: 0px 0px 4px 0px #0000001A;
     width: 264px;
     height: 168px;
-    transition: transform 100ms ease-in-out;
+    transition: transform 200ms ease-in-out;
 }
 
 .summary-done-info:hover {
     cursor: pointer;    
     background-color: #2A3647;
     color: #FFFFFF;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 /* Summary To-do and done  Info */
@@ -122,7 +122,7 @@
     gap: 61px;
     margin-top: 28px;
     margin-bottom: 28px;
-    transition: transform 100ms ease-in-out;
+    transition: transform 200ms ease-in-out;
 }
 
 .summary-stats-urgent:hover,
@@ -131,7 +131,7 @@
     cursor: pointer;    
     background-color: #2A3647;
     color: #FFFFFF;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 
