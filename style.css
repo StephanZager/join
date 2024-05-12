@@ -128,26 +128,26 @@ a {
 }
 
 /*scrollbar*/
-
-/* Works on Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: gray lightgray;
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
   }
   
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 12px;
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
   }
   
-  *::-webkit-scrollbar-track {
-    background: orange;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background-color: blue;
-    border-radius: 20px;
-    border: 3px solid orange;
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: lightgrey; 
   }
 
 @media (max-width: 799px) {
