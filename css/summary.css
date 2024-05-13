@@ -30,7 +30,7 @@
 
 }
 
-.summary-section-2{
+.summary-section-2 {
     display: flex;
     align-items: center;
 }
@@ -128,6 +128,7 @@
     margin-top: 28px;
     margin-bottom: 28px;
     transition: transform 200ms ease-in-out;
+
 }
 
 .summary-stats-urgent:hover,
@@ -242,4 +243,78 @@
     line-height: 76.8px;
     text-align: left;
     color: #29ABE2;
+}
+
+
+/* Summary @media*/
+
+@media (max-width: 1300px) {
+    .headline-summary {
+        margin-left: 275px;
+    }
+
+    .summary-stats {
+        margin-left: 275px;
+    }
+
+    .summary-greeting {
+        margin-left: 55px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .headline-summary {
+        margin-left: 328px;
+    }
+
+    .summary-stats {
+        margin-left: 328px;
+    }
+
+    .summary-greeting {
+        display: none;
+    }
+}
+
+@media (max-width: 960px) {
+    .headline-summary {
+        margin-left: 275px;
+    }
+
+    .summary-stats {
+        margin-left: 275px;
+    }
+}
+
+@media (max-width: 900px){
+    .headline-summary-h2{
+        font-size: 50px;
+    }
+    .headline-summary-info{
+        font-size: 25px;
+    }
+    .headline-summary{
+        gap: 20px;
+    }
+}
+
+@media (max-width: 850px){
+    .summary-stats{
+        margin-right: 30px;
+    }
+    .summary-todo-info{
+        width: 234px;
+    }
+    .summary-done-info{
+        width: 234px;
+    }
+    .summary-stats-below-container{
+        width: 148px;
+    }
+}
+
+@media (max-width: 815px){
+    .headline-summary-info{
+        font-size: 20px;
+    }
 }
