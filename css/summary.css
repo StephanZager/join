@@ -318,3 +318,22 @@
         font-size: 20px;
     }
 }
+
+@media (max-width: 799px){
+    .headline-summary {
+        gap: 30px;
+        margin-left: 0;
+    }
+    .summary-stats {
+        margin-left: 0px;
+    }
+    .headline-summary-h2{
+        font-size: 47px;
+    }
+    .headline-summary-info{
+        font-size: 20px;
+    }
+    .headline-summary{
+        gap: 0px;
+    }    
+}

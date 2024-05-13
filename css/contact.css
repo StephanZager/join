@@ -34,7 +34,7 @@ body{
     flex-direction: column;
     width: 428px;
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #FFFFFF;
     box-shadow: 4px 0px 6px 0px #0000001A;
 }
