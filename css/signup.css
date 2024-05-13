@@ -4,6 +4,175 @@ body {
     height: 100vh;
 }
 
+.logo {
+    width: 100px;
+    height: 121px;
+    margin-top: 80px;
+    margin-left: 77px;
+}
+
+
+main form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputfield-area {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.main-wrapper {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form-header {
+    display: flex;
+    gap: 61px;
+}
+
+.back-btn {
+    margin-top: 64px;
+    margin-left: 48px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.signup-form {
+    width: 598px;
+    height: 630px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 87px;
+    position: relative;
+}
+
+.signupform-headline h1 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 61px;
+}
+
+.signupform-headline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 48px;
+    width: 315px;
+    height: 89px;
+    gap: 16px;
+}
+
+.underline-headline {
+    width: 150px;
+    height: 3px;
+    background-color: #29ABE2;
+}
+
+form {
+    margin: 0px 88px;
+    margin-top: 32px;
+}
+
+.inputfield-area input {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 13px 21px;
+    box-sizing: border-box;
+}
+
+.inputfield-area input:focus {
+    border: 1px solid #29ABE2;
+}
+
+.error-pw {
+    font-size: 12px;
+    color: red;
+    margin-top: 8px;
+}
+
+.accept-policy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 19px;
+}
+
+.accept-policy label a:hover {
+    color: #29ABE2;
+    text-decoration: underline;
+    font-size: 17px;
+
+}
+
+.accept-policy label {
+    font-size: 16px;
+}
+
+.signup-btn-headsection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+}
+
+form button {
+    width: 126px;
+    height: 55px;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 700;
+    border-radius: 8px;
+    border-style: none;
+}
+
+form button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border-style: none;
+    cursor: pointer;
+}
+
+footer a {
+    margin: 0 10px;
+    text-decoration: none;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #A8A8A8;
+  }
+
+  footer a:hover {
+    color: #29ABE2;
+    font-weight: 700;
+}
 
 @media (max-width: 799px) {
     .logo {
@@ -11,13 +180,6 @@ body {
         height: 78px;
         margin-top: 37px;
         margin-left: 38px;
-    }
-
-    .main-wrapper {
-        flex: 1; 
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
     }
 
     .signup-form {
@@ -75,22 +237,11 @@ body {
         height: 32px;
     }
 
-    main form {
-        display: flex;
-        flex-direction: column;
-    }
-
     form {
         margin-top: 24px;
+        margin-left: 0px;
+        margin-right: 0px;
     }
-
-    .inputfield-area {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        gap: 24px;
-    }
-
     .error-pw {
         margin-top: 8px;
         color: red;
@@ -138,40 +289,6 @@ body {
     form button {
         width: 180px;
         height: 51px;
-        background-color: #2A3647;
-        color: #FFFFFF;
-        font-size: 21px;
-        font-weight: 700;
-        border-radius: 8px;
-        border-style: none;
     }
 
-    form button:hover {
-        background-color: #29ABE2;
-        box-shadow: 0px 4px 4px 0px #00000040;
-        border-style: none;
-        cursor: pointer;
-    }
-
-      footer a {
-        margin: 0 10px;
-        text-decoration: none;
-      }
-
-      footer {
-        position: fixed;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 24px;
-        font-size: 16px;
-        font-weight: 400;
-        color: #A8A8A8;
-      }
-
-      footer a:hover {
-        color: #29ABE2;
-        font-weight: 700;
-    }
 }
