@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/signup.css">
+    <script src="js/register.js"></script>
 </head>
 <body>
     <header>
@@ -22,12 +23,12 @@
                 </div>
             </div>
 
-            <form>
+            <form onsubmit="submitData(event)">
                 <div class="inputfield-area">
-                    <input type="text" placeholder="Name" class="input-field-name" required>
-                    <input type="email" placeholder="Email" class="input-field-mail" required>
+                    <input id="userName" type="text" placeholder="Name" class="input-field-name" required>
+                    <input id="userEmail" type="email" placeholder="Email" class="input-field-mail" required>
                     <input type="password" placeholder="Password" class="input-field-password" required>
-                    <input type="password" placeholder="Confirm Password" class="input-field-confirm-pw" required>
+                    <input id="userPassword" type="password" placeholder="Confirm Password" class="input-field-confirm-pw" required>
                 </div>
 
                 <span class="error-pw">Ups! Your password don't match</span>
