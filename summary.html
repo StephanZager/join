@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="css/summary.css">
     <script src="script.js"></script>
 </head>
-<body  onload="includeHTML()">
+
+<body onload="includeHTML()">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <main>
         <div class="headline-summary">
@@ -19,55 +21,63 @@
         </div>
 
         <!-- this is for java script, innnerHTML. id have not yet been assigned -->
+        <div class="summary-section-2">
+            <div class="summary-stats">
+                <div style="display: flex;justify-content: space-between;">
+                    <div class="summary-todo-info">
+                        <img src="assets/img/summary-pen.png" alt="pen">
 
-        <div class="summary-stats">
-            <div style="display: flex;justify-content: space-between;">
-                <div class="summary-todo-info">
-                    <img src="assets/img/summary-pen.png" alt="pen">
-                    <div class="summary-info-open">
-                        <span class="summary-how-much">1</span>
-                        <span class="summary-how-much-art">To-do</span>
+                        <div class="summary-info-open">
+                            <span class="summary-how-much">1</span>
+                            <span class="summary-how-much-art">To-do</span>
+                        </div>
+                    </div>
+                    <div class="summary-done-info">
+                        <img src="assets/img/summary-check.png" alt="check">
+                        <div class="summary-info-open">
+                            <span class="summary-how-much">1</span>
+                            <span class="summary-how-much-art">Done</span>
+                        </div>
                     </div>
                 </div>
-                <div class="summary-done-info">
-                    <img src="assets/img/summary-check.png" alt="check">
-                    <div class="summary-info-open">
-                        <span class="summary-how-much">1</span>
-                        <span class="summary-how-much-art">Done</span>
+                <div class="summary-stats-urgent">
+                    <div class="summary-urgent-info">
+                        <img src="assets/img/summary-urgent-logo.png" alt="">
+                        <div class="summary-info-open">
+                            <span class="summary-how-much">1</span>
+                            <span class="summary-how-much-art">Urgent</span>
+                        </div>
+                    </div>
+                    <div class="summary-urgent-seperator"></div>
+                    <div class="summary-urgent-date-container">
+                        <span class="summary-urgent-date">October 16, 2022</span>
+                        <span class="summary-urgent-date-deadline">Upcoming Deadline</span>
+                    </div>
+                </div>
+                <div class="summary-stats-below">
+                    <div class="summary-stats-below-container">
+                        <span class="summary-stats-below-howmuch">5</span>
+                        <span class="summary-stats-below-tasks">Tasks in Board</span>
+                    </div>
+                    <div class="summary-stats-below-container">
+                        <span class="summary-stats-below-howmuch">2</span>
+                        <span class="summary-stats-below-tasks">Task in Progress</span>
+                    </div>
+                    <div class="summary-stats-below-container">
+                        <span class="summary-stats-below-howmuch">2</span>
+                        <span class="summary-stats-below-tasks">Awaiting Feedback</span>
                     </div>
                 </div>
             </div>
-            <div class="summary-stats-urgent">
-                <div class="summary-urgent-info">
-                    <img src="assets/img/summary-urgent-logo.png" alt="">
-                    <div class="summary-info-open">
-                        <span class="summary-how-much">1</span>
-                        <span class="summary-how-much-art">Urgent</span>
-                    </div>
-                </div>
-                <div class="summary-urgent-seperator"></div>
-                <div class="summary-urgent-date-container">
-                    <span class="summary-urgent-date">October 16, 2022</span>
-                    <span class="summary-urgent-date-deadline">Upcoming Deadline</span>
-                </div>
-            </div>
-            <div class="summary-stats-below">
-                <div class="summary-stats-below-container">
-                   <span class="summary-stats-below-howmuch">5</span>
-                   <span class="summary-stats-below-tasks">Tasks in Board</span> 
-                </div>
-                <div class="summary-stats-below-container">
-                    <span class="summary-stats-below-howmuch">2</span>
-                    <span class="summary-stats-below-tasks">Task in Progress</span>
-                </div>
-                <div class="summary-stats-below-container">
-                    <span class="summary-stats-below-howmuch">2</span>
-                    <span class="summary-stats-below-tasks">Awaiting Feedback</span>
-                </div>
+
+
+            <div class="summary-greeting">
+                <h3 class="summary-day-greeting">Good morning,</h3>
+                <span class="summary-person-greeting">Johannes u.Gürdal :D</span>
             </div>
         </div>
-
     </main>
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
 </body>
+
 </html>
