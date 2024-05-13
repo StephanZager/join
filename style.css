@@ -61,7 +61,7 @@ input:focus {
     gap: 15px;
 }
 
-#menuBar {
+.menuBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,6 +80,7 @@ input:focus {
     position: fixed;
     top: 94px;
 }
+
 
 #contentMenu {
     display: flex;
@@ -151,18 +152,18 @@ a {
   }
 
 @media (max-width: 799px) {
-    #menuBar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        top: 846px;
-        flex-direction: column;
-        background-color: #2A3647;
-        height: 232px;  
-        width: 100%;
-        box-shadow: 0, 0, 4, 0 #000000;
-        padding: 64px, 0, 64px, 0;
+.menuBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: unset;
+    bottom: 0;
+    flex-direction: column;
+    background-color: #2A3647; 
+    height: 80px; 
+    width: 100%;
+    box-shadow: 0 0 4px 0 #000000; 
     }
 
     #logoDesktop {
@@ -174,7 +175,7 @@ a {
     }
 
     .logo.mobile {
-        display: block !important;
+        display: block;
     }
 
     #help {
@@ -186,7 +187,9 @@ a {
         justify-content: center;
         align-items: center;
         position: fixed;
-        top: 846px;
+        bottom: 0;
+        top: unset;
+        padding: unset;
     }
 
     nav {
