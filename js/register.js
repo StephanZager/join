@@ -1,4 +1,7 @@
-function submitData(event) {
+const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
+
+
+async function submitData(event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
     
     let name = document.getElementById('userName').value;
@@ -11,11 +14,18 @@ function submitData(event) {
         password: password
     };
     
-    // Daten an Firebase senden
-    postData("/userData", userData); // pfad für die db wo der datensatz gespeichert werden soll
+
+    try {
+        // Daten an Firebase senden
+        await postData("/userData", userData); // Pfad für die DB, wo der Datensatz gespeichert werden soll
+        
+        // Nach dem erfolgreichen Senden des Formulars zur neuen Seite weiterleiten
+        window.location.href = "summary.html"; // Ändere dies zur gewünschten URL
+    } catch (error) {
+        console.error("Fehler beim Posten der Daten:", error);
+    }
 }
 
-const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
