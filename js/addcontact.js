@@ -60,3 +60,46 @@ async function postData(path, data) {
     let responseToJson = await response.json();
     return responseToJson;
 }
+
+
+async function loadContact(path="/contact") {
+    try {
+        let response = await fetch(BASE_URL + path + ".json");
+        let responseToJson = await response.json();
+        return responseToJson;
+    } catch (error) {
+        console.error("Fehler beim Laden der Daten:", error);
+        return null;
+    }
+}
+
+function generateContacts(contacts) {
+    const contactListContainer = document.getElementById('contact');
+
+    // Clear existing contacts
+    contactListContainer.innerHTML = '';
+
+    // Generate HTML for each contact
+    for (const key in contacts) {
+        if (contacts.hasOwnProperty(key)) {
+            const contact = contacts[key];
+            const contactHTML = `
+                <div id="contact">
+                    <h3>${contact.name}</h3>
+                    <p>${contact.email}</p>
+                    <p>${contact.phone}</p>
+                </div>
+            `;
+            contactListContainer.innerHTML += contactHTML;
+        }
+    }
+}
+
+async function init() {
+    const contacts = await loadContact();
+    if (contacts) {
+        generateContacts(contacts);
+    }
+}
+
+init();
