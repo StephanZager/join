@@ -12,26 +12,26 @@ function submitData(event) {
     };
     
     // Daten an Firebase senden
-    postData(userData);
+    postData("/userData", userData); // pfad für die db wo der datensatz gespeichert werden soll
 }
 
+const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
 
-async function postData(userData) {
-    await fetch('https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/', {
-        method: 'POST',
-        body: JSON.stringify(userData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Data sent successfully:', data);
-        // Hier kannst du die Daten weiterverarbeiten, wenn nötig
-    })
-    .catch(error => {
-        console.error('Error sending data:', error);
+async function postData(path, data) {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
     });
+
+    if (!response.ok) {
+        // Fehlerbehandlung hinzufügen
+        console.error("Fehler beim Posten der Daten:", response.statusText);
+        return;
+    }
+
+    let responseToJson = await response.json();
+    return responseToJson;
 }
