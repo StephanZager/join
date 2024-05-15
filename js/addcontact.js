@@ -12,6 +12,7 @@ async function löschen(path = '/contact') {
 
 /**
  * Open the contact window and add contacts
+ * 
  */
 function openAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
@@ -19,6 +20,7 @@ function openAddNewContactwindow() {
 
 /**
  * closes the contact window again
+ * 
  */
 function cloeAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.add('d-none');
@@ -33,7 +35,10 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
-
+/**
+ * gets the input from the form and adds it to the json array, contacts
+ * 
+ */
 async function submitContact() {
     let name = document.getElementById('addcontact_name').value;
     let email = document.getElementById('addcontact_email').value;
@@ -52,7 +57,13 @@ async function submitContact() {
     }
 }
 
-
+/**
+ * adds the array contact from submitContact() on firebase
+ * 
+ * @param {path} path - this is the path where it should save in firebase 
+ * @param {json array} data - under which array it should save on firebase
+ * @returns 
+ */
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -62,16 +73,22 @@ async function postData(path, data) {
         body: JSON.stringify(data)
     });
 
-    let responseToJson = await response.json();
+    let responseToJson = await response.json();    
     return responseToJson;
 }
 
+/**
+ * downloads the contacts from firebease again
+ * 
+ * @param {path} path - This is the path where the data from contact is inside  
+ * @returns 
+ */
 
 async function loadContact(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
-
+       
         Object.keys(responseToJson).forEach(key => {
             let contact = responseToJson[key];
 
@@ -91,9 +108,10 @@ async function loadContact(path = "/contact") {
 
 /**
  * This function inserts the contacts into the HTML page
+ * 
  */
 function generateContacts() {
-    const contactListContainer = document.getElementById('contact');
+    let contactListContainer = document.getElementById('contact');
     contactListContainer.innerHTML = '';
 
     for (let i = 0; i < contacts.length; i++) {
@@ -116,10 +134,12 @@ function generateContacts() {
  * @param {string} name - The name is in there
  * 
  */
-function filterFirstLetters(name) {  
+function filterFirstLetters(name) {
+
     let words = name.split(' ');
-    let firstLetters = words.map(word => word.charAt(0).toUpperCase());
-    return firstLetters.join('');
+    let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
+    return firstLetters;
+
 }
 
 
