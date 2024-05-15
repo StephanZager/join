@@ -1,41 +1,52 @@
 const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let contacts = [];
 
+// nur für mich zum testen, sonst ist nacher zu viel da
+async function löschen(path = '/contact') {
+    let response = await fetch(BASE_URL + path + '.json', {
+        method: "DELETE",
+    });
+
+}
+
+/**
+ * Open the contact window and add contacts
+ */
 function openAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
 }
 
-
+/**
+ * closes the contact window again
+ */
 function cloeAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.add('d-none');
 }
 
-
+/**
+ * This prevents the window from closing when I press the pop-up button
+ * 
+ * @param {string} event -  
+ */
 function doNotClose(event) {
     event.stopPropagation();
 }
 
 
-async function submitContact(event) {
-    event.preventDefault(); // Verhindert das Standardverhalten des Formulars
-    
+async function submitContact() {
     let name = document.getElementById('addcontact_name').value;
     let email = document.getElementById('addcontact_email').value;
     let phone = document.getElementById('addcontact_phone').value;
-    
+
     let contact = {
         name: name,
         email: email,
         phone: phone
     };
-    
-
     try {
-        // Daten an Firebase senden
-        await postData("/contact", contact); // Pfad für die DB, wo der Datensatz gespeichert werden soll
-        
-        // Nach dem erfolgreichen Senden des Formulars zur neuen Seite weiterleiten
-        window.location.href = "contact.html"; // Ändere dies zur gewünschten URL
+        await postData("/contact", contact);
+        window.location.href = "contact.html";
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
@@ -51,55 +62,68 @@ async function postData(path, data) {
         body: JSON.stringify(data)
     });
 
-    if (!response.ok) {
-        // Fehlerbehandlung hinzufügen
-        console.error("Fehler beim Posten der Daten:", response.statusText);
-        return;
-    }
-
     let responseToJson = await response.json();
     return responseToJson;
 }
 
 
-async function loadContact(path="/contact") {
+async function loadContact(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
-        return responseToJson;
+
+        Object.keys(responseToJson).forEach(key => {
+            let contact = responseToJson[key];
+
+            contacts.push({
+                'name': contact.name,
+                'email': contact.email,
+                'phone': contact.phone
+            });
+        });
+
+        generateContacts();
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
     }
 }
 
-function generateContacts(contacts) {
+/**
+ * This function inserts the contacts into the HTML page
+ */
+function generateContacts() {
     const contactListContainer = document.getElementById('contact');
-
-    // Clear existing contacts
     contactListContainer.innerHTML = '';
 
-    // Generate HTML for each contact
-    for (const key in contacts) {
-        if (contacts.hasOwnProperty(key)) {
-            const contact = contacts[key];
-            const contactHTML = `
-                <div id="contact">
-                    <h3>${contact.name}</h3>
-                    <p>${contact.email}</p>
-                    <p>${contact.phone}</p>
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+
+        let contactHTML = `
+                <div>
+                    <div>${filterFirstLetters(contact.name)}</div>
+                    <h3>${contact.name}</h3>                    
                 </div>
             `;
-            contactListContainer.innerHTML += contactHTML;
-        }
+        contactListContainer.innerHTML += contactHTML;
     }
 }
 
-async function init() {
-    const contacts = await loadContact();
-    if (contacts) {
-        generateContacts(contacts);
-    }
+
+/**
+ * This function takes the first letters of the first and last name 
+ * 
+ * @param {string} name - The name is in there
+ * 
+ */
+function filterFirstLetters(name) {  
+    let words = name.split(' ');
+    let firstLetters = words.map(word => word.charAt(0).toUpperCase());
+    return firstLetters.join('');
 }
 
-init();
+
+
+
+
+

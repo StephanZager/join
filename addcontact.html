@@ -16,7 +16,7 @@
 
         <img class="profilImgAddContact" src="assets/img/profil.img.addcontact.png.png" alt="" srcset="">
 
-        <form action="" method="post" onsubmit="submitContact(event)">
+        <form action="" method="post" onsubmit="submitContact(); return false;" >
             <input type="text" id="addcontact_name" name="name" required placeholder="Name" maxlength="20">
             <input type="email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">
             <!--<input type="tel" id="addcontact_phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
