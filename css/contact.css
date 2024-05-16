@@ -127,6 +127,36 @@ h3 {
 
 }
 
+.show-contact {
+    display: flex;
+    align-items: center;
+    width: 352px;
+    height: 78px;
+    border-radius: 10px;
+    gap: 35px;
+}
+
+.initial-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border: 2px;
+    border-radius: 100%;
+    background-color: lightblue;
+}
+
+.show-contact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.show-contact-details a {
+    color: #007cee;
+    font-size: 16px;
+}
+
 @media (max-width: 1180px) {
     .contact-info-h2 {
         font-size: 50px;

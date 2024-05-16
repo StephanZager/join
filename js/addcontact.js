@@ -118,9 +118,12 @@ function generateContacts() {
         let contact = contacts[i];
 
         let contactHTML = `
-                <div>
-                    <div>${filterFirstLetters(contact.name)}</div>
-                    <h3>${contact.name}</h3>                    
+                <div class="show-contact">
+                    <div class="initial-contact">${filterFirstLetters(contact.name)}</div>
+                    <div class="show-contact-details">
+                        <span>${contact.name}</span> 
+                        <a>${contact.email}</a>
+                    </div>                       
                 </div>
             `;
         contactListContainer.innerHTML += contactHTML;

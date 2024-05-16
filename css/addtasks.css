@@ -208,39 +208,7 @@ h1 {
     border-radius: 10px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content div {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.assign-item {
-    display: flex;
-    align-items: center;
-}
-
-.assign-item input {
-    margin-right: 10px;
-}
 
 @media (max-width: 799px) {
     .parting-line {
