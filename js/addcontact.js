@@ -99,7 +99,7 @@ async function loadContact(path = "/contact") {
                 'name': contact.name,
                 'email': contact.email,
                 'phone': contact.phone,
-                'bgColor': contact.color
+                'bgColor': contact.bgColor
             });
         });
         toAssignColorNameLogo();
