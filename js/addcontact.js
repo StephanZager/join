@@ -49,7 +49,7 @@ async function submitContact() {
         name: name,        
         email: email,
         phone: phone,
-        bgColor: toAssignColorNameLogo(),
+        bgNameColor: toAssignColorNameLogo(),
 
     };
     try {
@@ -99,7 +99,7 @@ async function loadContact(path = "/contact") {
                 'name': contact.name,
                 'email': contact.email,
                 'phone': contact.phone,
-                'bgColor': contact.bgColor
+                'bgNameColor': contact.bgNameColor
             });
         });
         toAssignColorNameLogo();
@@ -123,7 +123,7 @@ function generateContacts() {
 
         let contactHTML = `
                 <div class="show-contact">
-                    <div style="background-color:${contact.bgColor} ;" class="initial-contact" >${filterFirstLetters(contact.name)}</div>
+                    <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${filterFirstLetters(contact.name)}</div>
                     <div class="show-contact-details">
                         <span>${contact.name}</span> 
                         <span class="show-contact-email">${contact.email}</span>
