@@ -1,14 +1,10 @@
-const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
-
 let contacts = [];
-
 
 // nur für mich zum testen, sonst ist nacher zu viel da
 async function löschen(path = '/contact') {
     let response = await fetch(BASE_URL + path + '.json', {
         method: "DELETE",
     });
-
 }
 
 /**
@@ -46,12 +42,12 @@ async function submitContact() {
     let phone = document.getElementById('addcontact_phone').value;
 
     let contact = {
-        name: name,        
+        name: name,
         email: email,
         phone: phone,
         bgNameColor: toAssignColorNameLogo(),
-
     };
+
     try {
         await postData("/contact", contact);
         window.location.href = "contact.html";
@@ -102,8 +98,11 @@ async function loadContact(path = "/contact") {
                 'bgNameColor': contact.bgNameColor
             });
         });
-        toAssignColorNameLogo();
+        filterNameAlphabet();
+
         generateContacts();
+
+
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
@@ -158,6 +157,21 @@ function toAssignColorNameLogo() {
     let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
 
     return backgroundcolor;
+}
+
+function filterNameAlphabet() {
+
+    contacts.sort((a, b) => {
+        if (a.name < b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {
+            return 1
+        }
+        return 0
+    });
+
+    console.log(contacts)
 }
 
 

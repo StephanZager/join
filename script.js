@@ -1,4 +1,4 @@
-const TOKEN = 'SR7ETKIIMOF0UAFXU7RGQEUDCFY4VF3S8A6QP30H';
+const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
 
 
 

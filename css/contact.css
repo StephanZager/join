@@ -137,6 +137,10 @@ h3 {
     gap: 35px;
 }
 
+.show-contact:hover{
+    cursor: pointer;
+}
+
 .initial-contact {
     display: flex;
     justify-content: center;
