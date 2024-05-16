@@ -2,6 +2,7 @@ const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.
 
 let contacts = [];
 
+
 // nur für mich zum testen, sonst ist nacher zu viel da
 async function löschen(path = '/contact') {
     let response = await fetch(BASE_URL + path + '.json', {
@@ -45,9 +46,11 @@ async function submitContact() {
     let phone = document.getElementById('addcontact_phone').value;
 
     let contact = {
-        name: name,
+        name: name,        
         email: email,
-        phone: phone
+        phone: phone,
+        bgColor: toAssignColorNameLogo(),
+
     };
     try {
         await postData("/contact", contact);
@@ -73,7 +76,7 @@ async function postData(path, data) {
         body: JSON.stringify(data)
     });
 
-    let responseToJson = await response.json();    
+    let responseToJson = await response.json();
     return responseToJson;
 }
 
@@ -88,17 +91,18 @@ async function loadContact(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
-       
+
         Object.keys(responseToJson).forEach(key => {
             let contact = responseToJson[key];
 
             contacts.push({
                 'name': contact.name,
                 'email': contact.email,
-                'phone': contact.phone
+                'phone': contact.phone,
+                'bgColor': contact.color
             });
         });
-
+        toAssignColorNameLogo();
         generateContacts();
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
@@ -119,7 +123,7 @@ function generateContacts() {
 
         let contactHTML = `
                 <div class="show-contact">
-                    <div class="initial-contact">${filterFirstLetters(contact.name)}</div>
+                    <div style="background-color:${contact.bgColor} ;" class="initial-contact" >${filterFirstLetters(contact.name)}</div>
                     <div class="show-contact-details">
                         <span>${contact.name}</span> 
                         <span class="show-contact-email">${contact.email}</span>
@@ -143,6 +147,17 @@ function filterFirstLetters(name) {
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
     return firstLetters;
 
+}
+
+/**
+ * The function generates a random color, from the array userNameColor, for the name Logo
+ * 
+ * @returns the random color
+ */
+function toAssignColorNameLogo() {
+    let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
+
+    return backgroundcolor;
 }
 
 
