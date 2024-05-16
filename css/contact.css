@@ -150,9 +150,10 @@ h3 {
 .show-contact-details {
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
-.show-contact-details a {
+.show-contact-email {
     color: #007cee;
     font-size: 16px;
 }

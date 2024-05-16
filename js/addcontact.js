@@ -122,7 +122,7 @@ function generateContacts() {
                     <div class="initial-contact">${filterFirstLetters(contact.name)}</div>
                     <div class="show-contact-details">
                         <span>${contact.name}</span> 
-                        <a>${contact.email}</a>
+                        <span class="show-contact-email">${contact.email}</span>
                     </div>                       
                 </div>
             `;
