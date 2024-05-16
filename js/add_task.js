@@ -1,5 +1,6 @@
 const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let assign = [];
 
 async function submitTask(event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
@@ -31,11 +32,10 @@ async function submitTask(event) {
     }
 }
 
-
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
-        header: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
@@ -50,3 +50,40 @@ async function postData(path, data) {
     let responseToJson = await response.json();
     return responseToJson;
 }
+
+async function loadAssign(path = "/contact") {
+    try {
+        let response = await fetch(BASE_URL + path + ".json");
+        let responseToJson = await response.json();
+
+        // Überprüfen, ob responseToJson nicht null ist und dann die Daten in das assign-Array pushen
+        if (responseToJson) {
+            // Falls die Daten ein Objekt sind, in ein Array umwandeln
+            let assignArray = Object.values(responseToJson);
+
+            // Daten in das assign-Array pushen
+            assign.push(...assignArray);
+        }
+
+        // Aufgaben generieren und anzeigen
+        generateAssign();
+    } catch (error) {
+        console.error("Fehler beim Laden der Daten:", error);
+    }
+}
+
+function generateAssign() {
+    let assignContact = document.getElementById('assigned');
+    assignContact.innerHTML = '<option disabled selected hidden>Select contact to assign</option>';
+
+    for (let i = 0; i < assign.length; i++) {
+        let assignContacts = assign[i];
+
+        let assignOption = document.createElement('option');
+        assignOption.value = assignContacts.name; // oder eine eindeutige ID, wenn verfügbar
+        assignOption.textContent = assignContacts.name;
+
+        assignContact.appendChild(assignOption);
+    }
+}
+

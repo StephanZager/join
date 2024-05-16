@@ -9,7 +9,7 @@
     <script src="js/add_task.js"></script>
     <script src="script.js"></script>
 </head>
-<body onload="includeHTML()" class="body-class-addtask">
+<body onload="includeHTML(), loadAssign()" class="body-class-addtask">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <h1>Add Task</h1>
     <form action="" onsubmit="submitTask(event)">
@@ -28,9 +28,8 @@
 
                 <div class="addtaks-desktop">
                     <span>Assigned to</span>
-                    <select id="assigned" class="select-edit title-select-or-input" required>
+                    <select id="assigned" class="dropdown" required>
                         <option disabled selected hidden>Select contact to assign</option>
-                        <option>beispiel 1</option>
                     </select>
                 </div>
             </div>
