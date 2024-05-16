@@ -20,7 +20,7 @@ async function submitData(event) {
         await postData("/userData", userData); // Pfad für die DB, wo der Datensatz gespeichert werden soll
         
         // Nach dem erfolgreichen Senden des Formulars zur neuen Seite weiterleiten
-        window.location.href = "summary.html"; // Ändere dies zur gewünschten URL
+        window.location.href = "index.html"; // Ändere dies zur gewünschten URL
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
