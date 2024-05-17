@@ -1,5 +1,3 @@
-const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
-
 let assign = [];
 
 async function submitTask(event) {
