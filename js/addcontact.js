@@ -158,14 +158,13 @@ function openUserInfo(index){
     <div class="contact-info-email-phone">
         <div>
             <p>Email</p>
-            <a>${user.email}</a>
+            <a href="mailto:${user.email}">${user.email}</a>
         </div>
         <div>
             <p>Phone</p>
-            <span>${user.phone}</span>
+            <a style="color:black;" href="tel:${user.phone}">${user.phone}</a>
         </div>
-    </div>
-   
+    </div>   
    `
 }
 
