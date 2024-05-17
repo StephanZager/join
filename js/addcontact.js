@@ -131,7 +131,8 @@ function generateContacts() {
     }
 }
 
-function openUserInfo(index){
+
+function openUserInfo(index){  
    let userInfo = document.getElementById('contactInfo')
    let user = contacts[index];
    
@@ -145,7 +146,7 @@ function openUserInfo(index){
                     <img src="assets/img/edit-contacts.png" alt="edit">
                     <p>Edit</p>
                 </div>
-                <div class="user-edit-delete-section">
+                <div class="user-edit-delete-section" onclick="deletUser(${index})">
                     <img src="assets/img/delete-contacts.png" alt="edit">
                     <p>Delete</p>
                 </div>
@@ -166,6 +167,18 @@ function openUserInfo(index){
         </div>
     </div>   
    `
+}
+
+async function deletUser(index, path = '/contact') {
+       
+    const userId = contacts[index].name;
+    console.log(userId);
+
+   contacts.splice(index, 1);
+   let response = await fetch(BASE_URL + path + userId + '.json', {
+        method: "DELETE",
+    });
+    generateContacts();
 }
 
 
@@ -193,19 +206,13 @@ function toAssignColorNameLogo() {
     return backgroundcolor;
 }
 
+/**
+ * Filter the contacts by the alphabet
+ * 
+ */
 function filterNameAlphabet() {
 
-    contacts.sort((a, b) => {
-        if (a.name < b.name) {
-            return -1;
-        }
-        if (a.name > b.name) {
-            return 1
-        }
-        return 0
-    });
-
-    console.log(contacts)
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 
