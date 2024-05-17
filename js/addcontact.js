@@ -152,14 +152,19 @@ function openUserInfo(index){
             </div>
         </div>
     </div>
-
-
-    <span>Contact Information</span>
-    <p>Email</p>
-    <a>${user.email}</a>
-    <p>Phone</p>
-    <a>${user.phone}</a>
-    
+    <div class="contact-information-headline" >
+        <span>Contact Information</span>
+    </div>
+    <div class="contact-info-email-phone">
+        <div>
+            <p>Email</p>
+            <a>${user.email}</a>
+        </div>
+        <div>
+            <p>Phone</p>
+            <span>${user.phone}</span>
+        </div>
+    </div>
    
    `
 }
