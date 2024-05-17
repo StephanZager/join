@@ -77,11 +77,21 @@ function generateAssign() {
     for (let i = 0; i < assign.length; i++) {
         let assignContacts = assign[i];
 
+        console.log("Assign contact:", assignContacts.name); // Überprüfen, ob die Schleife durchläuft und die Namen korrekt sind
+
         let assignOption = document.createElement('option');
-        assignOption.value = assignContacts.name; // oder eine eindeutige ID, wenn verfügbar
+        assignOption.value = assignContacts.name;
         assignOption.textContent = assignContacts.name;
+
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'assignCheckbox';
+        assignOption.appendChild(checkbox);
 
         assignContact.appendChild(assignOption);
     }
 }
+
+
+
 
