@@ -46,6 +46,7 @@ async function submitContact() {
         email: email,
         phone: phone,
         bgNameColor: toAssignColorNameLogo(),
+        firstLetters : filterFirstLetters(name),
     };
 
     try {
@@ -95,13 +96,10 @@ async function loadContact(path = "/contact") {
                 'name': contact.name,
                 'email': contact.email,
                 'phone': contact.phone,
-                'bgNameColor': contact.bgNameColor
+                'bgNameColor': contact.bgNameColor,
+                'firstLetters': contact.firstLetters
             });
         });
-        filterNameAlphabet();
-
-        generateContacts();
-
 
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
@@ -121,8 +119,8 @@ function generateContacts() {
         let contact = contacts[i];
 
         let contactHTML = `
-                <div class="show-contact">
-                    <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${filterFirstLetters(contact.name)}</div>
+                <div class="show-contact" onclick="openUserInfo(${i})">
+                    <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
                     <div class="show-contact-details">
                         <span>${contact.name}</span> 
                         <span class="show-contact-email">${contact.email}</span>
@@ -131,6 +129,39 @@ function generateContacts() {
             `;
         contactListContainer.innerHTML += contactHTML;
     }
+}
+
+function openUserInfo(index){
+   let userInfo = document.getElementById('contactInfo')
+   let user = contacts[index];
+   
+   userInfo.innerHTML = `
+    <div class="user-info-header">
+        <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
+        <div class="user-info-name">
+            <h2 class="user-name">${user.name}</h2>
+            <div class="user-edit-delete">
+                <div class="user-edit-delete-section" >
+                    <img src="assets/img/edit-contacts.png" alt="edit">
+                    <p>Edit</p>
+                </div>
+                <div class="user-edit-delete-section">
+                    <img src="assets/img/delete-contacts.png" alt="edit">
+                    <p>Delete</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <span>Contact Information</span>
+    <p>Email</p>
+    <a>${user.email}</a>
+    <p>Phone</p>
+    <a>${user.phone}</a>
+    
+   
+   `
 }
 
 
@@ -145,7 +176,6 @@ function filterFirstLetters(name) {
     let words = name.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
     return firstLetters;
-
 }
 
 /**
@@ -175,6 +205,46 @@ function filterNameAlphabet() {
 }
 
 
+async function contactinit() {
+    await loadContact();
+    filterNameAlphabet();
+    generateContacts();
+}
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////// test für aplhabet index
+//function indexAlphabet() {
+//    if (sortedByLetter !== currentLetter) {
+//        currentLetter = sortedByLetter;
+//        renderContact.innerHTML += generateRegisterHTML(sortedByLetter);
+//    }
+
+//}
+
+//function generateRegisterHTML(sortedByLetter) {
+//    return /*html*/ `
+//    <div class="letterWrapper">
+//        <div class="Buchstabe">${sortedByLetter}</div>
+//        <div class="divider"></div>
+//    </div>
+//    `;
+//}
+
+//let sortedByLetter = name.charAt(0);
+
+//        if (sortedByLetter !== currentLetter) {
+//            currentLetter = sortedByLetter;
+//            renderContact.innerHTML += generateRegisterHTML(sortedByLetter);
+//        }
 
 
 
