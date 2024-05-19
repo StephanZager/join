@@ -83,11 +83,6 @@ function generateAssign() {
         assignOption.value = assignContacts.name;
         assignOption.textContent = assignContacts.name;
 
-        let checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.name = 'assignCheckbox';
-        assignOption.appendChild(checkbox);
-
         assignContact.appendChild(assignOption);
     }
 }

@@ -127,8 +127,35 @@ input {
     border-radius: 24px;
     padding: 16px;
     gap: 10px;
-    background-color: black;
+    background-color: #ffffff;
     box-sizing: border-box; 
     color: white; 
 }
+
+.taskCard h4 {
+    width: 113px;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px 16px 4px 16px;
+}
+
+.task-title {
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.task-description {
+    color: #a8a8a8;
+    font-size: 16px;
+    font-weight: 400;
+}
+ 
+
+
 

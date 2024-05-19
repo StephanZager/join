@@ -39,15 +39,22 @@ function generateTask() {
 
         // Inhalt des Div-Elements festlegen (hier können Sie anpassen, wie die Aufgabe angezeigt wird)
         taskDiv.innerHTML = `
-            <h5>${taskItem.title}</h5>
-            <p>${taskItem.description}</p>
-            <p>${taskItem.date}</p>
-            <p>${taskItem.category}</p>
+            <h4>${taskItem.category}</h4>
+            <p class="task-title">${taskItem.title}</p>
+            <p class="task-description">${taskItem.description}</p>
+            <p>${taskItem.subtask}<span>1/2 Subtasks</span></p>
             <p>${taskItem.assigned}</p>
-            <p>${taskItem.subtask}</p>
         `;
+
+        // Setzen der Hintergrundfarbe des h5-Tags basierend auf der Kategorie
+        if (taskItem.category === 'User Story') {
+            taskDiv.querySelector('h4').style.backgroundColor = 'blue';
+        } else if (taskItem.category === 'Technical Task') {
+            taskDiv.querySelector('h4').style.backgroundColor = 'cyan';
+        }
 
         // Das neue Div-Element zum toDoElement hinzufügen
         toDoElement.appendChild(taskDiv);
     }
 }
+
