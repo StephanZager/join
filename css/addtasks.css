@@ -210,6 +210,76 @@ h1 {
 
 /*DOPPDOWN*/
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 1; /* Stelle sicher, dass das Dropdown-Menü unter dem Dropdown-Inhalt liegt */
+}
+
+.dropdown-button {
+    background-color: #ffffff;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    width: 440px;
+    height: 48px;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 440px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2; /* Erhöhe die Z-Index, damit der Dropdown-Inhalt über dem Dropdown-Menü liegt */
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    overflow-y: auto; /* Ändere auf 'auto', um nur dann einen Scrollbalken anzuzeigen, wenn nötig */
+    max-height: 200px; /* Setze die maximale Höhe, ab der der Scrollbalken erscheint */
+    top: calc(-100% + 48px); /* Positioniere den Dropdown-Inhalt über dem Dropdown-Menü */
+    left: 0; /* Stelle sicher, dass der Dropdown-Inhalt am linken Rand des Dropdown-Menüs ausgerichtet ist */
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Nutze space-between für den Abstand zwischen den Elementen */
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-content label:hover {
+    background-color: blue;
+    cursor: pointer;
+}
+
+.dropdown-content span {
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    color: white;
+}
+
+.dropdown-content input[type="checkbox"] {
+    height: 10px;
+}
+
+
+
 
 
 
