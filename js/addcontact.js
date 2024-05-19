@@ -1,6 +1,5 @@
 let contacts = [];
 
-console.log(contacts);
 
 // nur für mich zum testen, sonst ist nacher zu viel da
 async function löschen(path = '/contact') {
@@ -15,14 +14,19 @@ async function löschen(path = '/contact') {
  */
 function openAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
+    document.getElementById('btn-create-addcontact').classList.remove('d-none');
+
 }
 
 /**
- * closes the contact window again
+ * closes the contact window again and clears the input fields
  * 
  */
 function cloeAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.add('d-none');
+    document.getElementById('addcontact_name').value = '';
+    document.getElementById('addcontact_email').value = '';
+    document.getElementById('addcontact_phone').value = '';
 }
 
 /**
@@ -147,8 +151,8 @@ function openUserInfo(index) {
         <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         <div class="user-info-name">
             <h2 class="user-name">${user.name}</h2>
-            <div class="user-edit-delete">
-                <div class="user-edit-delete-section" >
+            <div class="user-edit-delete" >
+                <div class="user-edit-delete-section" onclick="editUser(${index})">
                     <img src="assets/img/edit-contacts.png" alt="edit">
                     <p>Edit</p>
                 </div>
@@ -175,6 +179,35 @@ function openUserInfo(index) {
    `
 }
 
+async function updateContact(contactId, updatedContact, path = "/contact") {
+    let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedContact)
+    });
+    return response;
+}
+
+async function editUser(i, path = "/contact") {
+    let contactId = contacts[i].id;
+    openAddNewContactwindow();
+    document.getElementById('addcontact_name').value = contacts[i].name;
+    document.getElementById('addcontact_email').value = contacts[i].email;
+    document.getElementById('addcontact_phone').value = contacts[i].phone;
+    document.getElementById('btn-create-addcontact').classList.add('d-none');
+
+    let updatedContact = {
+        name: document.getElementById('addcontact_name').value,
+        email: document.getElementById('addcontact_email').value,
+        phone: document.getElementById('addcontact_phone').value,
+        firstLetters: contacts[i].firstLetters,
+        bgNameColor: contacts[i].bgNameColor,
+    };
+
+    let response = await updateContact(contactId, updatedContact, path);  
+}
 
 /**
  * This function deletes the user
@@ -184,8 +217,8 @@ function openUserInfo(index) {
  */
 async function deleteUser(i, path = "/contact") {
     let contactId = contacts[i].id;
-    contacts.splice(i,1);
-  
+    contacts.splice(i, 1);
+
     let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
         method: "DELETE",
     });
@@ -233,7 +266,6 @@ async function contactinit() {
     filterNameAlphabet();
     generateContacts();
 }
-
 
 
 
