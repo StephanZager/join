@@ -6,7 +6,6 @@
     <title>Join</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/signup.css">
-    <script src="js/register.js"></script>
 </head>
 <body>
     <header>
@@ -25,15 +24,17 @@
                 </div>
             </div>
 
-            <form onsubmit="submitData(event)">
+            <form id="signupForm" onsubmit="submitData(event)">
                 <div class="inputfield-area">
                     <input id="userName" type="text" placeholder="Name" class="input-field-name" required>
                     <input id="userEmail" type="email" placeholder="Email" class="input-field-mail" required>
-                    <input type="password" placeholder="Password" class="input-field-password" required>
-                    <input id="userPassword" type="password" placeholder="Confirm Password" class="input-field-confirm-pw" required>
+                    <input id="password" type="password" placeholder="Password" class="input-field-password" required>
+                    <input id="confirmPassword" type="password" placeholder="Confirm Password" class="input-field-confirm-pw" required>
                 </div>
 
-                <span class="error-pw">Ups! Your password don't match</span>
+                <span id="errorMessage" class="error">Ups! Your password don't match</span>
+                <span id="criteriaMessage" class="error">Password must contain at least one uppercase letter, one number, and one special character.</span>
+                <span id="emailExistsMessage" class="error">This email address is already registered.</span>                
 
                 <div class="accept-policy">
                     <input type="checkbox" id="privacy-policy" required>
@@ -47,9 +48,17 @@
         </main>
     </div>
 
+    <div id="successPopup" class="popup">
+        <div class="popup-content">
+            <p>Sign up successful! You will be redirected shortly...</p>
+        </div>
+    </div>
+
     <footer>
         <a href="policy_over_signup.html">Privacy Policy</a>
         <a href="legal_notice_over_signup.html">Legal notice</a>
     </footer>
+
+    <script src="js/register.js"></script>
 </body>
 </html>
