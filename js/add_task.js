@@ -26,19 +26,20 @@ async function submitTask(event) {
     
     // Überprüfen Sie, ob das Element mit der ID 'assigned' vorhanden ist
     let assignedElement = document.getElementById('assigned');
-    let assign = assignedElement ? assignedElement.value : null;
-    
-    
-    
+    let assignCheckboxes = assignedElement ? assignedElement.querySelectorAll('input[type="checkbox"]:checked') : [];
+
+    let assignInitials = [];
+    assignCheckboxes.forEach(checkbox => {
+        assignInitials.push(filterFirstLetters(checkbox.value));
+    });
+
     let userTask = {
         title: title,
         description: description,
         date: date,
         category: category,
-        assign: assign,
-        
+        assign: assignInitials,  // Nur die Initialen der ausgewählten Elemente speichern
     };
-    
 
     try {
         // Daten an Firebase senden
@@ -73,7 +74,6 @@ async function postData(path, data) {
 }
 
 
-
 async function loadAssign(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -89,6 +89,7 @@ async function loadAssign(path = "/contact") {
         console.error("Fehler beim Laden der Daten:", error);
     }
 }
+
 
 function generateAssign() {
     let assignContact = document.getElementById('assigned');
@@ -126,16 +127,19 @@ function generateAssign() {
     }
 }
 
+
 function filterFirstLetters(name) {
     let words = name.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
     return firstLetters;
 }
 
+
 function toAssignColorNameLogo() {
     let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
     return backgroundcolor;
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownButton = document.querySelector('.dropdown-button');
@@ -150,7 +154,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dropdownContent.contains(event.target) && !dropdownButton.contains(event.target)) {
             dropdownContent.classList.remove('show');
         }
-    });
-
-    
+    }); 
 });

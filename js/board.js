@@ -37,13 +37,16 @@ function generateTask() {
         let taskDiv = document.createElement('div');
         taskDiv.className = 'taskCard';
 
+        // Initialen der zugewiesenen Benutzer abrufen und anzeigen
+        let assignedInitials = taskItem.assign ? taskItem.assign.join(', ') : ''; // Überprüfen, ob assign definiert ist
+
         // Inhalt des Div-Elements festlegen (hier können Sie anpassen, wie die Aufgabe angezeigt wird)
         taskDiv.innerHTML = `
             <h4>${taskItem.category}</h4>
             <p class="task-title">${taskItem.title}</p>
             <p class="task-description">${taskItem.description}</p>
             <p>${taskItem.subtask}<span>1/2 Subtasks</span></p>
-            <p>${taskItem.assigned}</p>
+            <span>${assignedInitials}</span> // Anzeige der Initialen der zugewiesenen Benutzer
         `;
 
         // Setzen der Hintergrundfarbe des h5-Tags basierend auf der Kategorie
@@ -57,4 +60,6 @@ function generateTask() {
         toDoElement.appendChild(taskDiv);
     }
 }
+
+
 
