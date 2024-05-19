@@ -13,6 +13,7 @@ async function löschen(path = '/contact') {
  * 
  */
 function openAddNewContactwindow() {
+    test();
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
 
@@ -187,28 +188,37 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
         },
         body: JSON.stringify(updatedContact)
     });
+    window.location.href = "contact.html";
     return response;
 }
 
-async function editUser(i, path = "/contact") {
-    let contactId = contacts[i].id;
-    openAddNewContactwindow();
-    document.getElementById('addcontact_name').value = contacts[i].name;
-    document.getElementById('addcontact_email').value = contacts[i].email;
-    document.getElementById('addcontact_phone').value = contacts[i].phone;
-    document.getElementById('btn-create-addcontact').classList.add('d-none');
+async function submitForm(i, contactId, path) {
+    event.preventDefault();
 
     let updatedContact = {
         name: document.getElementById('addcontact_name').value,
         email: document.getElementById('addcontact_email').value,
         phone: document.getElementById('addcontact_phone').value,
-        firstLetters: contacts[i].firstLetters,
+        firstLetters: filterFirstLetters(document.getElementById('addcontact_name').value),
         bgNameColor: contacts[i].bgNameColor,
     };
 
-    let response = await updateContact(contactId, updatedContact, path);  
+    let response = await updateContact(contactId, updatedContact, path);
 }
 
+async function editUser(i, path = "/contact") {
+    let contactId = contacts[i].id;
+    document.getElementById('test2').innerHTML += test2(i, path = "/contact");
+    openAddUbdateContactwindow();
+    document.getElementById('addcontact_name').value = contacts[i].name;
+    document.getElementById('addcontact_email').value = contacts[i].email;
+    document.getElementById('addcontact_phone').value = contacts[i].phone;
+
+    document.getElementById('form').onsubmit = function (event) {
+        submitForm(i, contactId, path);
+    }
+    generateContacts();
+}
 /**
  * This function deletes the user
  * 
@@ -268,38 +278,136 @@ async function contactinit() {
 }
 
 
+function test() {
+    document.getElementById('test').innerHTML = `<div id="bg_add_new_contact" class="d-none">
+    <div class="bg" onclick="cloeAddNewContactwindow()">
+        <div onclick="doNotClose(event)">
+        <div class="addcontact-container">
+
+        <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact-destop"
+            src="/assets/img/x.button.addcontact.black.png" alt="check">
+
+        <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact"
+            src="assets/img/close.button.addcontact.png.png" alt="" srcset="">
+        <div class="aboveSection">
+            <div class="headline">
+                <img class="join-logo" src="assets/img/logo.desktop.png" alt="">
+                <h2 class="h2-addcontact">Add contact</h2>
+                <p class="addcontact-p-task">Tasks are better with a team!</p>
+                <div class="seperator"></div>
+            </div>
+        </div>
+
+        <img class="profilImgAddContact" src="assets/img/profil.img.addcontact.png.png" alt="" srcset="">
+
+        <form id="form" action="" method="post" onsubmit="submitContact(); return false;">
+            <input type="text" id="addcontact_name" name="name" required placeholder="Name" maxlength="20">
+            <input type="email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">            
+            <input type="tel" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
+            <div class="form-button">
+                <button type="button" class="addcontact_cancel_Button">
+                    <img src="assets/img/x.button.addcontact.black.png" alt="check">Cancel
+                </button>
+                <div id="btn-create-addcontact" class="d-none">
+                    <button type="submit" class="addcontact_Button">
+                        <img src="assets/img/check.addcontact.png.png" alt="check">Create Contact
+                    </button>
+                </div>
+
+                <div id="btn-save-addcontact">
+                    
+                </div>
+                
+            </div>
+        </form>
+
+        
 
 
+    </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+    </div>
+</div>`
+}
 
 
+function openAddUbdateContactwindow() {
+
+    document.getElementById('bg_add_ubdate_contact').classList.remove('d-none');
+    document.getElementById('btn-create-addcontact').classList.remove('d-none');
+
+}
+
+function cloeAddUbdateContactwindow() {
+    document.getElementById('bg_add_ubdate_contact').classList.add('d-none');
+    document.getElementById('addcontact_name').value = '';
+    document.getElementById('addcontact_email').value = '';
+    document.getElementById('addcontact_phone').value = '';
+
+}
+
+function test2(i, path = "/contact") {
+
+    return `<div id="bg_add_ubdate_contact" class="d-none">
+    <div class="bg" onclick="cloeAddUbdateContactwindow()">
+        <div onclick="doNotClose(event)">
+        <div class="addcontact-container">
+
+        <img onclick="cloeAddUbdateContactwindow()" class="close-botton-addcontact-destop"
+            src="/assets/img/x.button.addcontact.black.png" alt="check">
+
+        <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact"
+            src="assets/img/close.button.addcontact.png.png" alt="" srcset="">
+        <div class="aboveSection">
+            <div class="headline">
+                <img class="join-logo" src="assets/img/logo.desktop.png" alt="">
+                <h2 class="h2-addcontact">Add contact</h2>
+                <p class="addcontact-p-task">Tasks are better with a team!</p>
+                <div class="seperator"></div>
+            </div>
+        </div>
+
+        <img class="profilImgAddContact" src="assets/img/profil.img.addcontact.png.png" alt="" srcset="">
+
+        <form id="form" action="" method="put" onsubmit="editUser(${i}, ${path = "/contact"})"; return false;">
+            <input type="text" id="addcontact_name" name="name" required placeholder="Name" maxlength="20">
+            <input type="email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">            
+            <input type="tel" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
+            <div class="form-button">
+                <button type="button" class="addcontact_cancel_Button">
+                    <img src="assets/img/x.button.addcontact.black.png" alt="check">Cancel
+                </button>
+                <div id="btn-create-addcontact">
+                    <button type="submit" class="addcontact_Button">
+                        <img src="assets/img/check.addcontact.png.png" alt="check">Save
+                    </button>
+                </div>
+
+                <div id="btn-save-addcontact">
+                    
+                </div>
+                
+            </div>
+        </form>
+
+        
 
 
-
-
-//////////////////////////////////////////////////////// test für aplhabet index
-//function indexAlphabet() {
-//    if (sortedByLetter !== currentLetter) {
-//        currentLetter = sortedByLetter;
-//        renderContact.innerHTML += generateRegisterHTML(sortedByLetter);
-//    }
-
-//}
-
-//function generateRegisterHTML(sortedByLetter) {
-//    return /*html*/ `
-//    <div class="letterWrapper">
-//        <div class="Buchstabe">${sortedByLetter}</div>
-//        <div class="divider"></div>
-//    </div>
-//    `;
-//}
-
-//let sortedByLetter = name.charAt(0);
-
-//        if (sortedByLetter !== currentLetter) {
-//            currentLetter = sortedByLetter;
-//            renderContact.innerHTML += generateRegisterHTML(sortedByLetter);
-//        }
+    </div>           
+        </div>
+    </div>
+</div>`
+}
 
 
 
