@@ -243,7 +243,7 @@ h1 {
     border-radius: 8px;
     border: 1px solid lightgray;
     overflow-y: auto; /* Ändere auf 'auto', um nur dann einen Scrollbalken anzuzeigen, wenn nötig */
-    max-height: 200px; /* Setze die maximale Höhe, ab der der Scrollbalken erscheint */
+    max-height: 320px; /* Setze die maximale Höhe, ab der der Scrollbalken erscheint */
     top: calc(-100% + 48px); /* Positioniere den Dropdown-Inhalt über dem Dropdown-Menü */
     left: 0; /* Stelle sicher, dass der Dropdown-Inhalt am linken Rand des Dropdown-Menüs ausgerichtet ist */
 }
