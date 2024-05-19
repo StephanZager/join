@@ -15,6 +15,65 @@ let userNameColor = [
     "#d1b8ce", "#d3faad", "#d0c7d2", "#ace8fb"
 ];
 
+
+async function submitTask(event) {
+    event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+    
+    let title = document.getElementById('title').value;
+    let description = document.getElementById('description').value;
+    let date = document.getElementById('dueDate').value;
+    let category = document.getElementById('category').value;
+    
+    // Überprüfen Sie, ob das Element mit der ID 'assigned' vorhanden ist
+    let assignedElement = document.getElementById('assigned');
+    let assign = assignedElement ? assignedElement.value : null;
+    
+    
+    
+    let userTask = {
+        title: title,
+        description: description,
+        date: date,
+        category: category,
+        assign: assign,
+        
+    };
+    
+
+    try {
+        // Daten an Firebase senden
+        await postData("/userTask", userTask); // Pfad für die DB, wo der Datensatz gespeichert werden soll
+        
+        // Nach dem erfolgreichen Senden des Formulars zur neuen Seite weiterleiten
+        window.location.href = "board.html"; // Ändere dies zur gewünschten URL
+    } catch (error) {
+        console.error("Fehler beim Posten der Daten:", error);
+    }
+}
+
+
+
+async function postData(path, data) {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+        // Fehlerbehandlung hinzufügen
+        console.error("Fehler beim Posten der Daten:", response.statusText);
+        return;
+    }
+
+    let responseToJson = await response.json();
+    return responseToJson;
+}
+
+
+
 async function loadAssign(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -66,8 +125,6 @@ function generateAssign() {
         assignContact.appendChild(label);
     }
 }
-
-
 
 function filterFirstLetters(name) {
     let words = name.split(' ');
