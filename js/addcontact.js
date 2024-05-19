@@ -1,5 +1,7 @@
 let contacts = [];
 
+console.log(contacts);
+
 // nur für mich zum testen, sonst ist nacher zu viel da
 async function löschen(path = '/contact') {
     let response = await fetch(BASE_URL + path + '.json', {
@@ -46,7 +48,7 @@ async function submitContact() {
         email: email,
         phone: phone,
         bgNameColor: toAssignColorNameLogo(),
-        firstLetters : filterFirstLetters(name),
+        firstLetters: filterFirstLetters(name),
     };
 
     try {
@@ -65,6 +67,7 @@ async function submitContact() {
  * @returns 
  */
 async function postData(path, data) {
+
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
@@ -89,17 +92,20 @@ async function loadContact(path = "/contact") {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
 
-        Object.keys(responseToJson).forEach(key => {
-            let contact = responseToJson[key];
+        for (let key in responseToJson) {
+            if (responseToJson.hasOwnProperty(key)) {
+                let contact = responseToJson[key];
 
-            contacts.push({
-                'name': contact.name,
-                'email': contact.email,
-                'phone': contact.phone,
-                'bgNameColor': contact.bgNameColor,
-                'firstLetters': contact.firstLetters
-            });
-        });
+                contacts.push({
+                    'id': key,
+                    'name': contact.name,
+                    'email': contact.email,
+                    'phone': contact.phone,
+                    'bgNameColor': contact.bgNameColor,
+                    'firstLetters': contact.firstLetters
+                });
+            }
+        }
 
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
@@ -132,11 +138,11 @@ function generateContacts() {
 }
 
 
-function openUserInfo(index){  
-   let userInfo = document.getElementById('contactInfo')
-   let user = contacts[index];
-   
-   userInfo.innerHTML = `
+function openUserInfo(index) {
+    let userInfo = document.getElementById('contactInfo')
+    let user = contacts[index];
+    console.log(user.id)
+    userInfo.innerHTML = `
     <div class="user-info-header">
         <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         <div class="user-info-name">
@@ -146,7 +152,7 @@ function openUserInfo(index){
                     <img src="assets/img/edit-contacts.png" alt="edit">
                     <p>Edit</p>
                 </div>
-                <div class="user-edit-delete-section" onclick="deletUser(${index})">
+                <div class="user-edit-delete-section" onclick="deleteUser(${index})">
                     <img src="assets/img/delete-contacts.png" alt="edit">
                     <p>Delete</p>
                 </div>
@@ -169,15 +175,21 @@ function openUserInfo(index){
    `
 }
 
-async function deletUser(index, path = '/contact') {
-       
-    const userId = contacts[index].name;
-    console.log(userId);
 
-   contacts.splice(index, 1);
-   let response = await fetch(BASE_URL + path + userId + '.json', {
+/**
+ * This function deletes the user
+ * 
+ * @param {*} i is the index from the user
+ * @param {*} path is the path where the contacts are stored
+ */
+async function deleteUser(i, path = "/contact") {
+    let contactId = contacts[i].id;
+    contacts.splice(i,1);
+  
+    let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
         method: "DELETE",
     });
+    document.getElementById('contactInfo').innerHTML = '';
     generateContacts();
 }
 
