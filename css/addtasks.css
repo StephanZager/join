@@ -228,6 +228,9 @@ h1 {
     width: 440px;
     height: 48px;
     transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .dropdown-content {
@@ -252,19 +255,26 @@ h1 {
 .dropdown-content label {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Nutze space-between für den Abstand zwischen den Elementen */
     padding: 8px;
     cursor: pointer;
+    flex-direction: row; /* Ändere die Ausrichtung auf "row", um ein nebeneinander liegendes Layout zu erzwingen */
 }
 
 .dropdown-content label:hover {
     background-color: blue;
-    cursor: pointer;
+    
 }
 
-.dropdown-content span {
+.dropdown-content input[type="checkbox"] {
+    height: 10px;
+    width: 10px;
+    margin-left: auto;
+}
+
+.assign-initials {
     margin-right: 10px;
-    border-radius: 50%;
+    padding: 3px 6px;
+    border-radius: 100%;
     width: 32px;
     height: 32px;
     display: flex;
@@ -274,8 +284,10 @@ h1 {
     color: white;
 }
 
-.dropdown-content input[type="checkbox"] {
-    height: 10px;
+.assign-name {
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 

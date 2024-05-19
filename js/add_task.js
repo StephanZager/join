@@ -43,7 +43,6 @@ function generateAssign() {
 
     for (let i = 0; i < assign.length; i++) {
         let assignContacts = assign[i];
-        console.log("Assign contact:", assignContacts.name);
 
         let label = document.createElement('label');
         let checkbox = document.createElement('input');
@@ -52,21 +51,23 @@ function generateAssign() {
 
         let initials = filterFirstLetters(assignContacts.name);
         let initialsSpan = document.createElement('span');
-        let contactName = document.createElement('p');
         initialsSpan.textContent = initials;
-        contactName.textContent = assignContacts.name;
+        initialsSpan.classList.add('assign-initials'); // Füge die Klasse für die Initialen hinzu
         initialsSpan.style.backgroundColor = toAssignColorNameLogo();
-        initialsSpan.style.color = 'white';
-        initialsSpan.style.padding = '3px 6px';
-        
+       
+        let nameSpan = document.createElement('span');
+        nameSpan.textContent = assignContacts.name;
+        nameSpan.classList.add('assign-name'); // Füge die Klasse für den Namen hinzu
 
         label.appendChild(initialsSpan);
-        label.appendChild(document.createTextNode(assignContacts.name));
+        label.appendChild(nameSpan); // Füge den Namen als <span> hinzu
         label.appendChild(checkbox);
 
         assignContact.appendChild(label);
     }
 }
+
+
 
 function filterFirstLetters(name) {
     let words = name.split(' ');
