@@ -88,7 +88,6 @@ form.show {
     align-items: center;
     flex-direction: column;
     margin-top: 32px;
-    gap: 32px;
 }
 
 .login-field input {
@@ -202,6 +201,7 @@ footer {
     background-repeat: no-repeat;
     background-position: right 12px center; 
     padding-right: 40px; 
+    margin-bottom: 32px;
 }
 
 
@@ -218,6 +218,12 @@ footer a {
 footer a:hover {
     color: #29ABE2;
     font-weight: 700;
+}
+
+#error-message {
+    width: 422px;
+    font-size: 12px;
+    margin-top: 8px;
 }
 
 @media (max-width: 800px){
@@ -288,5 +294,9 @@ label {
 .guest-login-button{
     width: 180px;
     height: 51px;
+}
+
+#error-message {
+    width: 364px;
 }
 }

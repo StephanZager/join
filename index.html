@@ -6,7 +6,7 @@
     <title>LogIn</title>
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="style.css">
-    <script src="./js/login.js"></script>
+    <script src="./js/login.js" defer></script>
 </head>
 <body>
     <div id="background-overlay"></div>
@@ -30,13 +30,14 @@
                 <div class="login-field">
                     <input id="emailInput" required type="email" placeholder="Email" autocomplete="email">
                     <input id="passwordInput" required type="password" placeholder="Password" autocomplete="current-password">
+                    <div id="error-message" style="color: red; display: none;">Ups, wrong password! Try again.</div>
                 </div>
-
+               
                 <label>
                     <input type="checkbox"><span>Remember me</span>
                 </label>
                 <div class="button-section-for-entry">
-                    <button class="login-signup-button hover-effects-button">Log in</button>
+                    <button type="button" class="login-signup-button hover-effects-button" onclick="login()">Log in</button>
                     <button class="guest-login-button " formnovalidate>Guest Log in</button>
                 </div>
             </form>
@@ -44,7 +45,7 @@
     </main>
 
     <footer>
-        <a href="policy_over_signup.html">Privacy Police</a>
+        <a href="policy_over_signup.html">Privacy Policy</a>
         <a href="legal_notice_over_signup.html">Legal Notice</a>
     </footer>
 </body>
