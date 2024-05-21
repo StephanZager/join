@@ -47,9 +47,9 @@
                 <div class="prio-section addtaks-desktop">
                     <span class="subheadline"><b>Prio</b></span>
                     <div class="prio-buttons">
-                        <button class="urgent-button">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
-                        <button class="medium-button">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
-                        <button class="low-button">Low<img class="prio-icons" src="./assets/img/prio-low-icon.unclicked.png"></button>
+                        <button class="urgent-button" type="button" onclick="setPriority('Urgent')">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
+                        <button class="medium-button" type="button" onclick="setPriority('Medium')">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
+                        <button class="low-button" type="button" onclick="setPriority('Low')">Low<img class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png"></button>
                     </div>
                 </div>
 
@@ -65,7 +65,11 @@
 
                 <div class="addtaks-desktop">
                     <span>Subtasks</span>
-                    <input id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
+                    <div class="input-with-button">
+                        <input id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
+                        <button type="button" onclick="addSubtaskToList()"><img class="input-button-img" src="assets/img/add.png" alt=""></button>
+                    </div>
+                    <ul id="subtaskList"></ul>
                 </div>
             </div>
 
@@ -77,6 +81,7 @@
                 <button type="reset" class="clear-button">Clear <b>x</b></button>
                 <button type="submit" class="create-task-button">Create Task <img src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
+            <ul id="subtaskList"></ul>
         </div>
     </form>     
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>

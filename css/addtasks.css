@@ -208,6 +208,57 @@ h1 {
     border-radius: 10px;
 }
 
+.input-with-button {
+    position: relative;
+    display: inline-block; /* Damit die Breite sich dem Inhalt anpasst */
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-with-button input {
+    padding-right: 30px; /* Platz für den Button reservieren */
+    width: 100%; /* Vollständige Breite des Containers */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-with-button button {
+    position: absolute;
+    top: 35%;
+    right: 3%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-button-img {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-with-button button:hover {
+    border-radius: 32px;
+    background-color: lightgray;
+}
+
+#subtaskList {
+    overflow-y: auto;
+    max-height: 150px;
+}
+
 /*DOPPDOWN*/
 
 .dropdown {
@@ -219,6 +270,7 @@ h1 {
 .dropdown-button {
     background-color: #ffffff;
     color: black;
+    z-index: 2; /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -231,6 +283,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Füge relative Positionierung hinzu */
 }
 
 .dropdown-content {
@@ -239,13 +292,13 @@ h1 {
     background-color: #FFFFFF;
     width: 440px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 2; /* Erhöhe die Z-Index, damit der Dropdown-Inhalt über dem Dropdown-Menü liegt */
+    z-index: 1;
     border-radius: 8px;
     border: 1px solid lightgray;
-    overflow-y: auto; /* Ändere auf 'auto', um nur dann einen Scrollbalken anzuzeigen, wenn nötig */
-    max-height: 320px; /* Setze die maximale Höhe, ab der der Scrollbalken erscheint */
-    top: calc(-100% + 48px); /* Positioniere den Dropdown-Inhalt über dem Dropdown-Menü */
-    left: 0; /* Stelle sicher, dass der Dropdown-Inhalt am linken Rand des Dropdown-Menüs ausgerichtet ist */
+    overflow-y: auto;
+    max-height: 320px;
+    top: calc(100% - 8px); /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
+    left: 0;
 }
 
 .dropdown-content.show {
@@ -258,6 +311,7 @@ h1 {
     padding: 8px;
     cursor: pointer;
     flex-direction: row; /* Ändere die Ausrichtung auf "row", um ein nebeneinander liegendes Layout zu erzwingen */
+    margin-top: 8px;
 }
 
 .dropdown-content label:hover {

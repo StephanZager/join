@@ -16,6 +16,15 @@ let userNameColor = [
 ];
 
 
+let selectedPriority = null;
+
+function setPriority(priority) {
+    selectedPriority = priority;
+    console.log(`Priority set to ${priority}`);
+    // Optional: Update UI to reflect selected priority (e.g., highlight the selected button)
+}
+
+
 async function submitTask(event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
     
@@ -27,10 +36,16 @@ async function submitTask(event) {
     // Überprüfen Sie, ob das Element mit der ID 'assigned' vorhanden ist
     let assignedElement = document.getElementById('assigned');
     let assignCheckboxes = assignedElement ? assignedElement.querySelectorAll('input[type="checkbox"]:checked') : [];
-
     let assignInitials = [];
     assignCheckboxes.forEach(checkbox => {
         assignInitials.push(filterFirstLetters(checkbox.value));
+    });
+
+    // Subtasks abrufen
+    let subtaskItems = document.querySelectorAll('#subtaskList li');
+    let subtasks = [];
+    subtaskItems.forEach(item => {
+        subtasks.push(item.textContent.trim().substring(2)); // Entferne das Unicode-Zeichen und führende Leerzeichen
     });
 
     let userTask = {
@@ -39,6 +54,7 @@ async function submitTask(event) {
         date: date,
         category: category,
         assign: assignInitials,  // Nur die Initialen der ausgewählten Elemente speichern
+        subtasks: subtasks // Hinzufügen der Subtasks zum Objekt
     };
 
     try {
@@ -51,6 +67,31 @@ async function submitTask(event) {
         console.error("Fehler beim Posten der Daten:", error);
     }
 }
+
+
+
+function addSubtaskToList() {
+    // Zugriff auf das Input-Feld
+    let subtaskInput = document.getElementById('subtasks');
+    // Wert des Input-Feldes abrufen
+    let subtaskText = subtaskInput.value.trim();
+
+    // Überprüfen, ob das Input-Feld nicht leer ist
+    if (subtaskText !== '') {
+        // Zugriff auf die UL-Liste
+        let subtaskList = document.getElementById('subtaskList');
+        // Neues Listenelement erstellen
+        let newSubtaskItem = document.createElement('li');
+        // Textinhalt des neuen Listenelements festlegen
+        newSubtaskItem.textContent = '\u2022 ' + subtaskText; // '\u2022' entspricht dem Punkt (•) Unicode-Zeichen
+        // Neues Listenelement der UL-Liste hinzufügen
+        subtaskList.appendChild(newSubtaskItem);
+        // Das Input-Feld leeren, damit der Benutzer leicht eine neue Subtask eingeben kann
+        subtaskInput.value = '';
+    }
+}
+
+
 
 
 
