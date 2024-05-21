@@ -15,25 +15,22 @@ let userNameColor = [
     "#d1b8ce", "#d3faad", "#d0c7d2", "#ace8fb"
 ];
 
-
+let taskIdCounter = 1;
 let selectedPriority = null;
 
 function setPriority(priority) {
     selectedPriority = priority;
     console.log(`Priority set to ${priority}`);
-    // Optional: Update UI to reflect selected priority (e.g., highlight the selected button)
 }
 
-
 async function submitTask(event) {
-    event.preventDefault(); // Verhindert das Standardverhalten des Formulars
-    
+    event.preventDefault();
+
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let date = document.getElementById('dueDate').value;
-    let category = document.getElementById('category').value;
+    let userCategory = document.getElementById('category').value;
     
-    // Überprüfen Sie, ob das Element mit der ID 'assigned' vorhanden ist
     let assignedElement = document.getElementById('assigned');
     let assignCheckboxes = assignedElement ? assignedElement.querySelectorAll('input[type="checkbox"]:checked') : [];
     let assignInitials = [];
@@ -41,71 +38,53 @@ async function submitTask(event) {
         assignInitials.push(filterFirstLetters(checkbox.value));
     });
 
-    // Subtasks abrufen
     let subtaskItems = document.querySelectorAll('#subtaskList li');
     let subtasks = [];
     subtaskItems.forEach(item => {
-        subtasks.push(item.textContent.trim().substring(2)); // Entferne das Unicode-Zeichen und führende Leerzeichen
+        subtasks.push(item.textContent.trim().substring(2));
     });
 
     let userTask = {
         title: title,
         description: description,
         date: date,
-        category: category,
-        assign: assignInitials,  // Nur die Initialen der ausgewählten Elemente speichern
-        subtasks: subtasks // Hinzufügen der Subtasks zum Objekt
+        userCategory: userCategory,
+        assign: assignInitials,
+        subtasks: subtasks,
+        category: "toDo"
     };
 
     try {
-        // Daten an Firebase senden
-        await postData("/userTask", userTask); // Pfad für die DB, wo der Datensatz gespeichert werden soll
-        
-        // Nach dem erfolgreichen Senden des Formulars zur neuen Seite weiterleiten
-        window.location.href = "board.html"; // Ändere dies zur gewünschten URL
+        await postData("/userTask", userTask);
+        window.location.href = "board.html";
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
 }
 
-
-
 function addSubtaskToList() {
-    // Zugriff auf das Input-Feld
     let subtaskInput = document.getElementById('subtasks');
-    // Wert des Input-Feldes abrufen
     let subtaskText = subtaskInput.value.trim();
 
-    // Überprüfen, ob das Input-Feld nicht leer ist
     if (subtaskText !== '') {
-        // Zugriff auf die UL-Liste
         let subtaskList = document.getElementById('subtaskList');
-        // Neues Listenelement erstellen
         let newSubtaskItem = document.createElement('li');
-        // Textinhalt des neuen Listenelements festlegen
-        newSubtaskItem.textContent = '\u2022 ' + subtaskText; // '\u2022' entspricht dem Punkt (•) Unicode-Zeichen
-        // Neues Listenelement der UL-Liste hinzufügen
+        newSubtaskItem.textContent = '\u2022 ' + subtaskText;
         subtaskList.appendChild(newSubtaskItem);
-        // Das Input-Feld leeren, damit der Benutzer leicht eine neue Subtask eingeben kann
         subtaskInput.value = '';
     }
 }
 
-
-
-
-
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
-        header: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
     });
 
     if (!response.ok) {
-        // Fehlerbehandlung hinzufügen
         console.error("Fehler beim Posten der Daten:", response.statusText);
         return;
     }
@@ -113,7 +92,6 @@ async function postData(path, data) {
     let responseToJson = await response.json();
     return responseToJson;
 }
-
 
 async function loadAssign(path = "/contact") {
     try {
@@ -130,7 +108,6 @@ async function loadAssign(path = "/contact") {
         console.error("Fehler beim Laden der Daten:", error);
     }
 }
-
 
 function generateAssign() {
     let assignContact = document.getElementById('assigned');
@@ -153,21 +130,20 @@ function generateAssign() {
         let initials = filterFirstLetters(assignContacts.name);
         let initialsSpan = document.createElement('span');
         initialsSpan.textContent = initials;
-        initialsSpan.classList.add('assign-initials'); // Füge die Klasse für die Initialen hinzu
+        initialsSpan.classList.add('assign-initials');
         initialsSpan.style.backgroundColor = toAssignColorNameLogo();
-       
+
         let nameSpan = document.createElement('span');
         nameSpan.textContent = assignContacts.name;
-        nameSpan.classList.add('assign-name'); // Füge die Klasse für den Namen hinzu
+        nameSpan.classList.add('assign-name');
 
         label.appendChild(initialsSpan);
-        label.appendChild(nameSpan); // Füge den Namen als <span> hinzu
+        label.appendChild(nameSpan);
         label.appendChild(checkbox);
 
         assignContact.appendChild(label);
     }
 }
-
 
 function filterFirstLetters(name) {
     let words = name.split(' ');
@@ -175,12 +151,10 @@ function filterFirstLetters(name) {
     return firstLetters;
 }
 
-
 function toAssignColorNameLogo() {
     let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
     return backgroundcolor;
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownButton = document.querySelector('.dropdown-button');
@@ -195,5 +169,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dropdownContent.contains(event.target) && !dropdownButton.contains(event.target)) {
             dropdownContent.classList.remove('show');
         }
-    }); 
+    });
 });

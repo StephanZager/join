@@ -6,8 +6,9 @@
     <title>Board</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/board.css">
-    <script src="js/board.js"></script>
+    
     <script src="script.js"></script>
+    <script src="js/board.js"></script>
 </head>
 <body onload="includeHTML(), loadTask();">
      <div w3-include-html="assets/templates/mobile_header_template.html"></div>
@@ -43,54 +44,10 @@
                     </div>
                 </div>
                 <div class="tasksBoard">
-                    <div id="toDo" class="showTasksBoard"></div>
-                    <div id="inProgress" class="showTasksBoard">
-                        <div class="taskCard">
-                            <a>test</a>
-                        </div>
-                    </div>
-                    <div id="awaitFeedback" class="showTasksBoard">
-                        <div class="taskCard">
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                        </div>
-                        <div class="taskCard">
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                        </div>
-                        <div class="taskCard">
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                        </div>
-                        <div class="taskCard">
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                        </div>
-                        <div class="taskCard">
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                            <a>test</a>
-                        </div>
-                    </div>
-                    <div id="done" class="showTasksBoard">
-                        <div class="taskCard">
-                            <a>test</a>
-                        </div>
-                    </div>
+                    <div id="toDo" class="showTasksBoard" ondrop="moveTo('toDo')" ondragleave="removeHighlight('toDo')" ondragover="allowDrop(event); highlight('toDo')"></div>
+                    <div id="inProgress" class="showTasksBoard" ondrop="moveTo('inProgress')" ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')"></div>
+                    <div id="awaitFeedback" class="showTasksBoard" ondrop="moveTo('awaitFeedback')" ondragleave="removeHighlight('awaitFeedback')" ondragover="allowDrop(event); highlight('awaitFeedback')"></div>
+                    <div id="done" class="showTasksBoard" ondrop="moveTo('done')" ondragleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')"></div>
                 </div>
             </div>
         </main>

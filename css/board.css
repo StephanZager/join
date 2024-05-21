@@ -144,6 +144,14 @@ input {
     padding: 4px 16px 4px 16px;
 }
 
+[class="task-category-Technical Task"] {
+    background-color: lightblue;
+}
+
+[class="task-category-User Story"] {
+    background-color: blue;
+}
+
 .task-title {
     color: black;
     font-size: 16px;
@@ -175,4 +183,6 @@ input {
     height: 20px;
 }
 
-
+.drag-area-highlight {
+    background-color: rgba(0, 0, 0, 0.2);
+}
