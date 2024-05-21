@@ -1,5 +1,5 @@
-function test() {
-    document.getElementById('test').innerHTML = `<div id="bg_add_new_contact" class="d-none">
+function addNewContactPopUp() {
+    document.getElementById('addNewContactPopUp').innerHTML = `<div id="bg_add_new_contact" class="d-none">
     <div class="bg" onclick="cloeAddNewContactwindow()">
         <div onclick="doNotClose(event)">
         <div class="addcontact-container">
@@ -54,14 +54,13 @@ function test() {
         
         
         
-        
         </div>
     </div>
 </div>`
 }
 
 
-function test2(i, path = "/contact") {
+function addUbdateContactPopUp(i, path = "/contact") {
 
     return `<div id="bg_add_ubdate_contact" class="d-none">
     <div class="bg" onclick="cloeAddUbdateContactwindow()">
@@ -113,3 +112,49 @@ function test2(i, path = "/contact") {
     </div>
 </div>`
 }
+
+function userInfoHTML(user, index){
+    return`
+    <div class="user-info-header">
+        <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
+        <div class="user-info-name">
+            <h2 class="user-name">${user.name}</h2>
+            <div class="user-edit-delete" >
+                <div class="user-edit-delete-section" onclick="editUser(${index})">
+                    <img src="assets/img/edit-contacts.png" alt="edit">
+                    <p>Edit</p>
+                </div>
+                <div class="user-edit-delete-section" onclick="deleteUser(${index})">
+                    <img src="assets/img/delete-contacts.png" alt="edit">
+                    <p>Delete</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-information-headline" >
+        <span>Contact Information</span>
+    </div>
+    <div class="contact-info-email-phone">
+        <div>
+            <p>Email</p>
+            <a href="mailto:${user.email}">${user.email}</a>
+        </div>
+        <div>
+            <p>Phone</p>
+            <a style="color:black;" href="tel:${user.phone}">${user.phone}</a>
+        </div>
+    </div>   
+   `
+}
+
+function contactHTML(contact) {
+    return `
+    <div class="show-contact" onclick="openUserInfo(${contact.originalIndex})">                
+        <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
+        <div class="show-contact-details">
+            <span>${contact.name}</span> 
+            <span class="show-contact-email">${contact.email}</span>
+        </div>                       
+    </div>
+`;
+}   

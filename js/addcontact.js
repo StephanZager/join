@@ -2,7 +2,6 @@ let contacts = [];
 let groupedContactsLetters = {};
 
 
-
 /**
  * This prevents the window from closing when I press the pop-up button
  * 
@@ -64,7 +63,6 @@ async function postData(path, data) {
  * @param {path} path - This is the path where the data from contact is inside  
  * @returns 
  */
-
 async function loadContact(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -98,7 +96,7 @@ async function loadContact(path = "/contact") {
 function generateContacts() {
     let contactListContainer = document.getElementById('contact');
     contactListContainer.innerHTML = '';
-   
+
     let groupedContacts = filterContactAlphabet();
 
     for (let letter in groupedContacts) {
@@ -108,18 +106,8 @@ function generateContacts() {
 
         for (let i = 0; i < contacts.length; i++) {
             let contact = contacts[i];
-            console.log(contact);
 
-            let contactHTML = `
-                <div class="show-contact" onclick="openUserInfo(${contact.originalIndex})">                
-                    <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
-                    <div class="show-contact-details">
-                        <span>${contact.name}</span> 
-                        <span class="show-contact-email">${contact.email}</span>
-                    </div>                       
-                </div>
-            `;
-            contactListContainer.innerHTML += contactHTML;
+            contactListContainer.innerHTML += contactHTML(contact);
         }
     }
 }
@@ -131,38 +119,8 @@ function openUserInfo(index) {
     let user = contacts[index];
 
     userInfo.innerHTML = '';
+    userInfo.innerHTML = userInfoHTML(user, index);
 
-    userInfo.innerHTML = `
-    <div class="user-info-header">
-        <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
-        <div class="user-info-name">
-            <h2 class="user-name">${user.name}</h2>
-            <div class="user-edit-delete" >
-                <div class="user-edit-delete-section" onclick="editUser(${index})">
-                    <img src="assets/img/edit-contacts.png" alt="edit">
-                    <p>Edit</p>
-                </div>
-                <div class="user-edit-delete-section" onclick="deleteUser(${index})">
-                    <img src="assets/img/delete-contacts.png" alt="edit">
-                    <p>Delete</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="contact-information-headline" >
-        <span>Contact Information</span>
-    </div>
-    <div class="contact-info-email-phone">
-        <div>
-            <p>Email</p>
-            <a href="mailto:${user.email}">${user.email}</a>
-        </div>
-        <div>
-            <p>Phone</p>
-            <a style="color:black;" href="tel:${user.phone}">${user.phone}</a>
-        </div>
-    </div>   
-   `
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {
@@ -193,7 +151,7 @@ async function submitForm(i, contactId, path) {
 
 async function editUser(i, path = "/contact") {
     let contactId = contacts[i].id;
-    document.getElementById('test2').innerHTML += test2(i, path = "/contact");
+    document.getElementById('addUbdateContactPopUp').innerHTML += addUbdateContactPopUp(i, path = "/contact");
     openAddUbdateContactwindow();
     document.getElementById('addcontact_name').value = contacts[i].name;
     document.getElementById('addcontact_email').value = contacts[i].email;
@@ -229,9 +187,9 @@ async function deleteUser(i, path = "/contact") {
  * 
  */
 function filterFirstLetters(name) {
-
     let words = name.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
+
     return firstLetters;
 }
 
@@ -251,7 +209,6 @@ function toAssignColorNameLogo() {
  * 
  */
 function filterNameAlphabet() {
-
     contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
@@ -260,13 +217,12 @@ function filterContactAlphabet() {
 
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
-
         let firstLetter = contact.name.charAt(0).toUpperCase();
 
         if (!groupedContactsLetters[firstLetter]) {
             groupedContactsLetters[firstLetter] = [];
         }
-
+        
         contact.originalIndex = i;
         groupedContactsLetters[firstLetter].push(contact);
     }
@@ -282,7 +238,7 @@ function filterContactAlphabet() {
  * 
  */
 function openAddNewContactwindow() {
-    test();
+    addNewContactPopUp();
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
 
@@ -319,7 +275,7 @@ function cloeAddUbdateContactwindow() {
 
 
 async function contactinit() {
-    
+
     await loadContact();
     filterNameAlphabet();
     generateContacts();
