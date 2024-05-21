@@ -1,5 +1,6 @@
 function addNewContactPopUp() {
-    document.getElementById('addNewContactPopUp').innerHTML = `<div id="bg_add_new_contact" class="d-none">
+    document.getElementById('addNewContactPopUp').innerHTML = `
+    <div id="bg_add_new_contact" class="d-none">
     <div class="bg" onclick="cloeAddNewContactwindow()">
         <div onclick="doNotClose(event)">
         <div class="addcontact-container">

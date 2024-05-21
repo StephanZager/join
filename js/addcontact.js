@@ -1,7 +1,6 @@
 let contacts = [];
 let groupedContactsLetters = {};
 
-
 /**
  * This prevents the window from closing when I press the pop-up button
  * 
@@ -12,7 +11,8 @@ function doNotClose(event) {
 }
 
 /**
- * gets the input from the form and adds it to the json array, contacts
+ * Gets the input from the form and adds it to the json array, contacts
+ * window.location.href causes the browser to navigate to this URL: contact.html
  * 
  */
 async function submitContact() {
@@ -58,7 +58,10 @@ async function postData(path, data) {
 }
 
 /**
- * downloads the contacts from firebease again
+ * 
+ * Downloads the contacts from firebease again.
+ * Key is a variable that represents the current key in the responseToJson object iterated through.
+ * The hasOwnProperty() method of Object instances returns a boolean indicating whether this object has the specified property as its own property (as opposed to inheriting it).
  * 
  * @param {path} path - This is the path where the data from contact is inside  
  * @returns 
@@ -222,7 +225,7 @@ function filterContactAlphabet() {
         if (!groupedContactsLetters[firstLetter]) {
             groupedContactsLetters[firstLetter] = [];
         }
-        
+
         contact.originalIndex = i;
         groupedContactsLetters[firstLetter].push(contact);
     }
