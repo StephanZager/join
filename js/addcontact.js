@@ -1,5 +1,5 @@
 let contacts = [];
-
+let groupedContactsLetters = {};
 
 
 
@@ -98,7 +98,7 @@ async function loadContact(path = "/contact") {
 function generateContacts() {
     let contactListContainer = document.getElementById('contact');
     contactListContainer.innerHTML = '';
-
+   
     let groupedContacts = filterContactAlphabet();
 
     for (let letter in groupedContacts) {
@@ -106,13 +106,12 @@ function generateContacts() {
 
         contactListContainer.innerHTML += `<div class="letter">${letter}</div>`;
 
-       
-
         for (let i = 0; i < contacts.length; i++) {
             let contact = contacts[i];
+            console.log(contact);
 
             let contactHTML = `
-                <div class="show-contact" onclick="openUserInfo(${i})">
+                <div class="show-contact" onclick="openUserInfo(${contact.originalIndex})">                
                     <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
                     <div class="show-contact-details">
                         <span>${contact.name}</span> 
@@ -130,7 +129,9 @@ function generateContacts() {
 function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo')
     let user = contacts[index];
-    console.log(user.id)
+
+    userInfo.innerHTML = '';
+
     userInfo.innerHTML = `
     <div class="user-info-header">
         <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
@@ -176,7 +177,7 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     return response;
 }
 
-async function submitForm(i, contactId, path){
+async function submitForm(i, contactId, path) {
     event.preventDefault();
 
     let updatedContact = {
@@ -255,21 +256,24 @@ function filterNameAlphabet() {
 }
 
 function filterContactAlphabet() {
-    let groupedContactsLetters = {};
+    groupedContactsLetters = {};
 
-    contacts.forEach(contacts => {
-        let firstLetter = contacts.name.charAt(0).toUpperCase();
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+
+        let firstLetter = contact.name.charAt(0).toUpperCase();
 
         if (!groupedContactsLetters[firstLetter]) {
             groupedContactsLetters[firstLetter] = [];
         }
 
-        groupedContactsLetters[firstLetter].push(contacts);
-    });
+        contact.originalIndex = i;
+        groupedContactsLetters[firstLetter].push(contact);
+    }
 
-    console.log(groupedContactsLetters);  
     return groupedContactsLetters;
 }
+
 
 
 
@@ -321,5 +325,3 @@ async function contactinit() {
     generateContacts();
     filterContactAlphabet();
 }
-
-
