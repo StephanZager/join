@@ -9,40 +9,52 @@
     <script src="./js/login.js" defer></script>
 </head>
 <body>
-    <div id="background-overlay"></div>
-
-    <div class="signup-section">
-        <span>Not a Join user?</span>
-        <button class="login-signup-button hover-effects-button" onclick="window.location.href='signup.html';">
-            Sign Up
-        </button>        
-    </div>
 
     <main>
         <img id="logo" src="./assets/img/Login-img.png" alt="Logo">
+    
+    <div id="login-form-container">
+        <div class="signup-section-upside">
+            <span>Not a Join user?</span>
+            <button class="signup-button" onclick="window.location.href='signup.html';">
+                Sign Up
+            </button>        
+        </div>
 
-        <div>
-            <form id="login-form" class="blur">
+        <div class="form-container" >
+            <form id="login-form">
                 <div class="headline">
                     <h1>Log in</h1>
                     <div class="underline"></div>
                 </div>
-                <div class="login-field">
-                    <input id="emailInput" required type="email" placeholder="Email" autocomplete="email">
-                    <input id="passwordInput" required type="password" placeholder="Password" autocomplete="current-password">
-                    <div id="error-message" style="color: red; display: none;">Ups, wrong password! Try again.</div>
+                
+                <div class="maincontainer-inputfield">
+                    <div class="login-field">
+                        <input id="emailInput" required type="email" placeholder="Email" autocomplete="email">
+                        <input id="passwordInput" required type="password" placeholder="Password" autocomplete="current-password">
+                    </div>
                 </div>
-               
-                <label>
+
+                <div id="error-message" style="color: red; display: none;">Ups, wrong password! Try again.</div>
+
+                <label class="checkbox">
                     <input type="checkbox"><span>Remember me</span>
                 </label>
                 <div class="button-section-for-entry">
-                    <button type="button" class="login-signup-button hover-effects-button" onclick="login()">Log in</button>
-                    <button class="guest-login-button " formnovalidate>Guest Log in</button>
+                    <button type="button" class="login-signup-button" onclick="login()">Log in</button>
+                    <button class="guest-login-button" formnovalidate>Guest Log in</button>
                 </div>
             </form>
         </div>
+    </div>
     </main>
+
+    <div class="signup-section-lowside">
+        <span>Not a Join user?</span>
+        <button class="signup-button" onclick="window.location.href='signup.html';">
+            Sign Up
+        </button>        
+    </div>
 
     <footer>
         <a href="policy_over_signup.html">Privacy Policy</a>

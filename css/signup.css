@@ -197,6 +197,35 @@ footer a {
     text-align: center;
 }
 
+.input-field-name {
+    background-image: url('../assets/img/person.addcontact.png');
+    background-repeat: no-repeat;
+    background-position: right 12px center; 
+    padding-right: 40px; 
+}
+
+.input-field-mail {
+    background-image: url('../assets/img/mail-input.png');
+    background-repeat: no-repeat;
+    background-position: right 12px center; 
+    padding-right: 40px; 
+}
+
+.input-field-password {
+    background-image: url('../assets/img/visibility_off_password.png');
+    background-repeat: no-repeat;
+    background-position: right 12px center; 
+    padding-right: 40px;
+    cursor: pointer; 
+}
+
+.input-field-confirm-pw {
+    background-image: url('../assets/img/visibility_off_password.png');
+    background-repeat: no-repeat;
+    background-position: right 12px center; 
+    padding-right: 40px;
+    cursor: pointer; 
+}
 
 @media (max-width: 799px) {
     .logo {

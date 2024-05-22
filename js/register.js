@@ -60,14 +60,18 @@ async function submitData(event) {
 }
 
 /**
- * Displays the success popup and adds a click listener for immediate redirection.
+ * Toggles the visibility of the password field.
+ * @param {string} fieldId - The ID of the password field to toggle.
  */
-function showSuccessPopup() {
-    let popup = document.getElementById('successPopup');
-    popup.style.display = 'block';
-    popup.addEventListener('click', () => {
-        window.location.href = "index.html"; // Change this to the desired URL
-    });
+function togglePasswordVisibility(fieldId) {
+    let passwordField = document.getElementById(fieldId);
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        passwordField.classList.add("visible");
+    } else {
+        passwordField.type = "password";
+        passwordField.classList.remove("visible");
+    }
 }
 
 /**
@@ -129,3 +133,18 @@ async function postData(path, data) {
     let responseToJson = await response.json();
     return responseToJson;
 }
+
+/**
+ * Displays the success popup and adds a click listener for immediate redirection.
+ */
+function showSuccessPopup() {
+    let popup = document.getElementById('successPopup');
+    popup.style.display = 'block';
+    popup.addEventListener('click', () => {
+        window.location.href = "index.html"; // Change this to the desired URL
+    });
+}
+
+// Event listeners for toggling password visibility
+document.getElementById('password').addEventListener('click', () => togglePasswordVisibility('password'));
+document.getElementById('confirmPassword').addEventListener('click', () => togglePasswordVisibility('confirmPassword'));

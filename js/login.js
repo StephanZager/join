@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById('login-form');
     const signupSection = document.querySelector('.signup-section');
     const footer = document.querySelector('footer');
-    const backgroundOverlay = document.getElementById('background-overlay');
     const rememberMeCheckbox = document.querySelector("#login-form input[type='checkbox']");
     const emailInput = document.getElementById('emailInput');
     const passwordInput = document.getElementById('passwordInput');
@@ -18,21 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordInput.value = localStorage.getItem('password');
         rememberMeCheckbox.checked = true;
     }
-
-    setTimeout(() => {
-        form.classList.add('show');
-        signupSection.classList.add('signup-show');
-        footer.classList.add('show');
-    }, 1200);
-
-    const logo = document.getElementById('logo');
-    logo.addEventListener('animationstart', function () {
-        backgroundOverlay.classList.add('hidden');
-    });
-
-    logo.addEventListener('animationend', function () {
-        backgroundOverlay.classList.add('hidden');
-    });
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -105,3 +89,4 @@ async function getData(path) {
     let responseData = await response.json();
     return responseData;
 }
+
