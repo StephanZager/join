@@ -67,6 +67,7 @@ async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback,
     document.getElementById('howMuchDone').innerHTML = numberOfDone.length;
     document.getElementById('howMuchAwaitFeedback').innerHTML = numberOfAwaitFeedback.length;
     document.getElementById('howMuchInProgress').innerHTML = numberOfInProgress.length; 
+    document.getElementById('howMuchTaskinBoard').innerHTML = numberOfBoard.length;
 }  
 
 
