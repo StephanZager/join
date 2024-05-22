@@ -272,7 +272,6 @@ function cloeAddUbdateContactwindow() {
     document.getElementById('addcontact_name').value = '';
     document.getElementById('addcontact_email').value = '';
     document.getElementById('addcontact_phone').value = '';
-
 }
 
 
