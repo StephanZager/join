@@ -1,6 +1,5 @@
 let numberOfBoard = [];
 
-
 /**
  * Generates the greeting depending on the time of day.
  * 
@@ -18,6 +17,8 @@ function greeting() {
         grettingSummary.innerHTML = 'Good Day,';
     }
 }
+
+
 
 async function loadCategory(path = "/userTask") {
     try {
@@ -40,9 +41,11 @@ async function loadCategory(path = "/userTask") {
     }
 }
 
+
+
 async function taskAssignment() {
     let numberOfTodos = [];
-    let numberOfDone = [];  
+    let numberOfDone = [];
     let numberOfAwaitFeedback = [];
     let numberOfInProgress = [];
 
@@ -51,30 +54,30 @@ async function taskAssignment() {
 
         if (task.indexOf('toDo') !== -1) {
             numberOfTodos.push(task);
-        }else if(task.indexOf('done') !== -1){
-            numberOfDone.push(task);            
-        }else if(task.indexOf('awaitFeedback') !== -1){
-            numberOfAwaitFeedback.push(task); 
-        }else if(task.indexOf('inProgress') !== -1){
-            numberOfInProgress.push(task); 
-        }                 
-    } 
-    await renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback, numberOfInProgress); 
+        } else if (task.indexOf('done') !== -1) {
+            numberOfDone.push(task);
+        } else if (task.indexOf('awaitFeedback') !== -1) {
+            numberOfAwaitFeedback.push(task);
+        } else if (task.indexOf('inProgress') !== -1) {
+            numberOfInProgress.push(task);
+        }
     }
+    await renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback, numberOfInProgress);
+}
 
 async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback, numberOfInProgress) {
     document.getElementById('howMuchTodos').innerHTML = numberOfTodos.length;
     document.getElementById('howMuchDone').innerHTML = numberOfDone.length;
     document.getElementById('howMuchAwaitFeedback').innerHTML = numberOfAwaitFeedback.length;
-    document.getElementById('howMuchInProgress').innerHTML = numberOfInProgress.length; 
+    document.getElementById('howMuchInProgress').innerHTML = numberOfInProgress.length;
     document.getElementById('howMuchTaskinBoard').innerHTML = numberOfBoard.length;
-}  
+}
 
 
 
 
-    async function initSummary() {
-        greeting();
-        await loadCategory();
-        taskAssignment()
-    }
+async function initSummary() {
+    greeting();
+    await loadCategory();
+    taskAssignment()
+}

@@ -105,7 +105,8 @@ function generateContacts() {
     for (let letter in groupedContacts) {
         let contacts = groupedContacts[letter];
 
-        contactListContainer.innerHTML += `<div class="letter">${letter}</div>`;
+        contactListContainer.innerHTML += `<div class="letter"><span>${letter}</span></div>
+            <div class="seperator-alphabet-container"><div class="seperator-alphabet"></div></div>`;
 
         for (let i = 0; i < contacts.length; i++) {
             let contact = contacts[i];
@@ -229,7 +230,6 @@ function filterContactAlphabet() {
         contact.originalIndex = i;
         groupedContactsLetters[firstLetter].push(contact);
     }
-
     return groupedContactsLetters;
 }
 
@@ -277,7 +277,6 @@ function cloeAddUbdateContactwindow() {
 
 
 async function contactinit() {
-
     await loadContact();
     filterNameAlphabet();
     generateContacts();

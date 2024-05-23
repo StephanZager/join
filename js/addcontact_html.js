@@ -150,7 +150,7 @@ function userInfoHTML(user, index){
 
 function contactHTML(contact) {
     return `
-    <div class="show-contact" onclick="openUserInfo(${contact.originalIndex})">                
+    <div class="show-contact" tabindex="0" onclick="openUserInfo(${contact.originalIndex})">                
         <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
         <div class="show-contact-details">
             <span>${contact.name}</span> 

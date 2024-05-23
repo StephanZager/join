@@ -63,6 +63,7 @@ body {
     margin-top: 22.5px;
     display: flex;
     align-items: center;
+    margin-bottom: 23px;
 }
 
 .add-new-contact-button img {
@@ -96,6 +97,7 @@ h3 {
 }
 
 .contact-info {
+    margin-left: 55px;
     display: flex;
     gap: 30px;
     align-items: center;
@@ -125,6 +127,10 @@ h3 {
 
 }
 
+#contactInfo {
+    margin-left: 62px;
+}
+
 /*contact html css*/
 .show-contact {
     display: flex;
@@ -133,10 +139,28 @@ h3 {
     height: 78px;
     border-radius: 10px;
     gap: 35px;
+
+    padding: 15px 24px 15px 24px;
+    box-sizing: border-box;
+
+
+
+
 }
 
 .show-contact:hover {
     cursor: pointer;
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+
+}
+
+.show-contact:focus {
+    background: #2A3647;
+     color: white;
+    
+}
+.show-contact:focus-within .initial-contact {
+    border: 2px solid #FFFFFF;
 }
 
 .initial-contact {
@@ -284,6 +308,45 @@ h3 {
     text-align: left;
 }
 
+.seperator-alphabet-container {
+    width: 352px;
+    height: 16px;
+    gap: 10px;
+    opacity: 0px;
+    padding-top: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.seperator-alphabet {
+    max-width: 352px;
+    width: 100%;
+    border: 1px solid #D1D1D1;
+}
+
+.letter {
+    width: 352px;
+    height: 58px;
+    padding-top: 17px;
+    padding-right: 36px;
+    padding-bottom: 17px;
+    padding-left: 36px;
+    gap: 8px;
+    opacity: 0px;
+    box-sizing: border-box;
+
+}
+
+.letter span {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    margin-top: 17px;
+}
+
 @media (max-width: 1180px) {
     .contact-info-h2 {
         font-size: 50px;
@@ -291,6 +354,7 @@ h3 {
 
     .contact-info-span {
         font-size: 20px;
+        margin-right: 10px;
     }
 }
 
@@ -302,6 +366,10 @@ h3 {
     .contact-info {
         gap: 25px;
         margin-left: 30px;
+    }
+
+    #contactInfo {
+        margin-left: 35px;
     }
 }
 
