@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/summary.css">
     <script src="script.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/add_task.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(), initSummary()">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <main>
         <div class="headline-summary">
@@ -29,14 +32,14 @@
                         <img src="assets/img/summary-pen.png" alt="pen">
 
                         <div class="summary-info-open">
-                            <span class="summary-how-much">1</span>
+                            <span id="howMuchTodos" class="summary-how-much">1</span>
                             <span class="summary-how-much-art">To-do</span>
                         </div>
                     </div>
                     <div class="summary-done-info">
                         <img src="assets/img/summary-check.png" alt="check">
                         <div class="summary-info-open">
-                            <span class="summary-how-much">1</span>
+                            <span id="howMuchDone" class="summary-how-much">1</span>
                             <span class="summary-how-much-art">Done</span>
                         </div>
                     </div>
@@ -57,15 +60,15 @@
                 </div>
                 <div class="summary-stats-below">
                     <div class="summary-stats-below-container">
-                        <span class="summary-stats-below-howmuch">5</span>
+                        <span id="howMuchTaskinBoard" class="summary-stats-below-howmuch">5</span>
                         <span class="summary-stats-below-tasks">Tasks in Board</span>
                     </div>
                     <div class="summary-stats-below-container">
-                        <span class="summary-stats-below-howmuch">2</span>
+                        <span id="howMuchInProgress" class="summary-stats-below-howmuch">2</span>
                         <span class="summary-stats-below-tasks">Task in Progress</span>
                     </div>
                     <div class="summary-stats-below-container">
-                        <span class="summary-stats-below-howmuch">2</span>
+                        <span id="howMuchAwaitFeedback" class="summary-stats-below-howmuch">2</span>
                         <span class="summary-stats-below-tasks">Awaiting Feedback</span>
                     </div>
                 </div>
@@ -74,7 +77,7 @@
             <!-- this is for java script, innnerHTML. id have not yet been assigned -->
             
             <div class="summary-greeting">
-                <h3 class="summary-day-greeting">Good morning,</h3>
+                <h3 id="greetingSummary" class="summary-day-greeting">Good morning,</h3>
                 <span class="summary-person-greeting">Johannes u.Gürdal :D</span>
             </div>
         </div>
