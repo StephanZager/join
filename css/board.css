@@ -30,8 +30,8 @@
    width: 312px;
    height: 48px;
    border-radius: 10px;
-   padding: 8px 16px 8px 16px;
-   gap: 10px;
+   padding: 0px 8px 0px 8px;
+   gap: 32px;
 }
 
 .seperator  {
@@ -45,7 +45,13 @@
     justify-content: center;
     align-items: center;
     border: none;
+    height: 48px;
     background-color: transparent;
+    margin-right: 64px;
+}
+
+.add-task-button-area {
+    display: flex;
     
 }
 
@@ -259,4 +265,11 @@ input {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+
+
+
+
+
 
