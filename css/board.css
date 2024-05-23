@@ -185,17 +185,26 @@ input {
 }
 
 .progress-bar-subtask {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    width: 128px; /* Breite der Progressbar */
+    height: 20px; /* Höhe der Progressbar */
 }
 
 .progress-bar {
-    height: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10px;
+    background-color: lightblue; /* Fortschrittfarbe in Light Blue */
+}
+
+.progress-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 128px;
+    height: 10px;
+    background-color: lightgrey; /* Hintergrundfarbe in Light Grey */
 }
 
 .subtask-progress {

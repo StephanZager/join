@@ -80,19 +80,28 @@ function generateTaskHTML(taskItem) {
         subtasksHtml = `<p class="subtask-progress">${completedSubtasks}/${taskItem.subtasks.length} Subtasks</p>`;
     }
 
+    // Überprüfen, ob Subtasks vorhanden sind, bevor die progress-bar-subtask div hinzugefügt wird
+    let progressDiv = '';
+    if (subtasksHtml) {
+        progressDiv = `
+            <div class="progress-bar-subtask">
+                <div class="progress-background"></div>
+                <div id="progressBar_${taskItem.firebaseId}" class="progress-bar"></div>
+                ${subtasksHtml}
+            </div>`;
+    }
+
     return `
         <div draggable="true" ondragstart="startDragging(event, '${taskItem.firebaseId}')" class="taskCard" data-firebase-id="${taskItem.firebaseId}">
             <h4 class="task-category-${taskItem.userCategory}">${taskItem.userCategory}</h4>
             <p class="task-title">${taskItem.title}</p>
             <p class="task-description">${taskItem.description}</p>
-            <div class="progress-bar-subtask">
-                <div id="progressBar_${taskItem.firebaseId}" class="progress-bar" style="width: 0%; background-color: lightblue;"></div>
-                    ${subtasksHtml}
-            </div> 
+            ${progressDiv}
             <div class="show-initials-taskcard" style="border-radius: 10px;">${initialsHtml}</div>
             <img class="prio-icons" src="${priorityIcon}">
         </div>`;
 }
+
 
 function startDragging(ev, firebaseId) {
     currentDraggedElement = firebaseId; // Set currentDraggedElement when dragging starts
@@ -230,13 +239,16 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
         return;
     }
 
+    // Subtask-Status umkehren
     task[taskIndex].subtasks[subtaskIndex].done = !task[taskIndex].subtasks[subtaskIndex].done;
 
     try {
+        // Aktualisiere die Subtasks in Firebase
         await updateTaskInFirebase(firebaseId, { subtasks: task[taskIndex].subtasks });
 
-        // Aktualisiere die Fortschrittsleiste
+        // Aktualisiere die Fortschrittsleiste und die Anzeige im Popup
         updateProgressBar(task[taskIndex]);
+        updatePopupSubtasks(task[taskIndex]);
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Subtask in Firebase:", error);
     }
@@ -246,10 +258,31 @@ function updateProgressBar(taskItem) {
     const totalSubtasks = taskItem.subtasks.length;
     const completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
     const progressBar = document.getElementById(`progressBar_${taskItem.firebaseId}`);
-    const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+
+    let progressPercentage = 0;
+
+    // Berechne den Fortschritt basierend auf dem Verhältnis der abgeschlossenen Subtasks zur Gesamtzahl der Subtasks
+    if (totalSubtasks > 0) {
+        progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+    }
 
     progressBar.style.width = progressPercentage + '%';
+
+    // Ändere die Farbe der Progressbar je nach Fortschritt
+    progressBar.style.backgroundColor = 'lightblue'; // Immer Light Blue verwenden, da dies den Fortschritt darstellt
 }
+
+
+function updatePopupSubtasks(taskItem) {
+    const completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
+    const popupSubtasksElement = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"] .subtask-progress`);
+
+    // Aktualisiere die Anzeige im Popup auf die Anzahl der abgeschlossenen Subtasks
+    popupSubtasksElement.textContent = `${completedSubtasks}/${taskItem.subtasks.length} Subtasks`;
+}
+
+
+
 
 // Initiales Laden der Aufgaben
 loadTask();
