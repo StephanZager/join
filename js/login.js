@@ -65,6 +65,11 @@ async function login() {
                 localStorage.removeItem('password');
                 localStorage.setItem('rememberMe', 'false');
             }
+
+            // Save user's name
+            localStorage.setItem('userName', user.name);
+            console.log("Username saved to localStorage:", user.name);
+
             window.location.href = "summary.html";
         } else {
             errorMessage.style.display = 'block';

@@ -52,7 +52,7 @@ async function submitData(event) {
         // Redirect to the new page after 3 seconds
         setTimeout(() => {
             window.location.href = "index.html"; // Change this to the desired URL
-        }, 3000);
+        }, 2000);
 
     } catch (error) {
         console.error("Error posting data:", error);
@@ -80,7 +80,7 @@ function togglePasswordVisibility(fieldId) {
  * @returns {boolean} True if the password is valid, false otherwise.
  */
 function isValidPassword(password) {
-    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:])[A-Za-z\d@$!%*?&.,:]{8,}$/;
     return regex.test(password);
 }
 
