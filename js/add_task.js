@@ -1,6 +1,5 @@
 let assign = [];
 let currentAssignIndex = 0;
-
 let selectedPriority = null;
 
 function setPriority(priority) {
@@ -26,17 +25,19 @@ async function submitTask(event) {
     let subtaskItems = document.querySelectorAll('#subtaskList li');
     let subtasks = [];
     subtaskItems.forEach(item => {
-        subtasks.push(item.textContent.trim().substring(2));
+        let subtaskTitle = item.textContent.trim().substring(2);
+        subtasks.push({ title: subtaskTitle, done: false });
     });
 
-    let userTask = {
+    let userTask = { 
         title: title,
         description: description,
         date: date,
         userCategory: userCategory,
         assign: assignInitials,
         subtasks: subtasks,
-        category: "toDo"
+        category: "toDo",
+        priority: selectedPriority
     };
 
     try {
