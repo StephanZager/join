@@ -274,6 +274,12 @@ function cloeAddUbdateContactwindow() {
     document.getElementById('addcontact_phone').value = '';
 }
 
+function slideInOnClick() {
+    let userInfo = document.querySelector('#contactInfo');    
+    userInfo.classList.remove('slide-in');    
+    void userInfo.offsetWidth;   
+    userInfo.classList.add('slide-in');
+}
 
 
 async function contactinit() {
