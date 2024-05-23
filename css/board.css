@@ -212,6 +212,12 @@ input {
     color: black;
 }
 
+.rotated {
+    transform: rotate(3deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+
 
 /*POPUP*/
 

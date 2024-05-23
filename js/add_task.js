@@ -17,9 +17,12 @@ async function submitTask(event) {
     
     let assignedElement = document.getElementById('assigned');
     let assignCheckboxes = assignedElement ? assignedElement.querySelectorAll('input[type="checkbox"]:checked') : [];
-    let assignInitials = [];
+    let assignDetails = [];
     assignCheckboxes.forEach(checkbox => {
-        assignInitials.push(filterFirstLetters(checkbox.value));
+        let name = checkbox.value;
+        let initials = filterFirstLetters(name);
+        let bgNameColor = checkbox.dataset.bgColor; // Get the background color from data attribute
+        assignDetails.push({ initials: initials, bgNameColor: bgNameColor });
     });
 
     let subtaskItems = document.querySelectorAll('#subtaskList li');
@@ -34,7 +37,7 @@ async function submitTask(event) {
         description: description,
         date: date,
         userCategory: userCategory,
-        assign: assignInitials,
+        assign: assignDetails,
         subtasks: subtasks,
         category: "toDo",
         priority: selectedPriority
@@ -113,6 +116,7 @@ function generateAssign() {
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.value = assignContacts.name;
+        checkbox.dataset.bgColor = assignContacts.bgNameColor;  // Store background color as data attribute
 
         let initials = filterFirstLetters(assignContacts.name);
         let initialsSpan = document.createElement('span');
