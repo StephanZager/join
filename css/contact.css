@@ -163,14 +163,15 @@ h3 {
 .show-contact:hover {
     cursor: pointer;
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+}
 
+.show-contact:active {
+    background-color: white;
 }
 
 .show-contact:focus {
     background: #2A3647;
     color: white;
-
-
 }
 
 .show-contact:focus-within .initial-contact {
@@ -404,7 +405,7 @@ h3 {
         margin-left: 20px;
     }
 
-    .initial-contact{
+    .initial-contact {
         font-size: 16px;
         font-weight: 400;
     }
@@ -493,79 +494,105 @@ h3 {
         top: unset;
         bottom: 0;
         flex-direction: column;
-        background-color: #2A3647; 
-        height: 80px; 
+        background-color: #2A3647;
+        height: 80px;
         width: 100%;
-        box-shadow: 0 0 4px 0 #000000; 
-        }
-    
-        #logoDesktop {
-            display: none;
-        }
-    
-        #toolText {
-            display: none;
-        }
-    
-        .logo.mobile {
-            display: block;
-        }
-    
-        #help {
-            display: none;
-        }
-    
-        #contentMenu {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            bottom: 0;
-            top: unset;
-            padding: unset;
-        }
-    
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    
-        .linkSection {
-            display: flex;
-            gap: 5px;
-        }
-    
-        ul {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            padding: 0;
-            gap: 45px;
-        }
-    
-        li {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-        }
-    
-        .links {
-            display: none;
-        }
+        box-shadow: 0 0 4px 0 #000000;
+    }
 
-        .contact-info-container{
-            display: none;
-        }
+    #logoDesktop {
+        display: none;
+    }
 
-        .contactList-container {
-            margin-left: 0px;
-        }
+    #toolText {
+        display: none;
+    }
+
+    .logo.mobile {
+        display: block;
+    }
+
+    #help {
+        display: none;
+    }
+
+    #contentMenu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        top: unset;
+        padding: unset;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .linkSection {
+        display: flex;
+        gap: 5px;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 0;
+        gap: 45px;
+    }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .links {
+        display: none;
+    }
+
+    .contact-info-container {
+        display: none;
+    }
+
+    .contactList-container {
+        margin-left: 0px;
+    }
+
+    .contactList {
+        max-width: none;
+        width: 100%;
+    }
+
+    #contact {
+        width: 100%;
+    }
+
+    .seperator-alphabet {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .letter {
+        margin-left: 20px;
+    }
+
+    .show-contact {
+        width: 352px;
+    }
+
+    .initial-contact {
+        width: 42px;
         
-        .contactList {
-            max-width: none;
-            width: 100%;
-        }
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.4px;
+        text-align: center;
 
     }
 
+}

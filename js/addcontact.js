@@ -85,7 +85,6 @@ async function loadContact(path = "/contact") {
                 });
             }
         }
-
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
@@ -253,9 +252,7 @@ function openAddNewContactwindow() {
  */
 function cloeAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.add('d-none');
-    document.getElementById('addcontact_name').value = '';
-    document.getElementById('addcontact_email').value = '';
-    document.getElementById('addcontact_phone').value = '';
+    
 }
 
 function openAddUbdateContactwindow() {
@@ -282,9 +279,19 @@ function slideInOnClick() {
 }
 
 
+
+
+
 async function contactinit() {
     await loadContact();
     filterNameAlphabet();
     generateContacts();
     filterContactAlphabet();
+
+    document.querySelector('.show-contact').addEventListener('mousedown', function (event) {
+        if (document.activeElement === event.target) {
+            event.preventDefault();
+            document.activeElement.blur();
+        }
+    });
 }
