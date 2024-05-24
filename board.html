@@ -58,13 +58,28 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h4 id="modalTitle"></h4>
+                <p id="modalUserTitle"></p>
                 <p id="modalDescription"></p>
+                <div class="modalDate">
+                    <p>Due Date:</p>
+                    <p id="modalDate"></p>
+                </div>
+                <div class="modalPrio">
+                    <p>Priority:</p>
+                    <img id="modalPriorityIcon" class="prio-icons">
+                </div>
+                <p>Assign to:</p>
+                <div id="modalInitials"></div>
                 <div id="modalSubtasksContainer">
+                    <p>Subtasks:</p>
                     <!-- Subtasks werden hier als Liste eingefügt -->
                     <ul id="modalSubtasks"></ul>
                 </div>
-                <div id="modalInitials"></div>
-                <img id="modalPriorityIcon" class="prio-icons">
+                <div class="task-editing-btn">
+                    <button id="deleteTaskBtn"><img src="assets/img/delete.png" alt="delete task">Delete</button>
+                    <div class="task-editing-seperator"></div>
+                    <button id="editTaskBtn"><img src="assets/img/edit.png" alt="edit task">Edit</button>
+                </div>
             </div>
         </div>
         

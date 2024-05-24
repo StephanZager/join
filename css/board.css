@@ -85,6 +85,7 @@
     justify-content: space-between;
     width: 244px;
     gap: 32px;
+    padding: 8px;
 }
 
 .smallBtn {
@@ -112,10 +113,9 @@ input {
 
 .showTasksBoard{
     display: flex;
-    justify-content: space-between;
     width: 252px;
     gap: 16px;
-    border: 1px dashed black;
+    padding: 8px;
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
@@ -132,6 +132,7 @@ input {
     gap: 10px;
     background-color: #ffffff;
     box-sizing: border-box; 
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
     color: white; 
 }
 
@@ -145,6 +146,7 @@ input {
     justify-content: flex-start;
     align-items: center;
     padding: 4px 16px 4px 16px;
+    margin: 0;
 }
 
 [class="task-category-Technical Task"] {
@@ -159,6 +161,7 @@ input {
     color: black;
     font-size: 16px;
     font-weight: 700;
+    margin: 0;
 }
 
 .task-description {
@@ -168,17 +171,32 @@ input {
 }
  
 .show-initials-taskcard {
-    display: flex;
+    display: flex; /* Verwende Flexbox für das Container-Layout */
+    align-items: center; /* Vertikal zentrieren */
+    justify-content: space-between;
 }
+
+.initials-container {
+    display: flex; /* Stellt sicher, dass die Initialen horizontal angeordnet sind */
+    margin-right: 10px; /* Abstand zwischen Initialen und Bild */
+    font-size: 12px; /* Beispiel-Formatierung für die Initialen */
+    color: black; /* Beispiel-Formatierung für die Initialen */
+}
+
+
 
 .show-initials {
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    height: 20px;
-    width: 20px;
-    font-size: 10px;
+    height: 32px;
+    width: 32px;
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: -6px;
+    border: 2px solid white;
+    color: white;
 }
 
 .taskCard img{
@@ -191,9 +209,15 @@ input {
 }
 
 .progress-bar-subtask {
+    display: flex; /* Verwende Flexbox für das Container-Layout */
+    align-items: center; /* Vertikal zentrieren */
+    height: 20px; /* Höhe des Containers */
+}
+
+.progress-container {
     position: relative;
-    width: 128px; /* Breite der Progressbar */
-    height: 20px; /* Höhe der Progressbar */
+    width: 128px; /* Feste Breite der Progressbar */
+    height: 10px; /* Höhe der Progressbar */
 }
 
 .progress-bar {
@@ -201,6 +225,7 @@ input {
     top: 0;
     left: 0;
     height: 10px;
+    width: 100%; /* Breite 100% des übergeordneten Elements */
     background-color: lightblue; /* Fortschrittfarbe in Light Blue */
 }
 
@@ -208,21 +233,27 @@ input {
     position: absolute;
     top: 0;
     left: 0;
-    width: 128px;
+    width: 100%;
     height: 10px;
     background-color: lightgrey; /* Hintergrundfarbe in Light Grey */
 }
 
-.subtask-progress {
+.subtask-container {
+    margin-left: 10px; /* Abstand zur Progressbar */
     font-size: 12px;
     color: black;
 }
+
 
 .rotated {
     transform: rotate(3deg);
     transition: transform 0.2s ease-in-out;
 }
 
+.taskcard:hover {
+    transform: rotate(3deg);
+    transition: transform 0.2s ease-in-out;
+}
 
 
 /*POPUP*/
@@ -248,7 +279,93 @@ input {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 525px;
+    height: ;
+    border-radius: 30px;
+    gap: 24px;
+
+}
+
+.modal-content h4 {
+    width: 30%;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 23px;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px 16px 4px 16px;
+    margin: 0;
+    color: white;
+}
+
+#modalUserTitle {
+    font-size: 61px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.modalDate {
+    display: flex;
+    gap: 24px;
+}
+
+.modalPrio {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+#modalPriorityIcon {
+    height: 24px;
+}
+
+.assign-details {
+    display: flex;
+    gap: 16px;
+}
+
+.modal-content li {
+    display: flex;
+    gap: 16px;
+}
+
+.task-editing-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.task-editing-seperator {
+    width: 1px;
+    height: 24px;
+    background-color: lightgrey;
+}
+
+#deleteTaskBtn {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#editTaskBtn {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+[class="task-category-Technical-Task"] {
+    background-color: lightblue;
+}
+
+[class="task-category-User-Story"] {
+    background-color: blue;
 }
 
 /* The Close Button */

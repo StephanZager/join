@@ -22,7 +22,7 @@ async function submitTask(event) {
         let name = checkbox.value;
         let initials = filterFirstLetters(name);
         let bgNameColor = checkbox.dataset.bgColor; // Get the background color from data attribute
-        assignDetails.push({ initials: initials, bgNameColor: bgNameColor });
+        assignDetails.push({ name: name, initials: initials, bgNameColor: bgNameColor });
     });
 
     let subtaskItems = document.querySelectorAll('#subtaskList li');

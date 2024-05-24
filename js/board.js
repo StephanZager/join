@@ -61,11 +61,15 @@ function generateTaskHTML(taskItem) {
     let progressDiv = '';
     if (subtasksHtml) {
         progressDiv = `
-            <div class="progress-bar-subtask">
+        <div class="progress-bar-subtask">
+            <div class="progress-container">
                 <div class="progress-background"></div>
                 <div id="progressBar_${taskItem.firebaseId}" class="progress-bar"></div>
+            </div>
+            <div class="subtask-container">
                 ${subtasksHtml}
-            </div>`;
+            </div>
+        </div>`;
     }
 
     return `
@@ -74,8 +78,10 @@ function generateTaskHTML(taskItem) {
             <p class="task-title">${taskItem.title}</p>
             <p class="task-description">${taskItem.description}</p>
             ${progressDiv}
-            <div class="show-initials-taskcard" style="border-radius: 10px;">${initialsHtml}</div>
-            <img class="prio-icons" src="${priorityIcon}">
+            <div class="show-initials-taskcard">
+                <div class="initials-container">${initialsHtml}</div>
+                <img src="${priorityIcon}" alt="Image" class="taskcard-img">
+            </div>
         </div>`;
 }
 
@@ -150,12 +156,26 @@ document.addEventListener("DOMContentLoaded", function() {
     const span = document.getElementsByClassName("close")[0];
 
     function showModal(taskItem) {
-        document.getElementById("modalTitle").innerText = taskItem.title;
+        const modal = document.getElementById("taskModal");
+        const modalTitle = document.getElementById("modalTitle");
+    
+        modalTitle.innerText = taskItem.userCategory;
+    
+        const categoryClass = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
+        modalTitle.classList.forEach(className => {
+            if (className.startsWith('task-category-')) {
+                modalTitle.classList.remove(className);
+            }
+        });
+        modalTitle.classList.add(categoryClass);
+    
+        document.getElementById("modalUserTitle").innerText = taskItem.title;
         document.getElementById("modalDescription").innerText = taskItem.description;
+        document.getElementById("modalDate").innerText = taskItem.date;
         document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
         document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
         document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
-
+    
         modal.style.display = "block";
     }
 
@@ -172,9 +192,17 @@ document.addEventListener("DOMContentLoaded", function() {
     function generateInitialsHTML(assignedInitialsArray) {
         let initialsHtml = '';
         assignedInitialsArray.forEach(assignData => {
-            initialsHtml += `<span class="show-initials" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`;
+            initialsHtml += `
+            
+                <div class="assign-details">
+                    
+                    <span class="show-initials" style="background-color: ${assignData.bgNameColor}">
+                        ${assignData.initials}
+                    </span>
+                    <span class="assign-name">${assignData.name}</span>
+                </div>`;
         });
-
+    
         return initialsHtml;
     }
 
@@ -261,3 +289,4 @@ function updatePopupSubtasks(taskItem) {
 
 // Initial load of tasks
 loadTask();
+
