@@ -139,7 +139,7 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     return response;
 }
 
-async function submitForm(i, contactId, path) {
+async function submitForm(i, contactId, path ) {
     event.preventDefault();
 
     let updatedContact = {

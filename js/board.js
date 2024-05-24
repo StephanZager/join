@@ -266,11 +266,12 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
 
         // Update progress bar and display in popup
         updateProgressBar(task[taskIndex]);
-        updatePopupSubtasks(task[taskIndex]);
+         updatePopupSubtasks(task[taskIndex]);
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Subtask in Firebase:", error);
     }
 }
+
 
 
 function updateProgressBar(taskItem) {
