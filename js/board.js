@@ -128,6 +128,9 @@ async function moveTo(category) {
         task[taskIndex].category = category;
         await updateTaskInFirebase(firebaseId, { category });
         generateTask(); // Refresh display after moving the task
+        
+        // Update progress bar
+        updateProgressBar(task[taskIndex]);
     } catch (error) {
         console.error("Fehler beim Verschieben der Aufgabe:", error);
     }
@@ -269,6 +272,7 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
     }
 }
 
+
 function updateProgressBar(taskItem) {
     const totalSubtasks = taskItem.subtasks.length;
     const completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
@@ -283,6 +287,8 @@ function updateProgressBar(taskItem) {
     progressBar.style.width = progressPercentage + '%';
     progressBar.style.backgroundColor = 'lightblue';
 }
+
+
 
 function updatePopupSubtasks(taskItem) {
     const completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
