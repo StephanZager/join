@@ -95,3 +95,65 @@ async function getData(path) {
     return responseData;
 }
 
+  /**
+   * @fileOverview Script to toggle password visibility on click and change background image accordingly.
+   * @module PasswordToggle
+   */
+
+  document.addEventListener("DOMContentLoaded", function() {
+    /**
+     * The password input field element.
+     * @type {HTMLElement}
+     */
+    const passwordInput = document.getElementById("passwordInput");
+
+    /**
+     * Indicates if the password is visible.
+     * @type {boolean}
+     */
+    let isPasswordVisible = false;
+
+    /**
+     * Counter to track the number of clicks.
+     * @type {number}
+     */
+    let clickCount = 0;
+
+    /**
+     * Event listener for the click event on the password input field.
+     */
+    passwordInput.addEventListener("click", function() {
+      clickCount += 1;
+      if (clickCount === 1) {
+        passwordInput.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+      } else if (clickCount === 2) {
+        isPasswordVisible = true;
+        passwordInput.type = "text";
+        passwordInput.style.backgroundImage = "url('../assets/img/visibility_on.png')";
+      } else if (clickCount === 3) {
+        isPasswordVisible = false;
+        passwordInput.type = "password";
+        passwordInput.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+        clickCount = 0; 
+      }
+    });
+
+    /**
+     * Event listener for the focus event on the password input field.
+     */
+    passwordInput.addEventListener("focus", function() {
+      if (!isPasswordVisible) {
+        passwordInput.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+      }
+    });
+
+    /**
+     * Event listener for the blur event on the password input field.
+     */
+    passwordInput.addEventListener("blur", function() {
+      if (!isPasswordVisible) {
+        passwordInput.style.backgroundImage = "url('../assets/img/lock-password-input.png')";
+        clickCount = 0; 
+      }
+    });
+  });
