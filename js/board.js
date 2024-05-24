@@ -158,9 +158,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function showModal(taskItem) {
         const modal = document.getElementById("taskModal");
         const modalTitle = document.getElementById("modalTitle");
-    
+        
         modalTitle.innerText = taskItem.userCategory;
-    
+        
         const categoryClass = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
         modalTitle.classList.forEach(className => {
             if (className.startsWith('task-category-')) {
@@ -168,13 +168,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         modalTitle.classList.add(categoryClass);
-    
+        
         document.getElementById("modalUserTitle").innerText = taskItem.title;
         document.getElementById("modalDescription").innerText = taskItem.description;
         document.getElementById("modalDate").innerText = taskItem.date;
         document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
         document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
         document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
+        
+        // Set the priority text
+        document.getElementById("modalPriorityText").innerText = taskItem.priority;
     
         modal.style.display = "block";
     }

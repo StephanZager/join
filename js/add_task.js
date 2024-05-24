@@ -2,9 +2,20 @@ let assign = [];
 let currentAssignIndex = 0;
 let selectedPriority = null;
 
-function setPriority(priority) {
+function setPriority(priority, buttonElement) {
     selectedPriority = priority;
     console.log(`Priority set to ${priority}`);
+
+    // Entferne die 'selected' Klasse von allen Buttons
+    document.querySelectorAll('.prio-buttons button').forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    // Füge die 'selected' Klasse zum angeklickten Button hinzu
+    buttonElement.classList.add('selected');
+    
+    // Aktualisiere den Text im <span> des angeklickten Buttons
+    buttonElement.querySelector('span').textContent = priority;
 }
 
 async function submitTask(event) {
@@ -21,7 +32,7 @@ async function submitTask(event) {
     assignCheckboxes.forEach(checkbox => {
         let name = checkbox.value;
         let initials = filterFirstLetters(name);
-        let bgNameColor = checkbox.dataset.bgColor; // Get the background color from data attribute
+        let bgNameColor = checkbox.dataset.bgColor;
         assignDetails.push({ name: name, initials: initials, bgNameColor: bgNameColor });
     });
 
@@ -107,7 +118,7 @@ function generateAssign() {
     }
 
     assignContact.innerHTML = '';
-    currentAssignIndex = 0;  // Reset the index when generating the list
+    currentAssignIndex = 0;
 
     for (let i = 0; i < assign.length; i++) {
         let assignContacts = assign[i];
@@ -116,13 +127,13 @@ function generateAssign() {
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.value = assignContacts.name;
-        checkbox.dataset.bgColor = assignContacts.bgNameColor;  // Store background color as data attribute
+        checkbox.dataset.bgColor = assignContacts.bgNameColor;
 
         let initials = filterFirstLetters(assignContacts.name);
         let initialsSpan = document.createElement('span');
         initialsSpan.textContent = initials;
         initialsSpan.classList.add('assign-initials');
-        initialsSpan.style.backgroundColor = assignContacts.bgNameColor;  // Set background color
+        initialsSpan.style.backgroundColor = assignContacts.bgNameColor;
 
         let nameSpan = document.createElement('span');
         nameSpan.textContent = assignContacts.name;
