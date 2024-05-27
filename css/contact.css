@@ -24,7 +24,7 @@ body {
 
 .bg {
     background-color: rgba(76, 70, 70, 0.137);
-    z-index: 999;
+    z-index: 1000;
     position: fixed;
     left: 0;
     right: 0;
@@ -565,15 +565,15 @@ h3 {
     }
 
     .contact-info-container {
+        display: none;
         height: auto;
         z-index: 999;
         position: fixed;
         left: 0;
         right: 0;
-        top: 104px;
+        top: 96px;
         bottom: 80px;
         background-color: #FFFFFF;
-
     }
 
     .contactList-container {
