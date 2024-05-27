@@ -81,37 +81,40 @@ input:focus {
     top: 94px;
 }
 
-
 #contentMenu {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 50%;
+    justify-content: center;
+    width: 100%;
+    margin-top: 300px;
 }
 
 nav {
-    display: flex;
+    width: 100%;
 }
 
 ul {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     list-style: none;
     padding: 0;
     gap: 15px;
+    width: 100%;
 }
 
 .linkSection {
     display: flex;
     align-items: center;
     gap: 15px;
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
 }
 
 .linkSection:hover {
     cursor: pointer;
+    background-color: gray;
 }
+
 
 .links {
     display: flex;
@@ -120,6 +123,12 @@ ul {
     flex-direction: column;
     position: fixed;
     top: 85%;
+}
+
+
+.links a:hover {
+    color: #269dcf;
+    font-weight: 600;
 }
 
 a {
