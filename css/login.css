@@ -371,6 +371,9 @@ footer {
     .signup-section-lowside {
         margin-top: 57px;
         display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .signup-section-lowside span {
@@ -383,4 +386,25 @@ footer {
         height: 49px;
         margin-left: 0px;
     }
+
+    #emailInput {
+      margin-bottom: 32px;
+    }
+}
+
+
+@media (max-width: 450px) {
+  .form-container {
+    width: 280px;
+  }
+  .signup-section-lowside {
+    margin-top: 25px;
+  }
+  footer {
+    gap: 13px;
+  }
+
+  label span {
+    font-size: 15px;
+  }
 }

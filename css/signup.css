@@ -278,8 +278,8 @@ footer a {
 
     .back-btn {
         position: absolute;
-        top: 40px;
-        left: 40px;
+        top: 10px;
+        left: -10px;
         background: none;
         border: none;
         cursor: pointer;
@@ -344,4 +344,15 @@ footer a {
         height: 51px;
     }
 
+}
+
+@media (max-width: 450px) {
+    .signup-form {
+        width: 290px;
+    }
+
+    .footer {
+        gap: 0;
+        font-size: 15px;
+    }
 }
