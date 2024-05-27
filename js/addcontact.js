@@ -138,7 +138,7 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     return response;
 }
 
-async function submitForm(i, contactId, path ) {
+async function submitForm(i, contactId, path) {
     event.preventDefault();
 
     let updatedContact = {
@@ -252,7 +252,7 @@ function openAddNewContactwindow() {
  */
 function cloeAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.add('d-none');
-    
+
 }
 
 function openAddUbdateContactwindow() {
@@ -272,24 +272,33 @@ function cloeAddUbdateContactwindow() {
 }
 
 function slideInOnClick() {
-    let userInfo = document.querySelector('#contactInfo');    
-    userInfo.classList.remove('slide-in');    
-    void userInfo.offsetWidth;   
+    let userInfo = document.querySelector('#contactInfo');
+    userInfo.classList.remove('slide-in');
+    void userInfo.offsetWidth;
     userInfo.classList.add('slide-in');
 }
 
-function openUserInfoWindow(){
-        
-        document.getElementById('contactInfoContainer').style.display = 'block';
-        
+function openUserInfoWindow() {
+
+    document.getElementById('contactInfoContainer').style.display = 'block';
+
+
+}
+
+function closeUserInfoWindow() {
+
+    document.getElementById('contactInfoContainer').style.display = 'none';
+
+
+}
+
+function openUserDeleteEditWindow() {    
+    document.getElementById('buttonEditDeleteHandy').style.display = 'block';
     
 }
 
-function closeUserInfoWindow(){
-    
-        document.getElementById('contactInfoContainer').style.display = 'none';
-          
-    
+function closeUserDeleteEditWindow() {    
+    document.getElementById('buttonEditDeleteHandy').style.display = 'none';
 }
 
 
@@ -302,5 +311,5 @@ async function contactinit() {
     generateContacts();
     filterContactAlphabet();
 
-    
+
 }

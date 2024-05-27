@@ -378,12 +378,12 @@ h3 {
 
 .button-open-edit-delete-handy {
     width: 60px;
-    height: 60px;    
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 56px;
-   
+
     opacity: 0px;
     background: #2A3647;
     border: 1px solid #2A3647
@@ -393,7 +393,7 @@ h3 {
     cursor: pointer;
 }
 
-.button-open-edit-delete-handy-container{
+.button-open-edit-delete-handy-container {
     display: none;
 }
 
@@ -710,13 +710,31 @@ h3 {
         width: 80px;
         height: 80px;
     }
-    .button-open-edit-delete-handy-container{
+
+    .button-open-edit-delete-handy-container {
+        z-index: 1;
         display: block;
-        
         bottom: 35px;
         right: 20px;
         position: absolute;
-        
         border: 1px;
+    }
+
+    .user-edit-delete{
+        display: none;
+    }
+
+    .user-edit-delete{
+        background-color: white;
+        z-index: 2;
+        position: absolute;
+        right: 19px;
+        bottom: 25px;
+        width:116px;
+        height:100px;      
+        padding: 10px 0px 0px 0px;    
+        border-radius: 20px 20px 0px 20px;
+     
+        box-shadow: 0px 4px 4px 0px #00000040; 
     }
 }

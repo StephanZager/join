@@ -114,13 +114,13 @@ function addUbdateContactPopUp(i, path = "/contact") {
 </div>`
 }
 
-function userInfoHTML(user, index){
-    return`
+function userInfoHTML(user, index) {
+    return `
     <div class="user-info-header">
         <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         <div class="user-info-name">
             <h2 class="user-name">${user.name}</h2>
-            <div class="user-edit-delete" >
+            <div class="user-edit-delete" id="buttonEditDeleteHandy">
                 <div class="user-edit-delete-section" onclick="editUser(${index})">
                     <img src="assets/img/edit-contacts.png" alt="edit">
                     <p>Edit</p>
