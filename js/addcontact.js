@@ -279,7 +279,7 @@ function slideInOnClick() {
 }
 
 function openUserInfoWindow(){
-    
+        
         document.getElementById('contactInfoContainer').style.display = 'block';
         
     
