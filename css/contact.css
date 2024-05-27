@@ -368,6 +368,15 @@ h3 {
     margin-top: 17px;
 }
 
+.contact-arrow-blue {
+    display: none;
+}
+
+.seperator-contact-info-handy {
+    display: none;
+}
+
+
 @media (max-width: 1140px) {
     .initial-user {
         max-width: 100px;
@@ -556,7 +565,15 @@ h3 {
     }
 
     .contact-info-container {
-        display: none;
+        height: auto;
+        z-index: 999;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 104px;
+        bottom: 80px;
+        background-color: #FFFFFF;
+
     }
 
     .contactList-container {
@@ -587,7 +604,7 @@ h3 {
 
     .initial-contact {
         width: 42px;
-        
+
         font-size: 12px;
         font-weight: 400;
         line-height: 14.4px;
@@ -595,4 +612,80 @@ h3 {
 
     }
 
+    .add-new-contact-button {
+        width: 65px;
+        height: 65px;
+        bottom: 90px;
+        right: 20px;
+        position: absolute;
+        border-radius: 46px;
+        border: 1px;
+
+    }
+
+    .add-new-contact-button span {
+        display: none;
+    }
+
+    .contact-arrow-blue {
+        display: block;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: 20px;
+        top: 48px;
+    }
+
+    .contact-arrow-blue:hover {
+        cursor: pointer;
+    }
+
+    .seperator-contact-info {
+        display: none;
+    }
+
+    .contact-info {
+        display: flex;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+    }
+
+    .contact-info-h2 {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+
+        font-size: 47px;
+        font-weight: 700;
+        line-height: 56.4px;
+        text-align: left;
+
+    }
+
+    .contact-info-span {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+    }
+
+    .seperator-contact-info-handy {
+        display: block;
+        border: 3px solid #29ABE2; 
+        width: 90px;
+        gap: 0px;
+        border: 3px 0px 0px 0px;      
+    }
+
+    #contactInfo {
+        margin-top: 48px;
+    }
+
+    .initial-user {
+       width: 80px;
+       height: 80px; 
+    }
 }

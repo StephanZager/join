@@ -278,6 +278,14 @@ function slideInOnClick() {
     userInfo.classList.add('slide-in');
 }
 
+function openUserInfoWindow(){
+    document.getElementById('contactInfoContainer').classList.remove('d-none');
+}
+
+function closeUserInfoWindow(){
+    document.getElementById('contactInfoContainer').classList.add('d-none');
+}
+
 
 
 
@@ -288,10 +296,5 @@ async function contactinit() {
     generateContacts();
     filterContactAlphabet();
 
-    document.querySelector('.show-contact').addEventListener('mousedown', function (event) {
-        if (document.activeElement === event.target) {
-            event.preventDefault();
-            document.activeElement.blur();
-        }
-    });
+    
 }
