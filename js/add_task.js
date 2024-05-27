@@ -2,20 +2,33 @@ let assign = [];
 let currentAssignIndex = 0;
 let selectedPriority = null;
 
-function setPriority(priority, buttonElement) {
-    selectedPriority = priority;
-    console.log(`Priority set to ${priority}`);
-
-    // Entferne die 'selected' Klasse von allen Buttons
-    document.querySelectorAll('.prio-buttons button').forEach(button => {
+function setPriority(priority) {
+    const buttons = document.querySelectorAll('.prio-buttons button');
+    buttons.forEach(button => {
         button.classList.remove('selected');
     });
 
-    // Füge die 'selected' Klasse zum angeklickten Button hinzu
-    buttonElement.classList.add('selected');
-    
-    // Aktualisiere den Text im <span> des angeklickten Buttons
-    buttonElement.querySelector('span').textContent = priority;
+    let button;
+    switch (priority) {
+        case 'Urgent':
+            button = document.querySelector('.urgent-button');
+            break;
+        case 'Medium':
+            button = document.querySelector('.medium-button');
+            break;
+        case 'Low':
+            button = document.querySelector('.low-button');
+            break;
+        default:
+            console.error('Unknown priority:', priority);
+            return;
+    }
+
+    if (button) {
+        button.classList.add('selected');
+    } else {
+        console.error('Button not found for priority:', priority);
+    }
 }
 
 async function submitTask(event) {

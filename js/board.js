@@ -29,6 +29,11 @@ function generateTask() {
 
         tasksInCategory.forEach(taskItem => {
             categoryElement.innerHTML += generateTaskHTML(taskItem);
+
+            // Update progress bar only if the task has subtasks
+            if ((taskItem.subtasks || []).length > 0) {
+                updateProgressBar(taskItem);
+            }
         });
     });
 }
@@ -129,12 +134,15 @@ async function moveTo(category) {
         await updateTaskInFirebase(firebaseId, { category });
         generateTask(); // Refresh display after moving the task
         
-        // Update progress bar
-        updateProgressBar(task[taskIndex]);
+        // Update progress bar only if the task has subtasks
+        if ((task[taskIndex].subtasks || []).length > 0) {
+            updateProgressBar(task[taskIndex]);
+        }
     } catch (error) {
         console.error("Fehler beim Verschieben der Aufgabe:", error);
     }
 }
+
 
 async function updateTaskInFirebase(firebaseId, newData) {
     try {
@@ -151,7 +159,6 @@ async function updateTaskInFirebase(firebaseId, newData) {
         throw error;
     }
 }
-
 
 // Modal-related code
 document.addEventListener("DOMContentLoaded", function() {
@@ -199,9 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let initialsHtml = '';
         assignedInitialsArray.forEach(assignData => {
             initialsHtml += `
-            
                 <div class="assign-details">
-                    
                     <span class="show-initials" style="background-color: ${assignData.bgNameColor}">
                         ${assignData.initials}
                     </span>
@@ -266,18 +271,28 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
 
         // Update progress bar and display in popup
         updateProgressBar(task[taskIndex]);
-         updatePopupSubtasks(task[taskIndex]);
+        updatePopupSubtasks(task[taskIndex]);
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Subtask in Firebase:", error);
     }
 }
 
-
-
 function updateProgressBar(taskItem) {
-    const totalSubtasks = taskItem.subtasks.length;
-    const completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
+    // Ensure subtasks is an array
+    const totalSubtasks = (taskItem.subtasks || []).length;
+
+    if (totalSubtasks === 0) {
+        // If there are no subtasks, we don't need to update the progress bar
+        return;
+    }
+
+    const completedSubtasks = (taskItem.subtasks || []).filter(subtask => subtask.done).length;
     const progressBar = document.getElementById(`progressBar_${taskItem.firebaseId}`);
+
+    if (!progressBar) {
+        console.error(`Fortschrittsbalken für taskItem mit ID ${taskItem.firebaseId} nicht gefunden.`);
+        return;
+    }
 
     let progressPercentage = 0;
 
@@ -290,13 +305,29 @@ function updateProgressBar(taskItem) {
 }
 
 
+function updateAllProgressBars() {
+    task.forEach(taskItem => {
+        updateProgressBar(taskItem);
+    });
+}
 
 function updatePopupSubtasks(taskItem) {
-    const completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
+    const totalSubtasks = (taskItem.subtasks || []).length;
+
+    if (totalSubtasks === 0) {
+        // If there are no subtasks, we don't need to update the popup subtasks
+        return;
+    }
+
+    const completedSubtasks = (taskItem.subtasks || []).filter(subtask => subtask.done).length;
     const popupSubtasksElement = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"] .subtask-progress`);
-    popupSubtasksElement.textContent = `${completedSubtasks}/${taskItem.subtasks.length} Subtasks`;
+
+    if (popupSubtasksElement) {
+        popupSubtasksElement.textContent = `${completedSubtasks}/${totalSubtasks} Subtasks`;
+    } else {
+        console.error(`Popup Subtasks Element für taskItem mit ID ${taskItem.firebaseId} nicht gefunden.`);
+    }
 }
 
 // Initial load of tasks
 loadTask();
-
