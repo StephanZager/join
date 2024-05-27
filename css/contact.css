@@ -24,7 +24,7 @@ body {
 
 .bg {
     background-color: rgba(76, 70, 70, 0.137);
-    z-index: 999;
+    z-index: 1000;
     position: fixed;
     left: 0;
     right: 0;
@@ -376,6 +376,28 @@ h3 {
     display: none;
 }
 
+.button-open-edit-delete-handy {
+    width: 60px;
+    height: 60px;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 56px;
+   
+    opacity: 0px;
+    background: #2A3647;
+    border: 1px solid #2A3647
+}
+
+.button-open-edit-delete-handy:hover {
+    cursor: pointer;
+}
+
+.button-open-edit-delete-handy-container{
+    display: none;
+}
+
+
 
 @media (max-width: 1140px) {
     .initial-user {
@@ -565,15 +587,15 @@ h3 {
     }
 
     .contact-info-container {
+        display: none;
         height: auto;
         z-index: 999;
         position: fixed;
         left: 0;
         right: 0;
-        top: 104px;
+        top: 96px;
         bottom: 80px;
         background-color: #FFFFFF;
-
     }
 
     .contactList-container {
@@ -674,10 +696,10 @@ h3 {
 
     .seperator-contact-info-handy {
         display: block;
-        border: 3px solid #29ABE2; 
+        border: 3px solid #29ABE2;
         width: 90px;
         gap: 0px;
-        border: 3px 0px 0px 0px;      
+        border: 3px 0px 0px 0px;
     }
 
     #contactInfo {
@@ -685,7 +707,16 @@ h3 {
     }
 
     .initial-user {
-       width: 80px;
-       height: 80px; 
+        width: 80px;
+        height: 80px;
+    }
+    .button-open-edit-delete-handy-container{
+        display: block;
+        
+        bottom: 35px;
+        right: 20px;
+        position: absolute;
+        
+        border: 1px;
     }
 }

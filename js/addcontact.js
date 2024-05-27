@@ -279,11 +279,17 @@ function slideInOnClick() {
 }
 
 function openUserInfoWindow(){
-    document.getElementById('contactInfoContainer').classList.remove('d-none');
+        
+        document.getElementById('contactInfoContainer').style.display = 'block';
+        
+    
 }
 
 function closeUserInfoWindow(){
-    document.getElementById('contactInfoContainer').classList.add('d-none');
+    
+        document.getElementById('contactInfoContainer').style.display = 'none';
+          
+    
 }
 
 
