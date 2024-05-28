@@ -267,9 +267,6 @@ PRIVACY POLICY CSS:
     overflow-y: auto;  
     overflow-x: hidden;
     margin-top: 110px;
-}
-
-.main-container-policy {
     padding: 0 100px;
 }
 
@@ -302,6 +299,7 @@ HELP DESK CSS
     overflow-y: auto;  
     overflow-x: hidden;
     margin-top: 110px;
+    padding: 0 100px;
 }
 
 .header-helpdesk {
