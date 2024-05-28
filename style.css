@@ -266,7 +266,7 @@ PRIVACY POLICY CSS:
     max-height: 900px;
     overflow-y: auto;  
     overflow-x: hidden;
-    margin-top: 206px;
+    margin-top: 110px;
 }
 
 .main-container-policy {
@@ -288,4 +288,41 @@ PRIVACY POLICY CSS:
     height: 37px;
     border-style: none;
     background-color: transparent;
+}
+
+/**
+HELP DESK CSS
+**/
+
+.help-desk-main {
+    max-width: 1016px;
+    margin-left: 328px;
+    overflow: auto;
+    max-height: 900px;
+    overflow-y: auto;  
+    overflow-x: hidden;
+    margin-top: 110px;
+}
+
+.header-helpdesk {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-helpdesk button {
+    background-color: transparent;
+    border: none;
+}
+
+.header-helpdesk button:hover {
+    cursor: pointer;
+}
+
+.number-how-to-use {
+    font-size: 27px;
+}
+
+.how-to-use {
+    display: flex;
+    gap: 35px;
 }
