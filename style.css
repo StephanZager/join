@@ -127,8 +127,14 @@ ul {
     font-size: 16px;
 }
 
+.link-to {
+    text-decoration: none;
+    color: #cdcdcd;
+    display: inline-block;
+    width: 150px;
+}
 
-.links a:hover {
+.link-to:hover {
     color: #269dcf;
     font-weight: 600;
 }
@@ -160,8 +166,6 @@ a {
   ::-webkit-scrollbar-thumb:hover {
     background: lightgrey; 
   }
-
-
 
 @media (max-width: 799px) {
 .menuBar {
