@@ -6,10 +6,12 @@
     <title>Board</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/addtasks.css">
     
     <script src="script.js"></script>
     <script src="js/board.js"></script>
     <script src="js/summary.js"></script>
+    
 </head>
 <body onload="includeHTML(), loadTask();">
      <div w3-include-html="assets/templates/mobile_header_template.html"></div>
@@ -22,7 +24,7 @@
                         <div class="seperator"></div>
                         <button class="searchTaskBtn"><img src="assets/img/search.png"></button>
                         <div class="add-task-button-area">
-                            <button class="addTaskBtn">Add task <img src="assets/img/board.add.png"></button>    
+                            <button type="button" class="addTaskBtn" onclick="openAddTaskPopup()">Add task <img src="assets/img/board.add.png"></button>    
                         </div>
                     </div>
                    
@@ -81,8 +83,6 @@
                     <button id="editTaskBtn"><img src="assets/img/edit.png" alt="edit task">Edit</button>
                 </div>
             </div>
-        </div>
-        
-        
+        </div>        
 </body>
 </html>
