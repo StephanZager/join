@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/addtasks.css">
     <script src="script.js"></script>
-    
+    <script src="js/add_task.js"></script>
     
 </head>
 <body onload="includeHTML(), loadAssign()" class="body-class-addtask">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <h1>Add Task</h1>
-    <form action="" onsubmit="submitTask(event)">
-        <main class="maincontainer-desktop">
+    <form action="" onsubmit="submitTask(event)" id="test2">
+        <main class="maincontainer-desktop" >
             <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
@@ -81,11 +81,10 @@
                 <button type="reset" class="clear-button">Clear <b>x</b></button>
                 <button type="submit" class="create-task-button">Create Task <img src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
-            <ul id="subtaskList"></ul>
         </div>
     </form>     
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
-    <script src="js/add_task.js"></script>
+    
 </body>
 
 </html>

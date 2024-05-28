@@ -133,7 +133,7 @@ async function moveTo(category) {
         task[taskIndex].category = category;
         await updateTaskInFirebase(firebaseId, { category });
         generateTask(); // Refresh display after moving the task
-        
+
         // Update progress bar only if the task has subtasks
         if ((task[taskIndex].subtasks || []).length > 0) {
             updateProgressBar(task[taskIndex]);
@@ -161,16 +161,16 @@ async function updateTaskInFirebase(firebaseId, newData) {
 }
 
 // Modal-related code
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("taskModal");
     const span = document.getElementsByClassName("close")[0];
 
     function showModal(taskItem) {
         const modal = document.getElementById("taskModal");
         const modalTitle = document.getElementById("modalTitle");
-        
+
         modalTitle.innerText = taskItem.userCategory;
-        
+
         const categoryClass = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
         modalTitle.classList.forEach(className => {
             if (className.startsWith('task-category-')) {
@@ -178,25 +178,25 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         modalTitle.classList.add(categoryClass);
-        
+
         document.getElementById("modalUserTitle").innerText = taskItem.title;
         document.getElementById("modalDescription").innerText = taskItem.description;
         document.getElementById("modalDate").innerText = taskItem.date;
         document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
         document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
         document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
-        
+
         // Set the priority text
         document.getElementById("modalPriorityText").innerText = taskItem.priority;
-    
+
         modal.style.display = "block";
     }
 
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <span class="assign-name">${assignData.name}</span>
                 </div>`;
         });
-    
+
         return initialsHtml;
     }
 
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return subtasksHtml;
     }
 
-    document.addEventListener("click", function(event) {
+    document.addEventListener("click", function (event) {
         if (event.target.classList.contains("taskCard")) {
             const firebaseId = event.target.getAttribute("data-firebase-id");
             const taskItem = task.find(t => t.firebaseId === firebaseId);
@@ -328,6 +328,41 @@ function updatePopupSubtasks(taskItem) {
         console.error(`Popup Subtasks Element für taskItem mit ID ${taskItem.firebaseId} nicht gefunden.`);
     }
 }
+
+
+function openTaskPopup() {
+    let modal = document.getElementById('addTaskModel');
+    let span = document.getElementsByClassName('close')[0];
+   
+    modal.style.display = 'block';
+    
+    span.onclick = function () {
+        modal.style.display = 'none';
+    }
+    
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+}
+
+async function editTask(){
+    openTaskPopup();
+    document.getElementById('test').classList.add('edit-task');
+    document.getElementById('test').classList.remove('modal-addtask-popup');
+    document.getElementById('maincontainerAddTask').classList.remove('maincontainer-desktop');
+    document.getElementById('maincontainerAddTask').classList.add('edit-task-menü');   
+
+
+      
+
+}
+
+
+
+
+
 
 // Initial load of tasks
 loadTask();
