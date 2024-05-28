@@ -37,15 +37,15 @@
             <div class="columnTitle">
                 <div class="taskHeadline">
                     <h3>To do</h3>
-                    <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
+                    <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
                 </div>
                 <div class="taskHeadline">
                     <h3>In progress</h3>
-                    <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
+                    <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
                 </div>
                 <div class="taskHeadline">
                     <h3>Await feedback</h3>
-                    <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
+                    <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
                 </div>
                 <div class="taskHeadline">
                     <h3>Done</h3>
@@ -66,7 +66,7 @@
     </main>
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
     <div id="taskModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-task-popup">
             <span class="close">&times;</span>
             <h4 id="modalTitle"></h4>
             <p id="modalUserTitle"></p>
@@ -89,7 +89,7 @@
             <div class="task-editing-btn">
                 <button id="deleteTaskBtn"><img src="assets/img/delete.png" alt="delete task">Delete</button>
                 <div class="task-editing-seperator"></div>
-                <button id="editTaskBtn"><img src="assets/img/edit.png" alt="edit task">Edit</button>
+                <button onclick="editTask()" id="editTaskBtn"><img src="assets/img/edit.png" alt="edit task">Edit</button>
             </div>
         </div>
     </div>
@@ -98,11 +98,11 @@
 
 
     <div id="addTaskModel" class="modal">
-        <div class="modal-content">
+        <div class="modal-addtask-popup" id="test">
 
             <h1>Add Task</h1>
             <form action="" onsubmit="submitTask(event)">
-                <main class="maincontainer-desktop">
+                <main class="maincontainer-desktop" id="maincontainerAddTask">
                     <div class="left-field-section">
                         <div class="addtaks-desktop">
                             <span>Title<span style="color: red;">*</span></span>

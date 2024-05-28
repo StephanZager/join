@@ -273,19 +273,9 @@ input {
     background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 525px;
-    border-radius: 30px;
-    gap: 24px;
 
-}
 
-.modal-content h4 {
+.modal-task-popup h4 {
     width: 30%;
     height: 28px;
     border-radius: 8px;
@@ -389,6 +379,7 @@ input {
 }
 
 
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -402,12 +393,23 @@ input {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal-content {
+.modal-task-popup {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 525px;
+    border-radius: 30px;
+}
+
+.modal-addtask-popup{
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    border-radius: 30px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.1);
 }
 
 .close {
@@ -424,6 +426,31 @@ input {
     cursor: pointer;
 }
 
+
+.edit-task{
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 525px;
+    border-radius: 30px;
+}
+
+.edit-task h1 {
+    display: none;
+}
+
+.edit-task-menü{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    max-width: 976px;
+    width: auto;
+    max-height: 600px;
+    
+    overflow-y: auto;
+}
 
 
 

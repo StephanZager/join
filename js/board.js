@@ -330,24 +330,16 @@ function updatePopupSubtasks(taskItem) {
 }
 
 
-
-
-
-
-////////////////////////////////////////////////////////// test 
 function openTaskPopup() {
-    var modal = document.getElementById('addTaskModel');
-    var btn = document.getElementById('openTaskBtn');
-    var span = document.getElementsByClassName('close')[0];
-
-    btn.onclick = function () {
-        modal.style.display = 'block';
-    }
-
+    let modal = document.getElementById('addTaskModel');
+    let span = document.getElementsByClassName('close')[0];
+   
+    modal.style.display = 'block';
+    
     span.onclick = function () {
         modal.style.display = 'none';
     }
-
+    
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
@@ -355,6 +347,17 @@ function openTaskPopup() {
     }
 }
 
+async function editTask(){
+    openTaskPopup();
+    document.getElementById('test').classList.add('edit-task');
+    document.getElementById('test').classList.remove('modal-addtask-popup');
+    document.getElementById('maincontainerAddTask').classList.remove('maincontainer-desktop');
+    document.getElementById('maincontainerAddTask').classList.add('edit-task-menü');   
+
+
+      
+
+}
 
 
 
