@@ -294,11 +294,13 @@ function closeUserInfoWindow() {
 
 function openUserDeleteEditWindow() {    
     document.getElementById('buttonEditDeleteHandy').style.display = 'block';
+    document.getElementById('bgDeleteEditHandy').classList.add('bg');
     
 }
 
 function closeUserDeleteEditWindow() {    
-    document.getElementById('buttonEditDeleteHandy').style.display = 'none';
+    document.getElementById('bgDeleteEditHandy').classList.add = ('d-none');
+    ocument.getElementById('buttonEditDeleteHandy').style.display = 'none';
 }
 
 

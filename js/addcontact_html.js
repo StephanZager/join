@@ -81,8 +81,8 @@ function addUbdateContactPopUp(i, path = "/contact") {
                 <div class="seperator"></div>
             </div>
         </div>
-
-        <img class="profilImgAddContact" src="assets/img/profil.img.addcontact.png.png" alt="" srcset="">
+        <div class="profilImgAddContact" style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
+        
 
         <form id="form" action="" method="put" onsubmit="editUser(${i}, ${path = "/contact"})"; return false;">
             <input type="text" id="addcontact_name" name="name" required placeholder="Name" maxlength="20">
@@ -120,6 +120,7 @@ function userInfoHTML(user, index) {
         <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         <div class="user-info-name">
             <h2 class="user-name">${user.name}</h2>
+            <div id="bgDeleteEditHandy" closeUserDeleteEditWindow()>
             <div class="user-edit-delete" id="buttonEditDeleteHandy">
                 <div class="user-edit-delete-section" onclick="editUser(${index})">
                     <img src="assets/img/edit-contacts.png" alt="edit">
@@ -129,6 +130,7 @@ function userInfoHTML(user, index) {
                     <img src="assets/img/delete-contacts.png" alt="edit">
                     <p>Delete</p>
                 </div>
+            </div>
             </div>
         </div>
     </div>
