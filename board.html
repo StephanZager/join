@@ -1,88 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/board.css">
-    
+    <link rel="stylesheet" href="css/addtasks.css">
+
     <script src="script.js"></script>
     <script src="js/board.js"></script>
     <script src="js/summary.js"></script>
+    <script src="js/add_task.js"></script>
+
+
 </head>
-<body onload="includeHTML(), loadTask();">
-     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
-        <main class="board">
-            <div class="content">
-                <div class="headlineBoard">
-                    <h1>Board</h1>
-                    <div class="inputSearchBar">
-                        <input type="text" placeholder="Find task">
-                        <div class="seperator"></div>
-                        <button class="searchTaskBtn"><img src="assets/img/search.png"></button>
-                        <div class="add-task-button-area">
-                            <button class="addTaskBtn">Add task <img src="assets/img/board.add.png"></button>    
-                        </div>
-                    </div>
-                   
-                </div>
-                <div class="columnTitle">
-                    <div class="taskHeadline">
-                        <h3>To do</h3>
-                        <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
-                    </div>
-                    <div class="taskHeadline">
-                        <h3>In progress</h3>
-                        <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
-                    </div>
-                    <div class="taskHeadline">
-                        <h3>Await feedback</h3>
-                        <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
-                    </div>
-                    <div class="taskHeadline">
-                        <h3>Done</h3>
-                        <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
+
+<body onload="includeHTML(), loadTask(), loadAssign();">
+    <div w3-include-html="assets/templates/mobile_header_template.html"></div>
+    <main class="board">
+        <div class="content">
+            <div class="headlineBoard">
+                <h1>Board</h1>
+                <div class="inputSearchBar">
+                    <input type="text" placeholder="Find task">
+                    <div class="seperator"></div>
+                    <button class="searchTaskBtn"><img src="assets/img/search.png"></button>
+                    <div class="add-task-button-area">
+                        <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup()">Add task <img
+                                src="assets/img/board.add.png"></button>
                     </div>
                 </div>
-                <div class="tasksBoard">
-                    <div id="toDo" class="showTasksBoard" draggable="true" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"></div>
-                    <div id="inProgress" class="showTasksBoard" draggable="true" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)"></div>
-                    <div id="awaitFeedback" class="showTasksBoard" draggable="true" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)"></div>
-                    <div id="done" class="showTasksBoard" draggable="true" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+
+            </div>
+            <div class="columnTitle">
+                <div class="taskHeadline">
+                    <h3>To do</h3>
+                    <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
+                </div>
+                <div class="taskHeadline">
+                    <h3>In progress</h3>
+                    <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
+                </div>
+                <div class="taskHeadline">
+                    <h3>Await feedback</h3>
+                    <button class="smallBtn"><img src="assets/img/board.plus.png"></button>
+                </div>
+                <div class="taskHeadline">
+                    <h3>Done</h3>
+                    
                 </div>
             </div>
-        </main>
-        <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
-        <div id="taskModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4 id="modalTitle"></h4>
-                <p id="modalUserTitle"></p>
-                <p id="modalDescription"></p>
-                <div class="modalDate">
-                    <p>Due Date:</p>
-                    <p id="modalDate"></p>
-                </div>
-                <div class="modalPrio">
-                    <p><strong>Priority:</strong> <span id="modalPriorityText"></span></p>
-                    <img id="modalPriorityIcon" class="prio-icons">
-                </div>
-                <p>Assign to:</p>
-                <div id="modalInitials"></div>
-                <div id="modalSubtasksContainer">
-                    <p>Subtasks:</p>
-                    <!-- Subtasks werden hier als Liste eingefügt -->
-                    <ul id="modalSubtasks"></ul>
-                </div>
-                <div class="task-editing-btn">
-                    <button id="deleteTaskBtn"><img src="assets/img/delete.png" alt="delete task">Delete</button>
-                    <div class="task-editing-seperator"></div>
-                    <button id="editTaskBtn"><img src="assets/img/edit.png" alt="edit task">Edit</button>
-                </div>
+            <div class="tasksBoard">
+                <div id="toDo" class="showTasksBoard" draggable="true" ondrop="moveTo('toDo')"
+                    ondragover="allowDrop(event)"></div>
+                <div id="inProgress" class="showTasksBoard" draggable="true" ondrop="moveTo('inProgress')"
+                    ondragover="allowDrop(event)"></div>
+                <div id="awaitFeedback" class="showTasksBoard" draggable="true" ondrop="moveTo('awaitFeedback')"
+                    ondragover="allowDrop(event)"></div>
+                <div id="done" class="showTasksBoard" draggable="true" ondrop="moveTo('done')"
+                    ondragover="allowDrop(event)"></div>
             </div>
         </div>
-        
-        
+    </main>
+    <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4 id="modalTitle"></h4>
+            <p id="modalUserTitle"></p>
+            <p id="modalDescription"></p>
+            <div class="modalDate">
+                <p>Due Date:</p>
+                <p id="modalDate"></p>
+            </div>
+            <div class="modalPrio">
+                <p><strong>Priority:</strong> <span id="modalPriorityText"></span></p>
+                <img id="modalPriorityIcon" class="prio-icons">
+            </div>
+            <p>Assign to:</p>
+            <div id="modalInitials"></div>
+            <div id="modalSubtasksContainer">
+                <p>Subtasks:</p>
+                <!-- Subtasks werden hier als Liste eingefügt -->
+                <ul id="modalSubtasks"></ul>
+            </div>
+            <div class="task-editing-btn">
+                <button id="deleteTaskBtn"><img src="assets/img/delete.png" alt="delete task">Delete</button>
+                <div class="task-editing-seperator"></div>
+                <button id="editTaskBtn"><img src="assets/img/edit.png" alt="edit task">Edit</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="addTaskModel" class="modal">
+        <div class="modal-content">
+
+            <h1>Add Task</h1>
+            <form action="" onsubmit="submitTask(event)">
+                <main class="maincontainer-desktop">
+                    <div class="left-field-section">
+                        <div class="addtaks-desktop">
+                            <span>Title<span style="color: red;">*</span></span>
+                            <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text"
+                                required>
+                            <span class="required-info">This field is required</span>
+                        </div>
+
+                        <div class="addtaks-desktop">
+                            <span>Description</span>
+                            <textarea id="description" class="title-select-or-input" placeholder="Enter a Description"
+                                type="text"></textarea>
+                        </div>
+
+                        <div class="addtaks-desktop dropdown">
+                            <button type="button" class="dropdown-button">Dropdown <img
+                                    src="assets/img/arrow_drop_down.png"></button>
+                            <div class="dropdown-content" id="assigned">
+                                <!-- Die Optionen mit Checkboxen werden hier generiert -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="parting-line"></div>
+
+                    <div class="right-field-section">
+                        <div class="addtaks-desktop">
+                            <span>Due Date <span style="color: red;">*</span></span>
+                            <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy"
+                                required>
+                            <span class="required-info">This field is required</span>
+                        </div>
+
+                        <div class="prio-section addtaks-desktop">
+                            <span class="subheadline"><b>Prio</b></span>
+                            <div class="prio-buttons">
+                                <button class="urgent-button" type="button" onclick="setPriority('Urgent')">Urgent<img
+                                        class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
+                                <button class="medium-button" type="button" onclick="setPriority('Medium')">Medium<img
+                                        class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
+                                <button class="low-button" type="button" onclick="setPriority('Low')">Low<img
+                                        class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png"></button>
+                            </div>
+                        </div>
+
+                        <div class="addtaks-desktop">
+                            <span>Category<span style="color: red;">*</span></span>
+                            <select id="category" class="title-select-or-input" required>
+                                <option disabled selected hidden> Select task category</option>
+                                <option>Technical Task</option>
+                                <option>User Story</option>
+                            </select>
+                            <span class="required-info">This field is required</span>
+                        </div>
+
+                        <div class="addtaks-desktop">
+                            <span>Subtasks</span>
+                            <div class="input-with-button">
+                                <input id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
+                                <button type="button" onclick="addSubtaskToList()"><img class="input-button-img"
+                                        src="assets/img/add.png" alt=""></button>
+                            </div>
+                            <ul id="subtaskList"></ul>
+                        </div>
+                    </div>
+
+                </main>
+
+                <div class="last-section">
+                    <span class="required-bottom-info"><span style="color: red;">*</span>This field is required</span>
+                    <div class="button-last-section">
+                        <button type="reset" class="clear-button">Clear <b>x</b></button>
+                        <button type="submit" class="create-task-button">Create Task <img
+                                src="./assets/img/check-button-add-task.png" alt=""></button>
+                    </div>
+                    <ul id="subtaskList"></ul>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
