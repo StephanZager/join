@@ -187,9 +187,10 @@ footer {
 
   .guest-login-button:hover {
     box-shadow: 0px 4px 4px 0px #00000040;
-    border: 1px solid #29ABE2;
+    border: 2px solid #29ABE2;
     cursor: pointer;
     transition: all 0.3s ease;
+    color: #29ABE2;
   }
 
   .login-signup-button:hover {

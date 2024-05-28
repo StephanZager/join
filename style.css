@@ -123,6 +123,8 @@ ul {
     flex-direction: column;
     position: fixed;
     top: 85%;
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
 
