@@ -159,6 +159,8 @@ a {
     background: lightgrey; 
   }
 
+
+
 @media (max-width: 799px) {
 .menuBar {
     display: flex;

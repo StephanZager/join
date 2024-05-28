@@ -26,6 +26,7 @@ function setPriority(priority) {
 
     if (button) {
         button.classList.add('selected');
+        selectedPriority = priority;  // Hier setzen wir den selectedPriority
     } else {
         console.error('Button not found for priority:', priority);
     }
@@ -64,7 +65,7 @@ async function submitTask(event) {
         assign: assignDetails,
         subtasks: subtasks,
         category: "toDo",
-        priority: selectedPriority
+        priority: selectedPriority  // Hier wird selectedPriority verwendet
     };
 
     try {
