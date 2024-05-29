@@ -349,7 +349,7 @@ function openTaskPopup() {
 
 async function editTask(){
     openTaskPopup();
-    removeRequierdAttribute ()
+    removeRequierdAttribute();
     let confirmBtn = document.getElementById('confirmBtn');
 
     confirmBtn.childNodes.forEach(node => {
