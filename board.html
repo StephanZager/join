@@ -101,7 +101,7 @@
         <div class="modal-addtask-popup" id="test">
 
             <h1>Add Task</h1>
-            <form action="" onsubmit="submitTask(event)">
+            <form id="addTaskFormRemove" action="" onsubmit="submitTask(event)">
                 <main class="maincontainer-desktop" id="maincontainerAddTask">
                     <div class="left-field-section">
                         <div class="addtaks-desktop">
@@ -172,13 +172,12 @@
                 </main>
 
                 <div class="last-section">
-                    <span class="required-bottom-info"><span style="color: red;">*</span>This field is required</span>
-                    <div class="button-last-section">
-                        <button type="reset" class="clear-button">Clear <b>x</b></button>
-                        <button type="submit" class="create-task-button">Create Task <img
+                    <span id="spanRequiredInfo" class="required-bottom-info"><span style="color: red;">*</span>This field is required</span>
+                    <div id="buttonLastSection" class="button-last-section">
+                        <button id="clearBtn" type="reset" class="clear-button">Clear <b>x</b></button>
+                        <button id="confirmBtn" type="submit" class="create-task-button">Create Task <img
                                 src="./assets/img/check-button-add-task.png" alt=""></button>
                     </div>
-                    <ul id="subtaskList"></ul>
                 </div>
             </form>
         </div>

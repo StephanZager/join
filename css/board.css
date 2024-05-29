@@ -321,7 +321,9 @@ input {
     align-items: center;
 }
 
-.modal-content li {
+.modal
+
+.modal-task-popup li {
     display: flex;
     gap: 16px;
 }
@@ -380,18 +382,7 @@ input {
 
 
 
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    /* Fill the entire screen */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+
 
 .modal-task-popup {
     background-color: #fefefe;
@@ -434,6 +425,7 @@ input {
     border: 1px solid #888;
     width: 525px;
     border-radius: 30px;
+    height: 70%;
 }
 
 .edit-task h1 {
@@ -447,9 +439,13 @@ input {
     align-items: center;
     max-width: 976px;
     width: auto;
-    max-height: 600px;
-    
+    max-height: 500px;
     overflow-y: auto;
+}
+
+#confirmBtn {
+    display: flex;
+    width: 100%;
 }
 
 

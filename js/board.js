@@ -349,20 +349,45 @@ function openTaskPopup() {
 
 async function editTask(){
     openTaskPopup();
+    removeRequierdAttribute ()
+    let confirmBtn = document.getElementById('confirmBtn');
+
+    confirmBtn.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+            node.textContent = 'OK';
+        }
+    });
+
     document.getElementById('test').classList.add('edit-task');
     document.getElementById('test').classList.remove('modal-addtask-popup');
     document.getElementById('maincontainerAddTask').classList.remove('maincontainer-desktop');
-    document.getElementById('maincontainerAddTask').classList.add('edit-task-menü');   
+    document.getElementById('maincontainerAddTask').classList.add('edit-task-menü');
+    document.getElementById('spanRequiredInfo').style.display = 'none';
+    document.getElementById('clearBtn').style.display = 'none';
+    document.getElementById('buttonLastSection').style.marginTop = '32px';
+    confirmBtn.innerHTML = 'OK <img src="assets/img/check-button-add-task.png" alt="Confirm">';
 
+}
 
-      
+function removeRequierdAttribute () {
+    const idToRemoveRequired = ['title', 'dueDate', 'category'];
 
+    idToRemoveRequired.forEach(elementId => {
+        const element = document.getElementById(elementId);
+
+        if (element) {
+            element.removeAttribute('required');
+        } else {
+            console.error(`Element mit ID ${elementId} nicht gefunden.`)
+        }
+    });
 }
 
 
 
 
 
+//title dueDate category
 
 // Initial load of tasks
 loadTask();
