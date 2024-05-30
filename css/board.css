@@ -420,11 +420,11 @@ input {
 
 .edit-task{
     background-color: #fefefe;
-    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 525px;
     border-radius: 30px; 
+   
 }
 
 .edit-task h1 {
@@ -447,6 +447,11 @@ input {
     width: 100%;
 }
 
+
+.edit-btn {
+    gap: 16px;
+    display: flex;
+}
 
 
 

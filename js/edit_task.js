@@ -3,7 +3,7 @@ function openEditTask() {
 
     editTaskPopup.className = 'edit-task';
     editTaskPopup.style.position = 'fixed';
-    editTaskPopup.style.top = '48%';
+    editTaskPopup.style.top = '46%';
     editTaskPopup.style.left = '50%';
     editTaskPopup.style.transform = 'translate(-50%, -50%)';
     editTaskPopup.style.backgroundColor = '#fff';
@@ -73,7 +73,7 @@ function generateEditTaskHTML() {
             </div>
         </main>
         <div class="last-section">
-            <div class="button-last-section">
+            <div class="edit-btn">
                 <button type="button" class="create-task-button">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
         </div>
