@@ -73,7 +73,7 @@ function generateEditTaskHTML() {
 }
 
 
-async function editTask() {
+async function editTask(i) {
     let taskToEdit = task[i];
     let firebaseId = taskToEdit.firebaseId;
 
@@ -112,13 +112,10 @@ async function editTask() {
     });
 }
 
-async function postEditTask(firebaseId, updatedTask, path = "/userTask") {
-    if (!firebaseId) {
-        console.error('firebaseId is undefined');
-        return;
-    }
-
-    let response = await fetch(BASE_URL + path + '/' + firebaseId + '.json', {
+// Funktion zum Aktualisieren der Aufgabe in Firebase
+async function postEditTask(firebaseId, updatedTask) {
+    const url = `${BASE_URL}/tasks/${firebaseId}.json`;
+    const response = await fetch(url, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -127,8 +124,9 @@ async function postEditTask(firebaseId, updatedTask, path = "/userTask") {
     });
 
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error('Network response was not ok');
     }
 
-    console.log('Task erfolgreich aktualisiert');
+    const responseData = await response.json();
+    console.log('Updated task:', responseData);
 }
