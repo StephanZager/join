@@ -62,7 +62,7 @@ function addNewContactPopUp() {
 
 
 function addUbdateContactPopUp(i, path = "/contact") {
-
+    let user = contacts[i];
     return `<div id="bg_add_ubdate_contact" class="d-none">
     <div class="bg" onclick="cloeAddUbdateContactwindow()">
         <div onclick="doNotClose(event)">
