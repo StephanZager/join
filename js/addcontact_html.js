@@ -22,9 +22,9 @@ function addNewContactPopUp() {
         <img class="profilImgAddContact" src="assets/img/profil.img.addcontact.png.png" alt="" srcset="">
 
         <form id="form" action="" method="post" onsubmit="submitContact(); return false;">
-            <input type="text" id="addcontact_name" name="name" required pattern="^[\\p{L}]+\\s[\\p{L}]+$" placeholder="Name" maxlength="20">
-            <input type="email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">            
-            <input type="tel" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
+            <input type="text" class="addcontact-name" id="addcontact_name" name="name" required pattern="^[\\p{L}]+\\s[\\p{L}]+$" placeholder="Name" maxlength="20">
+            <input type="email" class="addcontact-email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">            
+            <input type="tel" class="addcontact-phone" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
                 <button type="button" class="addcontact_cancel_Button">
                     <img src="assets/img/x.button.addcontact.black.png" alt="check">Cancel
@@ -85,9 +85,9 @@ function addUbdateContactPopUp(i, path = "/contact") {
         
 
         <form id="form" action="" method="put" onsubmit="editUser(${i}, ${path = "/contact"})"; return false;">
-            <input type="text" id="addcontact_name" name="name" required placeholder="Name" maxlength="20">
-            <input type="email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">            
-            <input type="tel" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
+            <input type="text" class="addcontact-name" id="addcontact_edit_name" name="name" required placeholder="Name" maxlength="20">
+            <input type="email" class="addcontact-email" id="addcontact_edit_email" name="email" required placeholder="Email" maxlength="20">            
+            <input type="tel" class="addcontact-phone" id="addcontact_edit_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
                 <button type="button" class="addcontact_cancel_Button">
                     <img src="assets/img/x.button.addcontact.black.png" alt="check">Cancel

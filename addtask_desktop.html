@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,14 @@
     <link rel="stylesheet" href="css/addtasks.css">
     <script src="script.js"></script>
     <script src="js/add_task.js"></script>
-    
+
 </head>
+
 <body onload="includeHTML(), loadAssign()" class="body-class-addtask">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <h1>Add Task</h1>
     <form action="" onsubmit="submitTask(event)" id="test2">
-        <main class="maincontainer-desktop" >
+        <main class="maincontainer-desktop">
             <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
@@ -24,11 +26,13 @@
 
                 <div class="addtaks-desktop">
                     <span>Description</span>
-                    <textarea id="description" class="title-select-or-input" placeholder="Enter a Description" type="text"></textarea>
+                    <textarea id="description" class="title-select-or-input" placeholder="Enter a Description"
+                        type="text"></textarea>
                 </div>
 
                 <div class="addtaks-desktop dropdown">
-                    <button type="button" class="dropdown-button">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
+                    <button type="button" class="dropdown-button">Dropdown <img
+                            src="assets/img/arrow_drop_down.png"></button>
                     <div class="dropdown-content" id="assigned">
                         <!-- Die Optionen mit Checkboxen werden hier generiert -->
                     </div>
@@ -47,9 +51,12 @@
                 <div class="prio-section addtaks-desktop">
                     <span class="subheadline"><b>Prio</b></span>
                     <div class="prio-buttons">
-                        <button class="urgent-button" type="button" onclick="setPriority('Urgent')">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
-                        <button class="medium-button" type="button" onclick="setPriority('Medium')">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
-                        <button class="low-button" type="button" onclick="setPriority('Low')">Low<img class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png"></button>
+                        <button class="urgent-button" type="button" onclick="setPriority('Urgent')">Urgent<img
+                                class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
+                        <button class="medium-button" type="button" onclick="setPriority('Medium')">Medium<img
+                                class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
+                        <button class="low-button" type="button" onclick="setPriority('Low')">Low<img class="prio-icons"
+                                src="./assets/img/prio-low-icon-unclicked.png"></button>
                     </div>
                 </div>
 
@@ -67,24 +74,26 @@
                     <span>Subtasks</span>
                     <div class="input-with-button">
                         <input id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
-                        <button type="button" onclick="addSubtaskToList()"><img class="input-button-img" src="assets/img/add.png" alt=""></button>
+                        <button type="button" onclick="addSubtaskToList()"><img class="input-button-img"
+                                src="assets/img/add.png" alt=""></button>
                     </div>
                     <ul id="subtaskList"></ul>
                 </div>
             </div>
 
         </main>
-        
+
         <div class="last-section">
             <span class="required-bottom-info"><span style="color: red;">*</span>This field is required</span>
             <div class="button-last-section">
                 <button type="reset" class="clear-button">Clear <b>x</b></button>
-                <button type="submit" class="create-task-button">Create Task <img src="./assets/img/check-button-add-task.png" alt=""></button>
+                <button type="submit" class="create-task-button">Create Task <img
+                        src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
         </div>
-    </form>     
+    </form>
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
-    
+
 </body>
 
 </html>

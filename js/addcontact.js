@@ -142,10 +142,10 @@ async function submitForm(i, contactId, path) {
     event.preventDefault();
 
     let updatedContact = {
-        name: document.getElementById('addcontact_name').value,
-        email: document.getElementById('addcontact_email').value,
-        phone: document.getElementById('addcontact_phone').value,
-        firstLetters: filterFirstLetters(document.getElementById('addcontact_name').value),
+        name: document.getElementById('addcontact_edit_name').value,
+        email: document.getElementById('addcontact_edit_email').value,
+        phone: document.getElementById('addcontact_edit_phone').value,
+        firstLetters: filterFirstLetters(document.getElementById('addcontact_edit_name').value),
         bgNameColor: contacts[i].bgNameColor,
     };
 
@@ -156,9 +156,9 @@ async function editUser(i, path = "/contact") {
     let contactId = contacts[i].id;
     document.getElementById('addUbdateContactPopUp').innerHTML += addUbdateContactPopUp(i, path = "/contact");
     openAddUbdateContactwindow();
-    document.getElementById('addcontact_name').value = contacts[i].name;
-    document.getElementById('addcontact_email').value = contacts[i].email;
-    document.getElementById('addcontact_phone').value = contacts[i].phone;
+    document.getElementById('addcontact_edit_name').value = contacts[i].name;
+    document.getElementById('addcontact_edit_email').value = contacts[i].email;
+    document.getElementById('addcontact_edit_phone').value = contacts[i].phone;
 
     document.getElementById('form').onsubmit = function (event) {
         submitForm(i, contactId, path);
@@ -292,13 +292,13 @@ function closeUserInfoWindow() {
 
 }
 
-function openUserDeleteEditWindow() {    
+function openUserDeleteEditWindow() {
     document.getElementById('buttonEditDeleteHandy').style.display = 'block';
     document.getElementById('bgDeleteEditHandy').classList.add('bg');
-    
+
 }
 
-function closeUserDeleteEditWindow() {    
+function closeUserDeleteEditWindow() {
     document.getElementById('bgDeleteEditHandy').classList.add = ('d-none');
     ocument.getElementById('buttonEditDeleteHandy').style.display = 'none';
 }

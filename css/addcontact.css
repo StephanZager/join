@@ -86,7 +86,7 @@ form {
 
 }
 
-#addcontact_name {
+.addcontact-name {
     box-sizing: border-box;
     background-image: url('/assets/img/person.addcontact.png');
     background-repeat: no-repeat;
@@ -106,16 +106,16 @@ form {
 
 }
 
-#addcontact_name::placeholder {
+.addcontact-name::placeholder {
     color: #D1D1D1;
 }
 
-#addcontact_name:focus {
+.addcontact-name:focus {
     outline: none;
     border-color: #29ABE2 !important;
 }
 
-#addcontact_email {
+.addcontact-email {
     box-sizing: border-box;
     background-image: url(/assets/img/mail.addcontact.png);
     background-repeat: no-repeat;
@@ -135,16 +135,16 @@ form {
     margin-bottom: 32px;
 }
 
-#addcontact_email::placeholder {
+.addcontact-email::placeholder {
     color: #D1D1D1;
 }
 
-#addcontact_email:focus {
+.addcontact-email:focus {
     outline: none;
     border-color: #29ABE2 !important;
 }
 
-#addcontact_phone {
+.addcontact-phone {
     box-sizing: border-box;
     background-image: url(/assets/img/call.addcontact.png);
     border: 1px solid #D1D1D1;
@@ -163,12 +163,12 @@ form {
     margin-bottom: 32px;
 }
 
-#addcontact_phone::placeholder {
+.addcontact-phone::placeholder {
     color: #D1D1D1;
 
 }
 
-#addcontact_phone:focus {
+.addcontact-phone:focus {
     outline: none;
     border-color: #29ABE2 !important;
 }
@@ -247,7 +247,7 @@ form {
     cursor: pointer;
 }
 
-.edit-contact-profil-icon { 
+.edit-contact-profil-icon {
     font-size: 47px;
     font-weight: 500;
     line-height: 56.4px;
