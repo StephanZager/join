@@ -28,7 +28,7 @@ function generateEditTaskHTML() {
                 </div>
                 <div class="addtaks-desktop dropdown">
                     <button type="button" class="dropdown-button">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
-                    <div class="dropdown-content" id="assigned">
+                    <div class="dropdown-content" id="editAssigned">
                         
                     </div>
                 </div>
@@ -66,7 +66,7 @@ function generateEditTaskHTML() {
         </main>
         <div class="last-section">
             <div class="edit-btn">
-                <button type="button" class="create-task-button">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
+                <button type="button" id="postEditBtn" class="create-task-button" onclick="postEditTask()">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
         </div>
     `;
@@ -74,5 +74,61 @@ function generateEditTaskHTML() {
 
 
 async function editTask() {
-    
+    let taskToEdit = task[i];
+    let firebaseId = taskToEdit.firebaseId;
+
+    if (!firebaseId) {
+        console.error('firebaseId is undefined');
+        return;
+    }
+
+    // Fülle das Bearbeitungsformular mit den aktuellen Aufgabenwerten
+    document.getElementById('editTitel').value = taskToEdit.title;
+    document.getElementById('editDescription').value = taskToEdit.description;
+    document.getElementById('editAssigned').value = taskToEdit.assign;
+    document.getElementById('editDate').value = taskToEdit.date;
+    document.getElementById('editCategory').value = taskToEdit.userCategory; // Tippfehler korrigiert
+
+    // Entferne vorhandene Event-Listener, um doppelte Aufrufe zu vermeiden
+    let postEditBtn = document.getElementById('postEditBtn');
+    let newPostEditBtn = postEditBtn.cloneNode(true);
+    postEditBtn.parentNode.replaceChild(newPostEditBtn, postEditBtn);
+
+    // Funktion zum Speichern der aktualisierten Aufgabe
+    newPostEditBtn.addEventListener('click', async function() {
+        let updatedTask = {
+            title: document.getElementById('editTitel').value,
+            description: document.getElementById('editDescription').value,
+            assign: document.getElementById('editAssigned').value,
+            date: document.getElementById('editDate').value,
+            userCategory: document.getElementById('editCategory').value // Tippfehler korrigiert
+        };
+
+        try {
+            await postEditTask(firebaseId, updatedTask);
+        } catch (error) {
+            console.error(error);
+        }
+    });
+}
+
+async function postEditTask(firebaseId, updatedTask, path = "/userTask") {
+    if (!firebaseId) {
+        console.error('firebaseId is undefined');
+        return;
+    }
+
+    let response = await fetch(BASE_URL + path + '/' + firebaseId + '.json', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedTask)
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log('Task erfolgreich aktualisiert');
 }

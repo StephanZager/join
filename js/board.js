@@ -28,7 +28,7 @@ function generateTask() {
         let categoryElement = document.getElementById(category);
         categoryElement.innerHTML = ''; // Clear existing tasks
 
-        tasksInCategory.forEach(taskItem => {
+        tasksInCategory.forEach((taskItem) => {
             categoryElement.innerHTML += generateTaskHTML(taskItem);
 
             // Update progress bar only if the task has subtasks
@@ -36,6 +36,7 @@ function generateTask() {
                 updateProgressBar(taskItem);
             }
         });
+        
     });
 }
 
