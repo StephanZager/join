@@ -1,15 +1,14 @@
 let currentDraggedElement;
 let task = [];
 
-
-// Loading tasks from Firebase
+// Laden der Aufgaben aus Firebase
 async function loadTask(path = "/userTask") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
 
         if (responseToJson) {
-            // Clear the task array before adding new tasks
+            // Leeren des task-Arrays vor dem Hinzufügen neuer Aufgaben
             task = [];
             let tasksArray = Object.entries(responseToJson).map(([firebaseId, taskData]) => ({ firebaseId, ...taskData }));
             task.push(...tasksArray);
@@ -21,26 +20,31 @@ async function loadTask(path = "/userTask") {
     }
 }
 
-// Generating the task list
+// Generieren der Aufgabenlisten
 function generateTask() {
-    ['toDo', 'inProgress', 'awaitFeedback', 'done'].forEach(category => {
+    const categories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
+    const numCategories = categories.length;
+
+    for (let i = 0; i < numCategories; i++) {
+        const category = categories[i];
         let tasksInCategory = task.filter(t => t.category === category);
         let categoryElement = document.getElementById(category);
-        categoryElement.innerHTML = ''; // Clear existing tasks
+        categoryElement.innerHTML = ''; // Vorhandene Aufgaben löschen
 
-        tasksInCategory.forEach((taskItem) => {
+        const numTasksInCategory = tasksInCategory.length;
+        for (let j = 0; j < numTasksInCategory; j++) {
+            let taskItem = tasksInCategory[j];
             categoryElement.innerHTML += generateTaskHTML(taskItem);
 
-            // Update progress bar only if the task has subtasks
+            // Fortschrittsbalken nur aktualisieren, wenn die Aufgabe Subtasks hat
             if ((taskItem.subtasks || []).length > 0) {
                 updateProgressBar(taskItem);
             }
-        });
-        
-    });
+        }
+    }
 }
 
-// Generating the HTML for a single task
+// Generieren des HTML für eine einzelne Aufgabe
 function generateTaskHTML(taskItem) {
     let assignedInitialsArray = taskItem.assign || [];
     let initialsHtml = '';
@@ -92,25 +96,21 @@ function generateTaskHTML(taskItem) {
         </div>`;
 }
 
-// Drag and drop functions
+// Drag-and-Drop-Funktionen
 function startDragging(ev, firebaseId) {
     currentDraggedElement = firebaseId;
     ev.dataTransfer.setData("text/plain", firebaseId);
-    // Füge die Drehungs-Klasse hinzu
     ev.target.classList.add('rotated');
 }
 
 function keepDragging(ev) {
-    // Verhindert das Standardverhalten, damit das Element gedroppt werden kann
     ev.preventDefault();
-    // Füge die Drehungs-Klasse hinzu, falls sie entfernt wurde
     if (!ev.target.classList.contains('rotated')) {
         ev.target.classList.add('rotated');
     }
 }
 
 function stopDragging(ev) {
-    // Entferne die Drehungs-Klasse nach dem Drag-Vorgang
     ev.target.classList.remove('rotated');
 }
 
@@ -134,9 +134,8 @@ async function moveTo(category) {
     try {
         task[taskIndex].category = category;
         await updateTaskInFirebase(firebaseId, { category });
-        generateTask(); // Refresh display after moving the task
+        generateTask(); // Anzeige nach dem Verschieben der Aufgabe aktualisieren
 
-        // Update progress bar only if the task has subtasks
         if ((task[taskIndex].subtasks || []).length > 0) {
             updateProgressBar(task[taskIndex]);
         }
@@ -145,7 +144,7 @@ async function moveTo(category) {
     }
 }
 
-
+// Aktualisieren der Aufgabe in Firebase
 async function updateTaskInFirebase(firebaseId, newData) {
     try {
         await fetch(`${BASE_URL}/userTask/${firebaseId}.json`, {
