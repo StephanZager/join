@@ -1,22 +1,32 @@
+let editTaskPopup;
+
 function openEditTask() {
-  let editTaskPopup = document.createElement("div");
+    editTaskPopup = document.createElement("div");
 
-  editTaskPopup.className = "edit-task";
-  editTaskPopup.style.position = "fixed";
-  editTaskPopup.style.top = "46%";
-  editTaskPopup.style.left = "50%";
-  editTaskPopup.style.transform = "translate(-50%, -50%)";
-  editTaskPopup.style.backgroundColor = "#fff";
-  editTaskPopup.style.zIndex = "99";
+    editTaskPopup.className = "edit-task";
+    editTaskPopup.style.position = "fixed";
+    editTaskPopup.style.top = "46%";
+    editTaskPopup.style.left = "50%";
+    editTaskPopup.style.transform = "translate(-50%, -50%)";
+    editTaskPopup.style.backgroundColor = "#fff";
+    editTaskPopup.style.zIndex = "99";
 
-  editTaskPopup.innerHTML = generateEditTaskHTML();
+    editTaskPopup.innerHTML = generateEditTaskHTML();
 
-  document.body.appendChild(editTaskPopup);
+    document.body.appendChild(editTaskPopup);
+
+    document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
 }
+
+function closeEditTaskPopup() {
+    editTaskPopup.style.display = "none"; // Verstecken Sie das editTaskPopup-Element
+}
+
 
 function generateEditTaskHTML() {
   return `
-    <main class="edit-task-menü" >
+    <main class="edit-task-menü" id="editTaskMainContainer">
+        <span id="closeEditPopupButton" class="close">&times;</span>
             <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
@@ -64,7 +74,7 @@ function generateEditTaskHTML() {
                 </div>
             </div>
         </main>
-        <div class="last-section">
+        <div class="last-section" id="postEditBtnSection">
             <div class="edit-btn">
                 <button type="button" id="postEditBtn" class="create-task-button" onclick="postEditTask()">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
