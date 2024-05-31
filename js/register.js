@@ -39,24 +39,12 @@ async function submitData(event) {
     let userData = {
         name: name,
         email: email,
-        password: password,
-        firstLetters: filterFirstLetters(name)        
+        password: password
     };
-
-    let contact = {
-        name: name,
-        email: email,
-        phone: "+49 123 456 7890",
-        firstLetters: filterFirstLetters(name)
-
-    }
 
     try {
         // Send data to Firebase
         await postData("/userData", userData); // Path to the DB where the record should be saved
-
-        // Send contact data to Firebase
-        await postData("/contact", contact); // Path to the DB where the contact record should be saved
 
         // Show success popup
         showSuccessPopup();
@@ -156,15 +144,6 @@ function showSuccessPopup() {
         window.location.href = "index.html"; // Change this to the desired URL
     });
 }
-
-function filterFirstLetters(name) {
-    let words = name.split(' ');
-    let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
-
-    return firstLetters;
-}
-
-
 
 // Event listeners for toggling password visibility
 document.getElementById('password').addEventListener('click', () => togglePasswordVisibility('password'));
