@@ -40,12 +40,13 @@ async function submitData(event) {
         name: name,
         email: email,
         password: password
-    };
+              
+    };    
 
     try {
         // Send data to Firebase
         await postData("/userData", userData); // Path to the DB where the record should be saved
-
+        
         // Show success popup
         showSuccessPopup();
 
@@ -144,6 +145,9 @@ function showSuccessPopup() {
         window.location.href = "index.html"; // Change this to the desired URL
     });
 }
+
+
+
 
 // Event listeners for toggling password visibility
 document.getElementById('password').addEventListener('click', () => togglePasswordVisibility('password'));
