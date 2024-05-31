@@ -1,3 +1,5 @@
+const Base_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
+
 /**
  * Handles the form submission, validates the input, and sends the data to Firebase.
  * @param {Event} event - The form submission event.
