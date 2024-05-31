@@ -42,9 +42,17 @@ async function submitData(event) {
         password: password
     };
 
+    let contact = {
+        name: name,
+        email: email,
+    }
+
     try {
         // Send data to Firebase
         await postData("/userData", userData); // Path to the DB where the record should be saved
+
+        // Send contact data to Firebase
+        await postData("/contact", contact); // Path to the DB where the contact record should be saved
 
         // Show success popup
         showSuccessPopup();
