@@ -1,32 +1,39 @@
 let editTaskPopup;
 
+
 function openEditTask() {
     editTaskPopup = document.createElement("div");
 
     editTaskPopup.className = "edit-task";
     editTaskPopup.style.position = "fixed";
-    editTaskPopup.style.top = "46%";
+    editTaskPopup.style.top = "50%";
     editTaskPopup.style.left = "50%";
     editTaskPopup.style.transform = "translate(-50%, -50%)";
     editTaskPopup.style.backgroundColor = "#fff";
     editTaskPopup.style.zIndex = "99";
 
-    editTaskPopup.innerHTML = generateEditTaskHTML();
-
     document.body.appendChild(editTaskPopup);
 
+    editTaskPopup.innerHTML = generateEditTaskHTML();
+
+    // Fügen Sie den Event Listener zum Button hinzu
     document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
 }
 
+
 function closeEditTaskPopup() {
-    editTaskPopup.style.display = "none"; // Verstecken Sie das editTaskPopup-Element
+    // Entfernen Sie das editTaskPopup-Element
+    document.body.removeChild(editTaskPopup);
 }
 
 
 function generateEditTaskHTML() {
   return `
+  <div class="close-edit-section">
+    <span id="closeEditPopupButton" class="close-edit">&times;</span>
+  </div>
     <main class="edit-task-menü" id="editTaskMainContainer">
-        <span id="closeEditPopupButton" class="close">&times;</span>
+        
             <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
