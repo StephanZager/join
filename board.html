@@ -13,6 +13,7 @@
     <script src="js/board.js"></script>
     <script src="js/summary.js"></script>
     <script src="js/add_task.js"></script>
+    <script src="js/popup_add_task.js"></script>
     <script src="js/edit_task.js"></script>
 
 
@@ -100,8 +101,8 @@
 
 
     <div id="addTaskModel" class="modal">
-        <div class="modal-addtask-popup" id="test">
-
+        <div class="modal-addtask-popup" id="popup_add_task">
+            <span id="closePopupButton" class="close">&times;</span>
             <h1>Add Task</h1>
             <form id="addTaskFormRemove" action="" onsubmit="submitTask(event)">
                 <main class="maincontainer-desktop" id="maincontainerAddTask">
