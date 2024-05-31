@@ -58,7 +58,7 @@ async function login() {
             // Save credentials if 'Remember me' is checked
             if (rememberMeCheckbox.checked) {                               
                 localStorage.setItem('email', email);
-                localStorage.setItem('password', password);
+                localStorage.setItem('password', password);                
                 localStorage.setItem('rememberMe', 'true');
             } else {
                 localStorage.removeItem('email');
@@ -69,8 +69,7 @@ async function login() {
             // Save user's name           
 
             localStorage.setItem('userName', user.name);
-            localStorage.setItem('firstLetters', user.firstLetters);
-            
+            localStorage.setItem('firstLetters', user.firstLetters);            
             console.log("Username saved to localStorage:", user.name);
 
             window.location.href = "summary.html";
