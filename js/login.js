@@ -56,7 +56,7 @@ async function login() {
 
         if (user) {
             // Save credentials if 'Remember me' is checked
-            if (rememberMeCheckbox.checked) {
+            if (rememberMeCheckbox.checked) {                               
                 localStorage.setItem('email', email);
                 localStorage.setItem('password', password);
                 localStorage.setItem('rememberMe', 'true');
@@ -66,11 +66,15 @@ async function login() {
                 localStorage.setItem('rememberMe', 'false');
             }
 
-            // Save user's name
+            // Save user's name           
+
             localStorage.setItem('userName', user.name);
+            localStorage.setItem('firstLetters', user.firstLetters);
+            
             console.log("Username saved to localStorage:", user.name);
 
             window.location.href = "summary.html";
+            joinProfilLetters();
         } else {
             errorMessage.style.display = 'block';
         }
@@ -157,3 +161,9 @@ async function getData(path) {
       }
     });
   });
+
+  function joinProfilLetters(){
+    let joinProfilLetters = localStorage.getItem('firstLetters');
+    console.log("joinProfilLetters", joinProfilLetters);
+    document.getElementById('joinProfil').innerHTML = `<div>${joinProfilLetters}</div>`;
+  }
