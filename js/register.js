@@ -39,7 +39,7 @@ async function submitData(event) {
     let userData = {
         name: name,
         email: email,
-        password: password
+        password: password        
     };
 
     let contact = {
