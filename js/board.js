@@ -2,17 +2,13 @@ let currentDraggedElement;
 let task = [];
 
 // Laden der Aufgaben aus Firebase
-// Laden der Aufgaben aus Firebase
 async function loadTask(path = "/userTask") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
 
         if (responseToJson) {
-            // Leeren des task-Arrays vor dem Hinzufügen neuer Aufgaben
-            task = [];
-            let tasksArray = Object.entries(responseToJson).map(([firebaseId, taskData]) => ({ firebaseId, ...taskData }));
-            task.push(...tasksArray);
+            task = Object.entries(responseToJson).map(([firebaseId, taskData]) => ({ firebaseId, ...taskData }));
         }
 
         generateTask();
@@ -22,31 +18,23 @@ async function loadTask(path = "/userTask") {
 }
 
 // Generieren der Aufgabenlisten
-// Generieren der Aufgabenlisten
 function generateTask() {
     const categories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
-    const numCategories = categories.length;
-
-    for (let i = 0; i < numCategories; i++) {
-        const category = categories[i];
+    
+    categories.forEach(category => {
         let tasksInCategory = task.filter(t => t.category === category);
         let categoryElement = document.getElementById(category);
-        categoryElement.innerHTML = ''; // Vorhandene Aufgaben löschen
+        categoryElement.innerHTML = '';
 
-        const numTasksInCategory = tasksInCategory.length;
-        for (let j = 0; j < numTasksInCategory; j++) {
-            let taskItem = tasksInCategory[j];
+        tasksInCategory.forEach(taskItem => {
             categoryElement.innerHTML += generateTaskHTML(taskItem);
-
-            // Fortschrittsbalken nur aktualisieren, wenn die Aufgabe Subtasks hat
             if ((taskItem.subtasks || []).length > 0) {
                 updateProgressBar(taskItem);
             }
-        }
-    }
+        });
+    });
 }
 
-// Generieren des HTML für eine einzelne Aufgabe
 // Generieren des HTML für eine einzelne Aufgabe
 function generateTaskHTML(taskItem) {
     let initialsHtml = (taskItem.assign || []).map(assignData => 
@@ -69,18 +57,36 @@ function generateTaskHTML(taskItem) {
         </div>`;
 }
 
+function getPriorityIcon(priority) {
+    const icons = {
+        Urgent: './assets/img/prio-urgent-icon-unclicked.png',
+        Medium: './assets/img/prio-medium-icon-unclicked.png',
+        Low: './assets/img/prio-low-icon-unclicked.png'
+    };
+    return icons[priority] || icons['Low'];
+}
+
+function generateSubtasksProgressHTML(taskItem) {
+    if (!taskItem.subtasks || taskItem.subtasks.length === 0) return '';
+
+    let completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
+    return `
+        <div class="progress-bar-subtask">
+            <div class="progress-container">
+                <div class="progress-background"></div>
+                <div id="progressBar_${taskItem.firebaseId}" class="progress-bar"></div>
+            </div>
+            <div class="subtask-container">
+                <p class="subtask-progress" id="subtaskProgress_${taskItem.firebaseId}">${completedSubtasks}/${taskItem.subtasks.length} Subtasks</p>
+            </div>
+        </div>`;
+}
+
 // Drag-and-Drop-Funktionen
 function startDragging(ev, firebaseId) {
     currentDraggedElement = firebaseId;
     ev.dataTransfer.setData("text/plain", firebaseId);
     ev.target.classList.add('rotated');
-}
-
-function keepDragging(ev) {
-    ev.preventDefault();
-    if (!ev.target.classList.contains('rotated')) {
-        ev.target.classList.add('rotated');
-    }
 }
 
 function stopDragging(ev) {
@@ -107,8 +113,7 @@ async function moveTo(category) {
     try {
         task[taskIndex].category = category;
         await updateTaskInFirebase(firebaseId, { category });
-        generateTask(); // Anzeige nach dem Verschieben der Aufgabe aktualisieren
-
+        generateTask();
         if ((task[taskIndex].subtasks || []).length > 0) {
             updateProgressBar(task[taskIndex]);
         }
@@ -117,7 +122,6 @@ async function moveTo(category) {
     }
 }
 
-// Aktualisieren der Aufgabe in Firebase
 // Aktualisieren der Aufgabe in Firebase
 async function updateTaskInFirebase(firebaseId, newData) {
     try {
