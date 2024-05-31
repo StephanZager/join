@@ -1,22 +1,39 @@
+let editTaskPopup;
+
+
 function openEditTask() {
-  let editTaskPopup = document.createElement("div");
+    editTaskPopup = document.createElement("div");
 
-  editTaskPopup.className = "edit-task";
-  editTaskPopup.style.position = "fixed";
-  editTaskPopup.style.top = "46%";
-  editTaskPopup.style.left = "50%";
-  editTaskPopup.style.transform = "translate(-50%, -50%)";
-  editTaskPopup.style.backgroundColor = "#fff";
-  editTaskPopup.style.zIndex = "99";
+    editTaskPopup.className = "edit-task";
+    editTaskPopup.style.position = "fixed";
+    editTaskPopup.style.top = "50%";
+    editTaskPopup.style.left = "50%";
+    editTaskPopup.style.transform = "translate(-50%, -50%)";
+    editTaskPopup.style.backgroundColor = "#fff";
+    editTaskPopup.style.zIndex = "99";
 
-  editTaskPopup.innerHTML = generateEditTaskHTML();
+    document.body.appendChild(editTaskPopup);
 
-  document.body.appendChild(editTaskPopup);
+    editTaskPopup.innerHTML = generateEditTaskHTML();
+
+    // Fügen Sie den Event Listener zum Button hinzu
+    document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
 }
+
+
+function closeEditTaskPopup() {
+    // Entfernen Sie das editTaskPopup-Element
+    document.body.removeChild(editTaskPopup);
+}
+
 
 function generateEditTaskHTML() {
   return `
-    <main class="edit-task-menü" >
+  <div class="close-edit-section">
+    <span id="closeEditPopupButton" class="close-edit">&times;</span>
+  </div>
+    <main class="edit-task-menü" id="editTaskMainContainer">
+        
             <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
@@ -64,7 +81,7 @@ function generateEditTaskHTML() {
                 </div>
             </div>
         </main>
-        <div class="last-section">
+        <div class="last-section" id="postEditBtnSection">
             <div class="edit-btn">
                 <button type="button" id="postEditBtn" class="create-task-button" onclick="postEditTask()">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
             </div>
@@ -73,7 +90,7 @@ function generateEditTaskHTML() {
 }
 
 
-async function editTask() {
+async function editTask(i) {
     let taskToEdit = task[i];
     let firebaseId = taskToEdit.firebaseId;
 
@@ -112,13 +129,10 @@ async function editTask() {
     });
 }
 
-async function postEditTask(firebaseId, updatedTask, path = "/userTask") {
-    if (!firebaseId) {
-        console.error('firebaseId is undefined');
-        return;
-    }
-
-    let response = await fetch(BASE_URL + path + '/' + firebaseId + '.json', {
+// Funktion zum Aktualisieren der Aufgabe in Firebase
+async function postEditTask(firebaseId, updatedTask) {
+    const url = `${BASE_URL}/tasks/${firebaseId}.json`;
+    const response = await fetch(url, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -127,8 +141,9 @@ async function postEditTask(firebaseId, updatedTask, path = "/userTask") {
     });
 
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error('Network response was not ok');
     }
 
-    console.log('Task erfolgreich aktualisiert');
+    const responseData = await response.json();
+    console.log('Updated task:', responseData);
 }

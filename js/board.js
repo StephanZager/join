@@ -2,6 +2,7 @@ let currentDraggedElement;
 let task = [];
 
 // Laden der Aufgaben aus Firebase
+// Laden der Aufgaben aus Firebase
 async function loadTask(path = "/userTask") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -20,6 +21,7 @@ async function loadTask(path = "/userTask") {
     }
 }
 
+// Generieren der Aufgabenlisten
 // Generieren der Aufgabenlisten
 function generateTask() {
     const categories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
@@ -45,50 +47,21 @@ function generateTask() {
 }
 
 // Generieren des HTML für eine einzelne Aufgabe
+// Generieren des HTML für eine einzelne Aufgabe
 function generateTaskHTML(taskItem) {
-    let assignedInitialsArray = taskItem.assign || [];
-    let initialsHtml = '';
+    let initialsHtml = (taskItem.assign || []).map(assignData => 
+        `<span class="show-initials" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`
+    ).join('');
 
-    for (let j = 0; j < assignedInitialsArray.length; j++) {
-        let assignData = assignedInitialsArray[j];
-        initialsHtml += `<span class="show-initials" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`;
-    }
-
-    let priorityIcon;
-    if (taskItem.priority === 'Urgent') {
-        priorityIcon = './assets/img/prio-urgent-icon-unclicked.png';
-    } else if (taskItem.priority === 'Medium') {
-        priorityIcon = './assets/img/prio-medium-icon-unclicked.png';
-    } else {
-        priorityIcon = './assets/img/prio-low-icon-unclicked.png';
-    }
-
-    let subtasksHtml = '';
-    if (taskItem.subtasks && taskItem.subtasks.length > 0) {
-        let completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
-        subtasksHtml = `<p class="subtask-progress">${completedSubtasks}/${taskItem.subtasks.length} Subtasks</p>`;
-    }
-
-    let progressDiv = '';
-    if (subtasksHtml) {
-        progressDiv = `
-        <div class="progress-bar-subtask">
-            <div class="progress-container">
-                <div class="progress-background"></div>
-                <div id="progressBar_${taskItem.firebaseId}" class="progress-bar"></div>
-            </div>
-            <div class="subtask-container">
-                ${subtasksHtml}
-            </div>
-        </div>`;
-    }
+    let priorityIcon = getPriorityIcon(taskItem.priority);
+    let subtasksHtml = generateSubtasksProgressHTML(taskItem);
 
     return `
         <div draggable="true" ondragstart="startDragging(event, '${taskItem.firebaseId}')" ondragend="stopDragging(event)" class="taskCard" data-firebase-id="${taskItem.firebaseId}">
             <h4 class="task-category-${taskItem.userCategory}">${taskItem.userCategory}</h4>
             <p class="task-title">${taskItem.title}</p>
             <p class="task-description">${taskItem.description}</p>
-            ${progressDiv}
+            ${subtasksHtml}
             <div class="show-initials-taskcard">
                 <div class="initials-container">${initialsHtml}</div>
                 <img src="${priorityIcon}" alt="Image" class="taskcard-img">
@@ -145,6 +118,7 @@ async function moveTo(category) {
 }
 
 // Aktualisieren der Aufgabe in Firebase
+// Aktualisieren der Aufgabe in Firebase
 async function updateTaskInFirebase(firebaseId, newData) {
     try {
         await fetch(`${BASE_URL}/userTask/${firebaseId}.json`, {
@@ -161,100 +135,62 @@ async function updateTaskInFirebase(firebaseId, newData) {
     }
 }
 
-// Modal-related code
+// Modal-bezogener Code
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("taskModal");
     const span = document.getElementsByClassName("close")[0];
 
-    function showModal(taskItem) {
-        const modal = document.getElementById("taskModal");
-        const modalTitle = document.getElementById("modalTitle");
-
-        modalTitle.innerText = taskItem.userCategory;
-
-        const categoryClass = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
-        modalTitle.classList.forEach(className => {
-            if (className.startsWith('task-category-')) {
-                modalTitle.classList.remove(className);
-            }
-        });
-        modalTitle.classList.add(categoryClass);
-
-        document.getElementById("modalUserTitle").innerText = taskItem.title;
-        document.getElementById("modalDescription").innerText = taskItem.description;
-        document.getElementById("modalDate").innerText = taskItem.date;
-        document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
-        document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
-        document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
-
-        // Set the priority text
-        document.getElementById("modalPriorityText").innerText = taskItem.priority;
-
-        modal.style.display = "block";
-    }
-
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    function generateInitialsHTML(assignedInitialsArray) {
-        let initialsHtml = '';
-        assignedInitialsArray.forEach(assignData => {
-            initialsHtml += `
-                <div class="assign-details">
-                    <span class="show-initials" style="background-color: ${assignData.bgNameColor}">
-                        ${assignData.initials}
-                    </span>
-                    <span class="assign-name">${assignData.name}</span>
-                </div>`;
-        });
-
-        return initialsHtml;
-    }
-
-    function getPriorityIcon(priority) {
-        if (priority === 'Urgent') {
-            return './assets/img/prio-urgent-icon-unclicked.png';
-        } else if (priority === 'Medium') {
-            return './assets/img/prio-medium-icon-unclicked.png';
-        } else {
-            return './assets/img/prio-low-icon-unclicked.png';
-        }
-    }
-
-    function generateSubtasksHTML(firebaseId, subtasks) {
-        if (!subtasks || subtasks.length === 0) {
-            return '';
-        }
-
-        let subtasksHtml = '<ul>';
-        subtasks.forEach((subtask, index) => {
-            subtasksHtml += `
-                <li>
-                    <input type="checkbox" id="subtask-${firebaseId}-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtask('${firebaseId}', ${index})">
-                    <label for="subtask-${firebaseId}-${index}">${subtask.title}</label>
-                </li>`;
-        });
-        subtasksHtml += '</ul>';
-        return subtasksHtml;
-    }
+    span.onclick = () => modal.style.display = "none";
+    window.onclick = event => { if (event.target === modal) modal.style.display = "none"; };
 
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("taskCard")) {
             const firebaseId = event.target.getAttribute("data-firebase-id");
             const taskItem = task.find(t => t.firebaseId === firebaseId);
-            if (taskItem) {
-                showModal(taskItem);
-            }
+            if (taskItem) showModal(taskItem);
         }
     });
 });
+
+function showModal(taskItem) {
+    const modal = document.getElementById("taskModal");
+    const modalTitle = document.getElementById("modalTitle");
+
+    modalTitle.innerText = taskItem.userCategory;
+    modalTitle.className = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
+
+    document.getElementById("modalUserTitle").innerText = taskItem.title;
+    document.getElementById("modalDescription").innerText = taskItem.description;
+    document.getElementById("modalDate").innerText = taskItem.date;
+    document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
+    document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
+    document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
+    document.getElementById("modalPriorityText").innerText = taskItem.priority;
+
+    modal.style.display = "block";
+}
+
+function generateInitialsHTML(assignedInitialsArray) {
+    return assignedInitialsArray.map(assignData => `
+        <div class="assign-details">
+            <span class="show-initials" style="background-color: ${assignData.bgNameColor}">
+                ${assignData.initials}
+            </span>
+            <span class="assign-name">${assignData.name}</span>
+        </div>`
+    ).join('');
+}
+
+function generateSubtasksHTML(firebaseId, subtasks) {
+    if (!subtasks || subtasks.length === 0) return '';
+
+    return '<ul>' + subtasks.map((subtask, index) => `
+        <li>
+            <input type="checkbox" id="subtask-${firebaseId}-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtask('${firebaseId}', ${index})">
+            <label for="subtask-${firebaseId}-${index}">${subtask.title}</label>
+        </li>`
+    ).join('') + '</ul>';
+}
 
 async function toggleSubtask(firebaseId, subtaskIndex) {
     const taskIndex = task.findIndex(taskItem => taskItem.firebaseId === firebaseId);
@@ -263,15 +199,12 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
         return;
     }
 
-    // Reverse subtask status
     task[taskIndex].subtasks[subtaskIndex].done = !task[taskIndex].subtasks[subtaskIndex].done;
 
     try {
-        // Update subtasks in Firebase
         await updateTaskInFirebase(firebaseId, { subtasks: task[taskIndex].subtasks });
-
-        // Update progress bar and display in popup
         updateProgressBar(task[taskIndex]);
+        updateTaskCardSubtasks(task[taskIndex]);
         updatePopupSubtasks(task[taskIndex]);
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Subtask in Firebase:", error);
@@ -279,13 +212,8 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
 }
 
 function updateProgressBar(taskItem) {
-    // Ensure subtasks is an array
     const totalSubtasks = (taskItem.subtasks || []).length;
-
-    if (totalSubtasks === 0) {
-        // If there are no subtasks, we don't need to update the progress bar
-        return;
-    }
+    if (totalSubtasks === 0) return;
 
     const completedSubtasks = (taskItem.subtasks || []).filter(subtask => subtask.done).length;
     const progressBar = document.getElementById(`progressBar_${taskItem.firebaseId}`);
@@ -295,50 +223,43 @@ function updateProgressBar(taskItem) {
         return;
     }
 
-    let progressPercentage = 0;
+    const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+    progressBar.style.width = `${progressPercentage}%`;
 
-    if (totalSubtasks > 0) {
-        progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+    // Update subtask count on task card
+    const subtaskProgress = document.getElementById(`subtaskProgress_${taskItem.firebaseId}`);
+    if (subtaskProgress) {
+        subtaskProgress.textContent = `${completedSubtasks}/${totalSubtasks} Subtasks`;
     }
-
-    progressBar.style.width = progressPercentage + '%';
-    progressBar.style.backgroundColor = 'lightblue';
-}
-
-
-function updateAllProgressBars() {
-    task.forEach(taskItem => {
-        updateProgressBar(taskItem);
-    });
 }
 
 function updatePopupSubtasks(taskItem) {
-    const totalSubtasks = (taskItem.subtasks || []).length;
+    document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
+}
 
-    if (totalSubtasks === 0) {
-        // If there are no subtasks, we don't need to update the popup subtasks
-        return;
-    }
-
-    const completedSubtasks = (taskItem.subtasks || []).filter(subtask => subtask.done).length;
-    const popupSubtasksElement = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"] .subtask-progress`);
-
-    if (popupSubtasksElement) {
-        popupSubtasksElement.textContent = `${completedSubtasks}/${totalSubtasks} Subtasks`;
-    } else {
-        console.error(`Popup Subtasks Element für taskItem mit ID ${taskItem.firebaseId} nicht gefunden.`);
+function updateTaskCardSubtasks(taskItem) {
+    const taskCardSubtasks = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"] .subtask-progress`);
+    if (taskCardSubtasks) {
+        const completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
+        taskCardSubtasks.textContent = `${completedSubtasks}/${taskItem.subtasks.length} Subtasks`;
     }
 }
 
 
+function openTaskPopup() {
+    document.getElementById("addTaskModel").style.display = "block";
+// showAddTaskPopUp();
+}
 
 
+function closeTaskPopup() {
+    document.getElementById("addTaskModel").style.display = "none";
+}
 
+// Fügen Sie den Event Listener hinzu, wenn das Dokument geladen wird
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('closePopupButton').addEventListener('click', closeTaskPopup);
+});
 
-
-
-
-//title dueDate category
-
-// Initial load of tasks
+// Initiales Laden der Aufgaben
 loadTask();
