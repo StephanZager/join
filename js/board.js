@@ -170,7 +170,7 @@ function showModal(taskItem) {
     document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
     document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
     document.getElementById("modalPriorityText").innerText = taskItem.priority;
-
+    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')">Edit Task</button>`;
     modal.style.display = "block";
 }
 
