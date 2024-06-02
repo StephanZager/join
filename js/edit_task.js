@@ -179,3 +179,24 @@ async function updateTask(firebaseId, updatedUserTask) {
         alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
     }
 }
+
+
+async function deleteTask(firebaseId) {
+    try {
+        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        window.location.href = "board.html";
+    } catch (error) {
+        console.error('Fehler beim Löschen der Aufgabe:', error);
+        alert(`Fehler beim Löschen der Aufgabe: ${error.message}`);
+    }
+}

@@ -170,7 +170,8 @@ function showModal(taskItem) {
     document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
     document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
     document.getElementById("modalPriorityText").innerText = taskItem.priority;
-    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')">Edit Task</button>`;
+    document.getElementById("deleteTaskBtn").innerHTML = `<button onclick="deleteTask('${taskItem.firebaseId})"><img src="assets/img/delete.png" alt="delete task">Delete</button>`
+    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="delete task">Edit Task</button>`;
     modal.style.display = "block";
 }
 
