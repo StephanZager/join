@@ -170,8 +170,8 @@ function showModal(taskItem) {
     document.getElementById("modalInitials").innerHTML = generateInitialsHTML(taskItem.assign || []);
     document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
     document.getElementById("modalPriorityText").innerText = taskItem.priority;
-    document.getElementById("deleteTaskBtn").innerHTML = `<button onclick="deleteTask('${taskItem.firebaseId})"><img src="assets/img/delete.png" alt="delete task">Delete</button>`
-    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="delete task">Edit Task</button>`;
+    document.getElementById("deleteTaskBtn").innerHTML = `<button onclick="deleteTask('${taskItem.firebaseId}')"><img src="assets/img/delete.png" alt="delete task">Delete</button>`;
+    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;
     modal.style.display = "block";
 }
 
@@ -250,15 +250,40 @@ function updateTaskCardSubtasks(taskItem) {
     }
 }
 
-
 function openTaskPopup() {
     document.getElementById("addTaskModel").style.display = "block";
-// showAddTaskPopUp();
 }
-
 
 function closeTaskPopup() {
     document.getElementById("addTaskModel").style.display = "none";
+}
+
+async function deleteTask(firebaseId) {
+    try {
+        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Update local task array after deletion
+        task = task.filter(t => t.firebaseId !== firebaseId);
+        generateTask();
+
+        // Optionally close the modal if it's open
+        const modal = document.getElementById("taskModal");
+        if (modal) {
+            modal.style.display = "none";
+        }
+    } catch (error) {
+        console.error('Fehler beim Löschen der Aufgabe:', error);
+        alert(`Fehler beim Löschen der Aufgabe: ${error.message}`);
+    }
 }
 
 // Fügen Sie den Event Listener hinzu, wenn das Dokument geladen wird
