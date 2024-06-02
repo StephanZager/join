@@ -30,12 +30,29 @@ async function submitContact() {
     try {
         await postData("/contact", contact);
         contacts = [];
+        
         await loadContact();
+        selectionTheLastCreatedUser();
         await generateContacts();
+        
+
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
 }
+
+
+function selectionTheLastCreatedUser() {       
+    slideInOnClick();
+    openUserInfo(contacts.length - 1);
+    openUserInfoWindow();
+    filterNameAlphabet();
+    filterContactAlphabet(); 
+    
+  
+}
+
+
 
 /**
  * adds the array contact from submitContact() on firebase
@@ -86,8 +103,7 @@ async function loadContact(path = "/contact") {
                 });
             }
         }
-        filterNameAlphabet();
-        filterContactAlphabet();
+
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
@@ -119,10 +135,11 @@ async function generateContacts() {
 }
 
 function openUserInfo(index) {
-    let userInfo = document.getElementById('contactInfo')
+    let userInfo = document.getElementById('contactInfo');
+    userInfo.innerHTML = '';
     let user = contacts[index];
 
-    userInfo.innerHTML = '';
+    
     userInfo.innerHTML = userInfoHTML(user, index);
 }
 
