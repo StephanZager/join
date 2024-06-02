@@ -26,10 +26,10 @@
 
             <form id="signupForm" onsubmit="submitData(event)">
                 <div class="inputfield-area">
-                    <input id="userName" type="text" placeholder="Name" class="input-field-name" required>
-                    <input id="userEmail" type="email" placeholder="Email" class="input-field-mail" required>
-                    <input id="password" type="password" placeholder="Password" class="input-field-password" required>
-                    <input id="confirmPassword" type="password" placeholder="Confirm Password" class="input-field-confirm-pw" required>
+                    <input id="userName" required type="text" placeholder="Name" autocomplete="name">
+                    <input id="userEmail" required type="email" placeholder="Email" autocomplete="username">
+                    <input id="password" required type="password" placeholder="Password" autocomplete="new-password">
+                    <input id="confirmPassword" required type="password" placeholder="Confirm Password" autocomplete="new-password" class="input-field-confirm-pw">
                 </div>
 
                 <span id="errorMessage" class="error">Ups! Your password don't match</span>
@@ -59,6 +59,7 @@
         <a href="legal_notice_over_signup.html">Legal notice</a>
     </footer>
 
+    <script src="./script.js"></script>
     <script src="js/register.js"></script>
 </body>
 </html>

@@ -1,4 +1,15 @@
-const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
+document.addEventListener("DOMContentLoaded", function () {
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirmPassword');
+    
+    if (passwordField) {
+        passwordField.addEventListener('click', () => togglePasswordVisibility('password'));
+    }
+    
+    if (confirmPasswordField) {
+        confirmPasswordField.addEventListener('click', () => togglePasswordVisibility('confirmPassword'));
+    }
+});
 
 /**
  * Handles the form submission, validates the input, and sends the data to Firebase.
@@ -141,10 +152,6 @@ function showSuccessPopup() {
     let popup = document.getElementById('successPopup');
     popup.style.display = 'block';
     popup.addEventListener('click', () => {
-    window.location.href = "index.html";
+        window.location.href = "index.html";
     });
 }
-
-// Event listeners for toggling password visibility
-document.getElementById('password').addEventListener('click', () => togglePasswordVisibility('password'));
-document.getElementById('confirmPassword').addEventListener('click', () => togglePasswordVisibility('confirmPassword'));
