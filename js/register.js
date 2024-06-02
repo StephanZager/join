@@ -141,7 +141,7 @@ function showSuccessPopup() {
     let popup = document.getElementById('successPopup');
     popup.style.display = 'block';
     popup.addEventListener('click', () => {
-        window.location.href = "index.html"; // Change this to the desired URL
+    window.location.href = "index.html";
     });
 }
 
