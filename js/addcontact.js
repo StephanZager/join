@@ -30,7 +30,9 @@ async function submitContact() {
 
     try {
         await postData("/contact", contact);
-        window.location.href = "contact.html";
+        contacts = [];
+        await loadContact();
+        await generateContacts();
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
@@ -85,6 +87,8 @@ async function loadContact(path = "/contact") {
                 });
             }
         }
+        filterNameAlphabet();
+        filterContactAlphabet();
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
@@ -95,7 +99,7 @@ async function loadContact(path = "/contact") {
  * This function inserts the contacts into the HTML page
  * 
  */
-function generateContacts() {
+async function generateContacts() {
     let contactListContainer = document.getElementById('contact');
     contactListContainer.innerHTML = '';
 
@@ -163,7 +167,8 @@ async function editUser(i, path = "/contact") {
     document.getElementById('form').onsubmit = function (event) {
         submitForm(i, contactId, path);
     }
-    generateContacts();
+
+
 }
 /**
  * This function deletes the user
@@ -276,6 +281,7 @@ function slideInOnClick() {
     userInfo.classList.remove('slide-in');
     void userInfo.offsetWidth;
     userInfo.classList.add('slide-in');
+
 }
 
 function openUserInfoWindow() {
@@ -294,7 +300,7 @@ function closeUserInfoWindow() {
 
 function openUserDeleteEditWindow() {
     document.getElementById('buttonEditDeleteHandy').style.display = 'block';
-    document.getElementById('bgDeleteEditHandy').classList.add('bg');
+    document.getElementById('bgDeleteEditHandy').classList.add('bg-edit-delete');
 
 }
 
@@ -303,15 +309,22 @@ function closeUserDeleteEditWindow() {
     ocument.getElementById('buttonEditDeleteHandy').style.display = 'none';
 }
 
+async function addNewContactConfirmation() {
+    document.getElementById('contactInfoContainer').innerHTML = `<img class="" src="assets/img/add-user-confirmation.png" alt="check">`;
+
+    console.log('hallo');
+}
+
 
 
 
 
 async function contactinit() {
+
     await loadContact();
     filterNameAlphabet();
-    generateContacts();
     filterContactAlphabet();
+    await generateContacts();
 
 
 }
