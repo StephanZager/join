@@ -12,7 +12,7 @@ function doNotClose(event) {
 
 /**
  * Gets the input from the form and adds it to the json array, contacts
- * window.location.href causes the browser to navigate to this URL: contact.html
+ * 
  * 
  */
 async function submitContact() {
@@ -54,7 +54,7 @@ async function postData(path, data) {
         },
         body: JSON.stringify(data)
     });
-
+    addNewContactConfirmation();
     let responseToJson = await response.json();
     return responseToJson;
 }
@@ -310,9 +310,14 @@ function closeUserDeleteEditWindow() {
 }
 
 async function addNewContactConfirmation() {
-    document.getElementById('contactInfoContainer').innerHTML = `<img class="" src="assets/img/add-user-confirmation.png" alt="check">`;
+    let contactConfirmation = document.getElementById('contactConfirmation');
+    contactConfirmation.classList.add('show-overlay-menu-user-info');
+    contactConfirmation.innerHTML = `<img class="show-overlay-menu-user-info" src="assets/img/add-user-confirmation.png" alt="check">`;
 
-    console.log('hallo');
+    setTimeout(() => {
+        contactConfirmation.innerHTML = '';
+        contactConfirmation.classList.remove('show-overlay-menu-user-info');
+    }, 3000);
 }
 
 

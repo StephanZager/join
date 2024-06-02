@@ -160,7 +160,7 @@ h3 {
 
 #contactInfo {
     margin-left: 62px;
-   
+
 }
 
 /*contact html css*/
@@ -415,8 +415,16 @@ h3 {
 }
 
 
-#contactInfo.show-overlay-menu-user-info {
-    transform: translate(0);
+#contactConfirmation {
+    transform: translateX(500px);
+}
+
+#contactConfirmation.show-overlay-menu-user-info {
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+    transform: translateX(0);
+    transition: transform 400ms ease-in-out;
 }
 
 
@@ -741,24 +749,24 @@ h3 {
         border: 1px;
     }
 
-    .user-edit-delete{
+    .user-edit-delete {
         display: none;
     }
 
-    .user-edit-delete{
+    .user-edit-delete {
         background-color: white;
         z-index: 2;
         position: absolute;
         right: 19px;
         bottom: 25px;
-        width:116px;
-        height:100px;      
-        padding: 10px 0px 0px 0px;    
-        border-radius: 20px 20px 0px 20px;     
-        box-shadow: 0px 4px 4px 0px #00000040; 
+        width: 116px;
+        height: 100px;
+        padding: 10px 0px 0px 0px;
+        border-radius: 20px 20px 0px 20px;
+        box-shadow: 0px 4px 4px 0px #00000040;
     }
 
-    .bg-edit-delete{
+    .bg-edit-delete {
         display: block;
     }
 }
