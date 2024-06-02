@@ -273,8 +273,6 @@ input {
     background-color: rgba(0,0,0,0.4);
 }
 
-
-
 .modal-task-popup h4 {
     width: 30%;
     height: 28px;
@@ -320,8 +318,6 @@ input {
     justify-content: center;
     align-items: center;
 }
-
-.modal
 
 .modal-task-popup li {
     display: flex;
@@ -373,6 +369,25 @@ input {
     font-weight: bold;
 }
 
+.close-edit-section {
+    height: 48px;
+}
+
+.close-edit {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-edit:hover,
+.close-edit:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .modal-task-popup {
     background-color: #fefefe;
     margin: 5% auto;
@@ -411,10 +426,11 @@ input {
 
 .edit-task{
     background-color: #fefefe;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 525px;
-    border-radius: 30px; 
+    border-radius: 30px;
    
 }
 
@@ -444,5 +460,21 @@ input {
     display: flex;
 }
 
+.show-initials-section {
+    display: flex;
+}
 
+.show-initials-edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    height: 32px;
+    width: 32px;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 12px;
+    border: 2px solid white;
+    color: white;
+}
 

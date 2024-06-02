@@ -12,7 +12,7 @@ function doNotClose(event) {
 
 /**
  * Gets the input from the form and adds it to the json array, contacts
- * window.location.href causes the browser to navigate to this URL: contact.html
+ * 
  * 
  */
 async function submitContact() {
@@ -27,10 +27,11 @@ async function submitContact() {
         bgNameColor: toAssignColorNameLogo(),
         firstLetters: filterFirstLetters(name),
     };
-
     try {
         await postData("/contact", contact);
-        window.location.href = "contact.html";
+        contacts = [];
+        await loadContact();
+        await generateContacts();
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
@@ -52,7 +53,7 @@ async function postData(path, data) {
         },
         body: JSON.stringify(data)
     });
-
+    addNewContactConfirmation();
     let responseToJson = await response.json();
     return responseToJson;
 }
@@ -85,6 +86,8 @@ async function loadContact(path = "/contact") {
                 });
             }
         }
+        filterNameAlphabet();
+        filterContactAlphabet();
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
@@ -95,7 +98,7 @@ async function loadContact(path = "/contact") {
  * This function inserts the contacts into the HTML page
  * 
  */
-function generateContacts() {
+async function generateContacts() {
     let contactListContainer = document.getElementById('contact');
     contactListContainer.innerHTML = '';
 
@@ -115,15 +118,12 @@ function generateContacts() {
     }
 }
 
-
-
 function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo')
     let user = contacts[index];
 
     userInfo.innerHTML = '';
     userInfo.innerHTML = userInfoHTML(user, index);
-
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {
@@ -134,7 +134,9 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
         },
         body: JSON.stringify(updatedContact)
     });
-    window.location.href = "contact.html";
+    contacts = [];
+    await loadContact();
+    await generateContacts();
     return response;
 }
 
@@ -148,7 +150,6 @@ async function submitForm(i, contactId, path) {
         firstLetters: filterFirstLetters(document.getElementById('addcontact_edit_name').value),
         bgNameColor: contacts[i].bgNameColor,
     };
-
     let response = await updateContact(contactId, updatedContact, path);
 }
 
@@ -163,8 +164,8 @@ async function editUser(i, path = "/contact") {
     document.getElementById('form').onsubmit = function (event) {
         submitForm(i, contactId, path);
     }
-    generateContacts();
 }
+
 /**
  * This function deletes the user
  * 
@@ -181,7 +182,6 @@ async function deleteUser(i, path = "/contact") {
     document.getElementById('contactInfo').innerHTML = '';
     generateContacts();
 }
-
 
 /**
  * This function takes the first letters of the first and last name 
@@ -232,9 +232,6 @@ function filterContactAlphabet() {
     return groupedContactsLetters;
 }
 
-
-
-
 /**
  * Open the contact window and add contacts
  * 
@@ -243,7 +240,6 @@ function openAddNewContactwindow() {
     addNewContactPopUp();
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
-
 }
 
 /**
@@ -252,7 +248,6 @@ function openAddNewContactwindow() {
  */
 function cloeAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.add('d-none');
-
 }
 
 function openAddUbdateContactwindow() {
@@ -266,9 +261,9 @@ function openAddUbdateContactwindow() {
  */
 function cloeAddUbdateContactwindow() {
     document.getElementById('bg_add_ubdate_contact').classList.add('d-none');
-    document.getElementById('addcontact_name').value = '';
-    document.getElementById('addcontact_email').value = '';
-    document.getElementById('addcontact_phone').value = '';
+    document.getElementById('addcontact_edit_name').value = '';
+    document.getElementById('addcontact-edit_email').value = '';
+    document.getElementById('addcontact_edit_phone').value = '';
 }
 
 function slideInOnClick() {
@@ -279,28 +274,32 @@ function slideInOnClick() {
 }
 
 function openUserInfoWindow() {
-
     document.getElementById('contactInfoContainer').style.display = 'block';
-
-
 }
 
 function closeUserInfoWindow() {
-
     document.getElementById('contactInfoContainer').style.display = 'none';
-
-
 }
 
 function openUserDeleteEditWindow() {
     document.getElementById('buttonEditDeleteHandy').style.display = 'block';
-    document.getElementById('bgDeleteEditHandy').classList.add('bg');
-
+    document.getElementById('bgDeleteEditHandy').classList.add('bg-edit-delete');
 }
 
 function closeUserDeleteEditWindow() {
     document.getElementById('bgDeleteEditHandy').classList.add = ('d-none');
-    ocument.getElementById('buttonEditDeleteHandy').style.display = 'none';
+    document.getElementById('buttonEditDeleteHandy').style.display = 'none';
+}
+
+async function addNewContactConfirmation() {
+    let contactConfirmation = document.getElementById('contactConfirmation');
+    contactConfirmation.classList.add('show-overlay-menu-user-info');
+    contactConfirmation.innerHTML = `<img class="show-overlay-menu-user-info" src="assets/img/add-user-confirmation.png" alt="check">`;
+
+    setTimeout(() => {
+        contactConfirmation.innerHTML = '';
+        contactConfirmation.classList.remove('show-overlay-menu-user-info');
+    }, 3000);
 }
 
 
@@ -308,10 +307,11 @@ function closeUserDeleteEditWindow() {
 
 
 async function contactinit() {
+
     await loadContact();
     filterNameAlphabet();
-    generateContacts();
     filterContactAlphabet();
+    await generateContacts();
 
 
 }
