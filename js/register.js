@@ -1,19 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const passwordField = document.getElementById('password');
-    const confirmPasswordField = document.getElementById('confirmPassword');
-    
-    if (passwordField) {
-        passwordField.addEventListener('click', () => togglePasswordVisibility('password'));
-    }
-    
-    if (confirmPasswordField) {
-        confirmPasswordField.addEventListener('click', () => togglePasswordVisibility('confirmPassword'));
-    }
-});
-
 /**
  * Handles the form submission, validates the input, and sends the data to Firebase.
  * @param {Event} event - The form submission event.
+ * @returns {Promise<void>}
  */
 async function submitData(event) {
     event.preventDefault(); // Prevents the default form submission behavior
@@ -155,3 +143,53 @@ function showSuccessPopup() {
         window.location.href = "index.html";
     });
 }
+
+/**
+ * Sets up the password field toggle functionality to show/hide the password.
+ * @param {string} inputFieldId - The ID of the password input field.
+ */
+function setupPasswordFieldToggle(inputFieldId) {
+    const passwordInputField = document.getElementById(inputFieldId);
+    let isPasswordVisible = false;
+    let clickCount = 0;
+
+    passwordInputField.addEventListener("mousedown", function(event) {
+        event.preventDefault();
+        clickCount += 1;
+        const cursorPosition = passwordInputField.selectionStart;
+
+        if (clickCount === 1) {
+            passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+        } else if (clickCount === 2) {
+            isPasswordVisible = true;
+            passwordInputField.type = "text";
+            passwordInputField.style.backgroundImage = "url('../assets/img/visibility_on.png')";
+        } else if (clickCount === 3) {
+            isPasswordVisible = false;
+            passwordInputField.type = "password";
+            passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+            clickCount = 0;
+        }
+
+        // Restore the cursor position
+        passwordInputField.setSelectionRange(cursorPosition, cursorPosition);
+        passwordInputField.focus();
+    });
+
+    passwordInputField.addEventListener("focus", function() {
+        if (!isPasswordVisible) {
+            passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+        }
+    });
+
+    passwordInputField.addEventListener("blur", function() {
+        if (!isPasswordVisible) {
+            passwordInputField.style.backgroundImage = "url('../assets/img/lock-password-input.png')";
+            clickCount = 0;
+        }
+    });
+}
+
+// Initialize password field toggles
+setupPasswordFieldToggle("password");
+setupPasswordFieldToggle("confirmPassword");
