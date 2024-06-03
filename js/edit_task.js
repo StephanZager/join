@@ -85,7 +85,7 @@ function openEditTask(firebaseId) {
     document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
     document.getElementById('postEditBtn').addEventListener('click', updateCurrentTask);
 
-    generateAssign()
+    setTimeout(generateAssign, 0);
 }
 
 function closeEditTaskPopup() {
@@ -190,7 +190,6 @@ function generateAssign() {
         assignContact.appendChild(label);
     }
 }
-
 
 
 function updateCurrentTask() {
