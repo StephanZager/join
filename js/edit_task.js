@@ -84,6 +84,8 @@ function openEditTask(firebaseId) {
     showTaskDetails();
     document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
     document.getElementById('postEditBtn').addEventListener('click', updateCurrentTask);
+
+    generateAssign()
 }
 
 function closeEditTaskPopup() {
@@ -107,7 +109,7 @@ function generateEditTaskHTML() {
             </div>
             <div class="addtaks-desktop dropdown">
                 <button type="button" class="dropdown-button">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
-                <div class="dropdown-content-edit" id="editAssigned"></div>
+                <div class="dropdown-content" id="editAssigned"></div>
                 <div class="show-initials-section" id="editAssignedInitials"></div> 
             </div>
         </div>
@@ -149,6 +151,47 @@ function generateEditTaskHTML() {
     </div>
     `;
 }
+
+
+function generateAssign() {
+    let assignContact = document.getElementById('editAssigned');
+
+    if (!assignContact) {
+        console.error("Element mit ID 'assigned' wurde nicht gefunden.");
+        return;
+    }
+
+    assignContact.innerHTML = '';
+    currentAssignIndex = 0;
+
+    for (let i = 0; i < assign.length; i++) {
+        let assignContacts = assign[i];
+
+        let label = document.createElement('label');
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = assignContacts.name;
+        checkbox.dataset.bgColor = assignContacts.bgNameColor;
+
+        let initials = filterFirstLetters(assignContacts.name);
+        let initialsSpan = document.createElement('span');
+        initialsSpan.textContent = initials;
+        initialsSpan.classList.add('assign-initials');
+        initialsSpan.style.backgroundColor = assignContacts.bgNameColor;
+
+        let nameSpan = document.createElement('span');
+        nameSpan.textContent = assignContacts.name;
+        nameSpan.classList.add('assign-name');
+
+        label.appendChild(initialsSpan);
+        label.appendChild(nameSpan);
+        label.appendChild(checkbox);
+
+        assignContact.appendChild(label);
+    }
+}
+
+
 
 function updateCurrentTask() {
     currentTask.title = document.getElementById('editTitle').value;
