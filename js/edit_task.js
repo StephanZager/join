@@ -66,7 +66,7 @@ function markCheckedCheckboxes() {
         let generatedInitials = filterFirstLetters(name);
 
         // Wenn der Kontakt in 'currentTask.assign' vorhanden ist, markieren Sie die Checkbox
-        if (currentTask.assign.some(assign => assign.name.trim().toLowerCase() === name.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgColor === bgColor)) {
+        if (currentTask.assign.some(assign => assign.name.trim().toLowerCase() === name.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgNameColor === bgColor)) {
             checkbox.checked = true;
         }
     }
@@ -213,7 +213,7 @@ function updateCurrentTask() {
                 currentTask.assign.push({
                     name: name,
                     initials: initials,
-                    bgColor: bgColor
+                    bgNameColor: bgColor
                 });
             }
         }
@@ -288,8 +288,7 @@ async function updateTask(firebaseId, updatedUserTask) {
         console.error('Fehler beim Aktualisieren der Aufgabe:', error);
         alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
     }
-    console.log('Updated user task:', updatedUserTask); // Debugging-Informationen
-    updateTask(firebaseId, updatedUserTask);
+   
 }
 
 
