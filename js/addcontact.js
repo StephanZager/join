@@ -1,6 +1,7 @@
 let contacts = [];
 let groupedContactsLetters = {};
 let currentOpenUser = null;
+let currentUser = [];
 
 /**
  * This prevents the window from closing when I press the pop-up button
@@ -31,11 +32,10 @@ async function submitContact() {
     try {
         await postData("/contact", contact);
         contacts = [];
-
         await loadContact();
-        //selectionTheLastCreatedUser();
         await generateContacts();
-
+        selectionTheLastCreatedUser();
+        cloeAddNewContactwindow();
 
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
@@ -43,16 +43,12 @@ async function submitContact() {
 }
 
 
-//function selectionTheLastCreatedUser() {
-
-//    slideInOnClick();
-//    openUserInfo(contacts.length - 1);
-//    openUserInfoWindow();
-//    filterNameAlphabet();
-//    filterContactAlphabet();
-
-
-//}
+function selectionTheLastCreatedUser() {
+    currentUser = contacts[contacts.length - 1];
+    openUserInfo(currentUser.originalIndex);
+    document.getElementById('userButton' + currentUser.originalIndex).focus();
+    openUserInfoWindow();
+}
 
 
 
