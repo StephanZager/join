@@ -1,5 +1,6 @@
 let contacts = [];
 let groupedContactsLetters = {};
+let currentOpenUser = null;
 
 /**
  * This prevents the window from closing when I press the pop-up button
@@ -30,11 +31,11 @@ async function submitContact() {
     try {
         await postData("/contact", contact);
         contacts = [];
-        
+
         await loadContact();
-        selectionTheLastCreatedUser();
+        //selectionTheLastCreatedUser();
         await generateContacts();
-        
+
 
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
@@ -42,15 +43,16 @@ async function submitContact() {
 }
 
 
-function selectionTheLastCreatedUser() {       
-    slideInOnClick();
-    openUserInfo(contacts.length - 1);
-    openUserInfoWindow();
-    filterNameAlphabet();
-    filterContactAlphabet(); 
-    
-  
-}
+//function selectionTheLastCreatedUser() {
+
+//    slideInOnClick();
+//    openUserInfo(contacts.length - 1);
+//    openUserInfoWindow();
+//    filterNameAlphabet();
+//    filterContactAlphabet();
+
+
+//}
 
 
 
@@ -134,13 +136,20 @@ async function generateContacts() {
     }
 }
 
+
 function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo');
-    userInfo.innerHTML = '';
+    let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
 
-    
-    userInfo.innerHTML = userInfoHTML(user, index);
+    if (userInfo.innerHTML === '' || currentOpenUser !== index) {
+        userInfo.innerHTML = userInfoHTML(user, index);
+        currentOpenUser = index;
+    } else {
+        userInfo.innerHTML = '';
+        userButton.blur();
+        currentOpenUser = null;
+    }
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {
@@ -292,6 +301,7 @@ function slideInOnClick() {
 
 function openUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'block';
+
 }
 
 function closeUserInfoWindow() {
