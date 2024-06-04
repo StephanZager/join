@@ -1,6 +1,7 @@
 let editTaskPopup;
 let currentTask;
 
+
 function loadTaskForEdit(firebaseId) {
     console.log('Passed firebaseId:', firebaseId);
     console.log('Task array:', task);
@@ -18,9 +19,11 @@ function loadTaskForEdit(firebaseId) {
 function showTaskDetails() {
     document.getElementById('editTitle').value = currentTask.title;
     document.getElementById('editDescription').value = currentTask.description;
+    document.getElementById('editAssigned').value = currentTask.assign;
     document.getElementById('editDate').value = currentTask.dueDate;
     document.getElementById('editCategory').value = currentTask.userCategory;
     document.getElementById('subtaskListEdit').innerHTML = '';
+    
 
     showInitialsEditTask();
     showSubtasksEditTask();
@@ -38,6 +41,44 @@ function showInitialsEditTask() {
         }
     }
 }
+
+
+function markCheckedCheckboxes() {
+    let assignContact = document.getElementById('editAssigned');
+    if (!assignContact) {
+        console.error("Element mit ID 'editAssigned' wurde nicht gefunden.");
+        return;
+    }
+
+    // Holen Sie sich alle Checkboxen innerhalb von 'assignContact'
+    let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
+
+    console.log('currentTask.assign:', currentTask.assign); // Debugging-Informationen
+
+    // Iterieren Sie durch jede Checkbox
+    for (let checkbox of checkboxes) {
+        console.log('checkbox value:', checkbox.value); // Debugging-Informationen
+
+        // Extrahieren Sie den Namen, die Initialen und die Hintergrundfarbe aus dem Wert der Checkbox
+        let [name, initials, bgColor] = checkbox.value.split('|');
+
+        // Generieren Sie die Initialen aus dem Namen
+        let generatedInitials = filterFirstLetters(name);
+
+        // Wenn der Kontakt in 'currentTask.assign' vorhanden ist, markieren Sie die Checkbox
+        if (currentTask.assign.some(assign => assign.name.trim().toLowerCase() === name.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgColor === bgColor)) {
+            checkbox.checked = true;
+        }
+    }
+}
+
+
+function filterFirstLetters(name) {
+    let words = name.split(' ');
+    let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
+    return firstLetters;
+}
+
 
 function showSubtasksEditTask() {
     let subtaskList = document.getElementById('subtaskListEdit');
@@ -159,28 +200,26 @@ function updateCurrentTask() {
     currentTask.dueDate = document.getElementById('editDate').value;
     currentTask.userCategory = document.getElementById('editCategory').value;
 
-    updateTask(currentTask.firebaseId, currentTask);
-}
+    let assignContact = document.getElementById('editAssigned');
+    if (assignContact) {
+        let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
+        currentTask.assign = []; // Leeren Sie die aktuelle Zuweisungsliste
 
-async function updateTask(firebaseId, updatedUserTask) {
-    try {
-        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedUserTask),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        // Fügen Sie die ausgewählten Kontakte zur Zuweisungsliste hinzu
+        for (let checkbox of checkboxes) {
+            if (checkbox.checked) {
+                console.log('Checkbox value:', checkbox.value); // Debugging-Informationen
+                let [name, initials, bgColor] = checkbox.value.split('|');
+                currentTask.assign.push({
+                    name: name,
+                    initials: initials,
+                    bgColor: bgColor
+                });
+            }
         }
-
-        window.location.href = "board.html";
-    } catch (error) {
-        console.error('Fehler beim Aktualisieren der Aufgabe:', error);
-        alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
     }
+
+    updateTask(currentTask.firebaseId, currentTask);
 }
 
 
@@ -201,10 +240,10 @@ function generateEditAssign() {
         let label = document.createElement('label');
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.value = assignContacts.name;
-        checkbox.dataset.bgColor = assignContacts.bgNameColor;
-
+        // Fügen Sie die Initialen und die Hintergrundfarbe zum Wert hinzu
         let initials = filterFirstLetters(assignContacts.name);
+        checkbox.value = assignContacts.name + '|' + initials + '|' + assignContacts.bgNameColor;
+
         let initialsSpan = document.createElement('span');
         initialsSpan.textContent = initials;
         initialsSpan.classList.add('assign-initials');
@@ -219,12 +258,39 @@ function generateEditAssign() {
         label.appendChild(checkbox);
 
         assignContact.appendChild(label);
+        
     }
+    markCheckedCheckboxes();
 }
-
 
 function openDropdown() {
     let dropdown = document.querySelector('.dropdown-edit-content');
-    dropdown.classList.add('show');
+    dropdown.classList.toggle('show');
 }
+
+
+async function updateTask(firebaseId, updatedUserTask) {
+    try {
+        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUserTask),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        window.location.href = "board.html";
+    } catch (error) {
+        console.error('Fehler beim Aktualisieren der Aufgabe:', error);
+        alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
+    }
+    console.log('Updated user task:', updatedUserTask); // Debugging-Informationen
+    updateTask(firebaseId, updatedUserTask);
+}
+
+
 
