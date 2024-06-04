@@ -80,12 +80,12 @@ function openEditTask(firebaseId) {
     document.body.appendChild(editTaskPopup);
 
     editTaskPopup.innerHTML = generateEditTaskHTML();
-
+    generateEditAssign();
     showTaskDetails();
     document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
     document.getElementById('postEditBtn').addEventListener('click', updateCurrentTask);
 
-    setTimeout(generateAssign, 0);
+    
 }
 
 function closeEditTaskPopup() {
@@ -108,8 +108,8 @@ function generateEditTaskHTML() {
                 <textarea id="editDescription" class="title-select-or-input" placeholder="Enter a Description" type="text"></textarea>
             </div>
             <div class="addtaks-desktop dropdown">
-                <button type="button" class="dropdown-button">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
-                <div class="dropdown-content" id="editAssigned"></div>
+                <button type="button" class="dropdown-edit-button" onclick="openDropdown()">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
+                <div class="dropdown-edit-content d-none" id="editAssigned"></div>
                 <div class="show-initials-section" id="editAssignedInitials"></div> 
             </div>
         </div>
@@ -153,11 +153,42 @@ function generateEditTaskHTML() {
 }
 
 
-function generateAssign() {
+function updateCurrentTask() {
+    currentTask.title = document.getElementById('editTitle').value;
+    currentTask.description = document.getElementById('editDescription').value;
+    currentTask.dueDate = document.getElementById('editDate').value;
+    currentTask.userCategory = document.getElementById('editCategory').value;
+
+    updateTask(currentTask.firebaseId, currentTask);
+}
+
+async function updateTask(firebaseId, updatedUserTask) {
+    try {
+        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUserTask),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        window.location.href = "board.html";
+    } catch (error) {
+        console.error('Fehler beim Aktualisieren der Aufgabe:', error);
+        alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
+    }
+}
+
+
+function generateEditAssign() {
     let assignContact = document.getElementById('editAssigned');
 
     if (!assignContact) {
-        console.error("Element mit ID 'assigned' wurde nicht gefunden.");
+        console.error("Element mit ID 'editAssigned' wurde nicht gefunden.");
         return;
     }
 
@@ -192,34 +223,8 @@ function generateAssign() {
 }
 
 
-function updateCurrentTask() {
-    currentTask.title = document.getElementById('editTitle').value;
-    currentTask.description = document.getElementById('editDescription').value;
-    currentTask.dueDate = document.getElementById('editDate').value;
-    currentTask.userCategory = document.getElementById('editCategory').value;
-
-    updateTask(currentTask.firebaseId, currentTask);
+function openDropdown() {
+    let dropdown = document.querySelector('.dropdown-edit-content');
+    dropdown.classList.add('show');
 }
-
-async function updateTask(firebaseId, updatedUserTask) {
-    try {
-        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedUserTask),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        window.location.href = "board.html";
-    } catch (error) {
-        console.error('Fehler beim Aktualisieren der Aufgabe:', error);
-        alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
-    }
-}
-
 
