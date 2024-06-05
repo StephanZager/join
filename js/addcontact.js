@@ -30,23 +30,27 @@ async function submitContact() {
         firstLetters: filterFirstLetters(name),
     };
     try {
-        await postData("/contact", contact);
-        contacts = [];
-        await loadContact();
-        await generateContacts();
-        selectionTheLastCreatedUser();
-        cloeAddNewContactwindow();
+        await addContact(contact);
 
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
 }
 
+async function addContact(newContact) {
+    await postData("/contact", newContact);
+    contacts.push(newContact);
+    filterNameAlphabet();
+    filterContactAlphabet();
+    generateContacts();
+    selectionTheLastCreatedUser(newContact);
+    cloeAddNewContactwindow();
+}
 
-function selectionTheLastCreatedUser() {
-    currentUser = contacts[contacts.length - 1];
-    openUserInfo(currentUser.originalIndex);
-    document.getElementById('userButton' + currentUser.originalIndex).focus();
+
+function selectionTheLastCreatedUser(newContact) {    
+    openUserInfo(newContact.originalIndex);
+    document.getElementById('userButton' + newContact.originalIndex).focus();
     openUserInfoWindow();
 }
 
