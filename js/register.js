@@ -38,7 +38,8 @@ async function submitData(event) {
     let userData = {
         name: name,
         email: email,
-        password: password
+        password: password,
+        firstLetters: filterFirstLetters(name)
     };
 
     let contact = {

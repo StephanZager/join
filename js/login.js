@@ -107,6 +107,7 @@ async function login() {
           }
 
           localStorage.setItem('userName', user.name);
+          localStorage.setItem('userFirstLetters', user.firstLetters);
           console.log("Username saved to localStorage:", user.name);
 
           window.location.href = "summary.html";
@@ -117,6 +118,7 @@ async function login() {
       console.error("Error fetching data from Firebase:", error);
   }
 }
+
 
 /**
  * Fetches data from the specified path.
@@ -132,3 +134,12 @@ async function getData(path) {
   let responseData = await response.json();
   return responseData;
 }
+
+
+
+function showLoginInitial() {
+  let userFirstLetters = localStorage.getItem('userFirstLetters');
+  document.getElementById('joinProfil').innerHTML = userFirstLetters;
+}
+
+document.addEventListener('DOMContentLoaded', showLoginInitial);
