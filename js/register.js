@@ -44,8 +44,10 @@ async function submitData(event) {
     let contact = {
         name: name,
         email: email,
-        phone: "1234567890",
-    }
+        phone: "Telefon/Mobilnummer",
+        bgNameColor: toAssignColorNameLogo(),
+        firstLetters: filterFirstLetters(name),
+    };
 
     try {
         // Send data to Firebase
@@ -114,6 +116,22 @@ async function emailExists(email) {
         return false;
     }
 }
+
+
+function filterFirstLetters(name) {
+    let words = name.split(' ');
+    let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
+
+    return firstLetters;
+}
+
+
+function toAssignColorNameLogo() {
+    let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
+
+    return backgroundcolor;
+}
+
 
 /**
  * Sends data to the specified path in the Firebase database.
