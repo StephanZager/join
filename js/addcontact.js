@@ -49,6 +49,7 @@ async function addContact(newContact) {
 
 
 function selectionTheLastCreatedUser(newContact) {
+    console.log(newContact);
     openUserInfo(newContact.originalIndex);
     document.getElementById('userButton' + newContact.originalIndex).focus();
     openUserInfoWindow();
@@ -184,9 +185,9 @@ async function addContactUbdate(i, contactId, updatedContact, path) {
     filterContactAlphabet();
     generateContacts();
     selectionTheLastCreatedUser(updatedContact);
-    openUserInfo(i);
+    console.log(updatedContact.originalIndex);
+    openUserInfo(updatedContact.originalIndex);
     cloeAddUbdateContactwindow();
-
 }
 
 async function editUser(i, path = "/contact") {
@@ -298,7 +299,7 @@ function openAddUbdateContactwindow() {
 function cloeAddUbdateContactwindow() {
     document.getElementById('bg_add_ubdate_contact').classList.add('d-none');
     document.getElementById('addcontact_edit_name').value = '';
-    document.getElementById('addcontact-edit_email').value = '';
+    document.getElementById('addcontact_edit_email').value = '';
     document.getElementById('addcontact_edit_phone').value = '';
 }
 
