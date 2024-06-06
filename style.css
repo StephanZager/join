@@ -324,3 +324,62 @@ HELP DESK CSS
     display: flex;
     gap: 35px;
 }
+
+
+#joinProfil:hover {
+    cursor: pointer;
+}
+
+.navbar {
+    overflow: hidden;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 30px;
+    top: 95px;
+    background-color: #2A3647;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: left;
+    padding: 10px 0;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 16px !important;
+    height: 46px;
+    width: 130px;
+    display: flex;
+    padding-left: 15px; 
+    margin: 0 auto 10px auto; 
+    align-items: center;
+    margin: 10px 10px;
+    margin-left: 15px;
+    border-radius: 8px;
+}
+
+.dropdown-content a:hover {
+    background-color: #269dcf;
+}
+
+.show {
+    display: block;
+}
+
+.responsive-help {
+    display: none !important;
+}
+
+@media (max-width: 799px) {
+    .responsive-help {
+        display: flex !important;
+    }
+}
