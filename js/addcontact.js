@@ -48,7 +48,7 @@ async function addContact(newContact) {
 }
 
 
-function selectionTheLastCreatedUser(newContact) {    
+function selectionTheLastCreatedUser(newContact) {
     openUserInfo(newContact.originalIndex);
     document.getElementById('userButton' + newContact.originalIndex).focus();
     openUserInfoWindow();
@@ -67,7 +67,7 @@ async function postData(path, data) {
 
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
-        header: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
@@ -160,9 +160,6 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
         },
         body: JSON.stringify(updatedContact)
     });
-    contacts = [];
-    await loadContact();
-    await generateContacts();
     return response;
 }
 
@@ -176,7 +173,20 @@ async function submitForm(i, contactId, path) {
         firstLetters: filterFirstLetters(document.getElementById('addcontact_edit_name').value),
         bgNameColor: contacts[i].bgNameColor,
     };
-    let response = await updateContact(contactId, updatedContact, path);
+    await addContactUbdate(i, contactId, updatedContact, path);
+
+}
+
+async function addContactUbdate(i, contactId, updatedContact, path) {
+    await updateContact(contactId, updatedContact, path);
+    contacts[i] = updatedContact;
+    filterNameAlphabet();
+    filterContactAlphabet();
+    generateContacts();
+    selectionTheLastCreatedUser(updatedContact);
+    openUserInfo(i);
+    cloeAddUbdateContactwindow();
+
 }
 
 async function editUser(i, path = "/contact") {
