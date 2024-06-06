@@ -325,62 +325,61 @@ HELP DESK CSS
     gap: 35px;
 }
 
-/* Basic styling for the navbar */
+
+#joinProfil:hover {
+    cursor: pointer;
+}
+
 .navbar {
     overflow: hidden;
 }
 
-/* Style for the dropdown container */
-.dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-/* Style for the dropdown button */
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
-
-/* Add a background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: #cdcdcd;
-    cursor: pointer;
-}
-
-/* Dropdown content (hidden by default) */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    right: 30px;
+    top: 95px;
+    background-color: #2A3647;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    right: 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: left;
+    padding: 10px 0;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
+    color: white;
     text-decoration: none;
     display: block;
-    text-align: left;
+    font-size: 16px !important;
+    height: 46px;
+    width: 130px;
+    display: flex;
+    padding-left: 15px; 
+    margin: 0 auto 10px auto; 
+    align-items: center;
+    margin: 10px 10px;
+    margin-left: 15px;
+    border-radius: 8px;
 }
 
-/* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #269dcf;
 }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.show {
     display: block;
+}
+
+.responsive-help {
+    display: none !important;
+}
+
+@media (max-width: 799px) {
+    .responsive-help {
+        display: flex !important;
+    }
 }
