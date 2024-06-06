@@ -126,7 +126,7 @@ async function generateContacts() {
     for (let letter in groupedContacts) {
         let contacts = groupedContacts[letter];
 
-        contactListContainer.innerHTML += `<div class="letter"><span>${letter}</span></div>
+        contactListContainer.innerHTML += `<div onclick="deselectUser()" class="letter"><span>${letter}</span></div>
             <div class="seperator-alphabet-container"><div class="seperator-alphabet"></div></div>`;
 
         for (let i = 0; i < contacts.length; i++) {
@@ -151,6 +151,17 @@ function openUserInfo(index) {
         userButton.blur();
         currentOpenUser = null;
     }
+}
+
+function deselectUser() {
+    // Get the user info and user button elements
+    let userInfo = document.getElementById('contactInfo');
+    let userButton = document.getElementById('userButton' + currentOpenUser);
+
+    // Clear the user info, remove focus from the user button, and set currentOpenUser to null
+    userInfo.innerHTML = '';
+    userButton.blur();
+    currentOpenUser = null;
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {

@@ -20,12 +20,12 @@
 
 
 
-    <div w3-include-html="assets/templates/mobile_header_template.html"></div>
+    <div w3-include-html="assets/templates/mobile_header_template.html" onclick="deselectUser()"></div>
     <div id="addNewContactPopUp"></div>
     <div id="addUbdateContactPopUp"></div>
     <div id="contactConfirmation"></div>
     <div class="contactList-container">
-        <main class="contactList" id="userList">
+        <main class="contactList" id="userList" onclick="deselectUser()">
             <div>
                 <button onclick="openAddNewContactwindow()" class="add-new-contact-button" id="add_new_contact"
                     type="button">
@@ -57,7 +57,7 @@
     </div>
 
 
-    <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
+    <div w3-include-html="assets/templates/mobile_menubar_template.html" onclick="deselectUser()"></div>
 
 
 </body>
