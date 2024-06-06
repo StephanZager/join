@@ -152,7 +152,7 @@ function userInfoHTML(user, index) {
 
 function contactHTML(contact) {
     return `
-    <div id="userButton${contact.originalIndex}" class="show-contact" tabindex="0" onclick="slideInOnClick();openUserInfo(${contact.originalIndex});openUserInfoWindow()">               
+    <div id="userButton${contact.originalIndex}" class="show-contact" tabindex="0" onclick="slideInOnClick();openUserInfo(${contact.originalIndex});openUserInfoWindow();doNotClose(event)">               
         <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
         <div class="show-contact-details">
             <span>${contact.name}</span> 
