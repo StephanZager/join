@@ -39,6 +39,7 @@ async function submitContact() {
 
 async function addContact(newContact) {
     await postData("/contact", newContact);
+    console.log(newContact);
     contacts.push(newContact);
     filterNameAlphabet();
     filterContactAlphabet();
@@ -154,14 +155,17 @@ function openUserInfo(index) {
 }
 
 function deselectUser() {
-    // Get the user info and user button elements
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + currentOpenUser);
-
-    // Clear the user info, remove focus from the user button, and set currentOpenUser to null
     userInfo.innerHTML = '';
     userButton.blur();
     currentOpenUser = null;
+}
+
+function test() {
+    document.getElementById('userButton' + currentOpenUser).focus();
+
+
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {
@@ -192,6 +196,9 @@ async function submitForm(i, contactId, path) {
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
     contacts[i] = updatedContact;
+    console.log(updatedContact);
+    console.log(contacts);
+    console.log(updatedContact.originalIndex);
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();
@@ -209,7 +216,7 @@ async function editUser(i, path = "/contact") {
     document.getElementById('addcontact_edit_email').value = contacts[i].email;
     document.getElementById('addcontact_edit_phone').value = contacts[i].phone;
 
-    document.getElementById('form').onsubmit = function (event) {
+    document.getElementById('form').onsubmit = async function (event) {
         submitForm(i, contactId, path);
     }
 }
