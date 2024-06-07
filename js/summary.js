@@ -1,5 +1,5 @@
 let numberOfBoard = [];
-
+let urgentTasks = [];
 /**
  * Generates the greeting depending on the time of day.
  * 
@@ -47,6 +47,7 @@ async function loadCategory(path = "/userTask") {
             if (responseToJson.hasOwnProperty(key)) {
                 let number = responseToJson[key];
 
+                urgentTasks.push(number.priority);
                 numberOfBoard.push({
                     todos: number.category
                 });
@@ -103,6 +104,12 @@ async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback,
     document.getElementById('howMuchTaskinBoard').innerHTML = numberOfBoard.length;
 }
 
+function sohwUgretnTask() {    
+        
+    document.getElementById('howMuchInUrgent').innerHTML = urgentTasks.length;
+
+}
+
 /**
  * Initializes the summary page by setting the greeting, displaying the user's name, 
  * loading categories, and assigning tasks.
@@ -115,4 +122,5 @@ async function initSummary() {
     displayGreetingWithName();
     await loadCategory();
     taskAssignment();
+    sohwUgretnTask();
 }
