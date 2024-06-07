@@ -26,7 +26,7 @@ function setPriority(priority) {
 
     if (button) {
         button.classList.add('selected');
-        selectedPriority = priority;  // Hier setzen wir den selectedPriority
+        selectedPriority = priority;
     } else {
         console.error('Button not found for priority:', priority);
     }
@@ -39,7 +39,7 @@ async function submitTask(event) {
     let description = document.getElementById('description').value;
     let date = document.getElementById('dueDate').value;
     let userCategory = document.getElementById('category').value;
-    
+
     let assignedElement = document.getElementById('assigned');
     let assignCheckboxes = assignedElement ? assignedElement.querySelectorAll('input[type="checkbox"]:checked') : [];
     let assignDetails = [];
@@ -65,7 +65,7 @@ async function submitTask(event) {
         assign: assignDetails,
         subtasks: subtasks,
         category: "toDo",
-        priority: selectedPriority  // Hier wird selectedPriority verwendet
+        priority: selectedPriority
     };
 
     try {
@@ -176,9 +176,16 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdownContent.classList.toggle('show');
     });
 
+    dropdownContent.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
     window.addEventListener('click', (event) => {
         if (!dropdownContent.contains(event.target) && !dropdownButton.contains(event.target)) {
             dropdownContent.classList.remove('show');
         }
-    }); 
+    });
+
+    // Initialisierung
+    loadAssign();
 });
