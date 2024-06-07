@@ -37,9 +37,18 @@ function generateTask() {
 
 // Generieren des HTML für eine einzelne Aufgabe
 function generateTaskHTML(taskItem) {
-    let initialsHtml = (taskItem.assign || []).map(assignData => 
+    let assignArray = taskItem.assign || [];
+    let initialCount = assignArray.length;
+    let visibleInitials = assignArray.slice(0, 4);
+    let hiddenInitialsCount = initialCount > 4 ? initialCount - 4 : 0;
+
+    let initialsHtml = visibleInitials.map(assignData => 
         `<span class="show-initials" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`
     ).join('');
+
+    if (hiddenInitialsCount > 0) {
+        initialsHtml += `<span class="show-initials">+${hiddenInitialsCount}</span>`;
+    }
 
     let priorityIcon = getPriorityIcon(taskItem.priority);
     let subtasksHtml = generateSubtasksProgressHTML(taskItem);

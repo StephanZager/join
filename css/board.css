@@ -183,8 +183,6 @@ input {
     color: black; /* Beispiel-Formatierung für die Initialen */
 }
 
-
-
 .show-initials {
     display: flex;
     align-items: center;
@@ -197,6 +195,7 @@ input {
     margin-left: -6px;
     border: 2px solid white;
     color: white;
+    background-color: grey;
 }
 
 .taskCard img{
