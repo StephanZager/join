@@ -92,7 +92,7 @@ function showSubtasksEditTask() {
     }
 }
 
-function setPriority(priority) {
+function setCurrentPriority(priority) {
     currentTask.priority = priority;
     console.log(priority);
 }
@@ -162,9 +162,9 @@ function generateEditTaskHTML() {
             <div class="prio-section addtaks-desktop">
                 <span class="subheadline"><b>Prio</b></span>
                 <div class="prio-buttons">
-                    <button class="urgent-button" type="button" onclick="setPriority('Urgent')">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
-                    <button class="medium-button" type="button" onclick="setPriority('Medium')">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
-                    <button class="low-button" type="button" onclick="setPriority('Low')">Low<img class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png"></button>
+                    <button class="urgent-button" type="button" onclick="setCurrentPriority('Urgent')">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
+                    <button class="medium-button" type="button" onclick="setCurrentPriority('Medium')">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
+                    <button class="low-button" type="button" onclick="setCurrentPriority('Low')">Low<img class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png"></button>
                 </div>
             </div>
             <div class="addtaks-desktop">

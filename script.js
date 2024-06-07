@@ -12,8 +12,10 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    showLoginInitial();
+    showLoginInitial(); // Call showLoginInitial after the HTML has been included
 }
+
+
 
 function dropdownMenu() {
     document.getElementById("dropdownMenu").classList.toggle("show");
@@ -30,3 +32,5 @@ window.onclick = function(event) {
         }
     }
 }
+
+
