@@ -10,6 +10,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    padding: 0 64px; /* Damit die Inhalte auch nach links und rechts flexibel bleiben */
 }
 
 .headlineBoard {
@@ -18,7 +19,6 @@
     width: 100%;
     max-width: 1204px;
     position: relative;
-    left: 64px;
 }
 
 .board-headline {
@@ -26,6 +26,8 @@
     font-weight: 700;
     line-height: 73.2px;
     text-align: left;
+    margin-right: 376px; /* Fester Abstand */
+    flex-shrink: 0; /* Verhindert, dass die Headline beim Verkleinern des Containers schrumpft */
 }
 
 .inputSearchBar {
@@ -38,12 +40,11 @@
     border-radius: 10px;
     padding: 0 8px;
     gap: 10px;
+    flex-shrink: 0; /* Verhindert, dass die inputSearchBar schrumpft */
 }
 
 .inputSearchBar input {
-    flex-grow: 1; /* Lässt das Eingabefeld so viel Platz wie möglich einnehmen */ /* Stellt sicher, dass das Eingabefeld die volle Höhe einnimmt */
-    border: none; /* Entfernt den Standard-Rahmen */
-    outline: none; /* Entfernt den Standard-Fokus-Rahmen */
+    flex-grow: 1;
 }
 
 .seperator {
@@ -63,7 +64,8 @@
 
 .add-task-button-area {
     display: flex;
-    
+    margin-left: 32px; /* Fester Abstand zur inputSearchBar */
+    flex-shrink: 0; /* Verhindert, dass die add-task-button-area schrumpft */
 }
 
 .addTaskBtn {
@@ -73,13 +75,14 @@
     width: 160px;
     height: 48px;
     border-radius: 10px;
-    border: 1px;
-    gap: 4px;   
+    border: 1px solid transparent;
+    gap: 4px;
     font-weight: 700;
     font-size: 21px;
     color: #ffffff;
     background-color: #2a3647;
 }
+
 
 .columnTitle {
    display: flex;
