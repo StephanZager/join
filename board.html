@@ -26,7 +26,6 @@
             <div class="headlineBoard">
                 <h1 class="board-headline">Board</h1>
                 <div class="inputSearchBar">
-                    
                     <input type="text" placeholder="Find task">
                     <div class="seperator"></div>
                     <button class="searchTaskBtn"><img src="assets/img/search.png"></button>
@@ -36,33 +35,35 @@
                             src="assets/img/board.add.png"></button>
                 </div>
             </div>
-            <div class="columnTitle">
-                <div class="taskHeadline">
-                    <h3>To do</h3>
-                    <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
-                </div>
-                <div class="taskHeadline">
-                    <h3>In progress</h3>
-                    <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
-                </div>
-                <div class="taskHeadline">
-                    <h3>Await feedback</h3>
-                    <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
-                </div>
-                <div class="taskHeadline">
-                    <h3>Done</h3>
-
-                </div>
-            </div>
+         
             <div class="tasksBoard">
-                <div id="toDo" class="showTasksBoard" draggable="true" ondrop="moveTo('toDo')"
-                    ondragover="allowDrop(event)"></div>
-                <div id="inProgress" class="showTasksBoard" draggable="true" ondrop="moveTo('inProgress')"
-                    ondragover="allowDrop(event)"></div>
-                <div id="awaitFeedback" class="showTasksBoard" draggable="true" ondrop="moveTo('awaitFeedback')"
-                    ondragover="allowDrop(event)"></div>
-                <div id="done" class="showTasksBoard" draggable="true" ondrop="moveTo('done')"
-                    ondragover="allowDrop(event)"></div>
+                <div class="task-column"> 
+                    <div class="taskHeadline">
+                        <h3>To do</h3>
+                        <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
+                    </div>
+                    <div id="toDo" class="showTasksBoard" draggable="true" ondrop="moveTo('toDo')"ondragover="allowDrop(event)"></div>
+                </div>  
+                <div class="task-column">
+                    <div class="taskHeadline">
+                        <h3>In progress</h3>
+                        <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
+                    </div>
+                    <div id="inProgress" class="showTasksBoard" draggable="true" ondrop="moveTo('inProgress')"ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="task-column">
+                    <div class="taskHeadline">
+                        <h3>Await feedback</h3>
+                        <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
+                    </div>
+                    <div id="awaitFeedback" class="showTasksBoard" draggable="true" ondrop="moveTo('awaitFeedback')"ondragover="allowDrop(event)"></div>
+                </div>    
+                <div class="task-column">
+                    <div class="taskHeadline">
+                        <h3>Done</h3>
+                    </div>
+                    <div id="done" class="showTasksBoard" draggable="true" ondrop="moveTo('done')"ondragover="allowDrop(event)"></div>
+                </div>
             </div>
         </div>
     </main>

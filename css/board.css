@@ -1,24 +1,26 @@
 .board {
-    position: absolute;
-    top: 96px;
-    left: 232px;
+    position: relative;
+    display: flex;
     height: 100%;
     width: 100%;
+    padding-left: 232px; /* Beibehalten, falls notwendig */
+    box-sizing: border-box;
 }
 
 .content {
-    position: relative;
     display: flex;
     flex-direction: column;
+    width: 100%;
     padding: 0 64px; /* Damit die Inhalte auch nach links und rechts flexibel bleiben */
+    box-sizing: border-box;
 }
 
 .headlineBoard {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 1204px;
-    position: relative;
+    max-width: 1125px;
+    flex-wrap: wrap; /* Ermöglicht das Umbrechen bei kleinerer Bildschirmbreite */
 }
 
 .board-headline {
@@ -26,8 +28,8 @@
     font-weight: 700;
     line-height: 73.2px;
     text-align: left;
-    margin-right: 376px; /* Fester Abstand */
-    flex-shrink: 0; /* Verhindert, dass die Headline beim Verkleinern des Containers schrumpft */
+    flex: 1 1 auto; /* Flexible Breite */
+    margin-right: 16px; /* Abstand zur nächsten Komponente */
 }
 
 .inputSearchBar {
@@ -40,7 +42,7 @@
     border-radius: 10px;
     padding: 0 8px;
     gap: 10px;
-    flex-shrink: 0; /* Verhindert, dass die inputSearchBar schrumpft */
+    flex-shrink: 0; /* Verhindert das Schrumpfen */
 }
 
 .inputSearchBar input {
@@ -64,8 +66,8 @@
 
 .add-task-button-area {
     display: flex;
-    margin-left: 32px; /* Fester Abstand zur inputSearchBar */
-    flex-shrink: 0; /* Verhindert, dass die add-task-button-area schrumpft */
+    margin-left: 16px; /* Flexiblerer Abstand */
+    flex-shrink: 0; /* Verhindert das Schrumpfen */
 }
 
 .addTaskBtn {
@@ -87,8 +89,7 @@
 .columnTitle {
    display: flex;
    align-items: center;
-   position: relative;
-   left: 64px;
+   width: 100%;
    gap: 35px;
    color: #42525E;
 }
@@ -97,7 +98,6 @@
     display: flex;
     justify-content: space-between;
     width: 244px;
-    gap: 32px;
     padding: 8px;
 }
 
@@ -117,29 +117,37 @@ input {
 
 .tasksBoard {
     display: flex;
-    position: relative;
-    left: 64px;
-    width: 1208px;
-    height: 688px;
+    flex-wrap: wrap; /* Ermöglicht das Umbrechen bei kleinerer Bildschirmbreite */
+    width: 100%; /* Flexible Breite */
+    height: 688px; /* Höhe beibehalten, falls notwendig */
     gap: 24px;
+    box-sizing: border-box; /* Inklusive Padding und Border */
 }
 
-.showTasksBoard{
+.showTasksBoard {
     display: flex;
-    width: 252px;
+    flex-direction: column;
+    flex: 1 1 252px; /* Flexible Breite mit einer Mindestbreite */
     gap: 16px;
     padding: 8px;
-    flex-direction: column;
     overflow-y: auto;
-    overflow-x: hidden;
-    
+    overflow-x: hidden; 
+    box-sizing: border-box; /* Inklusive Padding und Border */
+}
+
+.task-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 252px; /* Flexible Breite mit einer Mindestbreite */
+    gap: 16px;
+    box-sizing: border-box; /* Inklusive Padding und Border */
 }
 
 .taskCard {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 100%;
+    width: 100%; /* Vollständig ausfüllen */
     border-radius: 24px;
     padding: 16px;
     gap: 10px;
