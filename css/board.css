@@ -10,31 +10,43 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .headlineBoard {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 1204px;
+    width: 100%;
+    max-width: 1204px;
     position: relative;
     left: 64px;
 }
 
-.inputSearchBar {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   border: 1px solid lightgrey;
-   width: 312px;
-   height: 48px;
-   border-radius: 10px;
-   padding: 0px 8px 0px 8px;
-   gap: 32px;
+.board-headline {
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+    text-align: left;
 }
 
-.seperator  {
+.inputSearchBar {
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgrey;
+    width: 100%;
+    max-width: 312px;
+    height: 48px;
+    border-radius: 10px;
+    padding: 0 8px;
+    gap: 10px;
+}
+
+.inputSearchBar input {
+    flex-grow: 1; /* Lässt das Eingabefeld so viel Platz wie möglich einnehmen */ /* Stellt sicher, dass das Eingabefeld die volle Höhe einnimmt */
+    border: none; /* Entfernt den Standard-Rahmen */
+    outline: none; /* Entfernt den Standard-Fokus-Rahmen */
+}
+
+.seperator {
     display: flex;
     border: 1px solid #d1d1d1;
     height: 31px;
@@ -47,7 +59,6 @@
     border: none;
     height: 48px;
     background-color: transparent;
-    margin-right: 64px;
 }
 
 .add-task-button-area {
@@ -63,7 +74,6 @@
     height: 48px;
     border-radius: 10px;
     border: 1px;
-    padding: 8px 16px 8px 16px;
     gap: 4px;   
     font-weight: 700;
     font-size: 21px;
