@@ -46,14 +46,15 @@ async function loadCategory(path = "/userTask") {
         for (let key in responseToJson) {
             if (responseToJson.hasOwnProperty(key)) {
                 let task = responseToJson[key];
+                console.log(task);
 
-                if (task.urgent === true) {
-                    urgentTasks.push(task);
+                if (task.priority === 'Urgent') {
+                    urgentTasks.push(task.priority);
                 }
-                
+
                 numberOfBoard.push({
                     todos: task.category
-            });
+                });
             }
         }
 
@@ -107,8 +108,8 @@ async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback,
     document.getElementById('howMuchTaskinBoard').innerHTML = numberOfBoard.length;
 }
 
-function sohwUgretnTask() {    
-        
+function sohwUgretnTask() {
+
     document.getElementById('howMuchInUrgent').innerHTML = urgentTasks.length;
 
 }
