@@ -39,9 +39,10 @@ async function submitContact() {
 
 async function addContact(newContact) {
     await postData("/contact", newContact);
-    
+    await loadContact();
     console.log(newContact);
     contacts.push(newContact);
+    console.log('nach dem contact push', contacts);
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();    
@@ -96,6 +97,7 @@ async function loadContact(path = "/contact") {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
 
+        contacts = [];
         for (let key in responseToJson) {
             if (responseToJson.hasOwnProperty(key)) {
                 let contact = responseToJson[key];

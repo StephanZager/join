@@ -45,11 +45,13 @@ async function loadCategory(path = "/userTask") {
 
         for (let key in responseToJson) {
             if (responseToJson.hasOwnProperty(key)) {
-                let number = responseToJson[key];
+                let task = responseToJson[key];
 
+                if (task.priority === 'urgent'){
                 urgentTasks.push(number.priority);
+                }
                 numberOfBoard.push({
-                    todos: number.category
+                    todos: task.category
                 });
             }
         }
