@@ -40,13 +40,13 @@ async function submitContact() {
 async function addContact(newContact) {
     await postData("/contact", newContact);
     await loadContact();
-    console.log(newContact);
-    contacts.push(newContact);
+   
+   // contacts.push(newContact);
     console.log('nach dem contact push', contacts);
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();    
-    selectionTheLastCreatedUser(newContact);
+    //selectionTheLastCreatedUser();
     cloeAddNewContactwindow();
     
 }
@@ -80,6 +80,8 @@ async function postData(path, data) {
     
     addNewContactConfirmation();
     let responseToJson = await response.json();
+    currentUser = {...data, id: responseToJson.name};
+    console.log('currentUser', currentUser);
     return responseToJson;
 }
 
@@ -101,7 +103,7 @@ async function loadContact(path = "/contact") {
         for (let key in responseToJson) {
             if (responseToJson.hasOwnProperty(key)) {
                 let contact = responseToJson[key];
-
+                
                 contacts.push({
                     'id': key,
                     'name': contact.name,
