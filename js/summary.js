@@ -49,14 +49,11 @@ async function loadCategory(path = "/userTask") {
                 console.log(task);
 
                 if (task.priority === 'Urgent') {
-                    urgentTasks.push(task.priority);
 
-                    let test ={
+                    urgentTasks.push({
                         urgent: task.priority,
-                        date : task.date,
-                    }
-
-                    console.log(test);
+                        date: task.date,
+                    });
                 }
 
                 numberOfBoard.push({
@@ -64,7 +61,7 @@ async function loadCategory(path = "/userTask") {
                 });
             }
         }
-
+        console.log('urgentTasks:', urgentTasks);
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
@@ -116,10 +113,14 @@ async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback,
 }
 
 function sohwUgretnTask() {
-
+    urgentTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
     document.getElementById('howMuchInUrgent').innerHTML = urgentTasks.length;
+    let date = new Date(urgentTasks[0].date);
+    let month = date.toLocaleString('default', { month: 'long' });
 
+    document.getElementById('summaryUrgendDate').innerHTML = month + ' ' + date.getDate() + ',' + ' ' + date.getFullYear();
 }
+
 
 /**
  * Initializes the summary page by setting the greeting, displaying the user's name, 
