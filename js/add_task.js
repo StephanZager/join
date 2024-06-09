@@ -32,11 +32,13 @@ function setPriority(priority) {
     }
 }
 
+
 async function submitTask(event) {
     event.preventDefault();
 
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
+
     let date = document.getElementById('dueDate').value;
     let userCategory = document.getElementById('category').value;
 
@@ -57,7 +59,7 @@ async function submitTask(event) {
         subtasks.push({ title: subtaskTitle, done: false });
     });
 
-    let userTask = { 
+    let userTask = {
         title: title,
         description: description,
         date: date,
@@ -186,3 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+function setMinDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    let currentDate = yyyy + '-' + mm + '-' + dd;
+
+    document.getElementById('dueDate').min = currentDate;
+}

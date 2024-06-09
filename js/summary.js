@@ -50,6 +50,13 @@ async function loadCategory(path = "/userTask") {
 
                 if (task.priority === 'Urgent') {
                     urgentTasks.push(task.priority);
+
+                    let test ={
+                        urgent: task.priority,
+                        date : task.date,
+                    }
+
+                    console.log(test);
                 }
 
                 numberOfBoard.push({
