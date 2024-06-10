@@ -230,6 +230,7 @@ async function deleteUser(i, path = "/contact") {
         method: "DELETE",
     });
     document.getElementById('contactInfo').innerHTML = '';
+    loadContact();
     generateContacts();
 }
 
