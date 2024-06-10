@@ -38,9 +38,10 @@ async function submitContact() {
 }
 
 async function addContact(newContact) {
-    const response = await postData("/contact", newContact);    
-    newContact.id = response.name;  
+    const response = await postData("/contact", newContact);
+    newContact.id = response.name;
     contacts.push(newContact);
+
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();
@@ -48,15 +49,17 @@ async function addContact(newContact) {
     cloeAddNewContactwindow();
 }
 
-
+/**
+ * Selects the most recent contact that was created.
+ * 
+ * @param {Object} newContact - The most recently created contact.
+ * @param {number} newContact.originalIndex - The index of the new contact in the contacts array.
+ */
 function selectionTheLastCreatedUser(newContact) {
-    console.log(newContact);
     openUserInfo(newContact.originalIndex);
     document.getElementById('userButton' + newContact.originalIndex).focus();
     openUserInfoWindow();
 }
-
-
 
 /**
  * adds the array contact from submitContact() on firebase
@@ -107,7 +110,6 @@ async function loadContact(path = "/contact") {
                 });
             }
         }
-
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
         return null;
@@ -138,7 +140,6 @@ async function generateContacts() {
     }
 }
 
-
 function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
@@ -164,15 +165,13 @@ function deselectUser() {
 
 function test() {
     document.getElementById('userButton' + currentOpenUser).focus();
-
-
 }
-
 
 async function submitForm(event, i, contactId, path) {
     event.preventDefault();
 
     let updatedContact = {
+        id: contactId,
         name: document.getElementById('addcontact_edit_name').value,
         email: document.getElementById('addcontact_edit_email').value,
         phone: document.getElementById('addcontact_edit_phone').value,
@@ -184,20 +183,17 @@ async function submitForm(event, i, contactId, path) {
 
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
-    loadContact();
     contacts[i] = updatedContact;
-    
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();
     selectionTheLastCreatedUser(updatedContact);
-    
     openUserInfo(updatedContact.originalIndex);
     cloeAddUbdateContactwindow();
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {
-    console.log('ubdate',contactId);
+    console.log('ubdate', contactId);
     let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
         method: "PUT",
         headers: {
@@ -206,7 +202,7 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
         body: JSON.stringify(updatedContact)
     });
     return response;
-    
+
 }
 
 
@@ -233,7 +229,6 @@ async function deleteUser(i, path = "/contact") {
         method: "DELETE",
     });
     document.getElementById('contactInfo').innerHTML = '';
-    window.location.reload();
     generateContacts();
 }
 
@@ -253,7 +248,7 @@ function filterFirstLetters(name) {
 /**
  * The function generates a random color, from the array userNameColor, for the name Logo
  * 
- * @returns the random color
+ * @returns - The random color
  */
 function toAssignColorNameLogo() {
     let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
@@ -346,6 +341,12 @@ function closeUserDeleteEditWindow() {
     document.getElementById('buttonEditDeleteHandy').style.display = 'none';
 }
 
+/**
+ * Asynchronously displays a confirmation message after a new contact has been added.
+ * The confirmation message is displayed for 3 seconds.
+ * 
+ * @async
+ */
 async function addNewContactConfirmation() {
     let contactConfirmation = document.getElementById('contactConfirmation');
     contactConfirmation.classList.add('show-overlay-menu-user-info');
@@ -357,16 +358,9 @@ async function addNewContactConfirmation() {
     }, 3000);
 }
 
-
-
-
-
 async function contactinit() {
-
     await loadContact();
     filterNameAlphabet();
     filterContactAlphabet();
     await generateContacts();
-
-
 }
