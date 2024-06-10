@@ -26,13 +26,21 @@ function generateTask() {
         let categoryElement = document.getElementById(category);
         categoryElement.innerHTML = '';
 
-        tasksInCategory.forEach(taskItem => {
-            categoryElement.innerHTML += generateTaskHTML(taskItem);
-            if ((taskItem.subtasks || []).length > 0) {
-                updateProgressBar(taskItem);
-            }
-        });
+        if (tasksInCategory.length === 0) {
+            categoryElement.innerHTML = generatePlaceholderHTML(category);
+        } else {
+            tasksInCategory.forEach(taskItem => {
+                categoryElement.innerHTML += generateTaskHTML(taskItem);
+                if ((taskItem.subtasks || []).length > 0) {
+                    updateProgressBar(taskItem);
+                }
+            });
+        }
     });
+}
+
+function generatePlaceholderHTML(category) {
+    return `<div class="placeholder">No tasks ${category}</div>`;
 }
 
 // Generieren des HTML für eine einzelne Aufgabe

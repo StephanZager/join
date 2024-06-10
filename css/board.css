@@ -146,6 +146,17 @@ input {
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
 
+.placeholder {
+    text-align: center;
+    border: 1px dashed grey;
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    color: #a8a8a8;
+    gap: 10px;
+    width: 244px;
+    padding: 8px;
+}
+
 .taskCard {
     display: flex;
     justify-content: space-between;
@@ -502,24 +513,22 @@ input {
     color: white;
 }
 
-@media (max-width: 866px) {
-    .board {
-        padding-left: 32px;
-    }
+@media (max-width: 903px) {
+   
 
     .tasksBoard {
         overflow-y: auto;
-        max-height: 500px;
+        max-height: 630px;
         flex-direction: row;
+        overflow-x: auto;
     }
 
     .showTasksBoard {
-        overflow-y: hidden;
-        overflow-x:auto;
         flex-direction: row;
         width: 100%;
-        max-width: 700px;
+        max-width: 530px;
     }
 
-    
+  
+
 }
