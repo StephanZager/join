@@ -523,20 +523,28 @@ input {
 
     .board-headline {
         font-size: 41px;
-        margin-bottom: 0;
-        margin-top: 0;
     }
 
     .display-none {
         display: none;
     }
 
+    .add-task-button-area {
+        position: absolute;
+        left: 245px;
+        top: 45px;
+    }
+    
     .addTaskBtn {
         height: 40px;
         width: 40px;
-        position: fixed;
-        top: 95px;
-        left: 260px;
+        opacity: 1;
+        transition: opacity 0.3s ease; /* Fügt eine Übergangseffekt hinzu */
+    }
+    
+    /* Verberge den Button, wenn das übergeordnete Element gescrollt wird */
+    .add-task-button-area.scrolled .addTaskBtn {
+        visibility: hidden; /* Versteckt den Button, wenn das übergeordnete Element gescrollt wird */
     }
 
     .inputSearchBar {
@@ -546,15 +554,14 @@ input {
 
     .content {
         padding: 0 ;
+        overflow-x: scroll;
     }
 
-    .tasksBoard {
-        overflow-y: auto;
+    .tasksBoard { 
         width: 100%;   
     }
 
     .task-column {
-        
         width: 100%;
     }
 
