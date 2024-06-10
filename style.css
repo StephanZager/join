@@ -352,11 +352,8 @@ HELP DESK CSS
     cursor: pointer;
 }
 
-.navbar {
-    overflow: hidden;
-}
 
-.dropdown-content {
+.dropdown-profil {
     display: none;
     position: absolute;
     right: 30px;
@@ -372,7 +369,7 @@ HELP DESK CSS
     padding: 10px 0;
 }
 
-.dropdown-content a {
+.dropdown-profil a {
     color: white;
     text-decoration: none;
     display: block;
@@ -388,7 +385,7 @@ HELP DESK CSS
     border-radius: 8px;
 }
 
-.dropdown-content a:hover {
+.dropdown-profil a:hover {
     background-color: #269dcf;
 }
 
