@@ -85,6 +85,9 @@
     background-color: #2a3647;
 }
 
+.highlight {
+    background-color: yellow;
+}
 
 .columnTitle {
    display: flex;

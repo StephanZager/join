@@ -295,10 +295,46 @@ async function deleteTask(firebaseId) {
     }
 }
 
+
+// Funktion zum Ausführen der Suche
+// Funktion zum Ausführen der Suche
+function searchTasks() {
+    const searchTerm = document.getElementById('searchBarInput').value.toLowerCase(); // Suchbegriff holen und in Kleinbuchstaben umwandeln
+
+    // Überprüfen, ob ein Suchbegriff vorhanden ist
+    if (searchTerm.trim() !== '') {
+        task.forEach(taskItem => {
+            const title = taskItem.title.toLowerCase();
+            const description = taskItem.description.toLowerCase();
+            const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
+
+            // Überprüfen, ob der Suchbegriff im Titel oder in der Beschreibung enthalten ist
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                // Farbliche Markierung hinzufügen
+                taskCard.style.backgroundColor = 'yellow';
+            } else {
+                // Falls nicht gefunden, die Markierung entfernen (falls vorhanden)
+                taskCard.style.backgroundColor = '';
+            }
+        });
+    } else {
+        // Wenn kein Suchbegriff vorhanden ist, alle Markierungen zurücksetzen
+        resetTaskCardColors();
+    }
+}
+
+// Funktion zum Zurücksetzen der Markierungen
+function resetTaskCardColors() {
+    task.forEach(taskItem => {
+        const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
+        taskCard.style.backgroundColor = ''; // Hintergrundfarbe zurücksetzen
+    });
+}
+
+
 // Fügen Sie den Event Listener hinzu, wenn das Dokument geladen wird
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('closePopupButton').addEventListener('click', closeTaskPopup);
 });
 
-// Initiales Laden der Aufgaben
-loadTask();
+
