@@ -130,11 +130,10 @@ input {
 .showTasksBoard {
     display: flex;
     flex-direction: column;
-    flex: 1 1 252px; /* Flexible Breite mit einer Mindestbreite */
+    flex: 1; /* Flexible Breite mit einer Mindestbreite */
     gap: 16px;
     padding: 8px;
     overflow-y: auto;
-    overflow-x: hidden; 
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
 
@@ -151,6 +150,7 @@ input {
     justify-content: space-between;
     flex-direction: column;
     width: 100%; /* Vollständig ausfüllen */
+    max-width: 244px;
     border-radius: 24px;
     padding: 16px;
     gap: 10px;
@@ -501,3 +501,20 @@ input {
     color: white;
 }
 
+@media (max-width: 866px) {
+
+    .tasksBoard {
+        overflow-y: auto;
+        }
+
+    .showTasksBoard {
+        overflow-y: hidden;
+        overflow-x:auto;
+        flex-direction: row;
+        max-width: 440px;
+    }
+
+    .taskcard {
+        height: 100%;
+    }
+}

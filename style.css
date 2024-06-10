@@ -148,6 +148,7 @@ a {
 /* width */
 ::-webkit-scrollbar {
     width: 4px;
+    height: 4px;
   }
   
   /* Track */
@@ -160,12 +161,20 @@ a {
   ::-webkit-scrollbar-thumb {
     background: grey; 
     border-radius: 10px;
+    width: 30px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: lightgrey; 
   }
+
+/*@media (max-width: 866px) {
+    body {
+        overflow-y: auto;
+    }
+}*/
+
 
 @media (max-width: 799px) {
 .menuBar {
