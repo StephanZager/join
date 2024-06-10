@@ -38,8 +38,8 @@ async function submitContact() {
 }
 
 async function addContact(newContact) {
-    await postData("/contact", newContact);
-    console.log(newContact);
+    const response = await postData("/contact", newContact);    
+    newContact.id = response.name;  
     contacts.push(newContact);
     filterNameAlphabet();
     filterContactAlphabet();
@@ -168,16 +168,6 @@ function test() {
 
 }
 
-async function updateContact(contactId, updatedContact, path = "/contact") {
-    let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedContact)
-    });
-    return response;
-}
 
 async function submitForm(event, i, contactId, path) {
     event.preventDefault();
@@ -194,18 +184,31 @@ async function submitForm(event, i, contactId, path) {
 
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
+    loadContact();
     contacts[i] = updatedContact;
-    console.log(updatedContact);
-    console.log(contacts);
-    console.log(updatedContact.originalIndex);
+    
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();
     selectionTheLastCreatedUser(updatedContact);
-    console.log(updatedContact.originalIndex);
+    
     openUserInfo(updatedContact.originalIndex);
     cloeAddUbdateContactwindow();
 }
+
+async function updateContact(contactId, updatedContact, path = "/contact") {
+    console.log('ubdate',contactId);
+    let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedContact)
+    });
+    return response;
+    
+}
+
 
 async function editUser(i, path = "/contact") {
     let contactId = contacts[i].id;
