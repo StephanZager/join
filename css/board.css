@@ -516,22 +516,53 @@ input {
     color: white;
 }
 
+
 @media (max-width: 903px) {
    
 
+
+}
+
+@media (max-width: 350px) {
+    .board {
+        padding-left: 0;
+    }
+
+    .content {
+        padding: 0;
+    }
+
+    .display-none {
+        display: none;
+    }
+
+    .board-headline {
+        font-size: 47px;
+    }
+
+    .addTaskBtn {
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        top: 144px;
+        left: 264px
+    }
+
+    .inputSearchBar {
+        width:300px
+    }
+
+    .content {
+        overflow-y: auto;
+    }
+
     .tasksBoard {
         overflow-y: auto;
-        max-height: 630px;
-        flex-direction: row;
-        overflow-x: auto;
-    }
-
-    .showTasksBoard {
-        flex-direction: row;
+        height: 570px;
         width: 100%;
-        max-width: 530px;
     }
 
-  
-
+    .task-column {
+        width: 100%;
+    }
 }

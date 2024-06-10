@@ -19,7 +19,7 @@
 
 </head>
 
-<body onload="includeHTML(), loadTask(), loadAssign();">
+<body class="board-total" onload="includeHTML(), loadTask(), loadAssign();">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <main class="board">
         <div class="content">
@@ -31,7 +31,7 @@
                     <button class="searchTaskBtn" onclick="searchTasks()"><img src="assets/img/search.png"></button>
                 </div>
                 <div class="add-task-button-area">
-                    <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup()">Add task <img
+                    <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup()"><span class="display-none">Add task</span> <img
                             src="assets/img/board.add.png"></button>
                 </div>
             </div>
