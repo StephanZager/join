@@ -86,6 +86,19 @@ form {
 
 }
 
+.ubdate-pop-up{
+    margin-right: 48px;
+    width: 422px;
+
+    opacity: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+ 
+}
+
 .addcontact-name {
     box-sizing: border-box;
     background-image: url('/assets/img/person.addcontact.png');

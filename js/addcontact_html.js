@@ -83,13 +83,13 @@ function addUbdateContactPopUp(i, path = "/contact") {
         </div>
         <div class="profilImgAddContact edit-contact-profil-icon" style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         
-
-        <form id="form" action="" method="put" onsubmit="event.preventDefault();editUser(${i}, ${path = "/contact"})"; return false;">
+        <!-- Änderung im Formular Tag -->
+        <form id="form" action="" method="put" onsubmit="event.preventDefault(); submitForm(${i}, '${user.id}', '${path}'); return false;">
             <input type="text" class="addcontact-name" id="addcontact_edit_name" name="name" required placeholder="Name" maxlength="20">
             <input type="email" class="addcontact-email" id="addcontact_edit_email" name="email" required placeholder="Email" maxlength="20">            
-            <input type="tel" class="addcontact-phone" id="addcontact_edit_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
+            <input type="tel" class="addcontact-phone" id="addcontact_edit_phone" name="phone" pattern="0[\\d\\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
-                <button type="button" class="addcontact_cancel_Button">
+                <button type="button" class="addcontact_cancel_Button" onclick="cloeAddUbdateContactwindow()">
                     <img src="assets/img/x.button.addcontact.black.png" alt="check">Cancel
                 </button>
                 <div id="btn-create-addcontact">
@@ -105,13 +105,10 @@ function addUbdateContactPopUp(i, path = "/contact") {
             </div>
         </form>
 
-        
-
-
     </div>           
         </div>
     </div>
-</div>`
+</div>`;
 }
 
 function userInfoHTML(user, index) {

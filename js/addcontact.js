@@ -39,16 +39,13 @@ async function submitContact() {
 
 async function addContact(newContact) {
     await postData("/contact", newContact);
-    await loadContact();
-   
-   // contacts.push(newContact);
-    console.log('nach dem contact push', contacts);
+    console.log(newContact);
+    contacts.push(newContact);
     filterNameAlphabet();
     filterContactAlphabet();
-    generateContacts();    
-    //selectionTheLastCreatedUser();
+    generateContacts();
+    selectionTheLastCreatedUser(newContact);
     cloeAddNewContactwindow();
-    
 }
 
 
@@ -77,11 +74,8 @@ async function postData(path, data) {
         },
         body: JSON.stringify(data)
     });
-    
     addNewContactConfirmation();
     let responseToJson = await response.json();
-    currentUser = {...data, id: responseToJson.name};
-    console.log('currentUser', currentUser);
     return responseToJson;
 }
 
@@ -99,11 +93,10 @@ async function loadContact(path = "/contact") {
         let response = await fetch(BASE_URL + path + ".json");
         let responseToJson = await response.json();
 
-        contacts = [];
         for (let key in responseToJson) {
             if (responseToJson.hasOwnProperty(key)) {
                 let contact = responseToJson[key];
-                
+
                 contacts.push({
                     'id': key,
                     'name': contact.name,
@@ -165,8 +158,8 @@ function deselectUser() {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + currentOpenUser);
     userInfo.innerHTML = '';
-    //userButton.blur();
-    //currentOpenUser = null;
+    userButton.blur();
+    currentOpenUser = null;
 }
 
 function test() {
@@ -176,7 +169,6 @@ function test() {
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {
-    
     let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
         method: "PUT",
         headers: {
@@ -197,37 +189,36 @@ async function submitForm(i, contactId, path) {
         firstLetters: filterFirstLetters(document.getElementById('addcontact_edit_name').value),
         bgNameColor: contacts[i].bgNameColor,
     };
-    
     await addContactUbdate(i, contactId, updatedContact, path);
-
 }
 
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
     contacts[i] = updatedContact;
-   
+    console.log(updatedContact);
+    console.log(contacts);
+    console.log(updatedContact.originalIndex);
     filterNameAlphabet();
     filterContactAlphabet();
-    await generateContacts();
+    generateContacts();
+    selectionTheLastCreatedUser(updatedContact);
+    console.log(updatedContact.originalIndex);
     openUserInfo(updatedContact.originalIndex);
-    selectionTheLastCreatedUser(updatedContact);   
-    
-    
     cloeAddUbdateContactwindow();
 }
 
 async function editUser(i, path = "/contact") {
-    let contactId = contacts[i].originalIndex;
-    document.getElementById('addUbdateContactPopUp').innerHTML += addUbdateContactPopUp(i, path = "/contact");
+    let contactId = contacts[i].id;
+    document.getElementById('addUbdateContactPopUp').innerHTML = addUbdateContactPopUp(i, path);
     openAddUbdateContactwindow();
     document.getElementById('addcontact_edit_name').value = contacts[i].name;
     document.getElementById('addcontact_edit_email').value = contacts[i].email;
     document.getElementById('addcontact_edit_phone').value = contacts[i].phone;
 
-    
     document.getElementById('form').onsubmit = async function (event) {
+        event.preventDefault();
         submitForm(i, contactId, path);
-    }
+    };
 }
 
 /**
