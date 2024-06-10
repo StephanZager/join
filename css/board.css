@@ -100,7 +100,8 @@
 .taskHeadline {
     display: flex;
     justify-content: space-between;
-    width: 244px;
+    width: 100%;
+    max-width: 244px;
     padding: 8px;
 }
 
@@ -121,7 +122,8 @@ input {
 .tasksBoard {
     display: flex;
     flex-wrap: wrap; /* Ermöglicht das Umbrechen bei kleinerer Bildschirmbreite */
-    width: 100%; /* Flexible Breite */
+    width: 80%;
+    
     height: 670px; /* Höhe beibehalten, falls notwendig */
     gap: 24px;
     box-sizing: border-box; /* Inklusive Padding und Border */
@@ -152,9 +154,10 @@ input {
     border-radius: 8px;
     background-color: #e7e7e7;
     color: #a8a8a8;
-    gap: 10px;
-    width: 244px;
-    padding: 8px;
+    width: 100%;
+    max-width: 244px;
+    padding-top: 8px;
+    padding-bottom: 8px
 }
 
 .taskCard {

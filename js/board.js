@@ -40,7 +40,7 @@ function generateTask() {
 }
 
 function generatePlaceholderHTML(category) {
-    return `<div class="placeholder">No tasks ${category}</div>`;
+    return `<div class="placeholder"><span>No tasks ${category}</span></div>`;
 }
 
 // Generieren des HTML für eine einzelne Aufgabe
