@@ -179,8 +179,7 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     return response;
 }
 
-async function submitForm(i, contactId, path) {
-    event.preventDefault();
+async function submitForm(i, contactId, path) {   
 
     let updatedContact = {
         name: document.getElementById('addcontact_edit_name').value,
@@ -194,15 +193,11 @@ async function submitForm(i, contactId, path) {
 
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
-    contacts[i] = updatedContact;
-    console.log(updatedContact);
-    console.log(contacts);
-    console.log(updatedContact.originalIndex);
+    contacts[i] = updatedContact;  
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();
-    selectionTheLastCreatedUser(updatedContact);
-    console.log(updatedContact.originalIndex);
+    selectionTheLastCreatedUser(updatedContact);    
     openUserInfo(updatedContact.originalIndex);
     cloeAddUbdateContactwindow();
 }

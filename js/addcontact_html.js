@@ -83,7 +83,7 @@ function addUbdateContactPopUp(i, path = "/contact") {
         </div>
         <div class="profilImgAddContact edit-contact-profil-icon" style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         
-        <!-- Änderung im Formular Tag -->
+       
         <form id="form" action="" method="put" onsubmit="event.preventDefault(); submitForm(${i}, '${user.id}', '${path}'); return false;">
             <input type="text" class="addcontact-name" id="addcontact_edit_name" name="name" required placeholder="Name" maxlength="20">
             <input type="email" class="addcontact-email" id="addcontact_edit_email" name="email" required placeholder="Email" maxlength="20">            
