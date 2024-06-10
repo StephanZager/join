@@ -179,7 +179,8 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     return response;
 }
 
-async function submitForm(i, contactId, path) {   
+async function submitForm(event, i, contactId, path) {
+    event.preventDefault();
 
     let updatedContact = {
         name: document.getElementById('addcontact_edit_name').value,
@@ -193,11 +194,15 @@ async function submitForm(i, contactId, path) {
 
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
-    contacts[i] = updatedContact;  
+    contacts[i] = updatedContact;
+    console.log(updatedContact);
+    console.log(contacts);
+    console.log(updatedContact.originalIndex);
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();
-    selectionTheLastCreatedUser(updatedContact);    
+    selectionTheLastCreatedUser(updatedContact);
+    console.log(updatedContact.originalIndex);
     openUserInfo(updatedContact.originalIndex);
     cloeAddUbdateContactwindow();
 }
@@ -209,11 +214,6 @@ async function editUser(i, path = "/contact") {
     document.getElementById('addcontact_edit_name').value = contacts[i].name;
     document.getElementById('addcontact_edit_email').value = contacts[i].email;
     document.getElementById('addcontact_edit_phone').value = contacts[i].phone;
-
-    document.getElementById('form').onsubmit = async function (event) {
-        event.preventDefault();
-        submitForm(i, contactId, path);
-    };
 }
 
 /**
@@ -230,7 +230,7 @@ async function deleteUser(i, path = "/contact") {
         method: "DELETE",
     });
     document.getElementById('contactInfo').innerHTML = '';
-    loadContact();
+    window.location.reload();
     generateContacts();
 }
 
