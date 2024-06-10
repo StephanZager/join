@@ -122,7 +122,7 @@ input {
     display: flex;
     flex-wrap: wrap; /* Ermöglicht das Umbrechen bei kleinerer Bildschirmbreite */
     width: 100%; /* Flexible Breite */
-    height: 688px; /* Höhe beibehalten, falls notwendig */
+    height: 670px; /* Höhe beibehalten, falls notwendig */
     gap: 24px;
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
@@ -134,6 +134,7 @@ input {
     gap: 16px;
     padding: 8px;
     overflow-y: auto;
+    max-height: 550px;
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
 
@@ -502,19 +503,23 @@ input {
 }
 
 @media (max-width: 866px) {
+    .board {
+        padding-left: 32px;
+    }
 
     .tasksBoard {
         overflow-y: auto;
-        }
+        max-height: 500px;
+        flex-direction: row;
+    }
 
     .showTasksBoard {
         overflow-y: hidden;
         overflow-x:auto;
         flex-direction: row;
-        max-width: 440px;
+        width: 100%;
+        max-width: 700px;
     }
 
-    .taskcard {
-        height: 100%;
-    }
+    
 }

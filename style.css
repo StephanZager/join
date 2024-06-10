@@ -4,7 +4,6 @@ body {
     font-weight: 400;
     font-size: 20px;
     background-color: #f6f7f8;
-    overflow: hidden;
 }
 
 input:focus {
@@ -161,7 +160,7 @@ a {
   ::-webkit-scrollbar-thumb {
     background: grey; 
     border-radius: 10px;
-    width: 30px;
+    width: 20px;
   }
   
   /* Handle on hover */
@@ -176,7 +175,7 @@ a {
 }*/
 
 
-@media (max-width: 799px) {
+@media (max-width: 866px) {
 .menuBar {
     display: flex;
     justify-content: space-between;
@@ -186,7 +185,7 @@ a {
     bottom: 0;
     flex-direction: column;
     background-color: #2A3647; 
-    height: 80px; 
+    height: 100px; 
     width: 100%;
     box-shadow: 0 0 4px 0 #000000; 
     }
@@ -247,7 +246,7 @@ a {
     }
 }
 
-@media (max-width: 435px) {
+@media (max-width: 615px) {
     ul {
         display: flex;
         justify-content: space-between;
@@ -255,11 +254,19 @@ a {
         padding: 0;
         gap: 15px;
     }
+
+    .linkSection {
+        padding: 0;
+    }
+
+    li a {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 345px) {
     .linkSection {
-        font-size: 16px;
+        font-size: 12px;
     }
 }
 
