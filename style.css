@@ -265,10 +265,15 @@ a {
     }
 }
 
-@media (max-width: 345px) {
+@media (max-width: 400px) {
+    .header {
+        height: 80px;
+    }
+    
     .linkSection {
         font-size: 12px;
     }
+
 }
 
 
