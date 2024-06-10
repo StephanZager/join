@@ -538,6 +538,7 @@ input {
 
     .board-headline {
         font-size: 47px;
+        flex: 0 0 auto;
     }
 
     .addTaskBtn {
@@ -558,11 +559,15 @@ input {
 
     .tasksBoard {
         overflow-y: auto;
-        height: 570px;
+        flex:   1 0 auto;
+        height: 100%;
+        max-height: 36%;
+        gap: 0;
         width: 100%;
     }
 
     .task-column {
         width: 100%;
+        gap: 0;
     }
 }
