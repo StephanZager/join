@@ -183,8 +183,7 @@ async function submitForm(event, i, contactId, path) {
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
     contacts[i] = updatedContact;
-
-
+    
     filterNameAlphabet();
     filterContactAlphabet();
     await generateContacts();

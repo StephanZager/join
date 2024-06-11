@@ -615,7 +615,8 @@ h3 {
         display: none;
     }
 
-    .contact-info-container {
+
+    /*.contact-info-container {
         display: none;
         height: auto;
         z-index: 999;
@@ -625,6 +626,16 @@ h3 {
         top: 96px;
         bottom: 80px;
         background-color: #FFFFFF;
+    }*/
+    .contact-info-container {
+        height: auto;
+        width: 50%;
+        left: 0;
+        right: 0;
+        top: 96px;
+        bottom: 80px;
+        
+
     }
 
     .contactList-container {
@@ -633,7 +644,9 @@ h3 {
 
     .contactList {
         max-width: none;
-        width: 100%;
+        width: 50%;
+        box-shadow: 4px 0px 6px 0px #0000001A;
+
     }
 
     #contact {
@@ -650,7 +663,8 @@ h3 {
     }
 
     .show-contact {
-        width: 352px;
+        max-width: 352px;
+
     }
 
     .initial-contact {
@@ -678,14 +692,6 @@ h3 {
         display: none;
     }
 
-    .contact-arrow-blue {
-        display: block;
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        right: 20px;
-        top: 48px;
-    }
 
     .contact-arrow-blue:hover {
         cursor: pointer;
@@ -740,6 +746,39 @@ h3 {
         height: 80px;
     }
 
+
+
+}
+
+
+
+@media (max-width: 600px) {
+    .contactList {
+        width: 100%;
+    }
+
+    .contact-info-container {
+        width: 100%;
+        display: none;
+        height: auto;
+        z-index: 999;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 96px;
+        bottom: 80px;
+        background-color: #FFFFFF;
+    }
+
+    .contact-arrow-blue {
+        display: block;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: 20px;
+        top: 48px;
+    }
+
     .button-open-edit-delete-handy-container {
         z-index: 1;
         display: block;
@@ -769,4 +808,5 @@ h3 {
     .bg-edit-delete {
         display: block;
     }
+
 }
