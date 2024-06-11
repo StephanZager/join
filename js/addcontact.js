@@ -184,9 +184,7 @@ async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
     contacts[i] = updatedContact;
     
-    filterNameAlphabet();
-    filterContactAlphabet();
-    await generateContacts();
+    
 
 
     let newIndex = findContactIndexById(contactId);
@@ -198,6 +196,10 @@ async function addContactUbdate(i, contactId, updatedContact, path) {
         openUserInfo(newIndex);
     }
     cloeAddUbdateContactwindow();
+
+    filterNameAlphabet();
+    filterContactAlphabet();
+    await generateContacts();
 }
 
 /**
