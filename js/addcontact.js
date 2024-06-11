@@ -159,7 +159,6 @@ function deselectUser() {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + currentOpenUser);
     userInfo.innerHTML = '';
-    userButton.blur();
     currentOpenUser = null;
 }
 
@@ -184,12 +183,36 @@ async function submitForm(event, i, contactId, path) {
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
     contacts[i] = updatedContact;
+
+
     filterNameAlphabet();
     filterContactAlphabet();
-    generateContacts();
-    selectionTheLastCreatedUser(updatedContact);
-    openUserInfo(updatedContact.originalIndex);
+    await generateContacts();
+
+
+    let newIndex = findContactIndexById(contactId);
+
+
+    if (newIndex !== -1) {
+        updatedContact.originalIndex = newIndex;
+        selectionTheLastCreatedUser(updatedContact);
+    }
     cloeAddUbdateContactwindow();
+}
+
+/**
+ * Finds the index of a contact by its ID.
+ * 
+ * @param {string} contactId - The ID of the contact to find.
+ * @returns {number} The index of the contact, or -1 if not found.
+ */
+function findContactIndexById(contactId) {
+    for (let i = 0; i < contacts.length; i++) {
+        if (contacts[i].id === contactId) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 async function updateContact(contactId, updatedContact, path = "/contact") {
@@ -204,7 +227,6 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     return response;
 
 }
-
 
 async function editUser(i, path = "/contact") {
     let contactId = contacts[i].id;
