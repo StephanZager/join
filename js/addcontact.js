@@ -192,7 +192,7 @@ async function addContactUbdate(i, contactId, updatedContact, path) {
 
     if (newIndex !== -1) {
         updatedContact.originalIndex = newIndex;
-        selectionTheLastCreatedUser(updatedContact);
+        
         openUserInfo(newIndex);
     }
     cloeAddUbdateContactwindow();
@@ -200,6 +200,7 @@ async function addContactUbdate(i, contactId, updatedContact, path) {
     filterNameAlphabet();
     filterContactAlphabet();
     await generateContacts();
+    selectionTheLastCreatedUser(updatedContact);
 }
 
 /**
