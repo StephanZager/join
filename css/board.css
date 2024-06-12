@@ -519,6 +519,10 @@ input {
     list-style: disc;
 }
 
+.display-none-mobile-btn {
+    display: none;
+}
+
 
 @media (max-width: 400px) {
     .board {
@@ -526,36 +530,30 @@ input {
     }
 
     .board-headline {
-        font-size: 41px;
+        font-size: 47px;
+        margin-left: 16px;
     }
 
     .display-none {
         display: none;
     }
 
-    .add-task-button-area {
-        position: absolute;
-        left: 245px;
-        top: 45px;
-    }
-    
-    .addTaskBtn {
-        height: 40px;
-        width: 40px;
-    }
 
     .inputSearchBar {
-        width: 80%;
+        width: 90%;
+        max-width: unset;
         height: 36px;
+        margin-left: 16px;
+        
     }
 
     .content {
         padding: 0 ;
-        overflow-x: scroll;
+        overflow-y: scroll;
     }
 
     .tasksBoard { 
-        width: 100%;  
+        width: 100%;
     }
 
     .task-column {
@@ -574,4 +572,15 @@ input {
         flex-direction: row;
         overflow-y: hidden;
     }
+
+    .display-none-mobile-btn {
+        display: flex;
+    }
+
+    .add-task-button-area {
+        height: 40px;
+        width: 40px;
+        margin-right: 16px;
+    }
+
 }

@@ -25,13 +25,16 @@
         <div class="content">
             <div class="headlineBoard">
                 <h1 class="board-headline">Board</h1>
+                <div class="add-task-button-area display-none-mobile-btn" >
+                    <button class="addTaskBtn" onclick="openTaskPopup()" class="display-none-mobile-btn"><img src="assets/img/board.add.png"></button>
+                </div>
                 <div class="inputSearchBar">
                     <input id="searchBarInput" type="text" placeholder="Find task">
                     <div class="seperator"></div>
                     <button class="searchTaskBtn" onclick="searchTasks()"><img src="assets/img/search.png"></button>
                 </div>
-                <div class="add-task-button-area">
-                    <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup()"><span class="display-none">Add task</span> <img
+                <div class="add-task-button-area display-none">
+                    <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup()"><span >Add task</span> <img
                             src="assets/img/board.add.png"></button>
                 </div>
             </div>
