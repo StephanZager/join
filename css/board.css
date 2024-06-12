@@ -123,7 +123,7 @@ input {
     display: flex;
     flex-wrap: wrap; /* Ermöglicht das Umbrechen bei kleinerer Bildschirmbreite */
     width: 80%;
-    height: 670px; /* Höhe beibehalten, falls notwendig */
+    height: 688px; /* Höhe beibehalten, falls notwendig */
     gap: 24px;
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
@@ -144,10 +144,13 @@ input {
     flex-direction: column;
     flex: 1 1 252px; /* Flexible Breite mit einer Mindestbreite */
     gap: 16px;
+    
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
 
 .placeholder {
+    display: flex;
+    justify-content: center;
     text-align: center;
     border: 1px dashed grey;
     border-radius: 8px;
@@ -156,7 +159,8 @@ input {
     width: 100%;
     max-width: 244px;
     padding-top: 8px;
-    padding-bottom: 8px
+    padding-bottom: 8px;
+    height: 20px;
 }
 
 .taskCard {
@@ -525,8 +529,13 @@ input {
 
 
 @media (max-width: 400px) {
+    .board-total {
+        overflow-y: scroll;
+    }
+    
     .board {
         padding-left: 0;
+        /*overflow-y: scroll;*/
     }
 
     .board-headline {
@@ -540,7 +549,7 @@ input {
 
 
     .inputSearchBar {
-        width: 90%;
+        width: 88%;
         max-width: unset;
         height: 36px;
         margin-left: 16px;
@@ -549,7 +558,8 @@ input {
 
     .content {
         padding: 0 ;
-        overflow-y: scroll;
+        /*overflow-y: scroll;*/
+        max-height: min-content;
     }
 
     .tasksBoard { 
@@ -559,13 +569,17 @@ input {
     .task-column {
         width: 100%;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: center;
+        align-items: flex-start;
+        overflow-x: auto;
     }
 
     .taskHeadline {
-        width: 95%;
-        max-width: unset;
+        width: 100%;
+        max-width: 95%;
+        position: sticky;
+        left: 0;
+        z-index: 1;
     }
 
     .showTasksBoard {
@@ -583,4 +597,9 @@ input {
         margin-right: 16px;
     }
 
+    .placeholder{
+        width: 95%;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 }

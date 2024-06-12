@@ -22,6 +22,7 @@ input:focus {
     opacity: 0px;
     box-shadow: 0px 4px 4px 0px #0000001A;
     background-color: #ffffff;
+    
 }
 
 .txtLogo {
@@ -177,18 +178,19 @@ a {
 
 
 @media (max-width: 866px) {
-.menuBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: unset;
-    bottom: 0;
-    flex-direction: column;
-    background-color: #2A3647; 
-    height: 80px; 
-    width: 100%;
-    box-shadow: 0 0 4px 0 #000000; 
+
+    .menuBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: unset;
+        bottom: 0;
+        flex-direction: column;
+        background-color: #2A3647; 
+        height: 80px; 
+        width: 100%;
+        box-shadow: 0 0 4px 0 #000000; 
     }
 
     #logoDesktop {
