@@ -97,6 +97,7 @@
     box-sizing: border-box;
 }
 
+
 .urgent-button:hover {
     background-color: #FF3D00;
     cursor: pointer;
@@ -125,6 +126,7 @@
     font-size: 12px !important;
     color: #FF8190;
     margin-top: 4px;
+    display: none;
 }
 
 .required-bottom-info {
@@ -393,12 +395,43 @@
     display: flex;
     font-size: 16px;
     font-weight: 400;
-}
-
+} 
 
 .d-none {
     display: none;
 }
+
+@media (max-width: 1300px) {
+    .maincontainer-desktop {
+        margin-bottom: 50px;
+        flex-direction: column;
+        position: relative;
+        left: calc(50% - 420px);
+    }
+
+    .last-section {
+        justify-content: flex-start;
+        position: relative;
+        left: calc(50% - 420px);
+        align-items: end;
+    }
+
+    .task-headline {
+        position: relative;
+        left: calc(50% - 420px);
+    }
+
+    .clear-button {
+        height: 50px;
+    }
+
+    .create-task-button {
+        width: 145px;
+        height: 50px;
+        font-size: 17px;
+    }
+}
+
 
 @media (max-width: 799px) {
     .parting-line {

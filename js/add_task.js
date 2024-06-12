@@ -200,3 +200,34 @@ function setMinDate() {
 
     document.getElementById('dueDate').min = currentDate;
 }
+
+
+function submitTask(event) {
+    event.preventDefault();
+    let isValid = true;
+
+    // Get all required fields
+    const requiredFields = [
+        { id: 'title', errorId: 'title-error' },
+        { id: 'dueDate', errorId: 'dueDate-error' },
+        { id: 'category', errorId: 'category-error' }
+    ];
+
+    // Check each required field
+    requiredFields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const error = document.getElementById(field.errorId);
+        if (!input.value) {
+            error.style.display = 'block';
+            isValid = false;
+        } else {
+            error.style.display = 'none';
+        }
+    });
+
+    if (isValid) {
+        // Submit the form or handle successful validation
+        console.log("Form is valid, handle form submission here.");
+        // You can submit the form data via an AJAX request or another method here.
+    }
+}

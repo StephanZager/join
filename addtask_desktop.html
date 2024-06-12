@@ -21,8 +21,8 @@
             <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
-                    <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text" required>
-                    <span class="required-info">This field is required</span>
+                    <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text">
+                    <span id="title-error" class="required-info">This field is required</span>
                 </div>
 
                 <div class="addtaks-desktop">
@@ -45,8 +45,8 @@
             <div class="right-field-section">
                 <div class="addtaks-desktop">
                     <span>Due Date <span style="color: red;">*</span></span>
-                    <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy" required>
-                    <span class="required-info">This field is required</span>
+                    <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
+                    <span id="dueDate-error" class="required-info">This field is required</span>
                 </div>
 
                 <div class="prio-section addtaks-desktop">
@@ -63,12 +63,12 @@
 
                 <div class="addtaks-desktop">
                     <span>Category<span style="color: red;">*</span></span>
-                    <select id="category" class="title-select-or-input" required>
+                    <select id="category" class="title-select-or-input">
                         <option disabled selected hidden> Select task category</option>
                         <option>Technical Task</option>
                         <option>User Story</option>
                     </select>
-                    <span class="required-info">This field is required</span>
+                    <span id="category-error" class="required-info">This field is required</span>
                 </div>
 
                 <div class="addtaks-desktop">
