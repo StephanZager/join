@@ -167,7 +167,6 @@ input {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 100%; /* Vollständig ausfüllen */
     max-width: 244px;
     border-radius: 24px;
     padding: 16px;
@@ -527,17 +526,47 @@ input {
     display: none;
 }
 
-
-@media (max-width: 400px) {
-    .board-total {
-        overflow-y: scroll;
+@media (max-width: 1400px) { 
+    .tasksBoard {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: auto;
+        width: 100%;
+        max-height: 100%;
+        padding-right: 8px;
     }
-    
+
+    .showTasksBoard {
+        flex-direction: row;
+        overflow-x: auto;
+        
+    }
+}
+
+
+@media (max-width: 866px) {
     .board {
         padding-left: 0;
-        /*overflow-y: scroll;*/
     }
 
+    .display-none {
+        display: none;
+    }
+
+    .display-none-mobile-btn {
+        display: flex;
+    }
+
+    .add-task-button-area {
+        height: 40px;
+        width: 40px;
+        margin-right: 16px;
+    }
+}
+
+
+@media (max-width: 400px) {
     .board-headline {
         font-size: 47px;
         margin-left: 16px;
@@ -546,7 +575,6 @@ input {
     .display-none {
         display: none;
     }
-
 
     .inputSearchBar {
         width: 88%;
@@ -558,18 +586,22 @@ input {
 
     .content {
         padding: 0 ;
-        /*overflow-y: scroll;*/
         max-height: min-content;
     }
 
-    .tasksBoard { 
+    .tasksBoard {
+        flex-wrap: wrap;
+        overflow-x: auto;
+        overflow-y: auto;
         width: 100%;
+        max-height: 100%;
+        padding-right: 8px;
     }
 
     .task-column {
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: flex-start;
         overflow-x: auto;
     }
@@ -587,15 +619,9 @@ input {
         overflow-y: hidden;
     }
 
-    .display-none-mobile-btn {
-        display: flex;
-    }
+    
 
-    .add-task-button-area {
-        height: 40px;
-        width: 40px;
-        margin-right: 16px;
-    }
+    
 
     .placeholder{
         width: 95%;
