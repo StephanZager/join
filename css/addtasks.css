@@ -71,6 +71,36 @@
 
 }
 
+.prio-buttons button.urgent-button.selected img {
+    content: url('../assets/img/prio-urgent-icon-clicked.png');
+}
+
+.prio-buttons button.medium-button.selected img {
+    content: url('./assets/img/prio-medium-icon-clicked.png');
+}
+
+.prio-buttons button.low-button.selected img {
+    content: url('./assets/img/prio-low-icon-clicked.png'); 
+}
+
+.urgent-button:hover,
+.urgent-button.selected {
+    background-color: #FF3D00; 
+    color: white;
+}
+
+.medium-button:hover,
+.medium-button.selected {
+    background-color: #FFA800; 
+    color: white;
+}
+
+.low-button:hover,
+.low-button.selected {
+    background-color: #7AE229; 
+    color: white;
+}
+
 .maincontainer-desktop span {
     font-weight: 400;
     font-size: 20px;
@@ -99,18 +129,30 @@
 
 
 .urgent-button:hover {
-    background-color: #FF3D00;
+    background-color: #FF3D00; 
     cursor: pointer;
+}
+
+.urgent-button:hover img {
+    content: url('../assets/img/prio-urgent-icon-clicked.png'); 
 }
 
 .medium-button:hover {
     background-color: #FFA800;
-    cursor: pointer;
+    cursor: pointer; 
+}
+
+.medium-button:hover img {
+    content: url('../assets/img/prio-medium-icon-clicked.png'); 
 }
 
 .low-button:hover {
     background-color: #7AE229;
-    cursor: pointer;
+    cursor: pointer; 
+}
+
+.low-button:hover img {
+    content: url('../assets/img/prio-low-icon-clicked.png'); 
 }
 
 .maincontainer-desktop select {
