@@ -202,25 +202,25 @@ function setMinDate() {
 }
 
 
-function submitTask(event) {
-    event.preventDefault();
-    let isValid = true;
-
-    const requiredFields = [
-        { id: 'title', errorId: 'title-error' },
-        { id: 'dueDate', errorId: 'dueDate-error' },
-        { id: 'category', errorId: 'category-error' }
-    ];
-
-    requiredFields.forEach(field => {
-        const input = document.getElementById(field.id);
-        const error = document.getElementById(field.errorId);
-        if (!input.value) {
-            error.style.display = 'block';
-            isValid = false;
-        } else {
-            error.style.display = 'none';
-        }
-    });
-}
+//function submitTask(event) {
+ //   event.preventDefault();
+ //   let isValid = true;
+//
+ //   const requiredFields = [
+ //       { id: 'title', errorId: 'title-error' },
+ //       { id: 'dueDate', errorId: 'dueDate-error' },
+  //      { id: 'category', errorId: 'category-error' }
+ //   ];
+//
+  //  requiredFields.forEach(field => {
+  //      const input = document.getElementById(field.id);
+  //      const error = document.getElementById(field.errorId);
+ //       if (!input.value) {
+  //          error.style.display = 'block';
+  //          isValid = false;
+  //      } else {
+  //          error.style.display = 'none';
+  //      }
+  //  });
+//}
 

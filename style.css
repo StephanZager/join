@@ -268,12 +268,29 @@ a {
 }
 
 @media (max-width: 400px) {
+    body {
+        padding-bottom: 80px;
+    }
+    
     .header {
         height: 80px;
     }
     
     .linkSection {
         font-size: 12px;
+    }
+
+    .menuBar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 80px; /* Höhe des Menüs */
+    }
+
+    #contentMenu {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
 
 }

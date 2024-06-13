@@ -135,6 +135,7 @@ input {
     gap: 16px;
     padding: 8px;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 550px;
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
@@ -546,8 +547,7 @@ input {
 
     .showTasksBoard {
         flex-direction: row;
-        overflow-x: auto;
-        
+        overflow-x: auto;  
     }
 }
 
@@ -556,6 +556,7 @@ input {
     .board {
         padding-left: 0;
     }
+    
 }
 
 
@@ -577,13 +578,25 @@ input {
 
 
 @media (max-width: 400px) {
-   
+
     .content {
         padding: 0 16px;
+        overflow-y: scroll;
     }
 
     .inputSearchBar {
         max-width: 280px;
+    }
+
+    .tasksBoard {
+        flex-direction: column;
+        overflow-y: unset;
+        overflow-x: unset;
+        max-height: unset;
+    }
+
+    .showTasksBoard {
+        height: unset;
     }
 
 }
