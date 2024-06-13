@@ -531,10 +531,17 @@ input {
         flex-direction: column;
         flex-wrap: nowrap;
         overflow-x: auto;
-        overflow-y: auto;
         width: 100%;
         max-height: 100%;
         padding-right: 8px;
+    }
+
+    .taskHeadline {
+        width: 100%;
+        max-width: 95%;
+        position: sticky;
+        left: 0;
+        
     }
 
     .showTasksBoard {
@@ -549,7 +556,10 @@ input {
     .board {
         padding-left: 0;
     }
+}
 
+
+@media (max-width: 722px) {
     .display-none {
         display: none;
     }
@@ -567,65 +577,13 @@ input {
 
 
 @media (max-width: 400px) {
-    .board-headline {
-        font-size: 47px;
-        margin-left: 16px;
-    }
-
-    .display-none {
-        display: none;
+   
+    .content {
+        padding: 0 16px;
     }
 
     .inputSearchBar {
-        width: 88%;
-        max-width: unset;
-        height: 36px;
-        margin-left: 16px;
-        
+        max-width: 280px;
     }
 
-    .content {
-        padding: 0 ;
-        max-height: min-content;
-    }
-
-    .tasksBoard {
-        flex-wrap: wrap;
-        overflow-x: auto;
-        overflow-y: auto;
-        width: 100%;
-        max-height: 100%;
-        padding-right: 8px;
-    }
-
-    .task-column {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        overflow-x: auto;
-    }
-
-    .taskHeadline {
-        width: 100%;
-        max-width: 95%;
-        position: sticky;
-        left: 0;
-        z-index: 1;
-    }
-
-    .showTasksBoard {
-        flex-direction: row;
-        overflow-y: hidden;
-    }
-
-    
-
-    
-
-    .placeholder{
-        width: 95%;
-        padding-left: 8px;
-        padding-right: 8px;
-    }
 }
