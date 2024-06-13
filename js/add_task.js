@@ -36,6 +36,28 @@ function setPriority(priority) {
 async function submitTask(event) {
     event.preventDefault();
 
+    let isValid = true;
+    const requiredFields = [
+        { id: 'title', errorId: 'title-error' },
+        { id: 'dueDate', errorId: 'dueDate-error' },
+        { id: 'category', errorId: 'category-error' }
+    ];
+
+    requiredFields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const error = document.getElementById(field.errorId);
+        if (!input.value) {
+            error.style.display = 'block';
+            isValid = false;
+        } else {
+            error.style.display = 'none';
+        }
+    });
+
+    if (!isValid) {
+        return;
+    }
+
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
 
@@ -77,6 +99,7 @@ async function submitTask(event) {
         console.error("Fehler beim Posten der Daten:", error);
     }
 }
+
 
 function addSubtaskToList() {
     let subtaskInput = document.getElementById('subtasks');
@@ -200,27 +223,4 @@ function setMinDate() {
 
     document.getElementById('dueDate').min = currentDate;
 }
-
-
-//function submitTask(event) {
- //   event.preventDefault();
- //   let isValid = true;
-//
- //   const requiredFields = [
- //       { id: 'title', errorId: 'title-error' },
- //       { id: 'dueDate', errorId: 'dueDate-error' },
-  //      { id: 'category', errorId: 'category-error' }
- //   ];
-//
-  //  requiredFields.forEach(field => {
-  //      const input = document.getElementById(field.id);
-  //      const error = document.getElementById(field.errorId);
- //       if (!input.value) {
-  //          error.style.display = 'block';
-  //          isValid = false;
-  //      } else {
-  //          error.style.display = 'none';
-  //      }
-  //  });
-//}
 

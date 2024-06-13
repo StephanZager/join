@@ -411,9 +411,11 @@
 
     .last-section {
         justify-content: flex-start;
-        position: relative;
+        display: flex;
+        position: fixed;
         left: calc(50% - 420px);
         align-items: end;
+        bottom: 100px;
     }
 
     .task-headline {
