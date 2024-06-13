@@ -578,6 +578,11 @@ input {
 
 
 @media (max-width: 400px) {
+    
+    body {
+        padding-bottom: 80px;
+    }
+
 
     .content {
         padding: 0 16px;
