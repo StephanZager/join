@@ -102,6 +102,9 @@ ul {
     padding: 0;
     gap: 15px;
     width: 100%;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+
 }
 
 .linkSection {
@@ -275,7 +278,7 @@ a {
     }
     
     .header {
-        height: 80px;
+       /* height: 80px;*/ /* Höhe des Headers wurde verkleinert weiso? fals jetzt was nicht geht dan liegt es daran */
     }
     
     .linkSection {
