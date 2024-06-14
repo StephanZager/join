@@ -305,13 +305,25 @@ form {
         width: 350px;
     }
 
+    #addcontact_edit_name {
+        width: 350px;
+    }
+
     #addcontact_email {
+        width: 350px;
+    }
+
+    #addcontact_edit_email {
         width: 350px;
     }
 
     #addcontact_phone {
         width: 350px;
     }
+
+    #addcontact_edit_phone {
+        width: 350px;
+    }   
 
     .addcontact_cancel_Button {
         width: 100px;
@@ -586,4 +598,49 @@ form {
     .close-botton-addcontact:hover {
         cursor: pointer;
     }
+}
+
+@media (max-width: 420px){
+    .addcontact-container{
+        max-width: 315px;
+        height: 650px;
+    }
+    .aboveSection{
+        width: 315px;
+        height: 290px;
+    }
+    .profilImgAddContact{
+        margin-top: -50px;
+        width: 95px;
+        height: 95px;
+    }
+    form{
+        width: 295px;
+    }
+    #addcontact_name{
+        width: 295px;
+    }
+
+    #addcontact_edit_name{
+        width: 295px;
+    }
+
+    #addcontact_email{
+        width: 295px;
+    }
+    
+    #addcontact_edit_email{
+        width: 295px;
+    }
+
+    #addcontact_phone{
+        width: 295px !important;
+    }  
+
+    #addcontact_edit_phone{
+        width: 295px !important;
+    }
+    .addcontact_Button{
+        margin-top: 15px;
+    } 
 }
