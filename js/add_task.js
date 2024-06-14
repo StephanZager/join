@@ -6,6 +6,8 @@ function setPriority(priority) {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
         button.classList.remove('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-original-image'); // Set to original image
     });
 
     let button;
@@ -27,10 +29,13 @@ function setPriority(priority) {
     if (button) {
         button.classList.add('selected');
         selectedPriority = priority;
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
     } else {
         console.error('Button not found for priority:', priority);
     }
 }
+
 
 
 
