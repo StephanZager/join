@@ -127,6 +127,10 @@
     box-sizing: border-box;
 }
 
+.title-select-or-input:hover {
+    cursor: pointer;
+}
+
 
 .urgent-button:hover {
     background-color: #FF3D00; 
@@ -302,6 +306,8 @@
     overflow-y: auto;
     max-height: 150px;
 }
+
+
 
 /*DOPPDOWN*/
 
