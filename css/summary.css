@@ -414,17 +414,17 @@
     }
 
     .summary-how-much{
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .summary-stats-below-howmuch {
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .summary-how-much-art{
         font-size: 16px;
     }
-    
+
     .summary-todo-info{
         width: 150px;
         height: 108px;
@@ -440,6 +440,10 @@
         width: 90px;
         height: 108px;
         padding: 15px;
+    }
+
+    .summary-stats-below-tasks{
+        font-size: 14px;
     }
 
    
