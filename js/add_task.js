@@ -12,19 +12,15 @@ function setPriority(priority) {
     });
 
     let button;
-    switch (priority) {
-        case 'Urgent':
-            button = document.querySelector('.urgent-button');
-            break;
-        case 'Medium':
-            button = document.querySelector('.medium-button');
-            break;
-        case 'Low':
-            button = document.querySelector('.low-button');
-            break;
-        default:
-            console.error('Unknown priority:', priority);
-            return;
+    if (priority === 'Urgent') {
+        button = document.querySelector('.urgent-button');
+    } else if (priority === 'Medium') {
+        button = document.querySelector('.medium-button');
+    } else if (priority === 'Low') {
+        button = document.querySelector('.low-button');
+    } else {
+        console.error('Unknown priority:', priority);
+        return;
     }
 
     if (button) {
@@ -32,8 +28,6 @@ function setPriority(priority) {
         selectedPriority = priority;
         const img = button.querySelector('img');
         img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
-    } else {
-        console.error('Button not found for priority:', priority);
     }
 }
 

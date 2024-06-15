@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="board-total" onload="includeHTML(), loadTask(), loadAssign();">
+<body class="board-total" onload="includeHTML(), loadTask(), loadAssign() , setMinDate();">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <main class="board">
         <div class="content">
@@ -147,12 +147,24 @@
                         <div class="prio-section addtaks-desktop">
                             <span class="subheadline"><b>Prio</b></span>
                             <div class="prio-buttons">
-                                <button class="urgent-button" type="button" onclick="setPriority('Urgent')">Urgent<img
-                                        class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
-                                <button class="medium-button" type="button" onclick="setPriority('Medium')">Medium<img
-                                        class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
-                                <button class="low-button" type="button" onclick="setPriority('Low')">Low<img
-                                        class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png"></button>
+                                <button class="urgent-button" type="button" onclick="setPriority('Urgent')"
+                                        data-original-image="assets/img/prio-urgent-icon-unclicked.png"
+                                        data-clicked-image="assets/img/prio-urgent-icon-clicked.png">
+                                    Urgent
+                                    <img class="prio-icons" src="assets/img/prio-urgent-icon-unclicked.png">
+                                </button>
+                                <button class="medium-button" type="button" onclick="setPriority('Medium')"
+                                        data-original-image="assets/img/prio-medium-icon-unclicked.png"
+                                        data-clicked-image="assets/img/prio-medium-icon-clicked.png">
+                                    Medium
+                                    <img class="prio-icons" src="assets/img/prio-medium-icon-unclicked.png">
+                                </button>
+                                <button class="low-button" type="button" onclick="setPriority('Low')"
+                                        data-original-image="assets/img/prio-low-icon-unclicked.png"
+                                        data-clicked-image="assets/img/prio-low-icon-clicked.png">
+                                    Low
+                                    <img class="prio-icons" src="assets/img/prio-low-icon-unclicked.png">
+                                </button>
                             </div>
                         </div>
 
@@ -183,7 +195,7 @@
                     <span id="spanRequiredInfo" class="required-bottom-info"><span style="color: red;">*</span>This
                         field is required</span>
                     <div id="buttonLastSection" class="button-last-section">
-                        <button id="clearBtn" type="reset" class="clear-button">Clear <b>x</b></button>
+                        <button id="clearBtn" type="reset" class="clear-button" onclick="clearSubtasks()">Clear <b>x</b></button>
                         <button id="confirmBtn" type="submit" class="create-task-button">Create Task <img
                                 src="./assets/img/check-button-add-task.png" alt=""></button>
                     </div>
