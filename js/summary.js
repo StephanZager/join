@@ -113,12 +113,16 @@ async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback,
 }
 
 function sohwUgretnTask() {
-    urgentTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
-    document.getElementById('howMuchInUrgent').innerHTML = urgentTasks.length;
-    let date = new Date(urgentTasks[0].date);
-    let month = date.toLocaleString('default', { month: 'long' });
-
-    document.getElementById('summaryUrgendDate').innerHTML = month + ' ' + date.getDate() + ',' + ' ' + date.getFullYear();
+    if (urgentTasks && urgentTasks.length > 0) {
+        urgentTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+        document.getElementById('howMuchInUrgent').innerHTML = urgentTasks.length;
+        let date = new Date(urgentTasks[0].date);
+        let month = date.toLocaleString('default', { month: 'long' });
+        document.getElementById('summaryUrgendDate').innerHTML = month + ' ' + date.getDate() + ',' + ' ' + date.getFullYear();
+    } else {
+        // Handle the case when there are no urgent tasks
+        document.getElementById('howMuchInUrgent').innerHTML = 0;
+    }
 }
 
 
