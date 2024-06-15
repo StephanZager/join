@@ -155,6 +155,30 @@ async function loadAssign(path = "/contact") {
     }
 }
 
+function createLabel(assignContacts) {
+    let label = document.createElement('label');
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = assignContacts.name;
+    checkbox.dataset.bgColor = assignContacts.bgNameColor;
+
+    let initials = filterFirstLetters(assignContacts.name);
+    let initialsSpan = document.createElement('span');
+    initialsSpan.textContent = initials;
+    initialsSpan.classList.add('assign-initials');
+    initialsSpan.style.backgroundColor = assignContacts.bgNameColor;
+
+    let nameSpan = document.createElement('span');
+    nameSpan.textContent = assignContacts.name;
+    nameSpan.classList.add('assign-name');
+
+    label.appendChild(initialsSpan);
+    label.appendChild(nameSpan);
+    label.appendChild(checkbox);
+
+    return label;
+}
+
 function generateAssign() {
     let assignContact = document.getElementById('assigned');
 
@@ -168,37 +192,33 @@ function generateAssign() {
 
     for (let i = 0; i < assign.length; i++) {
         let assignContacts = assign[i];
-
-        let label = document.createElement('label');
-        let checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = assignContacts.name;
-        checkbox.dataset.bgColor = assignContacts.bgNameColor;
-
-        let initials = filterFirstLetters(assignContacts.name);
-        let initialsSpan = document.createElement('span');
-        initialsSpan.textContent = initials;
-        initialsSpan.classList.add('assign-initials');
-        initialsSpan.style.backgroundColor = assignContacts.bgNameColor;
-
-        let nameSpan = document.createElement('span');
-        nameSpan.textContent = assignContacts.name;
-        nameSpan.classList.add('assign-name');
-
-        label.appendChild(initialsSpan);
-        label.appendChild(nameSpan);
-        label.appendChild(checkbox);
-
+        let label = createLabel(assignContacts);
         assignContact.appendChild(label);
     }
 }
 
+/**
+ * Extracts the first letter from each word in a given string, converts them to uppercase and concatenates them.
+ *
+ * @param {string} name - The string from which to extract the first letters.
+ * @returns {string} The concatenated uppercase first letters of each word in the input string.
+ */
 function filterFirstLetters(name) {
     let words = name.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
     return firstLetters;
 }
 
+/**
+ * Sets up event listeners for a dropdown menu.
+ * 
+ * This function is executed once the DOM is fully loaded. It sets up event listeners for the dropdown button and content, 
+ * as well as a global click event listener to close the dropdown when clicked outside.
+ * 
+ * The dropdown button toggles the visibility of the dropdown content when clicked.
+ * Clicking on the dropdown content does not close the dropdown.
+ * Clicking anywhere outside the dropdown content and the dropdown button closes the dropdown.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownButton = document.querySelector('.dropdown-button');
     const dropdownContent = document.querySelector('.dropdown-content');
@@ -220,13 +240,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/**
+ * Clears the subtask list both in memory and in the UI.
+ * It empties the `subtaskList` array and also clears the HTML content of the element with id 'subtaskList'.
+ */
 function clearSubtasks() {
-    // Code to clear the subtask list
-    subtaskList = []; // Assuming subtaskList is the array holding your subtasks
+    subtaskList = [];
     document.getElementById('subtaskList').innerHTML = '';
 }
 
-
+/**
+ * Sets the minimum date of the 'dueDate' input field to today's date.
+ * It first gets today's date, formats it to 'yyyy-mm-dd' format, and then sets it as the minimum date for the 'dueDate' input field.
+ */
 function setMinDate() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
@@ -237,4 +263,5 @@ function setMinDate() {
 
     document.getElementById('dueDate').min = currentDate;
 }
+
 
