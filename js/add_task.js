@@ -220,6 +220,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+function clearSubtasks() {
+    // Code to clear the subtask list
+    subtaskList = []; // Assuming subtaskList is the array holding your subtasks
+    document.getElementById('subtaskList').innerHTML = '';
+}
+
+
 function setMinDate() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
