@@ -213,6 +213,7 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 100%;
 }
 
 .show-contact-email {
@@ -421,6 +422,8 @@ h3 {
 #contactConfirmation {
     transform: translateX(500px);
 }
+
+
 
 #contactConfirmation.show-overlay-menu-user-info {
     position: absolute;

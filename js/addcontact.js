@@ -347,6 +347,7 @@ function slideInOnClick() {
     userInfo.classList.add('slide-in');
 }
 
+
 function openUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'block';
 

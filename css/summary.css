@@ -321,64 +321,126 @@
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 866px){
+    .headline-summary {
+        margin-left: 20px;
+        margin-top: 48px;
+        margin-right: 20px;
+    }
+
     .summary-stats {
-        margin-right: 30px;
-    }
-
-    .summary-todo-info {
-        width: 234px;
-    }
-
-    .summary-done-info {
-        width: 234px;
-    }
-
-    .summary-stats-below-container {
-        width: 148px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 
-@media (max-width: 815px) {
+@media (max-width: 600px) {
+    .headline-summary-h2 {
+        font-size: 40px;
+    }
+
     .headline-summary-info {
         font-size: 20px;
     }
+
+    .summary-stats{
+        max-width: 400px;
+    }
+    .summary-todo-info {
+        width: 200px;
+        height: 128px;
+        padding: 28px 9px;
+    }
+    .summary-done-info {
+        width: 180px;
+        height: 128px;
+    }
+
+    .summary-stats-urgent{
+        height: 128px;
+        padding: 0px, 0px;
+        justify-content: center;
+    }
+
+    .summary-stats-below-tasks {
+        font-size: 18px;
+    }
+    
+    .summary-stats-below-container{
+        width: 128px;
+        height: 128px;
+        padding: 20px;
+    }
+
+    .summary-how-much{
+        font-size: 50px;
+    }
+
+    .summary-stats-below-howmuch {
+        font-size: 50px;
+    }
+
+    .summary-stats img{
+        width: 50px;
+        height: 50px;
+    }
+
+    .summary-urgent-date{
+        font-size: 16px;
+    }
 }
 
-@media (max-width: 799px) {
-    .headline-summary-seperator {
+@media (max-width: 480px){
+    .headline-summary-seperator{
         display: none;
+    }
+
+    .headline-summary{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
 
     .headline-summary-seperator-mobile{
         display: block;
     }
+}
 
-    .headline-summary {
-        gap: 30px;
-        margin-left: 0;
-        flex-direction: column;
-        align-items: flex-start;
+@media (max-width: 440px){
+    .summary-stats{
+        margin-left: 10px;
+        margin-right: 10px;
+        max-width: 320px;        
     }
 
-    .summary-stats {
-        margin-left: 0px;
+    .summary-how-much{
+        font-size: 40px;
     }
 
-    .headline-summary-h2 {
-        font-size: 47px;
+    .summary-stats-below-howmuch {
+        font-size: 40px;
     }
 
-    .headline-summary-info {
-        font-size: 20px;
+    .summary-how-much-art{
+        font-size: 16px;
+    }
+    
+    .summary-todo-info{
+        width: 150px;
+        height: 108px;
+        
     }
 
-    .headline-summary {
-        gap: 0px;
+    .summary-done-info{
+        width: 150px;
+        height: 108px;
     }
 
-    .summary-section-2 {
-        justify-content: center;
-        margin-left: 30px;
+    .summary-stats-below-container{
+        width: 90px;
+        height: 108px;
+        padding: 15px;
     }
+
+   
 }
