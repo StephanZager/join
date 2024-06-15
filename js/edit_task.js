@@ -86,7 +86,15 @@ function showSubtasksEditTask() {
     if (Array.isArray(currentTask.subtasks)) {
         for (let i = 0; i < currentTask.subtasks.length; i++) {
             let subtask = currentTask.subtasks[i];
-            let liElement = `<li>${subtask.title}</li>`;
+            let liElement = `
+            <div id="subtask${i}">
+                <li class="edit-list-row">${subtask.title}
+                <div class="edit-delete-img">
+                    <img src="assets/img/edit.png" onclick="editSubtask(${i})"> | <img src="assets/img/delete.png" onclick="deleteSubtask(${i})">
+                    
+                </div>
+                </li>
+            </div>`;
             subtaskList.innerHTML += liElement;
         }
     }
@@ -129,6 +137,35 @@ function addSubtask() {
     }
     currentTask.subtasks.push({ title: subtaskTitle });
     showSubtasksEditTask();
+}
+
+function deleteSubtask(i) {
+    currentTask.subtasks.splice(i, 1);
+    showSubtasksEditTask()
+}
+
+function editSubtask(i) {
+    let subtask = currentTask.subtasks[i];
+    console.log(i, subtask);
+    document.getElementById(`subtask${i}`).innerHTML = `<input type="text" id="edit-input${i}" value="${subtask.title}"> <div><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div>`;
+}
+
+function clearEditSubtask(i) {
+    
+    document.getElementById(`subtask${i}`).innerHTML = `<input type="text" id="edit-input${i}"><div><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div>`;
+}
+
+function confirmEditSubtask(i) {
+    // Versuchen Sie, das Element zu holen
+    let inputElement = document.getElementById(`edit-input${i}`);
+
+    // Überprüfen Sie, ob das Element existiert
+    if (inputElement) {
+        // Verarbeiten Sie das Element
+        let inputValue = inputElement.value;
+        currentTask.subtasks[i].title = inputValue;
+    }
+    openEditTask(currentTask.firebaseId);
 }
 
 function openEditTask(firebaseId) {
