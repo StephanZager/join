@@ -139,8 +139,10 @@ async function getData(path) {
 
 function showLoginInitial() {
   let userFirstLetters = localStorage.getItem('userFirstLetters');
-  document.getElementById('joinProfil').innerHTML = ``;
-  document.getElementById('joinProfil').innerHTML = userFirstLetters;
+  let joinProfilElement = document.getElementById('joinProfil');
+  if (joinProfilElement) {
+    joinProfilElement.innerHTML = userFirstLetters;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', showLoginInitial);
