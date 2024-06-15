@@ -70,7 +70,6 @@ body {
     height: calc(100vh - 96px);
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: #FFFFFF;
     box-shadow: 4px 0px 6px 0px #0000001A;
 }
 
