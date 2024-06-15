@@ -73,30 +73,104 @@
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
     <div id="taskModal" class="modal">
         <div class="modal-task-popup">
-            <span class="close">&times;</span>
-            <h4 id="modalTitle"></h4>
-            <p id="modalUserTitle"></p>
-            <p id="modalDescription"></p>
-            <div class="modalDate">
-                <p>Due Date:</p>
-                <p id="modalDate"></p>
-            </div>
-            <div class="modalPrio">
-                <p><strong>Priority:</strong> <span id="modalPriorityText"></span></p>
-                <img id="modalPriorityIcon" class="prio-icons">
-            </div>
-            <p>Assign to:</p>
-            <div id="modalInitials"></div>
-            <div id="modalSubtasksContainer">
-                <p>Subtasks:</p>
-                <!-- Subtasks werden hier als Liste eingefügt -->
-                <ul id="modalSubtasks"></ul>
-            </div>
-            <div class="task-editing-btn">
-                <div id="deleteTaskBtn"></div>
+            <div id="modalTaskcard" class="modal-task-popup-display-block modal-task-popup-display-none">
+                <span class="close">&times;</span>
+                <h4 id="modalTitle"></h4>
+                <p id="modalUserTitle"></p>
+                <p id="modalDescription"></p>
+                <div class="modalDate">
+                    <p>Due Date:</p>
+                    <p id="modalDate"></p>
+                </div>
+                <div class="modalPrio">
+                    <p><strong>Priority:</strong> <span id="modalPriorityText"></span></p>
+                    <img id="modalPriorityIcon" class="prio-icons">
+                </div>
+                <p>Assign to:</p>
+                <div id="modalInitials"></div>
+                <div id="modalSubtasksContainer">
+                    <p>Subtasks:</p>
+                    <!-- Subtasks werden hier als Liste eingefügt -->
+                    <ul id="modalSubtasks"></ul>
+                </div>
+                <div class="task-editing-btn">
+                    <div id="deleteTaskBtn"></div>
                 
-                <div class="task-editing-seperator"></div>
-                <div id="editTaskBtn"></div>
+                    <div class="task-editing-seperator"></div>
+                    <div id="editTaskBtn"></div>
+                </div>
+            </div>
+            <div id="editTaskcard" class="edit-task-display-none">
+                <div class="close-edit-section">
+                <span id="closeEditPopupButton" onclick="closeEditTaskPopup()" class="close-edit">&times;</span>
+                </div>
+                <div class="edit-task-menü" id="editTaskMainContainer">
+                <div class="left-field-section">
+                    <div class="addtaks-desktop">
+                        <span>Title<span style="color: red;">*</span></span>
+                        <input id="editTitle" class="title-select-or-input" placeholder="Enter a title" type="text"> 
+                    </div>
+                    <div class="addtaks-desktop">
+                        <span>Description</span>
+                        <textarea id="editDescription" class="title-select-or-input" placeholder="Enter a Description" type="text"></textarea>
+                    </div>
+                    <div class="addtaks-desktop dropdown">
+                        <button type="button" class="dropdown-edit-button" onclick="openDropdown()">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
+                        <div class="dropdown-edit-content d-none" id="editAssigned"></div>
+                        <div class="show-initials-section" id="editAssignedInitials"></div> 
+                    </div>
+                </div>
+                <div class="right-field-section">
+                    <div class="addtaks-desktop">
+                        <span>Due Date <span style="color: red;">*</span></span>
+                        <input id="editDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="prio-section addtaks-desktop">
+                        <span class="subheadline"><b>Prio</b></span>
+                        <div class="prio-buttons">
+                            <button class="urgent-button" type="button" onclick="setCurrentPriority('Urgent')"
+                                data-original-image="assets/img/prio-urgent-icon-unclicked.png"
+                                data-clicked-image="assets/img/prio-urgent-icon-clicked.png">
+                                Urgent
+                                <img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png">
+                            </button>
+                            <button class="medium-button" type="button" onclick="setCurrentPriority('Medium')"
+                                data-original-image="assets/img/prio-medium-icon-unclicked.png"
+                                data-clicked-image="assets/img/prio-medium-icon-clicked.png">
+                                Medium
+                                <img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png">
+                            </button>
+                            <button class="low-button" type="button" onclick="setCurrentPriority('Low')"
+                                data-original-image="assets/img/prio-low-icon-unclicked.png"
+                                data-clicked-image="assets/img/prio-low-icon-clicked.png">
+                                Low
+                                <img class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="addtaks-desktop">
+                        <span>Category<span style="color: red;">*</span></span>
+                        <select id="editCategory" class="title-select-or-input">
+                            <option disabled selected hidden> Select task category</option>
+                            <option>Technical Task</option>
+                            <option>User Story</option>
+                        </select>               
+                    </div>
+                    <div class="addtaks-desktop">
+                        <span>Subtasks</span>
+                        <div class="input-with-button">
+                            <input id="editSubtasks" class="title-select-or-input" placeholder="Add new Subtasks">
+                            <button type="button" onclick="addSubtask()"><img class="input-button-img" src="assets/img/add.png" alt=""></button>
+                        </div>
+                        <ul id="subtaskListEdit"></ul>
+                    </div>
+                </div>
+                </div>
+                <div class="last-section" id="postEditBtnSection">
+                    <div class="edit-btn">
+                        <button type="button" id="postEditBtn" class="create-task-button">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

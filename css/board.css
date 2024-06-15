@@ -519,11 +519,23 @@ input {
     color: white;
 }
 
-#subtaskListEdit {
+#subtaskListEdit li{
     list-style: disc;
 }
 
 .display-none-mobile-btn {
+    display: none;
+}
+
+.modal-task-popup-display-block {
+    display: block;
+}
+
+.modal-task-popup-display-none {
+    display: none;
+}
+
+.edit-task-display-none {
     display: none;
 }
 

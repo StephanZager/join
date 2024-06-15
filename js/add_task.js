@@ -300,6 +300,7 @@ function setMinDate() {
     let currentDate = yyyy + '-' + mm + '-' + dd;
 
     document.getElementById('dueDate').min = currentDate;
+    document.getElementById('editDate').min = currentDate;
 }
 
 

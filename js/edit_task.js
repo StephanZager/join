@@ -94,6 +94,31 @@ function showSubtasksEditTask() {
 
 function setCurrentPriority(priority) {
     currentTask.priority = priority;
+    const buttons = document.querySelectorAll('.prio-buttons button');
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-original-image'); // Set to original image
+    });
+
+    let button;
+    if (priority === 'Urgent') {
+        button = document.querySelector('.urgent-button');
+    } else if (priority === 'Medium') {
+        button = document.querySelector('.medium-button');
+    } else if (priority === 'Low') {
+        button = document.querySelector('.low-button');
+    } else {
+        console.error('Unknown priority:', priority);
+        return;
+    }
+
+    if (button) {
+        button.classList.add('selected');
+        selectedPriority = priority;
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
+    }
     console.log(priority);
 }
 
@@ -108,91 +133,18 @@ function addSubtask() {
 
 function openEditTask(firebaseId) {
     loadTaskForEdit(firebaseId);
-    editTaskPopup = document.createElement("div");
-
-    editTaskPopup.className = "edit-task";
-    editTaskPopup.style.position = "fixed";
-    editTaskPopup.style.top = "50%";
-    editTaskPopup.style.left = "50%";
-    editTaskPopup.style.transform = "translate(-50%, -50%)";
-    editTaskPopup.style.backgroundColor = "#fff";
-    editTaskPopup.style.zIndex = "99";
-
-    document.body.appendChild(editTaskPopup);
-
-    editTaskPopup.innerHTML = generateEditTaskHTML();
+    document.getElementById('modalTaskcard').classList.add('modal-task-popup-display-none');
+    document.getElementById('editTaskcard').classList.remove('edit-task-display-none');
     generateEditAssign();
     showTaskDetails();
-    document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
-    document.getElementById('postEditBtn').addEventListener('click', updateCurrentTask);
-
-    
+    //document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
+    document.getElementById('postEditBtn').addEventListener('click', updateCurrentTask);  
 }
 
 function closeEditTaskPopup() {
-    document.body.removeChild(editTaskPopup);
+    document.getElementById('editTaskcard').classList.add('edit-task-display-none');
+    document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
 }
-
-function generateEditTaskHTML() {
-    return `
-    <div class="close-edit-section">
-        <span id="closeEditPopupButton" class="close-edit">&times;</span>
-    </div>
-    <main class="edit-task-menü" id="editTaskMainContainer">
-        <div class="left-field-section">
-            <div class="addtaks-desktop">
-                <span>Title<span style="color: red;">*</span></span>
-                <input id="editTitle" class="title-select-or-input" placeholder="Enter a title" type="text"> 
-            </div>
-            <div class="addtaks-desktop">
-                <span>Description</span>
-                <textarea id="editDescription" class="title-select-or-input" placeholder="Enter a Description" type="text"></textarea>
-            </div>
-            <div class="addtaks-desktop dropdown">
-                <button type="button" class="dropdown-edit-button" onclick="openDropdown()">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
-                <div class="dropdown-edit-content d-none" id="editAssigned"></div>
-                <div class="show-initials-section" id="editAssignedInitials"></div> 
-            </div>
-        </div>
-        <div class="right-field-section">
-            <div class="addtaks-desktop">
-                <span>Due Date <span style="color: red;">*</span></span>
-                <input id="editDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
-            </div>
-            <div class="prio-section addtaks-desktop">
-                <span class="subheadline"><b>Prio</b></span>
-                <div class="prio-buttons">
-                    <button class="urgent-button" type="button" onclick="setCurrentPriority('Urgent')">Urgent<img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png"></button>
-                    <button class="medium-button" type="button" onclick="setCurrentPriority('Medium')">Medium<img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png"></button>
-                    <button class="low-button" type="button" onclick="setCurrentPriority('Low')">Low<img class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png"></button>
-                </div>
-            </div>
-            <div class="addtaks-desktop">
-                <span>Category<span style="color: red;">*</span></span>
-                <select id="editCategory" class="title-select-or-input">
-                    <option disabled selected hidden> Select task category</option>
-                    <option>Technical Task</option>
-                    <option>User Story</option>
-                </select>               
-            </div>
-            <div class="addtaks-desktop">
-                <span>Subtasks</span>
-                <div class="input-with-button">
-                    <input id="editSubtasks" class="title-select-or-input" placeholder="Add new Subtasks">
-                    <button type="button" onclick="addSubtask()"><img class="input-button-img" src="assets/img/add.png" alt=""></button>
-                </div>
-                <ul id="subtaskListEdit"></ul>
-            </div>
-        </div>
-    </main>
-    <div class="last-section" id="postEditBtnSection">
-        <div class="edit-btn">
-            <button type="button" id="postEditBtn" class="create-task-button">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
-        </div>
-    </div>
-    `;
-}
-
 
 function updateCurrentTask() {
     currentTask.title = document.getElementById('editTitle').value;

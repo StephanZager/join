@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function showModal(taskItem) {
     const modal = document.getElementById("taskModal");
     const modalTitle = document.getElementById("modalTitle");
+    
 
     modalTitle.innerText = taskItem.userCategory;
     modalTitle.className = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
@@ -190,6 +191,7 @@ function showModal(taskItem) {
     document.getElementById("deleteTaskBtn").innerHTML = `<button onclick="deleteTask('${taskItem.firebaseId}')"><img src="assets/img/delete.png" alt="delete task">Delete</button>`;
     document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;
     modal.style.display = "block";
+    document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
 }
 
 function generateInitialsHTML(assignedInitialsArray) {
