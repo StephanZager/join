@@ -71,18 +71,6 @@
 
 }
 
-.prio-buttons button.urgent-button.selected img {
-    content: url('../assets/img/prio-urgent-icon-clicked.png');
-}
-
-.prio-buttons button.medium-button.selected img {
-    content: url('./assets/img/prio-medium-icon-clicked.png');
-}
-
-.prio-buttons button.low-button.selected img {
-    content: url('./assets/img/prio-low-icon-clicked.png'); 
-}
-
 .urgent-button:hover,
 .urgent-button.selected {
     background-color: #FF3D00; 

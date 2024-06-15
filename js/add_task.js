@@ -2,6 +2,7 @@ let assign = [];
 let currentAssignIndex = 0;
 let selectedPriority = null;
 
+
 function setPriority(priority) {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
@@ -35,9 +36,6 @@ function setPriority(priority) {
         console.error('Button not found for priority:', priority);
     }
 }
-
-
-
 
 
 async function submitTask(event) {
@@ -108,6 +106,12 @@ async function submitTask(event) {
 }
 
 
+/**
+ * Gets the value of the input element with id 'subtasks', trims it, and if it's not an empty string,
+ * creates a new 'li' element, sets its text content to the input value prefixed with a bullet point,
+ * and appends it to the 'ul' element with id 'subtaskList'.
+ * Finally, it clears the input element.
+ */
 function addSubtaskToList() {
     let subtaskInput = document.getElementById('subtasks');
     let subtaskText = subtaskInput.value.trim();
@@ -121,6 +125,17 @@ function addSubtaskToList() {
     }
 }
 
+
+/**
+ * Sends a POST request to a specified path with the provided data.
+ * The data is converted to a JSON string before being sent.
+ * If the response is not ok, an error is logged to the console and the function returns.
+ * Otherwise, the response is converted to JSON and returned.
+ *
+ * @param {string} path - The path to which to send the POST request.
+ * @param {Object} data - The data to be sent in the body of the POST request.
+ * @returns {Promise<Object>} A Promise that resolves with the JSON response, or undefined if the response was not ok.
+ */
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -139,6 +154,14 @@ async function postData(path, data) {
     return responseToJson;
 }
 
+/**
+ * Fetches data from a specified path, converts the response to JSON, and adds the values to the `assign` array.
+ * After the data is loaded, the `generateAssign` function is called.
+ * If an error occurs during the process, it is caught and logged to the console.
+ *
+ * @param {string} [path="/contact"] - The path from which to fetch the data. Defaults to "/contact".
+ * @returns {Promise<void>} A Promise that resolves when the operation is completed.
+ */
 async function loadAssign(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -155,6 +178,16 @@ async function loadAssign(path = "/contact") {
     }
 }
 
+/**
+ * Creates a label element with a checkbox and two spans for initials and name.
+ * The checkbox's value and the background color of the initials span are set based on the provided assignContacts object.
+ * The created label is returned.
+ *
+ * @param {Object} assignContacts - The object containing the name and background color.
+ * @param {string} assignContacts.name - The name to be set as the checkbox value and the text content of the name span.
+ * @param {string} assignContacts.bgNameColor - The background color to be set for the initials span and as a data attribute of the checkbox.
+ * @returns {HTMLLabelElement} The created label element.
+ */
 function createLabel(assignContacts) {
     let label = document.createElement('label');
     let checkbox = document.createElement('input');
@@ -179,6 +212,11 @@ function createLabel(assignContacts) {
     return label;
 }
 
+/**
+ * Clears the inner HTML of the element with id 'assigned' and appends a label for each object in the assign array.
+ * Each label is created by calling the createLabel function with the current assignContacts object.
+ * If no element with id 'assigned' is found, an error is logged and the function returns.
+ */
 function generateAssign() {
     let assignContact = document.getElementById('assigned');
 
@@ -245,6 +283,12 @@ document.addEventListener('DOMContentLoaded', () => {
  * It empties the `subtaskList` array and also clears the HTML content of the element with id 'subtaskList'.
  */
 function clearSubtasks() {
+    const buttons = document.querySelectorAll('.prio-buttons button');
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-original-image'); // Set to original image
+    });
     subtaskList = [];
     document.getElementById('subtaskList').innerHTML = '';
 }
