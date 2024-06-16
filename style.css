@@ -107,6 +107,12 @@ ul {
 
 }
 
+.link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .linkSection {
     display: flex;
     align-items: center;
