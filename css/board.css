@@ -545,6 +545,14 @@ input {
     margin-top: 8px;
 }
 
+@media (max-width: 1700px) {
+    .content {
+        padding: 0 16px;
+        overflow-y: auto;
+        height: calc(100vh - 100px);
+    }
+}
+
 @media (max-width: 1400px) { 
     .content {
         padding: 0 16px;
