@@ -458,18 +458,22 @@
    
 }
 
-@media (max-width: 320px){
+@media (min-width: 320px) and (max-width: 399px){
     .headline-summary{
         margin-bottom: 15px;
         margin-top: 0px;
         gap: 0px;
     }
 
+    .summary-urgent-info{
+        width: 120px;
+    }
+
     .summary-stats-urgent{
         margin-top: 10px;
         margin-bottom: 10px;
         height: 100px;
-        gap: 35px;
+        gap: 15px;
     }
 
     .summary-done-info{
@@ -498,5 +502,9 @@
 
     .summary-stats-below-tasks{
         line-height: 20px;
+    }
+
+    .summary-how-much{
+        line-height: 40px;
     }
 }
