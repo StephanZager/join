@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="css/addtasks.css">
+    <link rel="stylesheet" href="css/addtaskpopup.css">
 
     <script src="script.js"></script>
     <script src="js/board.js"></script>
@@ -175,16 +176,13 @@
         </div>
     </div>
 
-
-
-
     <div id="addTaskModel" class="modal">
         <div class="modal-addtask-popup" id="popup_add_task">
             <span id="closePopupButton" class="close">&times;</span>
             <h1>Add Task</h1>
             <form id="addTaskFormRemove" action="" onsubmit="submitTask(event)">
-                <main class="maincontainer-desktop" id="maincontainerAddTask">
-                    <div class="left-field-section">
+                <main class="addtask-popup-maincontainer-desktop" id="maincontainerAddTask">
+                    <div class="addtask-popup-left-field-section">
                         <div class="addtaks-desktop">
                             <span>Title<span style="color: red;">*</span></span>
                             <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text"
@@ -210,7 +208,7 @@
 
                     <div class="parting-line"></div>
 
-                    <div class="right-field-section">
+                    <div class="addtask-popup-right-field-section">
                         <div class="addtaks-desktop">
                             <span>Due Date <span style="color: red;">*</span></span>
                             <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy"
@@ -265,12 +263,12 @@
 
                 </main>
 
-                <div class="last-section">
-                    <span id="spanRequiredInfo" class="required-bottom-info"><span style="color: red;">*</span>This
+                <div class="addtask-popup-last-section">
+                    <span id="spanRequiredInfo" class="addtask-popup-required-bottom-info"><span style="color: red;">*</span>This
                         field is required</span>
-                    <div id="buttonLastSection" class="button-last-section">
-                        <button id="clearBtn" type="reset" class="clear-button" onclick="clearSubtasks()">Clear <b>x</b></button>
-                        <button id="confirmBtn" type="submit" class="create-task-button">Create Task <img
+                    <div id="buttonLastSection" class="addtask-edit-button-last-section">
+                        <button id="clearBtn" type="reset" class="addtask-popup-clear-button" onclick="clearSubtasks()">Clear <b>x</b></button>
+                        <button id="confirmBtn" type="submit" class="addtask-popup-create-task-button">Create Task <img
                                 src="./assets/img/check-button-add-task.png" alt=""></button>
                     </div>
                 </div>
