@@ -549,6 +549,7 @@ input {
     .content {
         padding: 0 16px;
         overflow-y: scroll;
+        height: calc(100vh - 100px);
     }
     
     .tasksBoard {
