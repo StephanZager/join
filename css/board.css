@@ -546,10 +546,14 @@ input {
 }
 
 @media (max-width: 1400px) { 
+    .content {
+        padding: 0 16px;
+        overflow-y: scroll;
+    }
+    
     .tasksBoard {
         flex-direction: column;
         flex-wrap: nowrap;
-        overflow-x: auto;
         width: 100%;
         max-height: 100%;
         padding-right: 8px;
@@ -574,7 +578,11 @@ input {
     .board {
         padding-left: 0;
     }
-    
+
+    .content {
+        padding: 0 16px;
+        overflow-y: scroll;
+    }
 }
 
 

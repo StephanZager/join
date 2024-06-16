@@ -288,8 +288,9 @@ function clearSubtasks() {
 }
 
 /**
- * Sets the minimum date of the 'dueDate' input field to today's date.
- * It first gets today's date, formats it to 'yyyy-mm-dd' format, and then sets it as the minimum date for the 'dueDate' input field.
+ * Sets the minimum date that can be selected in the date picker elements with IDs 'dueDate' and 'editDate' to the current date.
+ * The current date is converted to the 'yyyy-mm-dd' format expected by HTML date picker elements.
+ * If the 'dueDate' or 'editDate' elements do not exist, the minimum date is not set.
  */
 function setMinDate() {
     let today = new Date();
@@ -299,8 +300,15 @@ function setMinDate() {
 
     let currentDate = yyyy + '-' + mm + '-' + dd;
 
-    document.getElementById('dueDate').min = currentDate;
-    document.getElementById('editDate').min = currentDate;
+    let dueDateElement = document.getElementById('dueDate');
+    let editDateElement = document.getElementById('editDate');
+
+    if (dueDateElement) {
+        dueDateElement.min = currentDate;
+    } 
+    if (editDateElement) {
+        editDateElement.min = currentDate;
+    } 
 }
 
 

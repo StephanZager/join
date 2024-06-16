@@ -216,6 +216,7 @@
     font-size: 21px;
     font-weight: 700px;
     gap: 4px;
+    margin-top: 8px;
 }
 
 .clear-button:hover {
