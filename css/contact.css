@@ -726,7 +726,7 @@ h3 {
     .contact-info-h2 {
         margin-block-start: 0em;
         margin-block-end: 0em;
-
+        margin-top: 41px;
         font-size: 47px;
         font-weight: 700;
         line-height: 56.4px;
@@ -787,6 +787,8 @@ h3 {
 
 
 @media (max-width: 700px) {
+
+    
 
     .show-contact {
         padding: 15px 24px 15px 24px;
@@ -849,4 +851,16 @@ h3 {
         display: block;
     }
 
+}
+
+@media (max-width: 400px){
+   .show-contact{
+    gap: 20px;
+   } 
+}
+
+@media (max-width: 370px){
+    .user-info-name{
+        width: 200px;
+    }
 }
