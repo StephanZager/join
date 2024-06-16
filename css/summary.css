@@ -413,6 +413,10 @@
 }
 
 @media (max-width: 440px){
+    .headline-summary{
+        margin-top: 20px;
+    }
+
     .summary-stats{
         margin-left: 10px;
         margin-right: 10px;
@@ -451,6 +455,41 @@
     .summary-stats-below-tasks{
         font-size: 14px;
     }
-
    
+}
+
+@media (max-width: 320px){
+    .headline-summary{
+        margin-bottom: 15px;
+        margin-top: 0px;
+        gap: 0px;
+    }
+
+    .summary-stats-urgent{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 100px;
+        gap: 35px;
+    }
+
+    .summary-done-info{
+        height: 100px;
+        width: 140px;
+    }
+    .summary-todo-info{
+        height: 100px;
+        width: 140px;
+    }
+
+    .summary-stats{
+        max-width: 300px;
+    }
+
+    .summary-stats-below-container{
+        height: 100px;
+    }
+
+    .summary-urgent-seperator{
+        height: 80px;
+    }
 }
