@@ -492,4 +492,11 @@
     .summary-urgent-seperator{
         height: 80px;
     }
+    .summary-stats-below-howmuch{
+        line-height: 40px;
+    }
+
+    .summary-stats-below-tasks{
+        line-height: 20px;
+    }
 }
