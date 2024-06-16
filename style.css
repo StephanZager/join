@@ -241,6 +241,11 @@ a {
         gap: 5px;
     }
 
+    .link {
+        flex-direction: column;
+        gap: 5px;
+    }
+
     ul {
         display: flex;
         justify-content: space-between;
@@ -282,9 +287,9 @@ a {
     body {
         padding-bottom: 80px;
     }
-    
-    .linkSection {
-        font-size: 12px;
+
+    .link {
+        font-size: 14px;
     }
 
     .menuBar {
