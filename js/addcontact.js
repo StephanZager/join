@@ -384,8 +384,8 @@ async function addNewContactConfirmation() {
  */
 function slideInPopup(popupId) {
     let popup = document.getElementById(popupId);
-    popup.classList.add('slide-in');
     
+    popup.classList.add('slide-in');
 }
 
 async function contactinit() {

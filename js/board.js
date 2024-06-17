@@ -161,8 +161,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("taskModal");
     const span = document.getElementsByClassName("close")[0];
 
-    span.onclick = () => modal.style.display = "none";
-    window.onclick = event => { if (event.target === modal) modal.style.display = "none"; };
+    span.onclick = () => {
+        modal.style.display = "none";
+        endSlideInPopupTask('taskCardPoupAnimation'); // Call your additional function here
+    }; 
+    
 
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("taskCard")) {
@@ -175,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showModal(taskItem) {
     const modal = document.getElementById("taskModal");
+    
     const modalTitle = document.getElementById("modalTitle");
     
 
@@ -189,9 +193,14 @@ function showModal(taskItem) {
     document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
     document.getElementById("modalPriorityText").innerText = taskItem.priority;
     document.getElementById("deleteTaskBtn").innerHTML = `<button onclick="deleteTask('${taskItem.firebaseId}')"><img src="assets/img/delete.png" alt="delete task">Delete</button>`;
-    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;
-    modal.style.display = "block";
+    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;  
+    
+    modal.style.display = "block";  
+    
     document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
+    setTimeout(() => {
+        slideInPopupTask('taskCardPoupAnimation');
+    }, 10);
 }
 
 function generateInitialsHTML(assignedInitialsArray) {
@@ -349,8 +358,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 function slideInPopupTask(popupId) {
-    let popup = document.getElementById(popupId);
-    popup.classList.add('slide-in');
+    let popup = document.getElementById(popupId);    
+    popup.classList.add('slide-in'); 
     
 }
+
+function endSlideInPopupTask(popupId) {
+    let popup = document.getElementById(popupId);    
+    popup.classList.remove('slide-in'); 
+}
+
+
 

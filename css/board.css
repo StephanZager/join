@@ -568,18 +568,18 @@ input {
     margin-top: 8px;
 }
 
-/*
-hier ist der code für das sliden vonrechts nach links, muss dich fragen wegen oncklick 
 
-#taskModal {
+
+
+#taskCardPoupAnimation {
     transform: translateX(500px);
-    transition: transform 2s ease-in-out;
+    transition: transform 1s ease-in-out;
 }
 
-#taskModal.slide-in {
+#taskCardPoupAnimation.slide-in {
     transform: translateX(0);
 }
-*/
+
 
 
 @media (max-width: 1700px) {
