@@ -436,6 +436,33 @@ h3 {
 }
 
 
+#popUpAddContact {
+    transform: translateX(500px);
+    transition: transform 3s ease-in-out;
+}
+
+#popUpAddContact.slide-in {
+    transform: translateX(0);
+}
+
+#popUpUbdateContact {
+    transform: translateX(500px);
+    transition: transform 3s ease-in-out;
+}
+
+#popUpUbdateContact.slide-in {
+    transform: translateX(0);
+}
+
+#contactInfo {
+    transform: translateX(500px);
+    transition: transform 3s ease-in-out;
+}
+
+#contactInfo.slide-in {
+    transform: translateX(0);
+}
+
 @media (max-width: 1140px) {
     .initial-user {
         max-width: 100px;

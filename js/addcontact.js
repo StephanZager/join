@@ -182,13 +182,8 @@ async function submitForm(event, i, contactId, path) {
 
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
-    contacts[i] = updatedContact;
-    
-    
-
-
+    contacts[i] = updatedContact;    
     let newIndex = findContactIndexById(contactId);
-
 
     if (newIndex !== -1) {
         updatedContact.originalIndex = newIndex;
@@ -255,6 +250,7 @@ async function deleteUser(i, path = "/contact") {
     });
     document.getElementById('contactInfo').innerHTML = '';
     generateContacts();
+    
 }
 
 /**
@@ -312,8 +308,11 @@ function filterContactAlphabet() {
  */
 function openAddNewContactwindow() {
     addNewContactPopUp();
+    
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
+    
+    
 }
 
 /**
@@ -321,6 +320,7 @@ function openAddNewContactwindow() {
  * 
  */
 function cloeAddNewContactwindow() {
+    
     document.getElementById('bg_add_new_contact').classList.add('d-none');
 }
 
@@ -339,14 +339,6 @@ function cloeAddUbdateContactwindow() {
     document.getElementById('addcontact_edit_email').value = '';
     document.getElementById('addcontact_edit_phone').value = '';
 }
-
-function slideInOnClick() {
-    let userInfo = document.querySelector('#contactInfo');
-    userInfo.classList.remove('slide-in');
-    void userInfo.offsetWidth;
-    userInfo.classList.add('slide-in');
-}
-
 
 function openUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'block';
@@ -382,6 +374,18 @@ async function addNewContactConfirmation() {
         contactConfirmation.innerHTML = '';
         contactConfirmation.classList.remove('show-overlay-menu-user-info');
     }, 3000);
+}
+
+
+/**
+ * Adds the 'slide-in' class to the popup element with the specified ID to initiate a slide-in animation.
+ * 
+ * @param {string} popupId - The ID of the popup element to be animated.
+ */
+function slideInPopup(popupId) {
+    let popup = document.getElementById(popupId);
+    popup.classList.add('slide-in');
+    
 }
 
 async function contactinit() {

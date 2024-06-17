@@ -2,8 +2,8 @@ function addNewContactPopUp() {
     document.getElementById('addNewContactPopUp').innerHTML = `
     <div id="bg_add_new_contact" class="d-none">
     <div class="bg" onclick="cloeAddNewContactwindow()">
-        <div onclick="doNotClose(event)">
-        <div class="addcontact-container">
+         <div onclick="doNotClose(event)" id="popUpAddContact">
+        <div class="addcontact-container >
 
         <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact-destop"
             src="/assets/img/close-addcontact.png" alt="check">
@@ -58,6 +58,8 @@ function addNewContactPopUp() {
         </div>
     </div>
 </div>`
+
+
 }
 
 
@@ -65,7 +67,7 @@ function addUbdateContactPopUp(i, path = "/contact") {
     let user = contacts[i];
     return `<div id="bg_add_ubdate_contact" class="d-none">
     <div class="bg" onclick="cloeAddUbdateContactwindow()">
-        <div onclick="doNotClose(event)">
+        <div onclick="doNotClose(event)" id="popUpUbdateContact">
         <div class="addcontact-container">
 
         <img onclick="cloeAddUbdateContactwindow()" class="close-botton-addcontact-destop"
@@ -119,7 +121,7 @@ function userInfoHTML(user, index) {
             <h2 class="user-name">${user.name}</h2>
             <div id="bgDeleteEditHandy" onclick="closeUserDeleteEditWindow()">
             <div class="user-edit-delete" id="buttonEditDeleteHandy">
-                <div class="user-edit-delete-section" onclick="editUser(${index})">
+                <div class="user-edit-delete-section" onclick="editUser(${index}), slideInPopup('popUpUbdateContact')">
                     <img src="assets/img/edit-contacts.png" alt="edit">
                     <p>Edit</p>
                 </div>
@@ -149,7 +151,7 @@ function userInfoHTML(user, index) {
 
 function contactHTML(contact) {
     return `
-    <div id="userButton${contact.originalIndex}" class="show-contact" tabindex="0" onclick="slideInOnClick();openUserInfo(${contact.originalIndex});openUserInfoWindow();doNotClose(event)">               
+    <div id="userButton${contact.originalIndex}" class="show-contact" tabindex="0" onclick="slideInPopup('contactInfo');openUserInfo(${contact.originalIndex});openUserInfoWindow();doNotClose(event)">               
         <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
         <div class="show-contact-details">
             <span>${contact.name}</span> 
