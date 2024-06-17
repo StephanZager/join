@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const span = document.getElementsByClassName("close")[0];
 
     span.onclick = () => modal.style.display = "none";
-    window.onclick = event => { if (event.target === modal) modal.style.display = "none"; };
 
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("taskCard")) {
