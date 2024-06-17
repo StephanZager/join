@@ -298,8 +298,6 @@ input {
 }
 
 
-/*POPUP*/
-
 /* The Modal (background) */
 .modal {
     display: none;
@@ -363,6 +361,30 @@ input {
 .modal-task-popup li {
     display: flex;
     gap: 16px;
+}
+
+#modalSubtasks{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    gap: 15px;
+    width: 100%;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.popup-subtask-ul {
+    padding: 0;
+}
+
+.popup-subtask-list {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+    gap: 8px;
+    
 }
 
 .task-editing-btn {
@@ -434,7 +456,8 @@ input {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 525px;
+    width: 100%;
+    max-width: 525px;
     border-radius: 30px;
 }
 
@@ -613,12 +636,11 @@ input {
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 580px) {
     
     body {
         padding-bottom: 80px;
     }
-
 
     .content {
         padding: 0 16px;
@@ -640,4 +662,8 @@ input {
         height: unset;
     }
 
+    
 }
+
+
+
