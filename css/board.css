@@ -568,6 +568,20 @@ input {
     margin-top: 8px;
 }
 
+/*
+hier ist der code für das sliden vonrechts nach links, muss dich fragen wegen oncklick 
+
+#taskModal {
+    transform: translateX(500px);
+    transition: transform 2s ease-in-out;
+}
+
+#taskModal.slide-in {
+    transform: translateX(0);
+}
+*/
+
+
 @media (max-width: 1700px) {
     .content {
         padding: 0 16px;

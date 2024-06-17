@@ -348,3 +348,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
+function slideInPopupTask(popupId) {
+    let popup = document.getElementById(popupId);
+    popup.classList.add('slide-in');
+    
+}
+
