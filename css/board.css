@@ -241,9 +241,9 @@ input {
     background-color: grey;
 }
 
-.taskCard img{
-    width: 20px;
-    height: 20px;
+.taskcard-img {
+    width: 17px;
+    height: 14px;
 }
 
 .drag-area-highlight {
@@ -310,6 +310,14 @@ input {
     height: 100%;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
+    overflow-y: auto;
+}
+
+.popup-headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
 }
 
 .modal-task-popup h4 {
@@ -344,7 +352,8 @@ input {
 }
 
 #modalPriorityIcon {
-    height: 24px;
+    height: 12px;
+    
 }
 
 .assign-details {
@@ -390,7 +399,7 @@ input {
 .task-editing-btn {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
+    
 }
 
 .task-editing-seperator {
@@ -400,19 +409,27 @@ input {
 }
 
 #deleteTaskBtn {
-    border: none;
-    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#editTaskBtn {
+#deleteTaskBtn button {
     border: none;
     background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
+}
+
+#editTaskBtn button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
 
@@ -454,11 +471,12 @@ input {
 .modal-task-popup {
     background-color: #fefefe;
     margin: 5% auto;
+    margin-top: -20px;
     padding: 20px;
     border: 1px solid #888;
     width: 100%;
     max-width: 525px;
-    border-radius: 30px;
+    border-radius: 30px;;
 }
 
 .modal-addtask-popup{
@@ -542,8 +560,8 @@ input {
     color: white;
 }
 
-#subtaskListEdit li{
-    list-style: disc;
+#subtaskListEdit {
+    padding: 0;
 }
 
 .display-none-mobile-btn {
@@ -676,7 +694,18 @@ input {
         height: unset;
     }
 
+    .modal-task-popup {
+        width: unset;
+        max-width: unset;
+    }
     
+    .modal-task-popup h4 {
+        width: unset;
+    }
+
+    #modalUserTitle {
+        font-size: 40px;
+    }
 }
 
 

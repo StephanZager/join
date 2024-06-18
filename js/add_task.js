@@ -46,10 +46,16 @@ async function submitTask(event) {
         const input = document.getElementById(field.id);
         const error = document.getElementById(field.errorId);
         if (!input.value) {
-            error.style.display = 'block';
+            if (error) {
+                error.style.display = 'block';
+            } else {
+                console.error(`Element with id ${field.errorId} not found`);
+            }
             isValid = false;
         } else {
-            error.style.display = 'none';
+            if (error) {
+                error.style.display = 'none';
+            }
         }
     });
 
