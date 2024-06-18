@@ -16,7 +16,7 @@
 <body onload="includeHTML(), loadAssign(), setMinDate()" class="body-class-addtask">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <h1 class="task-headline">Add Task</h1>
-    <form action="" onsubmit="submitTask(event)" id="test2">
+    <form action="" onsubmit="submitTask(event)" class="addTask-form" id="test2">
         <main class="maincontainer-desktop">
             <div class="left-field-section">
                 <div class="addtaks-desktop">
@@ -27,7 +27,7 @@
 
                 <div class="addtaks-desktop">
                     <span>Description</span>
-                    <textarea id="description" class="title-select-or-input" placeholder="Enter a Description"
+                    <textarea id="description" class="addTask-textarea" placeholder="Enter a Description"
                         type="text"></textarea>
                 </div>
 
@@ -97,16 +97,18 @@
                 </div>
             </div>
 
+
+            <div class="last-section">
+                <span class="required-bottom-info"><span style="color: red; margin-bottom: 0px;">*</span>This field is required</span>
+                <div class="button-last-section">
+                    <button type="reset" class="clear-button" onclick="clearSubtasks()">Clear <b>x</b></button>
+                    <button type="submit" class="create-task-button">Create Task <img
+                            src="./assets/img/check-button-add-task.png" alt=""></button>
+                </div>
+            </div>
         </main>
 
-        <div class="last-section">
-            <span class="required-bottom-info"><span style="color: red;">*</span>This field is required</span>
-            <div class="button-last-section">
-                <button type="reset" class="clear-button" onclick="clearSubtasks()">Clear <b>x</b></button>
-                <button type="submit" class="create-task-button">Create Task <img
-                        src="./assets/img/check-button-add-task.png" alt=""></button>
-            </div>
-        </div>
+        
     </form>
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
 
