@@ -590,8 +590,8 @@ input {
 
 
 #taskCardPoupAnimation {
-    transform: translateX(500px);
-    transition: transform 1s ease-in-out;
+    transform: translateX(1500px);
+    transition: transform 0.3s ease-in-out;
 }
 
 #taskCardPoupAnimation.slide-in {

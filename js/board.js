@@ -164,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     span.onclick = () => {
         modal.style.display = "none";
         endSlideInPopupTask('taskCardPoupAnimation'); // Call your additional function here
+        resetTaskCardColors();
     }; 
     
 

@@ -51,12 +51,13 @@
     margin-bottom: 16px;
 }
 
-.prio-buttons {
+.addtask-popup-prio-buttons {
     display: flex;
-    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.prio-buttons button {
+.addtask-popup-prio-buttons button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -426,47 +427,21 @@
     display: none;
 }
 
-@media (max-width: 1300px) {
-    .maincontainer-desktop {
-        margin-bottom: 50px;
-        flex-direction: column;
-        position: relative;
-        left: calc(50% - 420px);
-    }
-
-    .last-section {
-        justify-content: flex-start;
-        display: flex;
-        
-        left: calc(50% - 420px);
-        align-items: end;
-        bottom: 100px;
-    }
-
-    .task-headline {
-        position: relative;
-        left: calc(50% - 420px);
-    }
-
-    .create-task-button {
-        width: 145px;
-        height: 50px;
-        font-size: 17px;
-    }
-}
-
-
-@media (max-width: 799px) {
+@media (max-width: 1400px) {
     .parting-line {
-        display: none;
+        margin: 0 20px;
     }
 
-    .maincontainer-desktop {
-        flex-direction: column;
-        margin: 0;
+    .addtask-popup-prio-buttons {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
     }
 
-    .last-section {
-        margin-top: 170px;
+    .prio-buttons button {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
     }
+
 }
