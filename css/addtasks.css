@@ -581,9 +581,11 @@
         height: calc(100vh - 176px);
     }
     
-    .maincontainer-desktop{
+    .maincontainer-desktop {
         height: calc(100% - 190px);
         overflow-x: auto;
+        width: auto; /* Ensures that the width can grow beyond the parent if content overflows */
+        min-width: 100%; /* Ensures that the container is at least as wide as its parent */
     }
 
     .last-section {
