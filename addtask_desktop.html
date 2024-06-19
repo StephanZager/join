@@ -17,7 +17,10 @@
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <h1 class="task-headline">Add Task</h1>
     <form action="" onsubmit="submitTask(event)" class="addTask-form" id="test2">
-        <main class="maincontainer-desktop">
+        <main class="maincontainer-desktop" style="flex-direction: column;"> <!-- flex-direction: column; kann bei bedarf auch gelöscht werden-->
+            <div class="addtask-section" style="display: flex;">    <!--display: flex; kann bei bedarf auch gelöscht werden-->
+            <div class="left-field
+        <div class="addtask-section" style="display: flex;">    
             <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
@@ -96,7 +99,7 @@
                     <ul id="subtaskList"></ul>
                 </div>
             </div>
-
+        </div>
 
             <div class="last-section">
                 <span class="required-bottom-info"><span style="color: red; margin-bottom: 0px;">*</span>This field is required</span>

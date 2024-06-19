@@ -55,6 +55,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    gap: 16px
 }
 
 .addtask-popup-prio-buttons button {
@@ -69,25 +70,28 @@
     background-color: white;
     font-weight: 400;
     font-size: 20px;
-
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.1);
 }
 
 .urgent-button:hover,
 .urgent-button.selected {
     background-color: #FF3D00; 
     color: white;
+    box-shadow: unset;
 }
 
 .medium-button:hover,
 .medium-button.selected {
     background-color: #FFA800; 
     color: white;
+    box-shadow: unset;
 }
 
 .low-button:hover,
 .low-button.selected {
     background-color: #7AE229; 
     color: white;
+    box-shadow: unset;
 }
 
 .maincontainer-desktop span {
@@ -233,6 +237,15 @@
     border-radius: 10px;
 }
 
+.addtask-popup-category {
+    max-width: 440px;
+    width: 100%;
+    max-height: 120px;
+    height: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
 .input-with-button {
     position: relative;
     display: inline-block; /* Damit die Breite sich dem Inhalt anpasst */
@@ -280,9 +293,9 @@
     background-color: lightgray;
 }
 
-#subtaskList {
+.addtask-popup-subtaskList {
     overflow-y: auto;
-    max-height: 150px;
+    max-height: 80px;
 }
 
 

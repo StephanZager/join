@@ -245,8 +245,8 @@
 
                         <div class="addtaks-desktop">
                             <span>Category<span style="color: red;">*</span></span>
-                            <select id="category" class="title-select-or-input" required>
-                                <option disabled selected hidden> Select task category</option>
+                            <select id="category" class="addtask-popup-category" required> !-- title-select-or-input -->
+                                 <option disabled selected hidden> Select task category</option>
                                 <option>Technical Task</option>
                                 <option>User Story</option>
                             </select>
@@ -260,7 +260,7 @@
                                 <button type="button" onclick="addSubtaskToList()"><img class="input-button-img"
                                         src="assets/img/add.png" alt=""></button>
                             </div>
-                            <ul id="subtaskList"></ul>
+                            <ul id="subtaskList" class="addtask-popup-subtasklist"></ul>
                         </div>
                     </div>
 
