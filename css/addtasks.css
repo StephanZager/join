@@ -1,8 +1,10 @@
 /*DESKTOP VERSION*/
 
+
+
 .body-class-addtask {
     background-color: #F6F7F8;
-    
+
 }
 
 .task-headline {
@@ -74,19 +76,19 @@
 
 .urgent-button:hover,
 .urgent-button.selected {
-    background-color: #FF3D00; 
+    background-color: #FF3D00;
     color: white;
 }
 
 .medium-button:hover,
 .medium-button.selected {
-    background-color: #FFA800; 
+    background-color: #FFA800;
     color: white;
 }
 
 .low-button:hover,
 .low-button.selected {
-    background-color: #7AE229; 
+    background-color: #7AE229;
     color: white;
 }
 
@@ -117,7 +119,7 @@
 }
 
 .addtaks-desktop input.title-select-or-input {
-    padding: 12px 21px; 
+    padding: 12px 21px;
     box-sizing: border-box;
 }
 
@@ -126,22 +128,22 @@
 }
 
 .urgent-button:hover {
-    background-color: #FF3D00; 
+    background-color: #FF3D00;
     cursor: pointer;
 }
 
 .medium-button:hover {
     background-color: #FFA800;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .low-button:hover {
     background-color: #7AE229;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .maincontainer-desktop select {
-    
+
     height: 48px;
     border-radius: 10px;
     font-size: 20px;
@@ -149,7 +151,7 @@
     border: 1px solid #D1D1D1;
 }
 
-.required-info{
+.required-info {
     font-size: 12px !important;
     color: #FF8190;
     margin-top: 4px;
@@ -162,7 +164,7 @@
     font-size: 16px;
     font-weight: 400;
     width: 170px;
-    height: 27px;    
+    height: 27px;
 }
 
 .last-section {
@@ -175,7 +177,7 @@
 }
 
 .button-last-section {
-    
+
     gap: 16px;
     display: flex;
     align-items: center;
@@ -212,7 +214,7 @@
     font-size: 21px;
     font-weight: 700px;
     gap: 4px;
-   
+
 }
 
 .clear-button:hover {
@@ -232,8 +234,8 @@
     font-family: Arial, sans-serif;
 }
 
-.title-select-or-input {   
-    
+.title-select-or-input {
+
     width: 100%;
     height: 136px;
     border: 1px solid lightgrey;
@@ -247,12 +249,13 @@
     min-height: 136px;
     border: 1px solid lightgrey;
     border-radius: 10px;
-    
+
 }
 
 .input-with-button {
     position: relative;
-    display: inline-block; /* Damit die Breite sich dem Inhalt anpasst */
+    display: inline-block;
+    /* Damit die Breite sich dem Inhalt anpasst */
     border: 1px solid lightgray;
     border-radius: 10px;
     display: flex;
@@ -261,8 +264,10 @@
 }
 
 .input-with-button input {
-    padding-right: 30px; /* Platz für den Button reservieren */
-    width: 100%; /* Vollständige Breite des Containers */
+    padding-right: 30px;
+    /* Platz für den Button reservieren */
+    width: 100%;
+    /* Vollständige Breite des Containers */
     border: none;
     display: flex;
     align-items: center;
@@ -308,13 +313,15 @@
 .dropdown {
     position: relative;
     display: inline-block;
-    z-index: 1; /* Stelle sicher, dass das Dropdown-Menü unter dem Dropdown-Inhalt liegt */
+    z-index: 1;
+    /* Stelle sicher, dass das Dropdown-Menü unter dem Dropdown-Inhalt liegt */
 }
 
 .dropdown-button {
     background-color: #ffffff;
     color: black;
-    z-index: 2; /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
+    z-index: 2;
+    /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -327,13 +334,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Füge relative Positionierung hinzu */
+    position: relative;
+    /* Füge relative Positionierung hinzu */
 }
 
 .dropdown-edit-button {
     background-color: #ffffff;
     color: black;
-    z-index: 2; /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
+    z-index: 2;
+    /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -346,7 +355,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Füge relative Positionierung hinzu */
+    position: relative;
+    /* Füge relative Positionierung hinzu */
 }
 
 .dropdown-content {
@@ -354,13 +364,14 @@
     position: absolute;
     background-color: #FFFFFF;
     width: 438px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 8px;
     border: 1px solid lightgray;
     overflow-y: auto;
     max-height: 320px;
-    top: calc(100% - 8px); /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
+    top: calc(100% - 8px);
+    /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
     left: 0;
 }
 
@@ -369,13 +380,14 @@
     position: absolute;
     background-color: #FFFFFF;
     width: 440px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 8px;
     border: 1px solid lightgray;
     overflow-y: auto;
     max-height: 320px;
-    top: calc(100% - 8px); /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
+    top: calc(100% - 8px);
+    /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
     left: 0;
 }
 
@@ -392,7 +404,8 @@
     align-items: center;
     padding: 8px;
     cursor: pointer;
-    flex-direction: row; /* Ändere die Ausrichtung auf "row", um ein nebeneinander liegendes Layout zu erzwingen */
+    flex-direction: row;
+    /* Ändere die Ausrichtung auf "row", um ein nebeneinander liegendes Layout zu erzwingen */
     margin-top: 8px;
 }
 
@@ -401,13 +414,14 @@
     align-items: center;
     padding: 8px;
     cursor: pointer;
-    flex-direction: row; /* Ändere die Ausrichtung auf "row", um ein nebeneinander liegendes Layout zu erzwingen */
+    flex-direction: row;
+    /* Ändere die Ausrichtung auf "row", um ein nebeneinander liegendes Layout zu erzwingen */
     margin-top: 8px;
 }
 
 .dropdown-content label:hover {
     background-color: blue;
-    
+
 }
 
 .dropdown-content label:hover {
@@ -437,41 +451,44 @@
     display: flex;
     font-size: 16px;
     font-weight: 400;
-} 
+}
 
 .d-none {
     display: none;
 }
 
 
-@media (min-width: 320px ) and (max-width: 767px) {
+@media (min-width: 424px) and (max-width: 699px) {}
 
-    .title-select-or-input{
-        
+
+@media (min-width: 320px) and (max-width: 423px) {
+
+    .title-select-or-input {
+
         height: 40px;
-        
+
     }
 
-    .create-task-button{
+    .create-task-button {
         padding: 2px;
         font-size: 16px;
         gap: 13px;
     }
 
-    .create-task-button img{
+    .create-task-button img {
         width: 15px;
-        
+
     }
 
-   .required-bottom-info{
-    font-size: 12px !important;
-   }
+    .required-bottom-info {
+        font-size: 12px !important;
+    }
 
-    .create-task-button{
+    .create-task-button {
         width: 150px;
     }
 
-    .last-section{
+    .last-section {
         margin-left: 16px;
         margin-right: 16px;
         width: 100%;
@@ -479,12 +496,13 @@
         margin-left: 0px;
         margin-top: 30px;
     }
-   
 
-    .prio-buttons{
+
+    .prio-buttons {
         display: flex;
         gap: 8px;
-        justify-content: space-around;}
+        justify-content: space-around;
+    }
 
 
     .prio-buttons button {
@@ -493,10 +511,10 @@
         font-size: 15px;
         gap: 8px;
         justify-content: center;
-        
+
     }
 
-    .maincontainer-desktop span{
+    .maincontainer-desktop span {
         font-size: 16px;
         margin-bottom: 5px;
     }
@@ -505,17 +523,24 @@
         width: 100%;
     }
 
-    .addTask-form{
+    .addTask-form {
         margin-left: 16px;
-        margin-right: 16px;}
+        margin-right: 16px;
+    }
 
     .task-headline {
         margin-left: 16px;
-        font-size: 35px;
+        font-size: 40px;
         line-height: 14px;
+        height: 56px;
+        position: static;
+        margin-top: 48px;
+
+
+
     }
 
-    .maincontainer-desktop{
+    .maincontainer-desktop {
         width: 100%;
     }
 
@@ -532,15 +557,17 @@
 
     .right-field-section {
         width: 100%;
-    }   
-  
+    }
+
 }
 
 @media (max-width: 799px) {
 
-    .clear-button{
+
+    .clear-button {
         display: none;
     }
+
     .parting-line {
         display: none;
     }
@@ -550,5 +577,31 @@
         margin: 0;
     }
 
-   
+    .addTask-form {
+        height: calc(100vh - 176px);
+    }
+    
+    .maincontainer-desktop{
+        height: calc(100% - 190px);
+        overflow-x: auto;
+    }
+
+    .last-section {
+        height: 88px;
+        position: fixed;
+        bottom: 80px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .task-headline {
+        position: sticky;
+    }
+
+
+
+
+
 }
