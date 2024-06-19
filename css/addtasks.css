@@ -575,6 +575,7 @@
     .maincontainer-desktop {
         flex-direction: column;
         margin: 0;
+        padding-right: 16px; /*--Setzt den scroll balken an den äußeren rand--bei bedarf auch gerne löschen--*/
     }
 
     .addTask-form {
@@ -592,7 +593,7 @@
         height: 88px;
         position: fixed;
         bottom: 80px;
-        background-color: white;
+        background-color: #f6f7f8;
         display: flex;
         align-items: center;
         justify-content: flex-start;
