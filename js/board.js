@@ -369,5 +369,7 @@ function endSlideInPopupTask(popupId) {
     popup.classList.remove('slide-in'); 
 }
 
-
+function openTaskWindow() {
+    window.location.href = "addtask_desktop.html";
+}
 

@@ -28,7 +28,7 @@
             <div class="headlineBoard">
                 <h1 class="board-headline">Board</h1>
                 <div class="add-task-button-area display-none-mobile-btn" >
-                    <button class="addTaskBtn" onclick="openTaskPopup()" class="display-none-mobile-btn"><img src="assets/img/board.add.png"></button>
+                    <button class="addTaskBtn" onclick="openTaskWindow()" class="display-none-mobile-btn"><img src="assets/img/board.add.png"></button>
                 </div>
                 <div class="inputSearchBar">
                     <input id="searchBarInput" type="text" placeholder="Find task">
@@ -182,7 +182,7 @@
     <div id="addTaskModel" class="modal">
         <div class="modal-addtask-popup" id="popup_add_task">
             <span id="closePopupButton" class="close">&times;</span>
-            <h1>Add Task</h1>
+            <h1 class="addtask-popup-headline">Add Task</h1>
             <form id="addTaskFormRemove" action="" onsubmit="submitTask(event)">
                 <main class="addtask-popup-maincontainer-desktop" id="maincontainerAddTask">
                     <div class="addtask-popup-left-field-section">
@@ -202,14 +202,14 @@
                         <div class="addtaks-desktop dropdown">
                             <button type="button" class="dropdown-button">Dropdown <img
                                     src="assets/img/arrow_drop_down.png"></button>
-                            <div class="dropdown-content" id="assigned" style="max-height: 150px;">
+                            <div class="dropdown-content" id="assigned" style="max-height: 200px;">
                                 <!-- Die Optionen mit Checkboxen werden hier generiert -->
                             </div>
 
                         </div>
                     </div>
 
-                    <div class="parting-line"></div>
+                    <div class="addtask-popup-parting-line"></div>
 
                     <div class="addtask-popup-right-field-section">
                         <div class="addtaks-desktop">
