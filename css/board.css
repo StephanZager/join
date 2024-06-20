@@ -569,6 +569,7 @@ input {
 
 #subtaskListEdit {
     padding: 0;
+    list-style-type: none;
 }
 
 .display-none-mobile-btn {
