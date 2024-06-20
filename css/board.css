@@ -340,6 +340,10 @@ input {
     margin: 0;
 }
 
+#modalDescription {
+    word-break: break-word;
+}
+
 .modalDate {
     display: flex;
     gap: 24px;

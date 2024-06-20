@@ -177,14 +177,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function showModal(taskItem) {
-    const modal = document.getElementById("taskModal");
-    
+function setModalTitle(taskItem) {
     const modalTitle = document.getElementById("modalTitle");
-    
     modalTitle.innerText = taskItem.userCategory;
     modalTitle.className = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
+}
 
+function setModalContent(taskItem) {
     document.getElementById("modalUserTitle").innerText = taskItem.title;
     document.getElementById("modalDescription").innerText = taskItem.description;
     document.getElementById("modalDate").innerText = taskItem.date;
@@ -193,14 +192,22 @@ function showModal(taskItem) {
     document.getElementById("modalPriorityIcon").src = getPriorityIcon(taskItem.priority);
     document.getElementById("modalPriorityText").innerText = taskItem.priority;
     document.getElementById("deleteTaskBtn").innerHTML = `<button onclick="deleteTask('${taskItem.firebaseId}')"><img src="assets/img/delete.png" alt="delete task">Delete</button>`;
-    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;  
-    
-    modal.style.display = "block";  
-    
+    document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;
+}
+
+function displayModal() {
+    const modal = document.getElementById("taskModal");
+    modal.style.display = "block";
     document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
     setTimeout(() => {
         slideInPopupTask('taskCardPoupAnimation');
     }, 10);
+}
+
+function showModal(taskItem) {
+    setModalTitle(taskItem);
+    setModalContent(taskItem);
+    displayModal();
 }
 
 function generateInitialsHTML(assignedInitialsArray) {
@@ -243,7 +250,13 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
         console.error("Fehler beim Aktualisieren der Subtask in Firebase:", error);
     }
 }
-
+/**
+ * Updates the progress bar and subtask count for a given task item.
+ * The progress bar's width is set to the percentage of completed subtasks.
+ * The subtask count is updated with the format 'completed/total Subtasks'.
+ * If the task item has no subtasks or the progress bar is not found, the function returns early.
+ * @param {Object} taskItem - The task item to update the progress bar for. Must have a `firebaseId` and `subtasks` property.
+ */
 function updateProgressBar(taskItem) {
     const totalSubtasks = (taskItem.subtasks || []).length;
     if (totalSubtasks === 0) return;
@@ -265,11 +278,21 @@ function updateProgressBar(taskItem) {
         subtaskProgress.textContent = `${completedSubtasks}/${totalSubtasks} Subtasks`;
     }
 }
-
+/**
+ * Updates the subtasks in the popup for a given task item.
+ * The 'modalSubtasks' element's innerHTML is set to the result of the `generateSubtasksHTML` function.
+ * Assumes that a function named `generateSubtasksHTML` is defined elsewhere.
+ * @param {Object} taskItem - The task item to update the popup subtasks for. Must have a `firebaseId` and `subtasks` property.
+ */
 function updatePopupSubtasks(taskItem) {
     document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
 }
-
+/**
+ * Updates the subtask count on the task card for a given task item.
+ * The subtask count is updated with the format 'completed/total Subtasks'.
+ * If the task card's subtask element is not found, the function returns early.
+ * @param {Object} taskItem - The task item to update the task card subtasks for. Must have a `firebaseId` and `subtasks` property.
+ */
 function updateTaskCardSubtasks(taskItem) {
     const taskCardSubtasks = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"] .subtask-progress`);
     if (taskCardSubtasks) {
@@ -278,14 +301,27 @@ function updateTaskCardSubtasks(taskItem) {
     }
 }
 
+/**
+ * Opens the 'addTaskModel' popup by setting its display style to 'block'.
+ */
 function openTaskPopup() {
     document.getElementById("addTaskModel").style.display = "block";
 }
 
+/**
+ * Closes the 'addTaskModel' popup by setting its display style to 'none'.
+ */
 function closeTaskPopup() {
     document.getElementById("addTaskModel").style.display = "none";
 }
 
+/**
+ * Deletes a task with the given Firebase ID by sending a DELETE request to the server.
+ * If the request is successful, the task is also removed from the `task` array and the tasks are regenerated.
+ * If the 'taskModal' element exists, its display style is set to 'none'.
+ * If an error occurs during the request, it is logged to the console and an alert is shown with the error message.
+ * @param {string} firebaseId - The Firebase ID of the task to delete.
+ */
 async function deleteTask(firebaseId) {
     try {
         let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
@@ -299,11 +335,9 @@ async function deleteTask(firebaseId) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // Update local task array after deletion
         task = task.filter(t => t.firebaseId !== firebaseId);
         generateTask();
 
-        // Optionally close the modal if it's open
         const modal = document.getElementById("taskModal");
         if (modal) {
             modal.style.display = "none";
@@ -313,59 +347,74 @@ async function deleteTask(firebaseId) {
         alert(`Fehler beim Löschen der Aufgabe: ${error.message}`);
     }
 }
-
-// Funktion zum Ausführen der Suche
+/**
+ * Searches tasks based on the input from the 'searchBarInput' element.
+ * If the search term is found in the title or description of a task, the task card's background color is set to yellow.
+ * If the search term is not found, the task card's background color is reset.
+ * If the search term is empty, all task card colors are reset.
+ * Assumes that `task` is an array of objects, each with a `title`, `description`, and `firebaseId` property.
+ * Also assumes that a function named `resetTaskCardColors` is defined elsewhere.
+ */
 function searchTasks() {
-    const searchTerm = document.getElementById('searchBarInput').value.toLowerCase(); // Suchbegriff holen und in Kleinbuchstaben umwandeln
+    const searchTerm = document.getElementById('searchBarInput').value.toLowerCase(); 
 
-    // Überprüfen, ob ein Suchbegriff vorhanden ist
     if (searchTerm.trim() !== '') {
         task.forEach(taskItem => {
             const title = taskItem.title.toLowerCase();
             const description = taskItem.description.toLowerCase();
             const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
 
-            // Überprüfen, ob der Suchbegriff im Titel oder in der Beschreibung enthalten ist
             if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                // Farbliche Markierung hinzufügen
                 taskCard.style.backgroundColor = 'yellow';
             } else {
-                // Falls nicht gefunden, die Markierung entfernen (falls vorhanden)
                 taskCard.style.backgroundColor = '';
             }
         });
-    } else {
-        // Wenn kein Suchbegriff vorhanden ist, alle Markierungen zurücksetzen
+    } else { 
         resetTaskCardColors();
     }
 }
-
-// Funktion zum Zurücksetzen der Markierungen
+/**
+ * Resets the background color of all task cards.
+ * Assumes that `task` is an array of objects, each with a `firebaseId` property.
+ */
 function resetTaskCardColors() {
     task.forEach(taskItem => {
         const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
-        taskCard.style.backgroundColor = ''; // Hintergrundfarbe zurücksetzen
+        taskCard.style.backgroundColor = ''; 
     });
 }
 
-
-// Fügen Sie den Event Listener hinzu, wenn das Dokument geladen wird
+// Add the event listener when the document is loaded
 document.addEventListener('DOMContentLoaded', (event) => {
+    /**
+     * Closes the task popup when the 'closePopupButton' is clicked.
+     * Assumes that a function named `closeTaskPopup` is defined elsewhere.
+     */
     document.getElementById('closePopupButton').addEventListener('click', closeTaskPopup);
 });
 
-
+/**
+ * Slides in a popup with the given ID.
+ * @param {string} popupId - The ID of the popup to slide in.
+ */
 function slideInPopupTask(popupId) {
     let popup = document.getElementById(popupId);    
     popup.classList.add('slide-in'); 
-    
 }
 
+/**
+ * Ends the slide-in animation for a popup with the given ID.
+ * @param {string} popupId - The ID of the popup to end the slide-in animation for.
+ */
 function endSlideInPopupTask(popupId) {
     let popup = document.getElementById(popupId);    
     popup.classList.remove('slide-in'); 
 }
 
+/**
+ * Opens the task window by navigating to 'addtask_desktop.html'.
+ */
 function openTaskWindow() {
     window.location.href = "addtask_desktop.html";
 }
