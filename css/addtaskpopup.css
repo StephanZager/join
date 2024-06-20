@@ -73,27 +73,6 @@
     box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.1);
 }
 
-.urgent-button:hover,
-.urgent-button.selected {
-    background-color: #FF3D00; 
-    color: white;
-    box-shadow: unset;
-}
-
-.medium-button:hover,
-.medium-button.selected {
-    background-color: #FFA800; 
-    color: white;
-    box-shadow: unset;
-}
-
-.low-button:hover,
-.low-button.selected {
-    background-color: #7AE229; 
-    color: white;
-    box-shadow: unset;
-}
-
 .maincontainer-desktop span {
     font-weight: 400;
     font-size: 20px;
@@ -137,6 +116,24 @@
 .low-button:hover {
     background-color: #7AE229;
     cursor: pointer; 
+}
+
+.urgent-button:hover,
+.urgent-button.selected {
+    background-color: #FF3D00;
+    color: white;
+}
+
+.medium-button:hover,
+.medium-button.selected {
+    background-color: #FFA800;
+    color: white;
+}
+
+.low-button:hover,
+.low-button.selected {
+    background-color: #7AE229;
+    color: white;
 }
 
 .maincontainer-desktop select {

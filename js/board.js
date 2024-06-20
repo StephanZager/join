@@ -182,7 +182,6 @@ function showModal(taskItem) {
     
     const modalTitle = document.getElementById("modalTitle");
     
-
     modalTitle.innerText = taskItem.userCategory;
     modalTitle.className = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
 
@@ -315,8 +314,6 @@ async function deleteTask(firebaseId) {
     }
 }
 
-
-// Funktion zum Ausführen der Suche
 // Funktion zum Ausführen der Suche
 function searchTasks() {
     const searchTerm = document.getElementById('searchBarInput').value.toLowerCase(); // Suchbegriff holen und in Kleinbuchstaben umwandeln
@@ -372,4 +369,3 @@ function endSlideInPopupTask(popupId) {
 function openTaskWindow() {
     window.location.href = "addtask_desktop.html";
 }
-

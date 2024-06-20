@@ -25,9 +25,9 @@ function setPriority(priority) {
 
     if (button) {
         button.classList.add('selected');
-        selectedPriority = priority;
         const img = button.querySelector('img');
         img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
+        selectedPriority = priority;
     }
 }
 
