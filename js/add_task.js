@@ -1,50 +1,82 @@
+/**
+ * Array to hold assigned tasks.
+ * @type {Array}
+ */
 let assign = [];
+/**
+ * Index of the current assigned task.
+ * @type {number}
+ */
 let currentAssignIndex = 0;
+/**
+ * The selected priority level.
+ * @type {string|null}
+ */
 let selectedPriority = null;
 
-
+/**
+ * Removes the 'selected' class and resets the image for each button.
+ * @param {Array} buttons - The buttons to reset.
+ */
+function resetButtons(buttons) {
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-original-image'); // Set to original image
+    });
+}
+/**
+ * Returns the button corresponding to the given priority.
+ * @param {Element} container - The container element.
+ * @param {string} priority - The priority level.
+ * @returns {Element} The button element.
+ */
+function getButtonByPriority(container, priority) {
+    let button;
+    if (priority === 'Urgent') {
+        button = container.querySelector('.urgent-button');
+    } else if (priority === 'Medium') {
+        button = container.querySelector('.medium-button');
+    } else if (priority === 'Low') {
+        button = container.querySelector('.low-button');
+    } else {
+        console.error('Unknown priority:', priority);
+    }
+    return button;
+}
+/**
+ * Adds the 'selected' class and changes the image for the given button.
+ * @param {Element} button - The button to modify.
+ * @param {string} priority - The priority level.
+ */
+function setButtonAsSelected(button, priority) {
+    if (button) {
+        button.classList.add('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
+        selectedPriority = priority;
+    }
+}
+/**
+ * Sets the priority level for each button container.
+ * @param {string} priority - The priority level.
+ */
 function setPriority(priority) {
     const containers = document.querySelectorAll('.prio-buttons, .addtask-popup-prio-buttons');
     containers.forEach(container => {
         const buttons = container.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.classList.remove('selected');
-            const img = button.querySelector('img');
-            img.src = button.getAttribute('data-original-image'); // Set to original image
-        });
-
-        let button;
-        if (priority === 'Urgent') {
-            button = container.querySelector('.urgent-button');
-        } else if (priority === 'Medium') {
-            button = container.querySelector('.medium-button');
-        } else if (priority === 'Low') {
-            button = container.querySelector('.low-button');
-        } else {
-            console.error('Unknown priority:', priority);
-            return;
-        }
-
-        if (button) {
-            button.classList.add('selected');
-            const img = button.querySelector('img');
-            img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
-            selectedPriority = priority;
-        }
+        resetButtons(buttons);
+        const button = getButtonByPriority(container, priority);
+        setButtonAsSelected(button, priority);
     });
 }
-
-
-async function submitTask(event) {
-    event.preventDefault();
-
+/**
+ * Validates the required fields.
+ * @param {Array} requiredFields - The required fields.
+ * @returns {boolean} Whether the fields are valid.
+ */
+function validateFields(requiredFields) {
     let isValid = true;
-    const requiredFields = [
-        { id: 'title', errorId: 'title-error' },
-        { id: 'dueDate', errorId: 'dueDate-error' },
-        { id: 'category', errorId: 'category-error' }
-    ];
-
     requiredFields.forEach(field => {
         const input = document.getElementById(field.id);
         const error = document.getElementById(field.errorId);
@@ -61,17 +93,13 @@ async function submitTask(event) {
             }
         }
     });
-
-    if (!isValid) {
-        return;
-    }
-
-    let title = document.getElementById('title').value;
-    let description = document.getElementById('description').value;
-
-    let date = document.getElementById('dueDate').value;
-    let userCategory = document.getElementById('category').value;
-
+    return isValid;
+}
+/**
+ * Returns the details of the assigned tasks.
+ * @returns {Array} The details of the assigned tasks.
+ */
+function getAssignedDetails() {
     let assignedElement = document.getElementById('assigned');
     let assignCheckboxes = assignedElement ? assignedElement.querySelectorAll('input[type="checkbox"]:checked') : [];
     let assignDetails = [];
@@ -81,15 +109,34 @@ async function submitTask(event) {
         let bgNameColor = checkbox.dataset.bgColor;
         assignDetails.push({ name: name, initials: initials, bgNameColor: bgNameColor });
     });
-
+    return assignDetails;
+}
+/**
+ * Returns the subtasks.
+ * @returns {Array} The subtasks.
+ */
+function getSubtasks() {
     let subtaskItems = document.querySelectorAll('#subtaskList li');
     let subtasks = [];
     subtaskItems.forEach(item => {
         let subtaskTitle = item.textContent.trim().substring(2);
         subtasks.push({ title: subtaskTitle, done: false });
     });
-
-    let userTask = {
+    return subtasks;
+}
+/**
+ * Creates a user task.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {string} date - The due date of the task.
+ * @param {string} userCategory - The category of the task.
+ * @param {Array} assignDetails - The details of the assigned tasks.
+ * @param {Array} subtasks - The subtasks.
+ * @param {string} selectedPriority - The priority level.
+ * @returns {Object} The created task.
+ */
+function createUserTask(title, description, date, userCategory, assignDetails, subtasks, selectedPriority) {
+    return {
         title: title,
         description: description,
         date: date,
@@ -99,6 +146,31 @@ async function submitTask(event) {
         category: "toDo",
         priority: selectedPriority
     };
+}
+/**
+ * Submits a task.
+ * @param {Event} event - The event object.
+ */
+async function submitTask(event) {
+    event.preventDefault();
+
+    const requiredFields = [
+        { id: 'title', errorId: 'title-error' },
+        { id: 'dueDate', errorId: 'dueDate-error' },
+        { id: 'category', errorId: 'category-error' }
+    ];
+
+    if (!validateFields(requiredFields)) {
+        return;
+    }
+
+    let title = document.getElementById('title').value;
+    let description = document.getElementById('description').value;
+    let date = document.getElementById('dueDate').value;
+    let userCategory = document.getElementById('category').value;
+    let assignDetails = getAssignedDetails();
+    let subtasks = getSubtasks();
+    let userTask = createUserTask(title, description, date, userCategory, assignDetails, subtasks, selectedPriority);
 
     try {
         await postData("/userTask", userTask);
@@ -110,10 +182,7 @@ async function submitTask(event) {
 
 
 /**
- * Gets the value of the input element with id 'subtasks', trims it, and if it's not an empty string,
- * creates a new 'li' element, sets its text content to the input value prefixed with a bullet point,
- * and appends it to the 'ul' element with id 'subtaskList'.
- * Finally, it clears the input element.
+ * Adds a subtask to the list.
  */
 function addSubtaskToList() {
     let subtaskInput = document.getElementById('subtasks');
