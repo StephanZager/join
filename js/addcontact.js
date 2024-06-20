@@ -41,7 +41,6 @@ async function addContact(newContact) {
     const response = await postData("/contact", newContact);
     newContact.id = response.name;
     contacts.push(newContact);
-
     filterNameAlphabet();
     filterContactAlphabet();
     generateContacts();

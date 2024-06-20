@@ -46,11 +46,7 @@ function addNewContactPopUp() {
 
 
     </div>
-        
-        
-        
-        
-        
+    
         
         
         
@@ -116,24 +112,24 @@ function addUbdateContactPopUp(i, path = "/contact") {
 function userInfoHTML(user, index) {
     return `
     <div class="user-info-header">
-        <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
+        <div style="background-color:${user.bgNameColor};" class="initial-user">${user.firstLetters}</div>
         <div class="user-info-name">
             <h2 class="user-name">${user.name}</h2>
             <div id="bgDeleteEditHandy" onclick="closeUserDeleteEditWindow()">
-            <div class="user-edit-delete" id="buttonEditDeleteHandy">
-                <div class="user-edit-delete-section" onclick="editUser(${index}), slideInPopup('popUpUbdateContact')">
-                    <img src="assets/img/edit-contacts.png" alt="edit">
-                    <p>Edit</p>
+                <div class="user-edit-delete" id="buttonEditDeleteHandy">
+                    <div class="user-edit-delete-section" onclick="editUser(${index})">
+                        <img src="assets/img/edit-contacts.png" alt="edit">
+                        <p>Edit</p>
+                    </div>
+                    <div class="user-edit-delete-section" onclick="deleteUser(${index})">
+                        <img src="assets/img/delete-contacts.png" alt="delete">
+                        <p>Delete</p>
+                    </div>
                 </div>
-                <div class="user-edit-delete-section" onclick="deleteUser(${index})">
-                    <img src="assets/img/delete-contacts.png" alt="edit">
-                    <p>Delete</p>
-                </div>
-            </div>
             </div>
         </div>
     </div>
-    <div class="contact-information-headline" >
+    <div class="contact-information-headline">
         <span>Contact Information</span>
     </div>
     <div class="contact-info-email-phone">
@@ -145,8 +141,8 @@ function userInfoHTML(user, index) {
             <p>Phone</p>
             <a style="color:black;" href="tel:${user.phone}">${user.phone}</a>
         </div>
-    </div>   
-   `
+    </div>
+    `;
 }
 
 function contactHTML(contact) {
