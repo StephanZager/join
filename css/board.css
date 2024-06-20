@@ -66,8 +66,10 @@
 
 .add-task-button-area {
     display: flex;
-    margin-left: 16px; /* Flexiblerer Abstand */
-    flex-shrink: 0; /* Verhindert das Schrumpfen */
+    justify-content: center;
+    margin-left: 16px;
+    flex-shrink: 0;
+    align-items: center;
 }
 
 .addTaskBtn {
@@ -653,10 +655,7 @@ input {
         overflow-y: scroll;
         height: calc(100vh - 176px);
     }
-}
 
-
-@media (max-width: 722px) {
     .display-none {
         display: none;
     }
@@ -670,6 +669,11 @@ input {
         width: 40px;
         margin-right: 16px;
     }
+}
+
+
+@media (max-width: 722px) {
+   
 }
 
 

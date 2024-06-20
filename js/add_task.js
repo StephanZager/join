@@ -109,8 +109,24 @@ function getAssignedDetails() {
         let bgNameColor = checkbox.dataset.bgColor;
         assignDetails.push({ name: name, initials: initials, bgNameColor: bgNameColor });
     });
+    showAssignInitials(assignDetails); 
     return assignDetails;
 }
+
+function showAssignInitials(assignDetails) {
+    let assignedInitial = document.getElementById('assignedInitial');
+    assignedInitial.innerHTML = '';
+    for (let i = 0; i < assignDetails.length; i++) {
+        let initials = assignDetails[i].initials;
+        let bgNameColor = assignDetails[i].bgNameColor;
+        let assignInitials = document.createElement('span');
+        assignInitials.textContent = initials;
+        assignInitials.style.backgroundColor = bgNameColor;
+        assignInitials.classList.add('assign-initials');
+        assignedInitial.appendChild(assignInitials);
+    }
+}
+
 /**
  * Returns the subtasks.
  * @returns {Array} The subtasks.
@@ -267,6 +283,10 @@ function createLabel(assignContacts) {
     checkbox.value = assignContacts.name;
     checkbox.dataset.bgColor = assignContacts.bgNameColor;
 
+    checkbox.addEventListener('change', () => {
+        getAssignedDetails();
+    });
+
     let initials = filterFirstLetters(assignContacts.name);
     let initialsSpan = document.createElement('span');
     initialsSpan.textContent = initials;
@@ -347,6 +367,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdownContent.classList.remove('show');
         }
     });
+
+    // Initial load of assign data
+    loadAssign();
 });
 
 
@@ -363,6 +386,8 @@ function clearSubtasks() {
     });
     subtaskList = [];
     document.getElementById('subtaskList').innerHTML = '';
+    assignDetails = [];
+    document.getElementById('assignedInitial').innerHTML = '';
 }
 
 /**
@@ -388,5 +413,3 @@ function setMinDate() {
         editDateElement.min = currentDate;
     } 
 }
-
-
