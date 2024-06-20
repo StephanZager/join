@@ -4,31 +4,34 @@ let selectedPriority = null;
 
 
 function setPriority(priority) {
-    const buttons = document.querySelectorAll('.prio-buttons button');
-    buttons.forEach(button => {
-        button.classList.remove('selected');
-        const img = button.querySelector('img');
-        img.src = button.getAttribute('data-original-image'); // Set to original image
+    const containers = document.querySelectorAll('.prio-buttons, .addtask-popup-prio-buttons');
+    containers.forEach(container => {
+        const buttons = container.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.classList.remove('selected');
+            const img = button.querySelector('img');
+            img.src = button.getAttribute('data-original-image'); // Set to original image
+        });
+
+        let button;
+        if (priority === 'Urgent') {
+            button = container.querySelector('.urgent-button');
+        } else if (priority === 'Medium') {
+            button = container.querySelector('.medium-button');
+        } else if (priority === 'Low') {
+            button = container.querySelector('.low-button');
+        } else {
+            console.error('Unknown priority:', priority);
+            return;
+        }
+
+        if (button) {
+            button.classList.add('selected');
+            const img = button.querySelector('img');
+            img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
+            selectedPriority = priority;
+        }
     });
-
-    let button;
-    if (priority === 'Urgent') {
-        button = document.querySelector('.urgent-button');
-    } else if (priority === 'Medium') {
-        button = document.querySelector('.medium-button');
-    } else if (priority === 'Low') {
-        button = document.querySelector('.low-button');
-    } else {
-        console.error('Unknown priority:', priority);
-        return;
-    }
-
-    if (button) {
-        button.classList.add('selected');
-        const img = button.querySelector('img');
-        img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
-        selectedPriority = priority;
-    }
 }
 
 
