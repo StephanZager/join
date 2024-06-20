@@ -17,9 +17,9 @@
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <h1 class="task-headline">Add Task</h1>
     <form action="" onsubmit="submitTask(event)" class="addTask-form" id="test2">
-        <main class="maincontainer-desktop">
-
-            <div class="left-field-section">
+        <main class="maincontainer-desktop" style="flex-direction: column;"> <!--add flex-direction: column;-->
+            <div style="display: flex;"> <!--add flex-->
+                <div class="left-field-section">
                 <div class="addtaks-desktop">
                     <span>Title<span style="color: red;">*</span></span>
                     <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text">
@@ -39,11 +39,11 @@
                         <!-- Die Optionen mit Checkboxen werden hier generiert -->
                     </div>
                 </div>
-            </div>
+                </div>
 
-            <div class="parting-line"></div>
+                <div class="parting-line"></div>
 
-            <div class="right-field-section">
+                <div class="right-field-section">
                 <div class="addtaks-desktop">
                     <span>Due Date <span style="color: red;">*</span></span>
                     <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
@@ -93,8 +93,8 @@
                     </div>
                     <ul id="subtaskList"></ul>
                 </div>
+                </div>
             </div>
-
             <div class="last-section">
                 <span class="required-bottom-info"><span style="color: red; margin-bottom: 0px;">*</span>This field is
                     required</span>
@@ -104,6 +104,7 @@
                             src="./assets/img/check-button-add-task.png" alt=""></button>
                 </div>
             </div>
+            
         </main>
     </form>
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
