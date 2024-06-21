@@ -264,6 +264,12 @@ async function loadAssign(path = "/contact") {
             assign.push(...assignArray);
         }
 
+        // Move logged in user to the top of the list
+        let loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            moveLoggedInUserToTop(loggedInUser);
+        }
+
         generateAssign();
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
@@ -291,8 +297,7 @@ function createLabel(assignContacts) {
         getAssignedDetails();
     });
 
-
-    let initials = filterFirstLetters(assignContacts.name);
+    let initials = filterFirstLetters(assignContacts.name.replace(" (YOU)", ""));
     let initialsSpan = document.createElement('span');
     initialsSpan.textContent = initials;
     initialsSpan.classList.add('assign-initials');
@@ -330,6 +335,19 @@ function generateAssign() {
         let assignContacts = assign[i];
         let label = createLabel(assignContacts);
         assignContact.appendChild(label);
+    }
+}
+
+/**
+ * Moves the logged-in user to the top of the assign array and marks it as "YOU".
+ * @param {string} loggedInUser - The name of the logged-in user.
+ */
+function moveLoggedInUserToTop(loggedInUser) {
+    let userIndex = assign.findIndex(contact => contact.name === loggedInUser);
+    if (userIndex !== -1) {
+        let user = assign.splice(userIndex, 1)[0]; // Remove the user from the array
+        user.name += " (YOU)"; // Mark as "YOU"
+        assign.unshift(user); // Add the user to the beginning of the array
     }
 }
 

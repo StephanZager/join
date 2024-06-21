@@ -108,6 +108,7 @@ async function login() {
 
           localStorage.setItem('userName', user.name);
           localStorage.setItem('userFirstLetters', user.firstLetters);
+          localStorage.setItem('loggedInUser',user.name, user.firstLetter, user.bgColor);
           console.log("Username saved to localStorage:", user.name);
 
           window.location.href = "summary.html";
