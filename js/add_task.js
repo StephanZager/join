@@ -207,7 +207,7 @@ function addSubtaskToList() {
     if (subtaskText !== '') {
         let subtaskList = document.getElementById('subtaskList');
         let newSubtaskItem = document.createElement('li');
-        newSubtaskItem.textContent =  subtaskText;
+        newSubtaskItem.textContent = subtaskText;
         subtaskList.appendChild(newSubtaskItem);
         subtaskInput.value = '';
     }

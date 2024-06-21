@@ -307,6 +307,10 @@
 }
 
 
+#assignedInitial {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 /*DOPPDOWN*/
 
@@ -530,6 +534,7 @@
         margin-top: 0px;
         margin-left: 0px;
         margin-top: 30px;
+        
     }
 
     .task-headline {
@@ -542,6 +547,7 @@
 
     .left-field-section {
         width: 100%;
+        margin-bottom: 48px;
     }
 
     .last-section {
