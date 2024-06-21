@@ -167,7 +167,13 @@ async function getData(path) {
   return responseData;
 }
 
-
+function logout() {
+  localStorage.removeItem('loggedInUser', 'userName');
+  localStorage.removeItem('userName');
+  localStorage.removeItem('userFirstLetters');
+  localStorage.removeItem('guestLogin');
+  window.location.href = "index.html";
+}
 
 function showLoginInitial() {
   let userFirstLetters = localStorage.getItem('userFirstLetters');
