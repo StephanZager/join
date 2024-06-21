@@ -127,6 +127,10 @@ function showAssignInitials(assignDetails) {
     }
 }
 
+function filterNameAlphabet() {
+    assign.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 /**
  * Returns the subtasks.
  * @returns {Array} The subtasks.
@@ -282,10 +286,11 @@ function createLabel(assignContacts) {
     checkbox.type = 'checkbox';
     checkbox.value = assignContacts.name;
     checkbox.dataset.bgColor = assignContacts.bgNameColor;
-
+    
     checkbox.addEventListener('change', () => {
         getAssignedDetails();
     });
+
 
     let initials = filterFirstLetters(assignContacts.name);
     let initialsSpan = document.createElement('span');
@@ -320,6 +325,7 @@ function generateAssign() {
     assignContact.innerHTML = '';
     currentAssignIndex = 0;
 
+    filterNameAlphabet();
     for (let i = 0; i < assign.length; i++) {
         let assignContacts = assign[i];
         let label = createLabel(assignContacts);
