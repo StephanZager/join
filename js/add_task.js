@@ -373,9 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdownContent.classList.remove('show');
         }
     });
-
-    // Initial load of assign data
-    loadAssign();
 });
 
 
