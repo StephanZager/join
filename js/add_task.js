@@ -346,7 +346,7 @@ function moveLoggedInUserToTop(loggedInUser) {
     let userIndex = assign.findIndex(contact => contact.name === loggedInUser);
     if (userIndex !== -1) {
         let user = assign.splice(userIndex, 1)[0]; // Remove the user from the array
-        user.name += " (YOU)"; // Mark as "YOU"
+        user.name += " (YOU)";
         assign.unshift(user); // Add the user to the beginning of the array
     }
 }

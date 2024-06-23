@@ -448,6 +448,39 @@ textarea {
     display: none;
 }
 
+.edit-task-last-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 976px;
+    padding: 8px;
+    margin-top: 90px;
+    margin-left: auto;
+}
+
+.edit-btn {
+    gap: 16px;
+    display: flex;
+    margin-left: auto;
+}
+
+.create-edit-task-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 183px;
+    height: 56px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: #2A3647;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 700px;
+    gap: 4px;
+}
+
 @media (max-width: 1400px) {
     .parting-line {
         margin: 0 20px;

@@ -429,6 +429,12 @@ input {
     gap: 8px;
 }
 
+#editTaskBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #editTaskBtn button {
     border: none;
     background-color: transparent;
@@ -541,12 +547,6 @@ input {
 #confirmBtn {
     display: flex;
     width: 100%;
-}
-
-
-.edit-btn {
-    gap: 16px;
-    display: flex;
 }
 
 .show-initials-section {
