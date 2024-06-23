@@ -17,7 +17,7 @@
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
     <h1 class="task-headline">Add Task</h1>
     <form action="" onsubmit="submitTask(event)" class="addTask-form" id="test2">
-        <main class="maincontainer-desktop" style="flex-direction: column;"> <!--add flex-direction: column;-->
+        <main class="maincontainer-desktop" id="maincontainerAddtask" style="flex-direction: column;"> <!--add flex-direction: column;-->
             <div class="addTask-interaction-container"> <!--add flex-->
                 <div class="left-field-section">
                 <div class="addtaks-desktop">
@@ -39,6 +39,7 @@
                         <!-- Die Optionen mit Checkboxen werden hier generiert -->
                     </div>
                 </div>
+                <div id="assignedInitial"></div>
                 </div>
 
                 <div class="parting-line"></div>

@@ -109,8 +109,28 @@ function getAssignedDetails() {
         let bgNameColor = checkbox.dataset.bgColor;
         assignDetails.push({ name: name, initials: initials, bgNameColor: bgNameColor });
     });
+    showAssignInitials(assignDetails); 
     return assignDetails;
 }
+
+function showAssignInitials(assignDetails) {
+    let assignedInitial = document.getElementById('assignedInitial');
+    assignedInitial.innerHTML = '';
+    for (let i = 0; i < assignDetails.length; i++) {
+        let initials = assignDetails[i].initials;
+        let bgNameColor = assignDetails[i].bgNameColor;
+        let assignInitials = document.createElement('span');
+        assignInitials.textContent = initials;
+        assignInitials.style.backgroundColor = bgNameColor;
+        assignInitials.classList.add('assign-initials');
+        assignedInitial.appendChild(assignInitials);
+    }
+}
+
+function filterNameAlphabet() {
+    assign.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 /**
  * Returns the subtasks.
  * @returns {Array} The subtasks.
@@ -191,9 +211,23 @@ function addSubtaskToList() {
     if (subtaskText !== '') {
         let subtaskList = document.getElementById('subtaskList');
         let newSubtaskItem = document.createElement('li');
-        newSubtaskItem.textContent = '\u2022 ' + subtaskText;
+        newSubtaskItem.classList.add('subtask-item');
+        newSubtaskItem.innerHTML = subtaskText + `
+                <div class="edit-delete-addtask">
+                    <img src="assets/img/edit.png" alt="Edit"> | <img src="assets/img/delete.png" alt="Delete">   
+                </div>`;
         subtaskList.appendChild(newSubtaskItem);
         subtaskInput.value = '';
+        scrollToBottomAddtask();
+    }
+}
+
+
+function scrollToBottomAddtask() {
+    const maincontainerAddtask = document.getElementById('maincontainerAddtask');
+    if (maincontainerAddtask) {
+        // Scrollt zum Ende des Containers
+        maincontainerAddtask.scrollTop = maincontainerAddtask.scrollHeight;
     }
 }
 
@@ -244,6 +278,12 @@ async function loadAssign(path = "/contact") {
             assign.push(...assignArray);
         }
 
+        // Move logged in user to the top of the list
+        let loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            moveLoggedInUserToTop(loggedInUser);
+        }
+
         generateAssign();
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
@@ -266,8 +306,12 @@ function createLabel(assignContacts) {
     checkbox.type = 'checkbox';
     checkbox.value = assignContacts.name;
     checkbox.dataset.bgColor = assignContacts.bgNameColor;
+    
+    checkbox.addEventListener('change', () => {
+        getAssignedDetails();
+    });
 
-    let initials = filterFirstLetters(assignContacts.name);
+    let initials = filterFirstLetters(assignContacts.name.replace(" (YOU)", ""));
     let initialsSpan = document.createElement('span');
     initialsSpan.textContent = initials;
     initialsSpan.classList.add('assign-initials');
@@ -300,10 +344,24 @@ function generateAssign() {
     assignContact.innerHTML = '';
     currentAssignIndex = 0;
 
+    filterNameAlphabet();
     for (let i = 0; i < assign.length; i++) {
         let assignContacts = assign[i];
         let label = createLabel(assignContacts);
         assignContact.appendChild(label);
+    }
+}
+
+/**
+ * Moves the logged-in user to the top of the assign array and marks it as "YOU".
+ * @param {string} loggedInUser - The name of the logged-in user.
+ */
+function moveLoggedInUserToTop(loggedInUser) {
+    let userIndex = assign.findIndex(contact => contact.name === loggedInUser);
+    if (userIndex !== -1) {
+        let user = assign.splice(userIndex, 1)[0]; // Remove the user from the array
+        user.name += " (YOU)";
+        assign.unshift(user); // Add the user to the beginning of the array
     }
 }
 
@@ -363,6 +421,8 @@ function clearSubtasks() {
     });
     subtaskList = [];
     document.getElementById('subtaskList').innerHTML = '';
+    assignDetails = [];
+    document.getElementById('assignedInitial').innerHTML = '';
 }
 
 /**
@@ -388,5 +448,3 @@ function setMinDate() {
         editDateElement.min = currentDate;
     } 
 }
-
-

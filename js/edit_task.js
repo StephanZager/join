@@ -137,6 +137,16 @@ function addSubtask() {
     }
     currentTask.subtasks.push({ title: subtaskTitle });
     showSubtasksEditTask();
+
+    scrollToBottom();
+}
+
+function scrollToBottom() {
+    const editTaskMainContainer = document.getElementById('editTaskMainContainer');
+    if (editTaskMainContainer) {
+        // Scrollt zum Ende des Containers
+        editTaskMainContainer.scrollTop = editTaskMainContainer.scrollHeight;
+    }
 }
 
 function deleteSubtask(i) {

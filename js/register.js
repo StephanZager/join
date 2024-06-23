@@ -39,6 +39,7 @@ async function submitData(event) {
         name: name,
         email: email,
         password: password,
+        bgNameColor: toAssignColorNameLogo(),
         firstLetters: filterFirstLetters(name)
     };
 

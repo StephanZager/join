@@ -53,8 +53,6 @@ body {
     align-items: center;
     justify-content: center;
     display: none;
-
-
 }
 
 .contact-info-container {
@@ -676,6 +674,7 @@ h3 {
         bottom: 80px;
         background-color: #FFFFFF;
     }*/
+
     .contact-info-container {
         height: auto;
         width: 50%;

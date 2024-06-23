@@ -66,8 +66,10 @@
 
 .add-task-button-area {
     display: flex;
-    margin-left: 16px; /* Flexiblerer Abstand */
-    flex-shrink: 0; /* Verhindert das Schrumpfen */
+    justify-content: center;
+    margin-left: 16px;
+    flex-shrink: 0;
+    align-items: center;
 }
 
 .addTaskBtn {
@@ -427,6 +429,12 @@ input {
     gap: 8px;
 }
 
+#editTaskBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #editTaskBtn button {
     border: none;
     background-color: transparent;
@@ -541,12 +549,6 @@ input {
     width: 100%;
 }
 
-
-.edit-btn {
-    gap: 16px;
-    display: flex;
-}
-
 .show-initials-section {
     display: flex;
 }
@@ -567,6 +569,7 @@ input {
 
 #subtaskListEdit {
     padding: 0;
+    list-style-type: none;
 }
 
 .display-none-mobile-btn {
@@ -653,10 +656,7 @@ input {
         overflow-y: scroll;
         height: calc(100vh - 176px);
     }
-}
 
-
-@media (max-width: 722px) {
     .display-none {
         display: none;
     }
@@ -670,6 +670,11 @@ input {
         width: 40px;
         margin-right: 16px;
     }
+}
+
+
+@media (max-width: 722px) {
+   
 }
 
 

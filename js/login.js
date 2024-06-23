@@ -108,6 +108,7 @@ async function login() {
 
           localStorage.setItem('userName', user.name);
           localStorage.setItem('userFirstLetters', user.firstLetters);
+          localStorage.setItem('loggedInUser',user.name, user.firstLetter, user.bgColor);
           console.log("Username saved to localStorage:", user.name);
 
           window.location.href = "summary.html";
@@ -116,6 +117,37 @@ async function login() {
       }
   } catch (error) {
       console.error("Error fetching data from Firebase:", error);
+  }
+}
+
+async function guestLogin() {
+  const guestEmail = "guest@example.de"; // Ersetzen Sie dies durch die E-Mail des Gastaccounts
+  const guestPassword = "Test12.."; // Ersetzen Sie dies durch das Passwort des Gastaccounts
+
+  try {
+    let userData = await getData("/userData");
+
+    let guestUser = null;
+    for (let key in userData) {
+      if (userData[key].email === guestEmail && userData[key].password === guestPassword) {
+        guestUser = userData[key];
+        break;
+      }
+    }
+
+    if (guestUser) {
+      localStorage.setItem('email', guestEmail);
+      localStorage.setItem('userName', guestUser.name);
+      localStorage.setItem('userFirstLetters', guestUser.firstLetters);
+      localStorage.setItem('guestLogin', 'true'); // Markieren Sie den Login als Gastlogin
+
+      console.log("Gastbenutzer angemeldet:", guestUser.name);
+      window.location.href = "board.html";
+    } else {
+      console.error("Gastaccount nicht gefunden.");
+    }
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Daten von Firebase:", error);
   }
 }
 
@@ -135,7 +167,13 @@ async function getData(path) {
   return responseData;
 }
 
-
+function logout() {
+  localStorage.removeItem('loggedInUser', 'userName');
+  localStorage.removeItem('userName');
+  localStorage.removeItem('userFirstLetters');
+  localStorage.removeItem('guestLogin');
+  window.location.href = "index.html";
+}
 
 function showLoginInitial() {
   let userFirstLetters = localStorage.getItem('userFirstLetters');
