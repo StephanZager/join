@@ -214,6 +214,16 @@ function addSubtaskToList() {
         newSubtaskItem.textContent = subtaskText;
         subtaskList.appendChild(newSubtaskItem);
         subtaskInput.value = '';
+        scrollToBottomAddtask();
+    }
+}
+
+
+function scrollToBottomAddtask() {
+    const maincontainerAddtask = document.getElementById('maincontainerAddtask');
+    if (maincontainerAddtask) {
+        // Scrollt zum Ende des Containers
+        maincontainerAddtask.scrollTop = maincontainerAddtask.scrollHeight;
     }
 }
 
