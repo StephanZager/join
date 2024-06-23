@@ -203,14 +203,18 @@ form {
     padding: 18px 10px;
     margin-left: 24px;
     gap: 4px;
+    border: none;
 }
 
 .addcontact_Button:hover {
     cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 .close-botton-addcontact:hover {
     cursor: pointer;
+    
 }
 
 .form-button {
@@ -244,6 +248,9 @@ form {
 
 .addcontact_cancel_Button:hover {
     cursor: pointer;
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+    
 }
 
 .close-botton-addcontact-destop {
