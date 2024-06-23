@@ -139,7 +139,7 @@ function getSubtasks() {
     let subtaskItems = document.querySelectorAll('#subtaskList li');
     let subtasks = [];
     subtaskItems.forEach(item => {
-        let subtaskTitle = item.textContent.trim().substring(2);
+        let subtaskTitle = item.textContent.trim().substring();
         subtasks.push({ title: subtaskTitle, done: false });
     });
     return subtasks;
@@ -260,6 +260,7 @@ async function postData(path, data) {
     return responseToJson;
 }
 
+
 /**
  * Fetches data from a specified path, converts the response to JSON, and adds the values to the `assign` array.
  * After the data is loaded, the `generateAssign` function is called.
@@ -278,10 +279,9 @@ async function loadAssign(path = "/contact") {
             assign.push(...assignArray);
         }
 
-        // Move logged in user to the top of the list
         let loggedInUser = localStorage.getItem('loggedInUser');
         if (loggedInUser) {
-            moveLoggedInUserToTop(loggedInUser);
+            moveLoggedInUserToTop(assign, loggedInUser); // Pass [`assign`](command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22f%3A%5C%5Cjoin_gruppenarbeit%5C%5Cjs%5C%5Cadd_task.js%22%2C%22_sep%22%3A1%2C%22external%22%3A%22file%3A%2F%2F%2Ff%253A%2Fjoin_gruppenarbeit%2Fjs%2Fadd_task.js%22%2C%22path%22%3A%22%2Ff%3A%2Fjoin_gruppenarbeit%2Fjs%2Fadd_task.js%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A4%2C%22character%22%3A0%7D%5D "js/add_task.js") as an argument
         }
 
         generateAssign();
@@ -339,6 +339,7 @@ function cleanNameForInitials(name) {
  */
 function generateAssign() {
     let assignContact = document.getElementById('assigned');
+    let loggedInUser = localStorage.getItem('loggedInUser'); // Dies sollte durch den tatsächlichen Namen des eingeloggten Benutzers ersetzt werden
 
     if (!assignContact) {
         console.error("Element mit ID 'assigned' wurde nicht gefunden.");
@@ -349,6 +350,7 @@ function generateAssign() {
     currentAssignIndex = 0;
 
     filterNameAlphabet();
+    moveLoggedInUserToTop(assign, loggedInUser); // Korrigiert, um `assign` und `loggedInUser` zu übergeben
     for (let i = 0; i < assign.length; i++) {
         let assignContacts = assign[i];
         let label = createLabel(assignContacts);
@@ -360,14 +362,23 @@ function generateAssign() {
  * Moves the logged-in user to the top of the assign array and marks it as "YOU".
  * @param {string} loggedInUser - The name of the logged-in user.
  */
-function moveLoggedInUserToTop(loggedInUser) {
-    let userIndex = assign.findIndex(contact => contact.name === loggedInUser);
+function moveLoggedInUserToTop(assign, loggedInUser) {
+    console.log('Logged In User:', loggedInUser);
+    let userIndex = assign.findIndex(contact => cleanNameForInitials(contact.name) === loggedInUser);
+    console.log('User Index:', userIndex);
     if (userIndex !== -1) {
-        let user = assign.splice(userIndex, 1)[0]; // Remove the user from the array
-        user.name += " (YOU)";
-        assign.unshift(user); // Add the user to the beginning of the array
+        let user = assign.splice(userIndex, 1)[0];
+        console.log('User Spliced:', user);
+        user.name = loggedInUser + " (YOU)"; // Ensure the name is set correctly
+        assign.unshift(user);
+        console.log('Updated assign:', assign);
+    } else {
+        console.log('User not found in assign array.');
     }
 }
+
+
+
 
 /**
  * Extracts the first letter from each word in a given string, converts them to uppercase and concatenates them.
