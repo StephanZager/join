@@ -304,6 +304,7 @@
 #subtaskList {
     overflow-y: auto;
     max-height: 138px;
+    padding: 0;
 }
 
 
@@ -463,6 +464,26 @@
 
 .addTask-interaction-container{
     display: flex;
+    
+}
+
+.subtask-item {
+    display: flex;
+    align-items: center; /* Zentriert die Inhalte vertikal */
+}
+
+.subtask-item::before {
+    content: ''; /* Wichtig für die Anzeige */
+    height: 8px; /* Größe des simulierten Listenpunkts */
+    width: 8px; /* Größe des simulierten Listenpunkts */
+    background-color: #000; /* Farbe des simulierten Listenpunkts */
+    border-radius: 50%; /* Macht den simulierten Listenpunkt rund */
+    display: inline-block;
+    margin-right: 10px; /* Abstand zwischen dem simulierten Listenpunkt und dem Text */
+}
+
+.edit-delete-addtask {
+    margin-left: auto;
     
 }
 

@@ -211,7 +211,11 @@ function addSubtaskToList() {
     if (subtaskText !== '') {
         let subtaskList = document.getElementById('subtaskList');
         let newSubtaskItem = document.createElement('li');
-        newSubtaskItem.textContent = subtaskText;
+        newSubtaskItem.classList.add('subtask-item');
+        newSubtaskItem.innerHTML = subtaskText + `
+                <div class="edit-delete-addtask">
+                    <img src="assets/img/edit.png" alt="Edit"> | <img src="assets/img/delete.png" alt="Delete">   
+                </div>`;
         subtaskList.appendChild(newSubtaskItem);
         subtaskInput.value = '';
         scrollToBottomAddtask();
