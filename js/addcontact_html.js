@@ -5,6 +5,7 @@ function addNewContactPopUp() {
          <div onclick="doNotClose(event)" id="popUpAddContact">
         <div class="addcontact-container >
 
+   
         <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact-destop"
             src="/assets/img/close-addcontact.png" alt="check">
 
@@ -27,7 +28,7 @@ function addNewContactPopUp() {
             <input type="tel" class="addcontact-phone" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
                 <button type="button" class="addcontact_cancel_Button">
-                    <img src="assets/img/cancel-addcontact.png" alt="check">Cancel
+                    Cancel x
                 </button>
                 <div id="btn-create-addcontact" class="d-none">
                     <button type="submit" class="addcontact_Button">
@@ -46,11 +47,7 @@ function addNewContactPopUp() {
 
 
     </div>
-    
-        
-        
-        
-        
+                 
         </div>
     </div>
 </div>`
@@ -111,13 +108,14 @@ function addUbdateContactPopUp(i, path = "/contact") {
 
 function userInfoHTML(user, index) {
     return `
+    
     <div class="user-info-header">
         <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         <div class="user-info-name">
             <h2 class="user-name">${user.name}</h2>
             <div id="bgDeleteEditHandy" onclick="closeUserDeleteEditWindow()">
                 <div class="user-edit-delete" id="buttonEditDeleteHandy">
-                <div class="user-edit-delete-section" onclick="editUser(${index}), slideInPopup('popUpUbdateContact')">
+                <div class="user-edit-delete-section" onclick="editUser(${index})">
                     <img src="assets/img/edit-contacts.png" alt="edit">
                     <p>Edit</p>
                 </div>
@@ -143,6 +141,7 @@ function userInfoHTML(user, index) {
             <a style="color:black;" href="tel:${user.phone}">${user.phone}</a>
         </div>
     </div>
+    
     `;
 }
 

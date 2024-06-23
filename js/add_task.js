@@ -117,7 +117,7 @@ function showAssignInitials(assignDetails) {
     let assignedInitial = document.getElementById('assignedInitial');
     assignedInitial.innerHTML = '';
     for (let i = 0; i < assignDetails.length; i++) {
-        let initials = assignDetails[i].initials;
+        let initials = filterFirstLetters(cleanNameForInitials(assignDetails[i].name)); // Bereinigter Name für Initialen
         let bgNameColor = assignDetails[i].bgNameColor;
         let assignInitials = document.createElement('span');
         assignInitials.textContent = initials;
@@ -326,6 +326,10 @@ function createLabel(assignContacts) {
     label.appendChild(checkbox);
 
     return label;
+}
+
+function cleanNameForInitials(name) {
+    return name.replace(" (YOU)", "");
 }
 
 /**

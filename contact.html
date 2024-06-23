@@ -26,6 +26,24 @@
     <div id="addNewContactPopUp"></div>
     <div id="addUbdateContactPopUp"></div>
     <div id="contactConfirmation"></div>
+    <div id="userDeleteHandy" onclick="closeUserDeleteEditWindow()">
+        <div class="bg">
+               <div class="test" onclick="doNotClose(event)">
+                <div class="user-edit-delete" id="buttonEditDeleteHandy">
+                    <div class="user-edit-delete-section" >
+                        <img src="assets/img/edit-contacts.png" alt="edit">
+                        <p>Edit</p>
+                    </div>
+                    <div class="user-edit-delete-section">
+                        <img src="assets/img/delete-contacts.png" alt="edit">
+                        <p>Delete</p>
+                    </div>
+                </div>
+               </div>            
+        </div>          
+    </div>
+
+
     <div class="contactList-container">
         <main class="contactList" id="userList" onclick="deselectUser()">
             <div>
@@ -45,7 +63,6 @@
                 <div class="button-open-edit-delete-handy" onclick="openUserDeleteEditWindow()">
                     <img src="assets/img/3-points-user-info-handy.png" alt="">
                 </div>
-                
             </div>
             <img src="assets/img/contact-info-blue.png" class="contact-arrow-blue" onclick="closeUserInfoWindow(), deselectUser()"
                 alt="">
