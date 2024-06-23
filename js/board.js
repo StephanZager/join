@@ -74,6 +74,16 @@ function generateTaskHTML(taskItem) {
         </div>`;
 }
 
+
+
+
+function cleanNameForInitials(name) {
+    return name.replace(" (YOU)", "");
+}
+
+
+
+
 function getPriorityIcon(priority) {
     const icons = {
         Urgent: './assets/img/prio-urgent-icon-unclicked.png',
