@@ -3,6 +3,8 @@
  * @type {Array}
  */
 let assign = [];
+
+let globalSubtasks = [];
 /**
  * Index of the current assigned task.
  * @type {number}
@@ -142,6 +144,7 @@ function getSubtasks() {
         let subtaskTitle = item.textContent.trim().substring();
         subtasks.push({ title: subtaskTitle, done: false });
     });
+    globalSubtasks = subtasks;
     return subtasks;
 }
 /**
@@ -209,17 +212,54 @@ function addSubtaskToList() {
     let subtaskText = subtaskInput.value.trim();
 
     if (subtaskText !== '') {
+        // Erstellen eines neuen Subtask-Elements
         let subtaskList = document.getElementById('subtaskList');
         let newSubtaskItem = document.createElement('li');
         newSubtaskItem.classList.add('subtask-item');
+        let subtaskId = globalSubtasks.length; // Eindeutiger ID für das neue Subtask
         newSubtaskItem.innerHTML = subtaskText + `
                 <div class="edit-delete-addtask">
-                    <img src="assets/img/edit.png" alt="Edit"> | <img src="assets/img/delete.png" alt="Delete">   
+                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${subtaskId})"> | 
+                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${subtaskId})">   
                 </div>`;
         subtaskList.appendChild(newSubtaskItem);
-        subtaskInput.value = '';
-        scrollToBottomAddtask();
+
+        // Hinzufügen des neuen Subtasks zu globalSubtasks
+        globalSubtasks.push({ title: subtaskText, done: false, id: subtaskId });
+
+        subtaskInput.value = ''; // Eingabefeld leeren
+        scrollToBottomAddtask(); // Zum Ende der Liste scrollen
     }
+}
+
+function editSubtask(id) {
+    // Logik zum Bearbeiten eines Subtasks
+    let subtaskToEdit = globalSubtasks[id];
+    // Implementieren Sie hier die Bearbeitungslogik, z.B. das Anzeigen eines Bearbeitungsformulars
+    console.log('Bearbeiten:', subtaskToEdit);
+}
+
+function deleteSubtask(id) {
+    // Logik zum Löschen eines Subtasks
+    globalSubtasks.splice(id, 1);
+    // Aktualisieren Sie hier die Anzeige der Subtask-Liste
+    console.log('Löschen:', id);
+    renderSubtasks(); // Funktion zum erneuten Rendern der Subtasks
+}
+
+function renderSubtasks() {
+    let subtaskList = document.getElementById('subtaskList');
+    subtaskList.innerHTML = ''; // Liste leeren
+    globalSubtasks.forEach((subtask, index) => {
+        let newSubtaskItem = document.createElement('li');
+        newSubtaskItem.classList.add('subtask-item');
+        newSubtaskItem.innerHTML = subtask.title + `
+                <div class="edit-delete-addtask">
+                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${index})"> | 
+                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">   
+                </div>`;
+        subtaskList.appendChild(newSubtaskItem);
+    });
 }
 
 

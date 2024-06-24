@@ -161,7 +161,6 @@ function editSubtask(i) {
 }
 
 function clearEditSubtask(i) {
-    
     document.getElementById(`subtask${i}`).innerHTML = `<input type="text" id="edit-input${i}"><div><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div>`;
 }
 
