@@ -140,6 +140,8 @@ function userInfoHTML(user, index) {
             <a style="color:black;" href="tel:${user.phone}">${user.phone}</a>
         </div>
     </div>
+
+    
     `;
 }
 

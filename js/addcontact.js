@@ -181,12 +181,12 @@ async function submitForm(event, i, contactId, path) {
 
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
-    contacts[i] = updatedContact;    
+    contacts[i] = updatedContact;
     let newIndex = findContactIndexById(contactId);
 
     if (newIndex !== -1) {
         updatedContact.originalIndex = newIndex;
-        
+
         openUserInfo(newIndex);
     }
     cloeAddUbdateContactwindow();
@@ -249,7 +249,7 @@ async function deleteUser(i, path = "/contact") {
     });
     document.getElementById('contactInfo').innerHTML = '';
     generateContacts();
-    
+
 }
 
 /**
@@ -307,11 +307,11 @@ function filterContactAlphabet() {
  */
 function openAddNewContactwindow() {
     addNewContactPopUp();
-    
+
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
-    
-    
+
+
 }
 
 /**
@@ -319,7 +319,7 @@ function openAddNewContactwindow() {
  * 
  */
 function cloeAddNewContactwindow() {
-    
+
     document.getElementById('bg_add_new_contact').classList.add('d-none');
 }
 
@@ -349,13 +349,26 @@ function closeUserInfoWindow() {
 }
 
 function openUserDeleteEditWindow() {
-    document.getElementById('buttonEditDeleteHandy').style.display = 'block';
-    document.getElementById('bgDeleteEditHandy').classList.add('bg-edit-delete');
+    document.getElementById('userDeleteHandy').style.display = 'block';
+    document.getElementById('userDeleteHandy').innerHTML = `
+            <div class="bg">
+               <div id="containerEditDeleteHandy" class="container-edit-delete-handy" onclick="doNotClose(event)">
+                <div class="user-edit-delete-handy" id="buttonEditDeleteHandy">
+                    <div onclick="editUser(${currentOpenUser}), slideInPopup('popUpUbdateContact'), closeUserDeleteEditWindow()" class="user-edit-delete-section-handy" >
+                        <img src="assets/img/edit-contacts.png" alt="edit">
+                        <p>Edit</p>
+                    </div>
+                    <div onclick="deleteUser(${currentOpenUser}), closeUserDeleteEditWindow(), closeUserInfoWindow()" class="user-edit-delete-section-handy">
+                        <img src="assets/img/delete-contacts.png" alt="edit">
+                        <p>Delete</p>
+                    </div>
+                </div>
+               </div>            
+        </div> `;
 }
 
 function closeUserDeleteEditWindow() {
-    document.getElementById('bgDeleteEditHandy').classList.add = ('d-none');
-    document.getElementById('buttonEditDeleteHandy').style.display = 'none';
+    document.getElementById('userDeleteHandy').innerHTML = '';
 }
 
 /**
@@ -383,7 +396,7 @@ async function addNewContactConfirmation() {
  */
 function slideInPopup(popupId) {
     let popup = document.getElementById(popupId);
-    
+
     popup.classList.add('slide-in');
 }
 

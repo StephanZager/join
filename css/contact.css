@@ -110,7 +110,7 @@ body {
 .add-new-contact-button:hover {
     cursor: pointer;
     background-color: #29ABE2;
-    
+
 }
 
 .seperator {
@@ -312,6 +312,53 @@ h3 {
     ;
 }
 
+.user-edit-delete-handy {
+    display: flex;
+    flex-direction: column;
+    width: 159px;
+    height: 24px;
+    gap: 16px;
+    opacity: 0px;
+    margin-top: 8px;
+
+}
+
+
+
+.user-edit-delete-handy p {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+
+}
+
+.user-edit-delete-section-handy {
+    display: flex;
+    gap: 8px;
+}
+
+.user-edit-delete-section-handy img {
+    width: 18.28px;
+    height: 18.25px;
+    top: 2.75px;
+    left: 3px;
+    gap: 0px;
+    opacity: 0px;
+}
+
+.user-edit-delete-section-handy:hover {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.2px;
+    text-align: left;
+    color: #29ABE2;
+    ;
+}
+
 .contact-information-headline {
     width: 207px;
     height: 74px;
@@ -467,7 +514,7 @@ h3 {
     transform: translateX(0);
 }
 
-#userDeleteHandy{
+#userDeleteHandy {
     display: none;
 }
 
@@ -824,7 +871,7 @@ h3 {
 
 @media (max-width: 700px) {
 
-    
+
 
     .show-contact {
         padding: 15px 24px 15px 24px;
@@ -866,30 +913,36 @@ h3 {
         border: 1px;
     }
 
-    
 
-    .test {
+
+    .container-edit-delete-handy {
         background-color: white;
+        padding: 10px;
         height: 100px;
-        width: 100px;
-        position: absolute;         
-        right: 0;
-        bottom: 80px;
+        width: 126px;
+        gap: 10px;
+        position: absolute;
+        right: 16px;
+        bottom: 100px;
         z-index: 1;
+        box-shadow: 0px 4px 4px 0px #00000040;         
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
     }
 
- 
+
 
 }
 
-@media (max-width: 400px){
-   .show-contact{
-    gap: 20px;
-   } 
+@media (max-width: 400px) {
+    .show-contact {
+        gap: 20px;
+    }
 }
 
-@media (max-width: 370px){
-    .user-info-name{
+@media (max-width: 370px) {
+    .user-info-name {
         width: 200px;
     }
 }
