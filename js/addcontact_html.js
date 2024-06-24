@@ -112,7 +112,7 @@ function userInfoHTML(user, index) {
         <div style="background-color:${user.bgNameColor} ;" class="initial-user" >${user.firstLetters}</div>
         <div class="user-info-name">
             <h2 class="user-name">${user.name}</h2>
-            <div id="bgDeleteEditHandy" onclick="closeUserDeleteEditWindow()">
+            <div class="edit-delete-desktop">
                 <div class="user-edit-delete" id="buttonEditDeleteHandy">
                  <div class="user-edit-delete-section" onclick="editUser(${index}), slideInPopup('popUpUbdateContact')">
                     <img src="assets/img/edit-contacts.png" alt="edit">

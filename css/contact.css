@@ -82,6 +82,7 @@ body {
     width: 352px;
     height: 56px;
     gap: 16px;
+    border: 0px;
     border-radius: 10px;
     background-color: #2A3647;
     opacity: 0px;
@@ -460,11 +461,15 @@ h3 {
 
     opacity: 0px;
     background: #2A3647;
-    border: 1px solid #2A3647
+    border: 0px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
 }
 
 .button-open-edit-delete-handy:hover {
     cursor: pointer;
+    background-color: #29ABE2;
+    ;
 }
 
 .button-open-edit-delete-handy-container {
@@ -871,6 +876,9 @@ h3 {
 
 @media (max-width: 700px) {
 
+    .edit-delete-desktop {
+        display: none;
+    }
 
 
     .show-contact {
@@ -898,10 +906,30 @@ h3 {
     .contact-arrow-blue {
         display: block;
         position: absolute;
-        width: 25px;
-        height: 25px;
+       
         right: 20px;
         top: 48px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-arrow-blue img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .contact-arrow-blue:hover {
+        cursor: pointer;
+        
+    }
+
+    .contact-arrow-blue:active {
+        background-color: #EEEEEE;
+        border-radius: 100%;
+        width: 32px;
+        height: 32px;
     }
 
     .button-open-edit-delete-handy-container {
@@ -925,7 +953,7 @@ h3 {
         right: 16px;
         bottom: 100px;
         z-index: 1;
-        box-shadow: 0px 4px 4px 0px #00000040;         
+        box-shadow: 0px 4px 4px 0px #00000040;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         border-bottom-left-radius: 20px;
