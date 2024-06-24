@@ -50,31 +50,31 @@ function markCheckedCheckboxes() {
         return;
     }
 
-    // Holen Sie sich alle Checkboxen innerhalb von 'assignContact'
     let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
-
     console.log('currentTask.assign:', currentTask.assign); // Debugging-Informationen
 
-    // Iterieren Sie durch jede Checkbox
     for (let checkbox of checkboxes) {
         console.log('checkbox value:', checkbox.value); // Debugging-Informationen
 
-        // Extrahieren Sie den Namen, die Initialen und die Hintergrundfarbe aus dem Wert der Checkbox
         let [name, initials, bgColor] = checkbox.value.split('|');
+        let cleanedName = cleanNameForInitials(name);
+        let generatedInitials = filterFirstLetters(cleanedName);
 
-        // Generieren Sie die Initialen aus dem Namen
-        let generatedInitials = filterFirstLetters(name);
-
-        // Wenn der Kontakt in 'currentTask.assign' vorhanden ist, markieren Sie die Checkbox
-        if (currentTask.assign.some(assign => assign.name.trim().toLowerCase() === name.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgNameColor === bgColor)) {
+        // Stellen Sie sicher, dass der Vergleich mit bereinigten Namen erfolgt
+        if (currentTask.assign.some(assign => cleanNameForInitials(assign.name).trim().toLowerCase() === cleanedName.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgNameColor === bgColor)) {
             checkbox.checked = true;
         }
     }
 }
 
 
+function cleanNameForInitials(name) {
+    return name.replace(" (YOU)", "");
+}
+
 function filterFirstLetters(name) {
-    let words = name.split(' ');
+    let cleanedName = cleanNameForInitials(name);
+    let words = cleanedName.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
     return firstLetters;
 }
