@@ -487,7 +487,7 @@
     
 }
 
-@media (max-width: 799px) {
+@media (max-width: 868px) {
 
     .addTask-interaction-container{
         
@@ -675,7 +675,7 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 799px) {
+@media (min-width: 320px) and (max-width: 868px) {
 
     .title-select-or-input {
         height: 40px;
