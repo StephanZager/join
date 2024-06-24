@@ -226,7 +226,7 @@ function generateInitialsHTML(assignedInitialsArray) {
             <span class="show-initials" style="background-color: ${assignData.bgNameColor}">
                 ${assignData.initials}
             </span>
-            <span class="assign-name">${assignData.name}</span>
+            <span class="assign-name">${cleanNameForInitials(assignData.name)}</span>
         </div>`
     ).join('');
 }
