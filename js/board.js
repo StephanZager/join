@@ -221,7 +221,16 @@ function showModal(taskItem) {
 }
 
 function generateInitialsHTML(assignedInitialsArray) {
-    return assignedInitialsArray.map(assignData => `
+    // Sortiert die Liste alphabetisch nach dem bereinigten Namen
+    const sortedArray = assignedInitialsArray.sort((a, b) => {
+        const nameA = cleanNameForInitials(a.name).toUpperCase(); // Groß-/Kleinschreibung ignorieren
+        const nameB = cleanNameForInitials(b.name).toUpperCase(); // Groß-/Kleinschreibung ignorieren
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+    });
+
+    return sortedArray.map(assignData => `
         <div class="assign-details">
             <span class="show-initials" style="background-color: ${assignData.bgNameColor}">
                 ${assignData.initials}
