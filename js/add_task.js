@@ -364,19 +364,22 @@ function generateAssign() {
  */
 function moveLoggedInUserToTop(assign, loggedInUser) {
     console.log('Logged In User:', loggedInUser);
-    let userIndex = assign.findIndex(contact => contact.name === loggedInUser); //cleanNameForInitials(contact.name) === loggedInUser);
+    // Suche nach dem Benutzer, auch wenn der Name geändert wurde
+    let userIndex = assign.findIndex(contact => contact.name.replace(/\s\(YOU\)$/i, '') === loggedInUser);
     console.log('User Index:', userIndex);
     if (userIndex !== -1) {
         let user = assign.splice(userIndex, 1)[0];
         console.log('User Spliced:', user);
-        user.name = loggedInUser + " (YOU)"; // Ensure the name is set correctly
+        // Füge " (YOU)" nur hinzu, wenn es noch nicht vorhanden ist
+        if (!user.name.endsWith(" (YOU)")) {
+            user.name += " (YOU)";
+        }
         assign.unshift(user);
         console.log('Updated assign:', assign);
     } else {
         console.log('User not found in assign array.');
     }
 }
-
 
 
 
