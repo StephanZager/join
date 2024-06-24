@@ -117,7 +117,7 @@ function showAssignInitials(assignDetails) {
     let assignedInitial = document.getElementById('assignedInitial');
     assignedInitial.innerHTML = '';
     for (let i = 0; i < assignDetails.length; i++) {
-        let initials = filterFirstLetters(cleanNameForInitials(assignDetails[i].name)); // Bereinigter Name für Initialen
+        let initials = filterFirstLetters(assignDetails[i].name); // Bereinigter Name für Initialen //cleanNameForInitials(assignDetails[i].name);
         let bgNameColor = assignDetails[i].bgNameColor;
         let assignInitials = document.createElement('span');
         assignInitials.textContent = initials;
@@ -328,9 +328,9 @@ function createLabel(assignContacts) {
     return label;
 }
 
-function cleanNameForInitials(name) {
-    return name.replace(" (YOU)", "");
-}
+//function cleanNameForInitials(name) {
+    //return name.replace(" (YOU)", "");
+//}
 
 /**
  * Clears the inner HTML of the element with id 'assigned' and appends a label for each object in the assign array.
@@ -364,7 +364,7 @@ function generateAssign() {
  */
 function moveLoggedInUserToTop(assign, loggedInUser) {
     console.log('Logged In User:', loggedInUser);
-    let userIndex = assign.findIndex(contact => cleanNameForInitials(contact.name) === loggedInUser);
+    let userIndex = assign.findIndex(contact => contact.name === loggedInUser); //cleanNameForInitials(contact.name) === loggedInUser);
     console.log('User Index:', userIndex);
     if (userIndex !== -1) {
         let user = assign.splice(userIndex, 1)[0];
@@ -387,7 +387,9 @@ function moveLoggedInUserToTop(assign, loggedInUser) {
  * @returns {string} The concatenated uppercase first letters of each word in the input string.
  */
 function filterFirstLetters(name) {
-    let words = name.split(' ');
+    // Entfernen spezifischer Zeichenfolgen wie "(YOU)"
+    let cleanedName = name.replace(/\(YOU\)/ig, '');
+    let words = cleanedName.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
     return firstLetters;
 }
