@@ -57,6 +57,7 @@ async function addContact(newContact) {
 function selectionTheLastCreatedUser(newContact) {
     openUserInfo(newContact.originalIndex);
     document.getElementById('userButton' + newContact.originalIndex).focus();
+    slideInPopup('contactInfo');
     openUserInfoWindow();
 }
 
