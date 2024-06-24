@@ -27,7 +27,7 @@ body {
 }
 
 .bg {
-    background-color: rgba(76, 70, 70, 0.137);
+    background-color: rgba(76, 70, 70, 0);
     z-index: 1000;
     position: fixed;
     left: 0;
