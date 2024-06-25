@@ -249,7 +249,7 @@
     margin-left: 80px;
 }
 
-.summary-greeting-mobile{
+.summary-greeting-mobile{    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -257,6 +257,11 @@
     left: 500px;
     width: 100%;
     height: 100vh;
+}
+
+#greetingSummaryMobile{
+    display: none;
+
 }
 
 .summary-day-greeting {
