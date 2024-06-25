@@ -235,8 +235,8 @@ function addSubtaskToList() {
 function editSubtask(id) {
     // Logik zum Bearbeiten eines Subtasks
     let subtaskToEdit = globalSubtasks[id];
-    console.log(i, subtask);
-    document.getElementById(`subtask${id}`).innerHTML = `<input type="text" id="edit-input${id}" value="${subtask.title}"> <div><img src="assets/img/delete.png" onclick="clearEditSubtask(${id})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${id})"></div>`;
+    console.log(id, globalSubtasks);
+    document.getElementById(`subtaskToEdit${id}`).innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png"> | <img src="assets/img/hook.png"></div>`;
     console.log('Bearbeiten:', subtaskToEdit);
 }
 
