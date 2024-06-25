@@ -331,9 +331,6 @@ function updateTaskCardSubtasks(taskItem) {
 
 async function createTask(event) {
     event.preventDefault();
-    
-    // Debugging-Ausgabe
-    console.log("createTask aufgerufen");
 
     let taskTitle = document.getElementById('taskTitle').value;
     let taskDescription = document.getElementById('taskDescription').value;
@@ -341,13 +338,6 @@ async function createTask(event) {
     let userCategory = document.getElementById('category').value;
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
-
-    // Überprüfen Sie, ob currentCategory korrekt gesetzt ist
-    if (!currentCategory) {
-        console.error('Kategorie nicht gesetzt');
-        alert('Bitte wählen Sie eine Kategorie aus.');
-        return;
-    }
 
     const newTask = {
         title: taskTitle,
@@ -375,9 +365,6 @@ async function createTask(event) {
 
         const responseData = await response.json();
         newTask.firebaseId = responseData.name; // Setzen der Firebase-ID des neuen Tasks
-
-        // Debugging-Ausgabe
-        console.log("Neuer Task erstellt:", newTask);
 
         task.push(newTask); // Hinzufügen des neuen Tasks zur lokalen Task-Liste
         generateTask(); // Aktualisieren der Anzeige
