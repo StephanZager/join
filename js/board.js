@@ -337,6 +337,7 @@ async function createTask(event) {
 
     let taskTitle = document.getElementById('taskTitle').value;
     let taskDescription = document.getElementById('taskDescription').value;
+    let date = document.getElementById('taskDueDate').value;
     let userCategory = document.getElementById('category').value;
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
@@ -351,6 +352,7 @@ async function createTask(event) {
     const newTask = {
         title: taskTitle,
         description: taskDescription,
+        date: date,
         category: currentCategory, // Verwenden der aktuellen Kategorie
         userCategory: userCategory,
         assign: assignDetails,
