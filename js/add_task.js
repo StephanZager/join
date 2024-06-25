@@ -235,7 +235,8 @@ function addSubtaskToList() {
 function editSubtask(id) {
     // Logik zum Bearbeiten eines Subtasks
     let subtaskToEdit = globalSubtasks[id];
-    // Implementieren Sie hier die Bearbeitungslogik, z.B. das Anzeigen eines Bearbeitungsformulars
+    console.log(i, subtask);
+    document.getElementById(`subtask${id}`).innerHTML = `<input type="text" id="edit-input${id}" value="${subtask.title}"> <div><img src="assets/img/delete.png" onclick="clearEditSubtask(${id})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${id})"></div>`;
     console.log('Bearbeiten:', subtaskToEdit);
 }
 

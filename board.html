@@ -45,21 +45,21 @@
                 <div class="task-column"> 
                     <div class="taskHeadline">
                         <h3>To do</h3>
-                        <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
+                        <button class="smallBtn" onclick="openTaskPopup('todo')"><img src="assets/img/board.plus.png"></button>
                     </div>
                     <div id="toDo" class="showTasksBoard" draggable="true" ondrop="moveTo('toDo')"ondragover="allowDrop(event)"></div>
                 </div>  
                 <div class="task-column">
                     <div class="taskHeadline">
                         <h3>In progress</h3>
-                        <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
+                        <button class="smallBtn" onclick="openTaskPopup('inProgress')"><img src="assets/img/board.plus.png"></button>
                     </div>
                     <div id="inProgress" class="showTasksBoard" draggable="true" ondrop="moveTo('inProgress')"ondragover="allowDrop(event)"></div>
                 </div>
                 <div class="task-column">
                     <div class="taskHeadline">
                         <h3>Await feedback</h3>
-                        <button class="smallBtn" onclick="openTaskPopup()"><img src="assets/img/board.plus.png"></button>
+                        <button class="smallBtn" onclick="openTaskPopup('awaitFeedback')"><img src="assets/img/board.plus.png"></button>
                     </div>
                     <div id="awaitFeedback" class="showTasksBoard" draggable="true" ondrop="moveTo('awaitFeedback')"ondragover="allowDrop(event)"></div>
                 </div>    
@@ -188,19 +188,19 @@
         <div class="modal-addtask-popup" id="popup_add_task">
             <span id="closePopupButton" class="close">&times;</span>
             <h1 class="addtask-popup-headline">Add Task</h1>
-            <form id="addTaskFormRemove" action="" onsubmit="submitTask(event)">
+            <form id="addTaskFormRemove" action="" onsubmit="createTask(event)">
                 <main class="addtask-popup-maincontainer-desktop" id="maincontainerAddTask">
                     <div class="addtask-popup-left-field-section">
                         <div class="addtaks-desktop">
                             <span>Title<span style="color: red;">*</span></span>
-                            <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text"
+                            <input id="taskTitle" class="title-select-or-input" placeholder="Enter a title" type="text"
                                 required>
                             <span class="required-info">This field is required</span>
                         </div>
 
                         <div class="addtaks-desktop">
                             <span>Description</span>
-                            <textarea id="description" placeholder="Enter a Description"
+                            <textarea id="taskDescription" placeholder="Enter a Description"
                                 type="text"></textarea>
                         </div>
 
@@ -210,7 +210,7 @@
                             <div class="dropdown-content" id="assigned" style="max-height: 200px;">
                                 <!-- Die Optionen mit Checkboxen werden hier generiert -->
                             </div>
-
+                            <div id="assignedInitial"></div>
                         </div>
                     </div>
 

@@ -1,4 +1,5 @@
 let currentDraggedElement;
+let currentCategory = '';
 let task = [];
 
 // Laden der Aufgaben aus Firebase
@@ -37,7 +38,11 @@ function generateTask() {
             });
         }
     });
+
+    // Debugging-Ausgabe
+    console.log("Tasks generiert:", task);
 }
+
 
 function generatePlaceholderHTML(category) {
     return `<div class="placeholder"><span>No tasks ${category}</span></div>`;
@@ -80,9 +85,6 @@ function generateTaskHTML(taskItem) {
 function cleanNameForInitials(name) {
     return name.replace(" (YOU)", "");
 }
-
-
-
 
 function getPriorityIcon(priority) {
     const icons = {
@@ -291,7 +293,6 @@ function updateProgressBar(taskItem) {
     const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
     progressBar.style.width = `${progressPercentage}%`;
 
-    // Update subtask count on task card
     const subtaskProgress = document.getElementById(`subtaskProgress_${taskItem.firebaseId}`);
     if (subtaskProgress) {
         subtaskProgress.textContent = `${completedSubtasks}/${totalSubtasks} Subtasks`;
@@ -320,10 +321,87 @@ function updateTaskCardSubtasks(taskItem) {
     }
 }
 
+
+
+
+
+
+
+
+
+async function createTask(event) {
+    event.preventDefault();
+    
+    // Debugging-Ausgabe
+    console.log("createTask aufgerufen");
+
+    let taskTitle = document.getElementById('taskTitle').value;
+    let taskDescription = document.getElementById('taskDescription').value;
+    let userCategory = document.getElementById('category').value;
+    let assignDetails = getAssignedDetails();
+    let subtasks = getSubtasks();
+
+    // Überprüfen Sie, ob currentCategory korrekt gesetzt ist
+    if (!currentCategory) {
+        console.error('Kategorie nicht gesetzt');
+        alert('Bitte wählen Sie eine Kategorie aus.');
+        return;
+    }
+
+    const newTask = {
+        title: taskTitle,
+        description: taskDescription,
+        category: currentCategory, // Verwenden der aktuellen Kategorie
+        userCategory: userCategory,
+        assign: assignDetails,
+        subtasks: subtasks,
+        priority: selectedPriority
+    };
+
+    try {
+        const response = await fetch(`${BASE_URL}/userTask.json`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newTask),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        newTask.firebaseId = responseData.name; // Setzen der Firebase-ID des neuen Tasks
+
+        // Debugging-Ausgabe
+        console.log("Neuer Task erstellt:", newTask);
+
+        task.push(newTask); // Hinzufügen des neuen Tasks zur lokalen Task-Liste
+        generateTask(); // Aktualisieren der Anzeige
+        closeTaskPopup(); // Schließen des Popups nach der Erstellung
+
+    } catch (error) {
+        console.error('Fehler beim Erstellen der Aufgabe:', error);
+        alert(`Fehler beim Erstellen der Aufgabe: ${error.message}`);
+    }
+}
+
+
+
+
+
+
+
+
+
+
 /**
  * Opens the 'addTaskModel' popup by setting its display style to 'block'.
  */
-function openTaskPopup() {
+function openTaskPopup(category) {
+    currentCategory = category;
+    console.log('Kategorie gesetzt:', currentCategory); // Debugging-Ausgabe
     document.getElementById("addTaskModel").style.display = "block";
 }
 
