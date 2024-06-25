@@ -11,12 +11,14 @@ function greeting() {
     let hours = realTime.getHours();
 
     if (hours >= 18) {
-        grettingSummary.innerHTML = 'Good evening,';
+        return grettingSummary.innerHTML = 'Good evening,';
     } else if (hours <= 10) {
-        grettingSummary.innerHTML = 'Good morning,';
+        return grettingSummary.innerHTML = 'Good morning,';
     } else if (hours >= 6 && hours <= 18) {
-        grettingSummary.innerHTML = 'Good Day,';
+        return grettingSummary.innerHTML = 'Good Day,';
     }
+
+    
 }
 
 /**
@@ -28,7 +30,7 @@ function displayGreetingWithName() {
     let userName = localStorage.getItem('userName');
     if (userName) {
         let summaryPersonGreeting = document.querySelector('.summary-person-greeting');
-        summaryPersonGreeting.innerHTML = userName;
+        return summaryPersonGreeting.innerHTML = userName;
     }
 }
 
@@ -125,6 +127,19 @@ function sohwUgretnTask() {
     }
 }
 
+function greetingSummaryMobile(){
+    let grettingMobile = document.getElementById('greetingSummaryMobile');
+    let grettingTime = greeting();
+    let greetingName = displayGreetingWithName();
+
+    console.log(grettingTime, greetingName);
+
+    grettingMobile.innerHTML = `<div class="summary-greeting-mobile">
+                                    <h3 class="summary-day-greeting">${grettingTime}</h3>
+                                    <span class="summary-person-greeting">${greetingName}</span>
+                                </div>`
+}
+
 
 /**
  * Initializes the summary page by setting the greeting, displaying the user's name, 
@@ -135,7 +150,9 @@ function sohwUgretnTask() {
 async function initSummary() {
     console.log("Initializing summary...");
     greeting();
+
     displayGreetingWithName();
+    greetingSummaryMobile()
     await loadCategory();
     taskAssignment();
     sohwUgretnTask();

@@ -249,6 +249,16 @@
     margin-left: 80px;
 }
 
+.summary-greeting-mobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: 500px;
+    width: 100%;
+    height: 100vh;
+}
+
 .summary-day-greeting {
     font-size: 47px;
     font-weight: 500;
