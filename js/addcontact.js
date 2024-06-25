@@ -141,6 +141,7 @@ async function generateContacts() {
 }
 
 function openUserInfo(index) {
+   
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
