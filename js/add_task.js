@@ -212,20 +212,12 @@ function addSubtaskToList() {
     let subtaskText = subtaskInput.value.trim();
 
     if (subtaskText !== '') {
-        // Erstellen eines neuen Subtask-Elements
-        let subtaskList = document.getElementById('subtaskList');
-        let newSubtaskItem = document.createElement('li');
-        newSubtaskItem.classList.add('subtask-item');
-        let subtaskId = globalSubtasks.length; // Eindeutiger ID für das neue Subtask
-        newSubtaskItem.innerHTML = subtaskText + `
-                <div class="edit-delete-addtask">
-                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${subtaskId})"> | 
-                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${subtaskId})">   
-                </div>`;
-        subtaskList.appendChild(newSubtaskItem);
-
         // Hinzufügen des neuen Subtasks zu globalSubtasks
+        let subtaskId = globalSubtasks.length; // Eindeutiger ID für das neue Subtask
         globalSubtasks.push({ title: subtaskText, done: false, id: subtaskId });
+
+        // Liste neu rendern
+        renderSubtasks();
 
         subtaskInput.value = ''; // Eingabefeld leeren
         scrollToBottomAddtask(); // Zum Ende der Liste scrollen
@@ -233,11 +225,13 @@ function addSubtaskToList() {
 }
 
 function editSubtask(id) {
-    // Logik zum Bearbeiten eines Subtasks
     let subtaskToEdit = globalSubtasks[id];
-    console.log(id, globalSubtasks);
-    document.getElementById(`subtaskToEdit${id}`).innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png"> | <img src="assets/img/hook.png"></div>`;
-    console.log('Bearbeiten:', subtaskToEdit);
+    let editElement = document.getElementById(`subtaskToEdit${id}`);
+    if (editElement) {
+        editElement.innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png"> | <img src="assets/img/hook.png"></div>`;
+    } else {
+        console.error('Element to edit does not exist:', `subtaskToEdit${id}`);
+    }
 }
 
 function deleteSubtask(id) {
@@ -254,8 +248,9 @@ function renderSubtasks() {
     globalSubtasks.forEach((subtask, index) => {
         let newSubtaskItem = document.createElement('li');
         newSubtaskItem.classList.add('subtask-item');
+        // Ensure the container for editing has the correct ID
         newSubtaskItem.innerHTML = subtask.title + `
-                <div class="edit-delete-addtask">
+                <div id="subtaskToEdit${index}" class="edit-delete-addtask">
                     <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${index})"> | 
                     <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">   
                 </div>`;
