@@ -227,11 +227,20 @@ function addSubtaskToList() {
 function editSubtask(id) {
     let subtaskToEdit = globalSubtasks[id];
     let editElement = document.getElementById(`subtaskToEdit${id}`);
-    if (editElement) {
-        editElement.innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png"> | <img src="assets/img/hook.png"></div>`;
-    } else {
-        console.error('Element to edit does not exist:', `subtaskToEdit${id}`);
-    }
+    
+    editElement.innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"> | <img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div>`;
+   
+}
+
+function confirmAddTaskSubtaskEdit(id) {
+    let editedSubtask = document.getElementById(`addSubtask-input${id}`).value;
+    globalSubtasks[id].title = editedSubtask;
+    renderSubtasks();
+
+}
+
+function clearSubtaskInput(id) {
+    document.getElementById(`addSubtask-input${id}`).value = '';
 }
 
 function deleteSubtask(id) {
@@ -244,18 +253,20 @@ function deleteSubtask(id) {
 
 function renderSubtasks() {
     let subtaskList = document.getElementById('subtaskList');
-    subtaskList.innerHTML = ''; // Liste leeren
-    globalSubtasks.forEach((subtask, index) => {
-        let newSubtaskItem = document.createElement('li');
-        newSubtaskItem.classList.add('subtask-item');
-        // Ensure the container for editing has the correct ID
-        newSubtaskItem.innerHTML = subtask.title + `
-                <div id="subtaskToEdit${index}" class="edit-delete-addtask">
+    subtaskList.innerHTML = ''; // Clear the list
+    if (Array.isArray(globalSubtasks)) {
+        globalSubtasks.forEach((subtaskToEdit, index) => {
+            let subtaskItem = `
+            <div id="subtaskToEdit${index}" class="subtask-item">
+                <li class="addtask-subtask-li">${subtaskToEdit.title}</li>
+                 <div class="edit-delete-img">
                     <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${index})"> | 
-                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">   
-                </div>`;
-        subtaskList.appendChild(newSubtaskItem);
-    });
+                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">
+                </div>
+            </div>`;
+            subtaskList.innerHTML += subtaskItem;
+        });
+    }
 }
 
 
