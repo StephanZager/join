@@ -220,6 +220,7 @@ function addSubtaskToList() {
         renderSubtasks();
 
         subtaskInput.value = ''; // Eingabefeld leeren
+        resetSubtaskInput(); // Fokus entfernen und zusätzliche Logik ausführen
         scrollToBottomAddtask(); // Zum Ende der Liste scrollen
     }
 }
@@ -241,6 +242,25 @@ function confirmAddTaskSubtaskEdit(id) {
 
 function clearSubtaskInput(id) {
     document.getElementById(`addSubtask-input${id}`).value = '';
+}
+
+function clearSubtask() {
+    document.getElementById('subtasks').value = ''; 
+}
+
+function resetSubtaskInput() {
+    let subtaskInput = document.getElementById('subtasks');
+    subtaskInput.value = ''; // Input-Feld leeren
+
+    // Anpassen der Sichtbarkeit von Buttons und Bildern
+    let inputButtonImg = document.querySelector('.input-button-img');
+    let confirmAndDeleteBtnSubtask = document.querySelector('.clear-confirm-subtask');
+
+    inputButtonImg.style.display = 'flex'; // Original-Bild wieder anzeigen
+    confirmAndDeleteBtnSubtask.style.display = 'none'; // Buttons ausblenden
+
+    subtaskInput.blur(); // Fokus entfernen
+    console.log("Fokus entfernt");
 }
 
 function deleteSubtask(id) {

@@ -235,7 +235,6 @@
 }
 
 .title-select-or-input {
-
     width: 100%;
     height: 136px;
     border: 1px solid lightgrey;
@@ -255,12 +254,12 @@
 .input-with-button {
     position: relative;
     display: inline-block;
-    /* Damit die Breite sich dem Inhalt anpasst */
     border: 1px solid lightgray;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #ffffff;
 }
 
 .input-with-button input {
@@ -274,7 +273,7 @@
     justify-content: center;
 }
 
-.input-with-button button {
+/*.input-with-button button {
     position: absolute;
     top: 35%;
     right: 3%;
@@ -286,14 +285,52 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
+}*/
 
 .input-button-img {
     width: 14px;
     height: 14px;
+    padding-right: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.input-with-button button .input-button-img {
+    display: flex;
+}
+
+.subtask-parting-line {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.subtask-clear-confirm-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.clear-confirm-btn {
+    border: none;
+    background-color: transparent;
+}
+
+.clear-confirm-subtask {
+    display: none;
+}
+
+/* Wenn das input-Feld fokussiert ist, das ursprüngliche Bild verstecken und die neuen Bilder anzeigen */
+.input-with-button:focus-within .input-button-img {
+    display: none;
+}
+
+.input-with-button:focus-within .clear-confirm-subtask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14px;
+    
 }
 
 .input-with-button button:hover {
