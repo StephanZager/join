@@ -18,7 +18,7 @@ function greeting() {
         return grettingSummary.innerHTML = 'Good Day,';
     }
 
-    
+
 }
 
 /**
@@ -127,17 +127,29 @@ function sohwUgretnTask() {
     }
 }
 
-function greetingSummaryMobile(){
+function greetingSummaryMobile() {
+
+    if (localStorage.getItem('showGreetings') !== 'true') { // Corrected key name from 'showGreeting' to 'showGreetings'
+        return;
+    }
+
+    localStorage.setItem('showGreetings', 'false'); // Consistent key name
+
     let grettingMobile = document.getElementById('greetingSummaryMobile');
     let grettingTime = greeting();
     let greetingName = displayGreetingWithName();
 
     console.log(grettingTime, greetingName);
 
+
     grettingMobile.innerHTML = `<div class="summary-greeting-mobile">
                                     <h3 class="summary-day-greeting">${grettingTime}</h3>
                                     <span class="summary-person-greeting">${greetingName}</span>
-                                </div>`
+                                </div>`;
+
+    setTimeout(() => {
+        grettingMobile.style.display = 'none';
+    }, 3000);
 }
 
 

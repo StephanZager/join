@@ -260,7 +260,7 @@
 }
 
 #greetingSummaryMobile{
-    display: none;
+    display: flex;
 
 }
 
@@ -299,6 +299,11 @@
 }
 
 @media (max-width: 1200px) {
+
+    #greetingSummaryMobile{
+        display: block;
+    }
+
     .headline-summary {
         margin-left: 328px;
     }

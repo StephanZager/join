@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load saved email and password if 'Remember me' was checked
     if (localStorage.getItem('rememberMe') === 'true') {
-        emailInput.value = localStorage.getItem('email');
-        passwordInput.value = localStorage.getItem('password');
-        rememberMeCheckbox.checked = true;
+      emailInput.value = localStorage.getItem('email');
+      passwordInput.value = localStorage.getItem('password');
+      rememberMeCheckbox.checked = true;
     }
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        login();
+      event.preventDefault();
+      login();
     });
 
     setupPasswordToggle(passwordInput);
@@ -35,7 +35,7 @@ function setupPasswordToggle(passwordInputField) {
   let isPasswordVisible = false;
   let clickCount = 0;
 
-  passwordInputField.addEventListener("mousedown", function(event) {
+  passwordInputField.addEventListener("mousedown", function (event) {
     event.preventDefault();
     clickCount += 1;
     const cursorPosition = passwordInputField.selectionStart;
@@ -50,7 +50,7 @@ function setupPasswordToggle(passwordInputField) {
       isPasswordVisible = false;
       passwordInputField.type = "password";
       passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
-      clickCount = 0; 
+      clickCount = 0;
     }
 
     // Restore the cursor position
@@ -58,16 +58,16 @@ function setupPasswordToggle(passwordInputField) {
     passwordInputField.focus();
   });
 
-  passwordInputField.addEventListener("focus", function() {
+  passwordInputField.addEventListener("focus", function () {
     if (!isPasswordVisible) {
       passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
     }
   });
 
-  passwordInputField.addEventListener("blur", function() {
+  passwordInputField.addEventListener("blur", function () {
     if (!isPasswordVisible) {
       passwordInputField.style.backgroundImage = "url('../assets/img/lock-password-input.png')";
-      clickCount = 0; 
+      clickCount = 0;
     }
   });
 }
@@ -85,38 +85,43 @@ async function login() {
   const errorMessage = document.getElementById('error-message');
 
   try {
-      let userData = await getData("/userData");
+    let userData = await getData("/userData");
 
-      let user = null;
-      for (let key in userData) {
-          if (userData[key].email === email && userData[key].password === password) {
-              user = userData[key];
-              break;
-          }
+    let user = null;
+    for (let key in userData) {
+      if (userData[key].email === email && userData[key].password === password) {
+        user = userData[key];
+        break;
       }
+    }
+
+    if (user) {
+      if (rememberMeCheckbox.checked) {
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+        localStorage.setItem('rememberMe', 'true');
+      } else {
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
+        localStorage.setItem('rememberMe', 'false');
+      }
+
+      localStorage.setItem('userName', user.name);
+      localStorage.setItem('userFirstLetters', user.firstLetters);
+      localStorage.setItem('loggedInUser', user.name, user.firstLetter, user.bgColor);
+      console.log("Username saved to localStorage:", user.name);
 
       if (user) {
-          if (rememberMeCheckbox.checked) {
-              localStorage.setItem('email', email);
-              localStorage.setItem('password', password);
-              localStorage.setItem('rememberMe', 'true');
-          } else {
-              localStorage.removeItem('email');
-              localStorage.removeItem('password');
-              localStorage.setItem('rememberMe', 'false');
-          }
 
-          localStorage.setItem('userName', user.name);
-          localStorage.setItem('userFirstLetters', user.firstLetters);
-          localStorage.setItem('loggedInUser',user.name, user.firstLetter, user.bgColor);
-          console.log("Username saved to localStorage:", user.name);
-
-          window.location.href = "summary.html";
-      } else {
-          errorMessage.style.display = 'block';
+        localStorage.setItem('showGreetings', 'true');
+        window.location.href = "summary.html";
       }
+
+    } else {
+      errorMessage.style.display = 'block';
+    }
   } catch (error) {
-      console.error("Error fetching data from Firebase:", error);
+    console.error("Error fetching data from Firebase:", error);
   }
 }
 
@@ -142,7 +147,11 @@ async function guestLogin() {
       localStorage.setItem('guestLogin', 'true'); // Markieren Sie den Login als Gastlogin
 
       console.log("Gastbenutzer angemeldet:", guestUser.name);
-      window.location.href = "board.html";
+
+      if (guestUser) {
+        localStorage.setItem('showGreetings', 'true');
+        window.location.href = "summary.html";
+      }
     } else {
       console.error("Gastaccount nicht gefunden.");
     }
@@ -160,8 +169,8 @@ async function guestLogin() {
 async function getData(path) {
   let response = await fetch(BASE_URL + path + ".json");
   if (!response.ok) {
-      console.error("Error fetching data:", response.statusText);
-      return;
+    console.error("Error fetching data:", response.statusText);
+    return;
   }
   let responseData = await response.json();
   return responseData;
