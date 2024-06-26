@@ -255,6 +255,7 @@
     align-items: center;
     justify-content: center;
     left: 500px;
+    margin-left: 100px;
     width: 100%;
     height: calc(100vh - 178px);
     

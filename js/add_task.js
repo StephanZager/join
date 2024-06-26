@@ -236,10 +236,6 @@ function resetSubtaskFocus() {
     document.getElementById('placeholderImgSubtask').style.display = 'flex';
 }
 
-
-
-
-
 function editSubtask(id) {
     let subtaskToEdit = globalSubtasks[id];
     let editElement = document.getElementById(`subtaskToEdit${id}`);
