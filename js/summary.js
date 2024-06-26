@@ -128,29 +128,28 @@ function sohwUgretnTask() {
 }
 
 function greetingSummaryMobile() {
-
-    if (localStorage.getItem('showGreetings') !== 'true') { // Corrected key name from 'showGreeting' to 'showGreetings'
+    if (window.matchMedia("(max-width: 1200px)").matches) {       
+    if (localStorage.getItem('showGreetings') !== 'true') { 
         return;
-    }
-
-    localStorage.setItem('showGreetings', 'false'); // Consistent key name
+    }    
+    localStorage.setItem('showGreetings', 'false'); 
 
     let grettingMobile = document.getElementById('greetingSummaryMobile');
     let grettingTime = greeting();
-    let greetingName = displayGreetingWithName();
+    let greetingName = displayGreetingWithName();    
 
-    console.log(grettingTime, greetingName);
-
-
-    grettingMobile.innerHTML = `<div class="summary-greeting-mobile">
-                                    <h3 class="summary-day-greeting">${grettingTime}</h3>
-                                    <span class="summary-person-greeting">${greetingName}</span>
-                                </div>`;
+    grettingMobile.innerHTML = grettingMobileHTML(grettingTime, greetingName);
 
     setTimeout(() => {
-        grettingMobile.style.display = 'none';
-    }, 3000);
+        grettingMobile.classList.add('hide');
+        setTimeout(() => {
+            grettingMobile.style.display = 'none';
+        }, 900);
+    }, 2000);
 }
+}
+
+
 
 
 /**
@@ -168,4 +167,13 @@ async function initSummary() {
     await loadCategory();
     taskAssignment();
     sohwUgretnTask();
+}
+
+function grettingMobileHTML(grettingTime, greetingName){
+    return `
+    <div class="summary-greeting-mobile">
+        <h3 class="summary-day-greeting">${grettingTime}</h3>
+        <span class="summary-person-greeting">${greetingName}</span>
+    </div>
+    `;
 }
