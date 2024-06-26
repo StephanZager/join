@@ -320,18 +320,7 @@
     display: none;
 }
 
-/* Wenn das input-Feld fokussiert ist, das ursprüngliche Bild verstecken und die neuen Bilder anzeigen */
-.input-with-button:focus-within .input-button-img {
-    display: none;
-}
 
-.input-with-button:focus-within .clear-confirm-subtask {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 14px;
-    
-}
 
 .input-with-button button:hover {
     border-radius: 32px;
