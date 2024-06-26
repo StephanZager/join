@@ -513,11 +513,20 @@
     width: 100%;
 }
 
-
-
 .edit-delete-addtask {
-    margin-left: auto;
-    
+    margin-left: auto;    
+}
+
+.edit-delete-img {
+    display: none; /* Standardmäßig versteckt */
+}
+
+.subtask-item:hover {
+    background-color: grey;
+}
+
+.subtask-item:hover .edit-delete-img {
+    display: block; /* Wird angezeigt, wenn über das .subtask-item gehovert wird */
 }
 
 @media (max-width: 866px) {
