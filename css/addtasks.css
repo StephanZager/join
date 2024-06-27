@@ -342,9 +342,16 @@
     flex-wrap: wrap;
 }
 
+
 .select-container {
     position: relative;
     height: 48px; /* Setze die Höhe des Containers */
+}
+
+select:focus {
+    outline: none;
+    border-color: #29ABE2 !important;
+
 }
 
 .select-container::after {
