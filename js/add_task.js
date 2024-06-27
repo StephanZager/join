@@ -218,7 +218,7 @@ function addSubtaskToList() {
 
         // Liste neu rendern
         renderSubtasks();
-        resetSubtaskFocus()
+        
         subtaskInput.value = ''; // Eingabefeld leeren
         scrollToBottomAddtask(); // Zum Ende der Liste scrollen
     }
@@ -235,10 +235,6 @@ function resetSubtaskFocus() {
     document.getElementById('confirmAndDeleteBtnSubtask').style.display = 'none';
     document.getElementById('placeholderImgSubtask').style.display = 'flex';
 }
-
-
-
-
 
 function editSubtask(id) {
     let subtaskToEdit = globalSubtasks[id];
@@ -478,10 +474,12 @@ function filterFirstLetters(name) {
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownButton = document.querySelector('.dropdown-button');
     const dropdownContent = document.querySelector('.dropdown-content');
+    const dropdownArrow = document.querySelector('.dropdown-arrow');
 
     dropdownButton.addEventListener('click', (event) => {
         event.stopPropagation();
         dropdownContent.classList.toggle('show');
+        dropdownArrow.classList.toggle('rotate');
     });
 
     dropdownContent.addEventListener('click', (event) => {
@@ -528,6 +526,7 @@ function setMinDate() {
 
     let dueDateElement = document.getElementById('dueDate');
     let editDateElement = document.getElementById('editDate');
+    let taskDateElement = document.getElementById('taskDueDate');
 
     if (dueDateElement) {
         dueDateElement.min = currentDate;
@@ -535,4 +534,7 @@ function setMinDate() {
     if (editDateElement) {
         editDateElement.min = currentDate;
     } 
+    if (taskDateElement) {
+        taskDateElement.min = currentDate;
+    }
 }

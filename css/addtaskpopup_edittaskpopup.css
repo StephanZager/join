@@ -274,20 +274,6 @@ textarea {
     justify-content: center;
 }
 
-.input-with-button button {
-    position: absolute;
-    top: 35%;
-    right: 3%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    width: 14px;
-    height: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .input-button-img {
     width: 14px;
     height: 14px;

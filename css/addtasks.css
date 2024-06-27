@@ -351,6 +351,11 @@
     /* Stelle sicher, dass das Dropdown-Menü unter dem Dropdown-Inhalt liegt */
 }
 
+.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease; /* Optional: Fügt eine sanfte Drehbewegung hinzu */
+}
+
 .dropdown-button {
     background-color: #ffffff;
     color: black;
