@@ -77,11 +77,13 @@
 
                 <div class="addtaks-desktop">
                     <span>Category<span style="color: red;">*</span></span>
-                    <select id="category" class="title-select-or-input">
-                        <option disabled selected hidden> Select task category</option>
-                        <option>Technical Task</option>
-                        <option>User Story</option>
-                    </select>
+                    <div class="select-container" id="arrow" onclick="rotateArrow()">
+                        <select id="category" class="addtask-popup-category" required>
+                            <option disabled selected hidden>Select task category</option>
+                            <option>Technical Task</option>
+                            <option>User Story</option>
+                        </select>
+                    </div>
                     <span id="category-error" class="required-info">This field is required</span>
                 </div>
 

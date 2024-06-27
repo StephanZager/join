@@ -158,12 +158,14 @@
                         </div>
                     </div>
                     <div class="addtaks-desktop">
+                        <div class="select-container" id="arrow" onclick="rotateArrow()">
                         <span>Category<span style="color: red;">*</span></span>
-                        <select id="editCategory" class="title-select-or-input">
-                            <option disabled selected hidden> Select task category</option>
-                            <option>Technical Task</option>
-                            <option>User Story</option>
-                        </select>               
+                            <select id="editCategory" class="title-select-or-input">
+                                <option disabled selected hidden> Select task category</option>
+                                <option>Technical Task</option>
+                                <option>User Story</option>
+                            </select> 
+                        </div>              
                     </div>
                     <div class="addtaks-desktop">
                         <span>Subtasks</span>
@@ -250,11 +252,13 @@
 
                         <div class="addtaks-desktop">
                             <span>Category<span style="color: red;">*</span></span>
-                            <select id="category" class="addtask-popup-category" required> <!-- title-select-or-input -->
-                                 <option disabled selected hidden> Select task category</option>
-                                <option>Technical Task</option>
-                                <option>User Story</option>
-                            </select>
+                            <div class="select-container" onclick="rotateArrow()">
+                                <select id="category" class="addtask-popup-category" required>
+                                    <option disabled selected hidden>Select task category</option>
+                                    <option>Technical Task</option>
+                                    <option>User Story</option>
+                                </select>
+                            </div>
                             <span class="required-info">This field is required</span>
                         </div>
 

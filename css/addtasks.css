@@ -342,6 +342,40 @@
     flex-wrap: wrap;
 }
 
+.select-container {
+    position: relative;
+    height: 48px; /* Setze die Höhe des Containers */
+}
+
+.select-container::after {
+    content: '';
+    position: absolute;
+    display: flex;
+    top: 55%;
+    right: 10px;
+    transform: translateY(-50%);
+    transform-origin: center; /* Setzt den Drehpunkt in die Mitte des Pfeils */
+    background-image: url('../assets/img/arrow_drop_down.png');
+    background-repeat: no-repeat;
+    background-size: 8px 5px;
+    width: 8px;  /* Breite des Bildes */
+    height: 8px; /* Höhe des Bildes */
+    pointer-events: none; /* Damit das Bild keine Klicks blockiert */
+    padding-right: 8px;
+}
+
+.select-container select {
+    -webkit-appearance: none; /* Für Safari */
+    -moz-appearance: none;    /* Für Firefox */
+    appearance: none;         /* Standard */
+    width: 100%; /* Stellen Sie sicher, dass das <select> den gesamten Container ausfüllt */
+    height: 100%; /* Stellt sicher, dass das <select> die Höhe des Containers ausfüllt */
+}
+
+.select-container.arrow-rotate::after {
+    transform: translateY(-100%) translateX(-50%) rotate(180deg);
+}
+
 /*DOPPDOWN*/
 
 .dropdown {
@@ -353,7 +387,6 @@
 
 .rotate {
     transform: rotate(180deg);
-    transition: transform 0.3s ease; /* Optional: Fügt eine sanfte Drehbewegung hinzu */
 }
 
 .dropdown-button {

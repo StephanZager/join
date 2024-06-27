@@ -218,7 +218,7 @@ function addSubtaskToList() {
 
         // Liste neu rendern
         renderSubtasks();
-        
+        resetSubtaskFocus()
         subtaskInput.value = ''; // Eingabefeld leeren
         scrollToBottomAddtask(); // Zum Ende der Liste scrollen
     }
@@ -489,9 +489,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (event) => {
         if (!dropdownContent.contains(event.target) && !dropdownButton.contains(event.target)) {
             dropdownContent.classList.remove('show');
+            dropdownArrow.classList.remove('rotate');
         }
     });
 });
+
+function rotateArrow() {
+    document.querySelector('.select-container').classList.toggle('arrow-rotate');
+}
+
+
 
 
 /**
