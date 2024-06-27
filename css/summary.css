@@ -357,11 +357,17 @@
 
 @media (max-width: 866px){
     .headline-summary {
+        display: flex;
+        justify-content: center;
         margin-left: 20px;
-        margin-top: 48px;
+        margin-top: 30px;
         margin-right: 20px;
+        margin-bottom: 30px;
     }
 
+    .summary-section-2{
+        justify-content: center;
+    }
     .summary-stats {
         margin-left: 20px;
         margin-right: 20px;
@@ -369,6 +375,23 @@
 }
 
 @media (max-width: 600px) {
+
+    .headline-summary-seperator{
+        display: none;
+    }
+
+    .headline-summary{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .headline-summary-seperator-mobile{
+        display: block;
+    }
+
+
+
     .headline-summary-h2 {
         font-size: 40px;
     }
@@ -400,12 +423,14 @@
 
     .summary-stats-below-tasks {
         font-size: 18px;
+        line-height: 17px;
     }
     
     .summary-stats-below-container{
         width: 128px;
         height: 128px;
         padding: 20px;
+        
     }
 
     .summary-how-much{
@@ -501,8 +526,8 @@
 
 @media (min-width: 320px) and (max-width: 399px){
     .headline-summary{
-        margin-bottom: 30px;
-        margin-top: 40px;
+        margin-bottom: 20px;
+        margin-top: 0px;
         gap: 0px;
     }
 
