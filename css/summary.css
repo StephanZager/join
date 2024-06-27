@@ -47,7 +47,9 @@
     display: flex;
     align-items: center;
 }
-
+.summary-todo-pen-hover{
+    display: none;
+}
 /* Summary Stats */
 
 .summary-stats {
@@ -82,6 +84,22 @@
     transform: scale(1.03);
 }
 
+.summary-todo-info .summary-todo-pen {
+    display: block; 
+}
+
+.summary-todo-info .summary-todo-pen-hover {
+    display: none; 
+}
+
+.summary-todo-info:hover .summary-todo-pen {
+    display: none; 
+}
+
+.summary-todo-info:hover .summary-todo-pen-hover {
+    display: block; 
+}
+
 /* Summary done  Info */
 
 .summary-done-info {
@@ -102,6 +120,22 @@
     background-color: #2A3647;
     color: #FFFFFF;
     transform: scale(1.03);
+}
+
+.summary-done-info .summary-todo-check {
+    display: block; 
+}
+
+.summary-done-info .summary-todo-check-hover {
+    display: none; 
+}
+
+.summary-done-info:hover .summary-todo-check {
+    display: none; 
+}
+
+.summary-done-info:hover .summary-todo-check-hover {
+    display: block; 
 }
 
 /* Summary To-do and done  Info */
