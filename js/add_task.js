@@ -218,7 +218,7 @@ function addSubtaskToList() {
 
         // Liste neu rendern
         renderSubtasks();
-        resetSubtaskFocus()
+        
         subtaskInput.value = ''; // Eingabefeld leeren
         scrollToBottomAddtask(); // Zum Ende der Liste scrollen
     }
@@ -526,6 +526,7 @@ function setMinDate() {
 
     let dueDateElement = document.getElementById('dueDate');
     let editDateElement = document.getElementById('editDate');
+    let taskDateElement = document.getElementById('taskDueDate');
 
     if (dueDateElement) {
         dueDateElement.min = currentDate;
@@ -533,4 +534,7 @@ function setMinDate() {
     if (editDateElement) {
         editDateElement.min = currentDate;
     } 
+    if (taskDateElement) {
+        taskDateElement.min = currentDate;
+    }
 }

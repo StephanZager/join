@@ -36,7 +36,7 @@
                     <button class="searchTaskBtn" onclick="searchTasks()"><img src="assets/img/search.png"></button>
                 </div>
                 <div class="add-task-button-area display-none">
-                    <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup()"><span >Add task</span> <img
+                    <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup('toDo')"><span >Add task</span> <img
                             src="assets/img/board.add.png"></button>
                 </div>
             </div>
@@ -124,8 +124,8 @@
                         <textarea id="editDescription" class="title-select-or-input" placeholder="Enter a Description" type="text"></textarea>
                     </div>
                     <div class="addtaks-desktop dropdown">
-                        <button type="button" class="dropdown-edit-button" onclick="openDropdown()">Dropdown <img src="assets/img/arrow_drop_down.png"></button>
-                        <div class="dropdown-edit-content d-none" id="editAssigned"></div>
+                        <button type="button" class="dropdown-edit-button" onclick="openDropdown()">Dropdown <img src="assets/img/arrow_drop_down.png" id="dropdownArrow"></button>
+                        <div class="dropdown-edit-content " id="editAssigned"></div>
                         <div class="show-initials-section" id="editAssignedInitials"></div> 
                     </div>
                 </div>
@@ -206,8 +206,8 @@
 
                         <div class="addtaks-desktop dropdown">
                             <button type="button" class="dropdown-button">Dropdown <img
-                                    src="assets/img/arrow_drop_down.png"></button>
-                            <div class="dropdown-content" id="assigned" style="max-height: 200px;">
+                                src="assets/img/arrow_drop_down.png" class="dropdown-arrow"></button>
+                            <div class="dropdown-content" id="assigned">
                                 <!-- Die Optionen mit Checkboxen werden hier generiert -->
                             </div>
                             <div id="assignedInitial"></div>
@@ -250,7 +250,7 @@
 
                         <div class="addtaks-desktop">
                             <span>Category<span style="color: red;">*</span></span>
-                            <select id="category" class="addtask-popup-category" required> !-- title-select-or-input -->
+                            <select id="category" class="addtask-popup-category" required> <!-- title-select-or-input -->
                                  <option disabled selected hidden> Select task category</option>
                                 <option>Technical Task</option>
                                 <option>User Story</option>
@@ -261,9 +261,13 @@
                         <div class="addtaks-desktop">
                             <span>Subtasks</span>
                             <div class="input-with-button">
-                                <input id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
-                                <button type="button" onclick="addSubtaskToList()"><img class="input-button-img"
-                                        src="assets/img/add.png" alt=""></button>
+                                <input onclick="inputSetFocus()" id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
+                                <img id="placeholderImgSubtask" class="input-button-img" src="assets/img/add.png" alt="" >
+                                <div id="confirmAndDeleteBtnSubtask" class="clear-confirm-subtask">
+                                    <button type="button" class="clear-confirm-btn" onclick="clearSubtask()"><img class="subtask-clear-confirm-img" src="assets/img/cancel-addcontact.png"></button>
+                                    <img class="subtask-parting-line" src="assets/img/parting-line-small.png">
+                                    <button type="button" class="clear-confirm-btn" onclick="addSubtaskToList()"><img class="subtask-clear-confirm-img" src="assets/img/check-dark.png"></button>
+                                </div>
                             </div>
                             <ul id="subtaskList" class="addtask-popup-subtasklist"></ul>
                         </div>

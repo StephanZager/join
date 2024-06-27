@@ -263,6 +263,7 @@ function generateEditAssign() {
 
 function openDropdown() {
     let dropdown = document.querySelector('.dropdown-edit-content');
+    document.getElementById('dropdownArrow').classList.toggle('rotate');
     dropdown.classList.toggle('show');
 }
 
