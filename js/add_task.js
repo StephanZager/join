@@ -236,7 +236,7 @@ function resetSubtaskFocus() {
     document.getElementById('placeholderImgSubtask').style.display = 'flex';
 }
 
-function editSubtask(id) {
+function editSubtaskAddTask(id) {
     let subtaskToEdit = globalSubtasks[id];
     let editElement = document.getElementById(`subtaskToEdit${id}`);
     
@@ -260,7 +260,7 @@ function clearSubtask() {
 }
 
 
-function deleteSubtask(id) {
+function deleteSubtaskAddTask(id) {
     // Logik zum Löschen eines Subtasks
     globalSubtasks.splice(id, 1);
     // Aktualisieren Sie hier die Anzeige der Subtask-Liste
@@ -277,8 +277,8 @@ function renderSubtasks() {
             <div id="subtaskToEdit${index}" class="subtask-item">
                 <li class="addtask-subtask-li">${subtaskToEdit.title}</li>
                  <div class="edit-delete-img">
-                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${index})"> | 
-                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">
+                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtaskAddTask(${index})"> | 
+                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtaskAddTask(${index})">
                 </div>
             </div>`;
             subtaskList.innerHTML += subtaskItem;
