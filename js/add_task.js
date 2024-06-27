@@ -474,10 +474,12 @@ function filterFirstLetters(name) {
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownButton = document.querySelector('.dropdown-button');
     const dropdownContent = document.querySelector('.dropdown-content');
+    const dropdownArrow = document.querySelector('.dropdown-arrow');
 
     dropdownButton.addEventListener('click', (event) => {
         event.stopPropagation();
         dropdownContent.classList.toggle('show');
+        dropdownArrow.classList.toggle('rotate');
     });
 
     dropdownContent.addEventListener('click', (event) => {
