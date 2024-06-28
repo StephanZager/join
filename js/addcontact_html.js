@@ -3,7 +3,7 @@ function addNewContactPopUp() {
     <div id="bg_add_new_contact" class="d-none">
     <div class="bg" onclick="cloeAddNewContactwindow()">
          <div onclick="doNotClose(event)" id="popUpAddContact">
-        <div class="addcontact-container >
+        <div class="addcontact-container" >
 
    
         <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact-destop"
@@ -11,6 +11,9 @@ function addNewContactPopUp() {
 
         <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact"
             src="assets/img/close.button.addcontact.png" alt="" srcset="">
+        
+
+
         <div class="aboveSection">
             <div class="headline">
                 <img class="join-logo" src="assets/img/logo.desktop.png" alt="">
@@ -27,9 +30,14 @@ function addNewContactPopUp() {
             <input type="email" class="addcontact-email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">            
             <input type="tel" class="addcontact-phone" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
-                <button type="button" class="addcontact_cancel_Button">
-                    Cancel x
+                <button type="button" class="addcontact_cancel_Button" onclick="cloeAddNewContactwindow()">
+                    
+                    <img class="img-cancel-x" src="assets/img/cancel-addcontact.png" alt="check">
+                    <img class="img-cancel-x-hover" src="assets/img/cancel-hover-addcontact.png" alt="check">
+                    <span>Cancel</span>
                 </button>
+
+
                 <div id="btn-create-addcontact" class="d-none">
                     <button type="submit" class="addcontact_Button">
                         <img src="assets/img/check-addcontact.png" alt="check">Create Contact
@@ -66,7 +74,7 @@ function addUbdateContactPopUp(i, path = "/contact") {
         <img onclick="cloeAddUbdateContactwindow()" class="close-botton-addcontact-destop"
             src="/assets/img/close-addcontact.png" alt="check">
 
-        <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact"
+        <img onclick="cloeAddUbdateContactwindow()" class="close-botton-addcontact"
             src="assets/img/close.button.addcontact.png" alt="" srcset="">
         <div class="aboveSection">
             <div class="headline">
@@ -85,7 +93,10 @@ function addUbdateContactPopUp(i, path = "/contact") {
             <input type="tel" class="addcontact-phone" id="addcontact_edit_phone" name="phone" pattern="0[\\d\\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
                 <button type="button" class="addcontact_cancel_Button" onclick="cloeAddUbdateContactwindow()">
-                    <img src="assets/img/cancel-addcontact.png" alt="check">Cancel
+                    
+                    <img class="img-cancel-x" src="assets/img/cancel-addcontact.png" alt="check">
+                    <img class="img-cancel-x-hover" src="assets/img/cancel-hover-addcontact.png" alt="check">
+                    <span>Cancel</span>
                 </button>
                 <div id="btn-create-addcontact">
                     <button type="submit" class="addcontact_Button">
