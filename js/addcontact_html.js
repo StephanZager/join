@@ -126,11 +126,15 @@ function userInfoHTML(user, index) {
             <div class="edit-delete-desktop">
                 <div class="user-edit-delete" id="buttonEditDeleteHandy">
                  <div class="user-edit-delete-section" onclick="editUser(${index}), slideInPopup('popUpUbdateContact')">
-                    <img src="assets/img/edit-contacts.png" alt="edit">
+                    <img class="img-delete-contact" src="assets/img/edit-contacts.png" alt="edit">
+                    <img class="img-delete-contact-hover" src="assets/img/pan-edit-hover-contact.png" alt="edit">
+                    
                     <p>Edit</p>
                 </div>
                 <div class="user-edit-delete-section" onclick="deleteUser(${index})">
-                    <img src="assets/img/delete-contacts.png" alt="edit">
+                    <img class="img-delete-contact" src="assets/img/delete-contacts.png" alt="edit">
+                    <img class="img-delete-contact-hover" src="assets/img/delete-trash-contact-hover.png" alt="edit">
+                    
                     <p>Delete</p>
                 </div>
             </div>

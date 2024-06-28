@@ -373,6 +373,15 @@ function closeUserDeleteEditWindow() {
     document.getElementById('userDeleteHandy').innerHTML = '';
 }
 
+function mobileMenuOpenUserInfo(){
+    let users = document.getElementById('contact');
+    let userInfo = document.getElementById('contactInfoContainer');
+
+    users.style.display = 'none';
+    userInfo.style.display = 'block';
+
+}
+
 /**
  * Asynchronously displays a confirmation message after a new contact has been added.
  * The confirmation message is displayed for 3 seconds.

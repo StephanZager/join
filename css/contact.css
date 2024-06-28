@@ -303,14 +303,37 @@ h3 {
     opacity: 0px;
 }
 
+
+.img-delete-contact {
+    display: block; 
+}
+
+.img-delete-contact-hover {
+    display: none; 
+}
+
+
+.user-edit-delete-section:hover .img-delete-contact {
+    display: none;
+}
+
+.user-edit-delete-section:hover .img-delete-contact-hover {
+    display: block; 
+}
+
 .user-edit-delete-section:hover {
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 19.2px;
-    text-align: left;
+    
     color: #29ABE2;
-    ;
+}
+
+.user-edit-delete-section p:hover {
+    cursor: pointer;
+    font-size: 16px;
+    
+    line-height: 19.2px;
+    
+    
 }
 
 .user-edit-delete-handy {
