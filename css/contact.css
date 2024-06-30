@@ -193,7 +193,18 @@ h3 {
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
 }
 
+.show-contact.no-hover:hover {
+    cursor: pointer;
+    background: #2A3647;
+}
 
+.focus-button{
+    background: #2A3647;
+    color: white;
+
+}
+
+/*
 .show-contact:active {
     background-color: white;
 }
@@ -207,7 +218,7 @@ h3 {
 .show-contact:focus-within .initial-contact {
     border: 2px solid #FFFFFF;
 }
-
+*/
 .initial-contact {
     display: flex;
     justify-content: center;

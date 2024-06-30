@@ -146,16 +146,23 @@ function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
-
+    console.log(currentOpenUser);
+    
+    
     //bottonFocus(userButton, index);
 
 
     if (userInfo.innerHTML === '' || currentOpenUser !== index) {
         userInfo.innerHTML = userInfoHTML(user, index);
         userButton.focus();
+        userButton.classList.add('focus-button');
+        userButton.classList.add('no-hover');
         currentOpenUser = index;
+        console.log(currentOpenUser);
     } else {
         userInfo.innerHTML = '';
+        userButton.classList.remove('focus-button');
+        userButton.classList.remove('no-hover');
         userButton.blur();
         currentOpenUser = null;
     }
@@ -165,6 +172,8 @@ function deselectUser() {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + currentOpenUser);
     userInfo.innerHTML = '';
+    userButton.classList.remove('focus-button');
+        userButton.classList.remove('no-hover');
     currentOpenUser = null;
 }
 
