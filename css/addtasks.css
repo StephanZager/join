@@ -592,7 +592,7 @@ select:focus {
     }
 
     .addTask-form{
-        height: calc(100vh - 176px);
+        height: calc(100vh - 275px);
         margin-left: 328px;
        
         overflow: auto;
