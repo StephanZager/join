@@ -18,15 +18,13 @@
 .maincontainer-desktop {
     display: flex;
     justify-content: space-between;
-    max-width: 976px;
-    width: auto;
+    width: 976px;   
     height: 424px;
     margin-left: 328px;
 }
 
 .left-field-section {
-    width: 440px;
-    max-height: 376px;
+   
     height: auto;
     display: flex;
     flex-direction: column;
@@ -41,8 +39,7 @@
 }
 
 .right-field-section {
-    width: 440px;
-    height: 376px;
+    
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -171,7 +168,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 976px;
-    margin-left: 328px;
+    
     align-items: end;
     margin-top: 138px;
 }
@@ -538,6 +535,8 @@ select:focus {
 
 .addTask-interaction-container{
     display: flex;
+    justify-content: center;
+    width: 100%;
     
 }
 
@@ -563,7 +562,81 @@ select:focus {
     display: block; /* Wird angezeigt, wenn über das .subtask-item gehovert wird */
 }
 
+@media (max-width: 1380px){
+
+    .task-headline {
+        margin-left: 250px;
+    }
+
+    .maincontainer-desktop{
+        margin-left: 250px;
+    }
+}
+
+@media (max-width: 1240px){
+
+    .task-headline {
+        margin-left: 328px;
+    }
+
+    .prio-buttons{
+        gap: 0px;
+        justify-content: space-between;
+    }
+
+    .addTask-form{
+        height: calc(100vh - 250px);
+        margin-left: 328px;
+       
+        overflow: auto;
+    }
+
+    .maincontainer-desktop{
+        margin-left: 0px;
+        width: 100%;
+        max-width: 600px;
+        
+    }
+
+    .last-section {
+        width: 100%;
+        
+        margin-top: 0px;
+        position: fixed;
+        bottom: 0;
+        background-color: #f6f7f8;
+    }
+
+    .addTask-textarea{
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    .parting-line {
+        display: none;
+    }
+
+    .addTask-interaction-container{
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 1000px){
+    .task-headline {
+        margin-left: 250px;
+    }
+    
+    .addTask-form{
+        margin-left: 250px;
+        
+    }
+}
+
+
+
 @media (max-width: 866px) {
+    
 
     .addTask-interaction-container{
         
@@ -603,7 +676,7 @@ select:focus {
     .maincontainer-desktop {
         flex-direction: column;
         margin: 0;
-        padding-right: 60px; /*--Setzt den scroll balken an den äußeren rand--bei bedarf auch gerne löschen--*/
+        padding-right: 60px; 
     }
 
     .addTask-form {
@@ -613,12 +686,13 @@ select:focus {
     .maincontainer-desktop {
         height: calc(100% - 195px);
         overflow-x: auto;
-        width: auto; /* Ensures that the width can grow beyond the parent if content overflows */
-        min-width: 100%; /* Ensures that the container is at least as wide as its parent */
+        width: auto; 
+        min-width: 100%; 
         
     }
 
     .last-section {
+        z-index: 3;
         height: 88px;
         position: fixed;
         left: 0;
@@ -628,6 +702,7 @@ select:focus {
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        
         margin-top: 0px;
         margin-left: 0px;
         margin-top: 30px;
@@ -659,7 +734,7 @@ select:focus {
     }
 
     .task-headline {
-        margin-left: 60px;
+        margin-left: 60px;  
         font-size: 40px;
         line-height: 14px;
         height: 56px;
@@ -751,7 +826,7 @@ select:focus {
     }
 }
 
-@media (min-width: 320px) and (max-width: 869px) {
+@media (min-width: 320px) and (max-width: 867px) {
 
     .title-select-or-input {
         height: 40px;
