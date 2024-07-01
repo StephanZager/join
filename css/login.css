@@ -409,3 +409,77 @@ footer {
     font-size: 15px;
   }
 }
+
+@media (max-height: 900px){
+  .form-container {
+    margin-top: 130px;
+  }
+
+  #logo{
+    width: 54px;
+    height: 68px;
+  }
+
+  @keyframes logoMove {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 274px;
+        height: 334px;
+    }
+    100% {
+        top: 30px;
+        left: 30px;
+        transform: translate(0, 0);
+    }
+}
+}
+
+@media (max-height: 810px){
+  .form-container {
+    margin-top: 100px;
+  }
+
+  #logo{
+    width: 54px;
+    height: 68px;
+  }
+
+  .headline h1 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .underline{
+    margin-bottom: 10px;
+  }
+
+  .form-container{
+    height: 470px;
+  }
+
+  #error-message {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  label {
+    margin-top: 5px;
+  }
+
+  @keyframes logoMove {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 274px;
+        height: 334px;
+    }
+    100% {
+        top: 10px;
+        left: 10px;
+        transform: translate(0, 0);
+    }
+}
+}
