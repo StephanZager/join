@@ -17,6 +17,8 @@ body {
     }
 }
 
+
+
 .slide-in {
     animation: 0.1s ease-out 0s slideInFromRight;
 }
@@ -914,6 +916,18 @@ h3 {
 
 
 @media (max-width: 700px) {
+
+    @keyframes slideInFromRight {
+        0% {
+            transform: translateY(100%);
+        }
+    
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    
 
     .edit-delete-desktop {
         display: none;
