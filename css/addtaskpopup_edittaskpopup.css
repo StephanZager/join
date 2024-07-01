@@ -51,14 +51,12 @@
     margin-bottom: 16px;
 }
 
-.addtask-popup-prio-buttons {
+.prio-buttons {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
-    gap: 16px
+    gap: 20px;
 }
 
-.addtask-popup-prio-buttons button {
+.prio-buttons button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,7 +68,25 @@
     background-color: white;
     font-weight: 400;
     font-size: 20px;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.1);
+
+}
+
+.urgent-button:hover,
+.urgent-button.selected {
+    background-color: #FF3D00;
+    color: white;
+}
+
+.medium-button:hover,
+.medium-button.selected {
+    background-color: #FFA800;
+    color: white;
+}
+
+.low-button:hover,
+.low-button.selected {
+    background-color: #7AE229;
+    color: white;
 }
 
 .maincontainer-desktop span {
@@ -118,23 +134,7 @@
     cursor: pointer; 
 }
 
-.urgent-button:hover,
-.urgent-button.selected {
-    background-color: #FF3D00;
-    color: white;
-}
 
-.medium-button:hover,
-.medium-button.selected {
-    background-color: #FFA800;
-    color: white;
-}
-
-.low-button:hover,
-.low-button.selected {
-    background-color: #7AE229;
-    color: white;
-}
 
 .maincontainer-desktop select {
     width: 440px;
@@ -380,11 +380,11 @@ textarea {
     left: 0;
 }
 
-.dropdown-content.show {
+.show-assign {
     display: block;
 }
 
-.dropdown-edit-content.show {
+.show {
     display: block;
 }
 
@@ -482,7 +482,7 @@ textarea {
         margin: 0 20px;
     }
 
-    .addtask-popup-prio-buttons {
+    .prio-buttons {
         display: flex;
         width: 100%;
         justify-content: space-between;

@@ -117,6 +117,7 @@ async function submitTask(event) {
     try {
         await postData("/userTask", userTask);
         window.location.href = "board.html";
+        
     } catch (error) {
         console.error("Fehler beim Posten der Daten:", error);
     }
@@ -168,6 +169,19 @@ function clearSubtaskInput(id) {
 
 function clearSubtask() {
     document.getElementById('subtasks').value = ''; 
+}
+
+function clearCategorySelection() {
+    // Auswahl aller Radio-Buttons innerhalb des Dropdown-Menüs für Kategorien
+    const categoryOptions = document.querySelectorAll('.dropdown-content-category input[type="radio"]');
+    
+    // Durchlaufen aller Radio-Buttons und Setzen ihrer `checked`-Eigenschaft auf `false`
+    categoryOptions.forEach(option => {
+        option.checked = false;
+    });
+    
+    // Optional: Zurücksetzen des Textes des Dropdown-Buttons auf den Standardwert
+    document.getElementById('categoryText').textContent = 'Category';
 }
 
 function deleteSubtask(id) {
@@ -372,10 +386,12 @@ function clearSubtasks() {
         const img = button.querySelector('img');
         img.src = button.getAttribute('data-original-image'); // Set to original image
     });
-    subtaskList = [];
+    
+    globalSubtasks = [];
     document.getElementById('subtaskList').innerHTML = '';
     assignDetails = [];
     document.getElementById('assignedInitial').innerHTML = '';
+    clearCategorySelection();
 }
 
 function setMinDate() {

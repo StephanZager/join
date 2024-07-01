@@ -324,7 +324,7 @@ async function createTask(event) {
     let taskTitle = document.getElementById('taskTitle').value;
     let taskDescription = document.getElementById('taskDescription').value;
     let date = document.getElementById('taskDueDate').value;
-    let userCategory = document.getElementById('category').value;
+    let userCategory = document.querySelector('input[name="category"]:checked')?.value;
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
 
@@ -358,12 +358,61 @@ async function createTask(event) {
         task.push(newTask); // Hinzufügen des neuen Tasks zur lokalen Task-Liste
         generateTask(); // Aktualisieren der Anzeige
         closeTaskPopup(); // Schließen des Popups nach der Erstellung
+        clearTaskForm(); // Leeren des Formulars nach der Erstellung
 
     } catch (error) {
         console.error('Fehler beim Erstellen der Aufgabe:', error);
+        console.log('Fehler beim Erstellen der Aufgabe:', error.message);
         alert(`Fehler beim Erstellen der Aufgabe: ${error.message}`);
     }
 }
+
+function clearTaskForm() {
+    resetPriority();
+    clearCategorySelection();
+    document.getElementById('taskTitle').value = '';
+    document.getElementById('taskDescription').value = '';
+    document.getElementById('assignedInitial').innerHTML = '';
+    document.getElementById('taskDueDate').value = '';
+    document.getElementById('subtaskList').innerHTML = '';
+    globalSubtasks = [];
+}
+
+function clearCategorySelection() {
+    const categoryOptions = document.querySelectorAll('.dropdown-content-category input[type="radio"]');
+    categoryOptions.forEach(option => {
+        option.checked = false;
+    });
+    document.getElementById('categoryText').textContent = 'Category';
+}
+
+function resetPriority() {
+    const buttons = document.querySelectorAll('.prio-buttons button');
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-original-image'); // Set to original image
+    });
+}
+
+
+
+function clearSubtasks() {
+    const buttons = document.querySelectorAll('.prio-buttons');
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-original-image'); // Set to original image
+    });
+    subtaskList = [];
+    document.getElementById('subtaskList').innerHTML = '';
+    assignDetails = [];
+    document.getElementById('assignedInitial').innerHTML = '';
+    clearCategorySelection();
+}
+
+
+
 
 /**
  * Opens the 'addTaskModel' popup by setting its display style to 'block'.
