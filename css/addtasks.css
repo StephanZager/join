@@ -242,13 +242,13 @@
 }
 
 .addTask-textarea {
-    max-width: 440px;
-    min-width: 440px;
+    max-width: 420px;
+    min-width: 420px;
     max-height: 136px;
     min-height: 136px;
     border: 1px solid lightgrey;
     border-radius: 10px;
-
+    padding-left: 16px;
 }
 
 .input-with-button {
@@ -670,8 +670,8 @@
     .addTask-textarea {
         min-height: 100px;
         max-height: 100px;
-        max-width: 100%;
-        min-width: 100%;
+        max-width: 96.5%;
+        min-width: 96.5%;
     }
 
     .required-bottom-info{
@@ -810,7 +810,7 @@
 .dropdown-option {
     display: block;
     position: relative;
-    padding-left: 35px; /* Anpassen, um genug Platz für den unsichtbaren Radiobutton zu lassen */
+    padding-left: 16px; /* Anpassen, um genug Platz für den unsichtbaren Radiobutton zu lassen */
     cursor: pointer;
 }
 

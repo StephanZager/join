@@ -173,13 +173,12 @@ function clearSubtask() {
 
 function deleteSubtask(id) {
     globalSubtasks.splice(id, 1);
-    console.log('Löschen:', id);
-    renderSubtasks(); // 
+    renderSubtasks();
 }
 
 function renderSubtasks() {
     let subtaskList = document.getElementById('subtaskList');
-    subtaskList.innerHTML = ''; // Clear the list
+    subtaskList.innerHTML = '';
     if (Array.isArray(globalSubtasks)) {
         globalSubtasks.forEach((subtaskToEdit, index) => {
             let subtaskItem = `
@@ -296,26 +295,19 @@ function generateAssign() {
 
 
 function moveLoggedInUserToTop(assign, loggedInUser) {
-    console.log('Logged In User:', loggedInUser);
-    // Suche nach dem Benutzer, auch wenn der Name geändert wurde
     let userIndex = assign.findIndex(contact => contact.name.replace(/\s\(YOU\)$/i, '') === loggedInUser);
-    console.log('User Index:', userIndex);
+    
     if (userIndex !== -1) {
         let user = assign.splice(userIndex, 1)[0];
-        console.log('User Spliced:', user);
-        // Füge " (YOU)" nur hinzu, wenn es noch nicht vorhanden ist
+        
         if (!user.name.endsWith(" (YOU)")) {
             user.name += " (YOU)";
         }
         assign.unshift(user);
-        console.log('Updated assign:', assign);
-    } else {
-        console.log('User not found in assign array.');
     }
 }
 
 function filterFirstLetters(name) {
-    // Entfernen spezifischer Zeichenfolgen wie "(YOU)"
     let cleanedName = name.replace(/\(YOU\)/ig, '');
     let words = cleanedName.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
