@@ -241,6 +241,8 @@ footer {
 
 @media (max-width: 800px) {
 
+ 
+
     .signup-section-upside {
         display: none;
       }
@@ -411,6 +413,12 @@ footer {
 }
 
 @media (max-height: 900px){
+
+  #error-message {
+    font-size: 10px;
+    margin-left: 0px;
+  }
+
   .form-container {
     margin-top: 130px;
   }
@@ -465,7 +473,11 @@ footer {
   }
 
   label {
-    margin-top: 5px;
+    margin-top: 25px;
+  }
+
+  .button-section-for-entry{
+    margin-top: 20px;
   }
 
   @keyframes logoMove {
@@ -482,4 +494,25 @@ footer {
         transform: translate(0, 0);
     }
 }
+}
+
+
+@media (max-height: 740px){
+
+  #logo{
+    width: 44px;
+    height: 58px;
+  }
+
+  .form-container {
+    margin-top: 80px;
+  }
+
+  footer{
+    bottom: 10px;
+  }
+
+  .signup-section-lowside{
+    margin-top: 15px;
+  }
 }
