@@ -147,12 +147,12 @@ function openUserInfo(index) {
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
     console.log('erste',currentOpenUser);
-    
-    if (currentOpenUser !== null) {
-        let oldUserButton = document.getElementById('userButton' + currentOpenUser);
-        oldUserButton.classList.remove('focus-button');
-        oldUserButton.classList.remove('no-hover');
-    }
+    deselectUser();
+    //if (currentOpenUser !== null) {
+    //    let oldUserButton = document.getElementById('userButton' + currentOpenUser);
+    //    oldUserButton.classList.remove('focus-button');
+    //    oldUserButton.classList.remove('no-hover');
+    //}
     //bottonFocus(userButton, index);
    
 
@@ -173,15 +173,23 @@ function openUserInfo(index) {
     }
 }
 
+//function deselectUser() {
+//    let userInfo = document.getElementById('contactInfo');
+//    let userButton = document.getElementById('userButton' + currentOpenUser);
+//    userInfo.innerHTML = '';
+//    userButton.classList.remove('focus-button');
+//    userButton.classList.remove('no-hover');
+//    currentOpenUser = null;
+//}
 function deselectUser() {
-    let userInfo = document.getElementById('contactInfo');
-    let userButton = document.getElementById('userButton' + currentOpenUser);
-    userInfo.innerHTML = '';
-    userButton.classList.remove('focus-button');
-    userButton.classList.remove('no-hover');
-    currentOpenUser = null;
+    if (currentOpenUser !== null) {
+        let userInfo = document.getElementById('contactInfo');
+        let userButton = document.getElementById('userButton' + currentOpenUser);
+        userInfo.innerHTML = ''; // Dies könnte optional sein, abhängig von der Logik, die Sie benötigen.
+        userButton.classList.remove('focus-button', 'no-hover');
+        currentOpenUser = null;
+    }
 }
-
 function test() {
 
 
