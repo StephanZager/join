@@ -79,9 +79,6 @@ function generateTaskHTML(taskItem) {
         </div>`;
 }
 
-
-
-
 function cleanNameForInitials(name) {
     return name.replace(" (YOU)", "");
 }
@@ -321,14 +318,6 @@ function updateTaskCardSubtasks(taskItem) {
     }
 }
 
-
-
-
-
-
-
-
-
 async function createTask(event) {
     event.preventDefault();
 
@@ -375,15 +364,6 @@ async function createTask(event) {
         alert(`Fehler beim Erstellen der Aufgabe: ${error.message}`);
     }
 }
-
-
-
-
-
-
-
-
-
 
 /**
  * Opens the 'addTaskModel' popup by setting its display style to 'block'.

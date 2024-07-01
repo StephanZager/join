@@ -160,7 +160,6 @@ function confirmAddTaskSubtaskEdit(id) {
     let editedSubtask = document.getElementById(`addSubtask-input${id}`).value;
     globalSubtasks[id].title = editedSubtask;
     renderSubtasks();
-
 }
 
 function clearSubtaskInput(id) {
@@ -345,6 +344,7 @@ function openDropdownContentCategory() {
 }
 
 function openDropdown() {
+    console.log('openDropdown');
     let dropdownContent = document.getElementById('assigned');
     let dropdownArrowAssign = document.getElementById('dropdownArrowAssign');
     dropdownContent.classList.toggle('show-assign'); // Toggle die Klasse, um den Dropdown-Inhalt anzuzeigen oder zu verbergen

@@ -242,13 +242,14 @@
 }
 
 .addTask-textarea {
-    max-width: 420px;
-    min-width: 420px;
+    max-width: 440px;
+    min-width: 440px;
     max-height: 136px;
     min-height: 136px;
     border: 1px solid lightgrey;
     border-radius: 10px;
     padding-left: 16px;
+    box-sizing: border-box;
 }
 
 .input-with-button {
@@ -745,8 +746,8 @@
     .addTask-textarea {
         min-height: 100px;
         max-height: 100px;
-        max-width: 96.5%;
-        min-width: 96.5%;
+        max-width: 100%;
+        min-width: 100%;
     }
 
     .required-bottom-info{
