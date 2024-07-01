@@ -564,6 +564,8 @@ h3 {
     display: none;
 }
 
+
+
 @media (max-width: 1140px) {
     .initial-user {
         max-width: 100px;
@@ -1026,5 +1028,19 @@ h3 {
 @media (max-width: 370px) {
     .user-info-name {
         width: 200px;
+    }
+}
+
+@media (max-height: 720px){
+    .contact-info-h2{
+        margin-top: 0px;
+    }
+
+    #contactInfo{
+        margin-top: 25px;
+    }
+
+    .contact-arrow-blue{
+        top: 0px;
     }
 }
