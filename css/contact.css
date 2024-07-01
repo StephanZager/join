@@ -937,9 +937,10 @@ h3 {
         position: fixed;
         left: 0;
         right: 0;
-        top: 96px;
+        top: 103px;
         bottom: 80px;
         background-color: #FFFFFF;
+        opacity: 1;
     }
 
     .contact-arrow-blue {
