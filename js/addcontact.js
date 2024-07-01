@@ -148,12 +148,7 @@ function openUserInfo(index) {
     let user = contacts[index];
     console.log('erste',currentOpenUser);
     deselectUser();
-    //if (currentOpenUser !== null) {
-    //    let oldUserButton = document.getElementById('userButton' + currentOpenUser);
-    //    oldUserButton.classList.remove('focus-button');
-    //    oldUserButton.classList.remove('no-hover');
-    //}
-    //bottonFocus(userButton, index);
+    
    
 
     if (userInfo.innerHTML === '' || currentOpenUser !== index) {
@@ -173,30 +168,16 @@ function openUserInfo(index) {
     }
 }
 
-//function deselectUser() {
-//    let userInfo = document.getElementById('contactInfo');
-//    let userButton = document.getElementById('userButton' + currentOpenUser);
-//    userInfo.innerHTML = '';
-//    userButton.classList.remove('focus-button');
-//    userButton.classList.remove('no-hover');
-//    currentOpenUser = null;
-//}
 function deselectUser() {
     if (currentOpenUser !== null) {
         let userInfo = document.getElementById('contactInfo');
         let userButton = document.getElementById('userButton' + currentOpenUser);
-        userInfo.innerHTML = ''; // Dies könnte optional sein, abhängig von der Logik, die Sie benötigen.
+        userInfo.innerHTML = '';
         userButton.classList.remove('focus-button', 'no-hover');
         currentOpenUser = null;
     }
 }
-function test() {
 
-
-    document.getElementById('userButton' + currentOpenUser).focus();
-
-
-}
 
 async function submitForm(event, i, contactId, path) {
     event.preventDefault();
