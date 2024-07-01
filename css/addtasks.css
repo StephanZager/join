@@ -560,6 +560,81 @@
     display: block; /* Wird angezeigt, wenn über das .subtask-item gehovert wird */
 }
 
+@media (max-width: 1380px){
+
+    .task-headline {
+        margin-left: 250px;
+    }
+
+    .maincontainer-desktop{
+        margin-left: 250px;
+    }
+}
+
+@media (max-width: 1240px){
+
+    .task-headline {
+        margin-left: 328px;
+    }
+
+    .prio-buttons{
+        gap: 0px;
+        justify-content: space-between;
+    }
+
+    .addTask-form{
+        height: calc(100vh - 275px);
+        margin-left: 328px;
+       
+        overflow: auto;
+    }
+
+    .maincontainer-desktop{
+        margin-left: 0px;
+        width: 100%;
+        max-width: 600px;
+        height: 100vh;
+        
+    }
+
+    .last-section {
+        max-width: 600px;
+        align-items: center;
+        width: 100%;
+        height: 88px;
+        margin-top: 0px;
+        position: fixed;
+        bottom: 0;
+        background-color: #f6f7f8;
+    }
+
+    .addTask-textarea{
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    .parting-line {
+        display: none;
+    }
+
+    .addTask-interaction-container{
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 1000px){
+    .task-headline {
+        margin-left: 250px;
+    }
+    
+    .addTask-form{
+        margin-left: 250px;
+        
+    }
+}
+
+
 @media (max-width: 866px) {
 
     .addTask-interaction-container{
