@@ -17,6 +17,8 @@ body {
     }
 }
 
+
+
 .slide-in {
     animation: 0.1s ease-out 0s slideInFromRight;
 }
@@ -185,11 +187,26 @@ h3 {
 
 }
 
+
+
+
 .show-contact:hover {
     cursor: pointer;
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
 }
 
+.show-contact.no-hover:hover {
+    cursor: pointer;
+    background: #2A3647;
+}
+
+.focus-button{
+    background: #2A3647;
+    color: white;
+
+}
+
+/*
 .show-contact:active {
     background-color: white;
 }
@@ -198,11 +215,12 @@ h3 {
     background: #2A3647;
     color: white;
 }
+   
 
 .show-contact:focus-within .initial-contact {
     border: 2px solid #FFFFFF;
 }
-
+*/
 .initial-contact {
     display: flex;
     justify-content: center;
@@ -303,14 +321,37 @@ h3 {
     opacity: 0px;
 }
 
+
+.img-delete-contact {
+    display: block; 
+}
+
+.img-delete-contact-hover {
+    display: none; 
+}
+
+
+.user-edit-delete-section:hover .img-delete-contact {
+    display: none;
+}
+
+.user-edit-delete-section:hover .img-delete-contact-hover {
+    display: block; 
+}
+
 .user-edit-delete-section:hover {
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 19.2px;
-    text-align: left;
+    
     color: #29ABE2;
-    ;
+}
+
+.user-edit-delete-section p:hover {
+    cursor: pointer;
+    font-size: 16px;
+    
+    line-height: 19.2px;
+    
+    
 }
 
 .user-edit-delete-handy {
@@ -522,6 +563,8 @@ h3 {
 #userDeleteHandy {
     display: none;
 }
+
+
 
 @media (max-width: 1140px) {
     .initial-user {
@@ -876,6 +919,18 @@ h3 {
 
 @media (max-width: 700px) {
 
+    @keyframes slideInFromRight {
+        0% {
+            transform: translateY(100%);
+        }
+    
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    
+
     .edit-delete-desktop {
         display: none;
     }
@@ -898,9 +953,10 @@ h3 {
         position: fixed;
         left: 0;
         right: 0;
-        top: 96px;
+        top: 103px;
         bottom: 80px;
         background-color: #FFFFFF;
+        opacity: 1;
     }
 
     .contact-arrow-blue {
@@ -972,5 +1028,19 @@ h3 {
 @media (max-width: 370px) {
     .user-info-name {
         width: 200px;
+    }
+}
+
+@media (max-height: 720px){
+    .contact-info-h2{
+        margin-top: 0px;
+    }
+
+    #contactInfo{
+        margin-top: 25px;
+    }
+
+    .contact-arrow-blue{
+        top: 0px;
     }
 }

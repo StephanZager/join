@@ -86,7 +86,7 @@ form {
 
 }
 
-.ubdate-pop-up{
+.ubdate-pop-up {
     margin-right: 48px;
     width: 422px;
 
@@ -96,12 +96,12 @@ form {
     align-items: center;
     align-content: center;
     justify-content: center;
- 
+
 }
 
 .addcontact-name {
     box-sizing: border-box;
-    background-image: url('/assets/img/person.addcontact.png');
+    background-image: url(/assets/img/person-addcontact.png);
     background-repeat: no-repeat;
     background-position: right 18px center;
     height: 50px;
@@ -214,7 +214,7 @@ form {
 
 .close-botton-addcontact:hover {
     cursor: pointer;
-    
+
 }
 
 .form-button {
@@ -229,7 +229,6 @@ form {
     border-radius: 10px;
     border: 1px solid #2A3647;
     background-color: white;
-    opacity: 0px;
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
@@ -238,20 +237,30 @@ form {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-
-
-}
-
-.close-botton-addcontact {
-    display: none;
 }
 
 .addcontact_cancel_Button:hover {
     cursor: pointer;
     border: 2px solid #29ABE2;
     color: #29ABE2;
-    
 }
+
+.addcontact_cancel_Button:hover .img-cancel-x {
+    display: none;
+}
+
+.addcontact_cancel_Button:hover .img-cancel-x-hover {
+    display: inline;
+}
+
+.img-cancel-x-hover {
+    display: none;
+}
+
+.close-botton-addcontact {
+    display: none;
+}
+
 
 .close-botton-addcontact-destop {
     position: absolute;
@@ -265,6 +274,12 @@ form {
 
 .close-botton-addcontact-destop:hover {
     cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.171);
+    border-radius: 100%;
+    padding: 5px;
+
+    margin-top: -5px;
+    margin-right: -5px;
 }
 
 .edit-contact-profil-icon {
@@ -330,7 +345,7 @@ form {
 
     #addcontact_edit_phone {
         width: 350px;
-    }   
+    }
 
     .addcontact_cancel_Button {
         width: 100px;
@@ -482,7 +497,7 @@ form {
     }
 
     #addcontact_name {
-        background-image: url('/assets/img/person.addcontact.png');
+        background-image: url(/assets/img/person-addcontact.png);
         background-repeat: no-repeat;
         background-position: right 18px center;
         height: 41px;
@@ -605,49 +620,63 @@ form {
     .close-botton-addcontact:hover {
         cursor: pointer;
     }
+
+    .close-botton-addcontact:active {
+        background-color: #29ABE2;
+        border-radius: 100%;
+        padding: -5px;
+        box-sizing: border-box;
+    }
+
+
 }
 
-@media (max-width: 420px){
-    .addcontact-container{
+@media (max-width: 420px) {
+    .addcontact-container {
         max-width: 315px;
         height: 650px;
     }
-    .aboveSection{
+
+    .aboveSection {
         width: 315px;
         height: 290px;
     }
-    .profilImgAddContact{
+
+    .profilImgAddContact {
         margin-top: -50px;
         width: 95px;
         height: 95px;
     }
-    form{
-        width: 295px;
-    }
-    #addcontact_name{
+
+    form {
         width: 295px;
     }
 
-    #addcontact_edit_name{
+    #addcontact_name {
         width: 295px;
     }
 
-    #addcontact_email{
-        width: 295px;
-    }
-    
-    #addcontact_edit_email{
+    #addcontact_edit_name {
         width: 295px;
     }
 
-    #addcontact_phone{
-        width: 295px !important;
-    }  
+    #addcontact_email {
+        width: 295px;
+    }
 
-    #addcontact_edit_phone{
+    #addcontact_edit_email {
+        width: 295px;
+    }
+
+    #addcontact_phone {
         width: 295px !important;
     }
-    .addcontact_Button{
+
+    #addcontact_edit_phone {
+        width: 295px !important;
+    }
+
+    .addcontact_Button {
         margin-top: 15px;
-    } 
+    }
 }

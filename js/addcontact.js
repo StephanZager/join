@@ -3,6 +3,7 @@ let groupedContactsLetters = {};
 let currentOpenUser = null;
 let currentUser = [];
 
+
 /**
  * This prevents the window from closing when I press the pop-up button
  * 
@@ -141,31 +142,42 @@ async function generateContacts() {
 }
 
 function openUserInfo(index) {
-   
+    //mobileMenuOpenUserInfo();
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
+    console.log('erste',currentOpenUser);
+    deselectUser();
+    
+   
 
     if (userInfo.innerHTML === '' || currentOpenUser !== index) {
         userInfo.innerHTML = userInfoHTML(user, index);
+        userButton.focus();
+        userButton.classList.add('focus-button');
+        userButton.classList.add('no-hover');
         currentOpenUser = index;
+        console.log('in der if',currentOpenUser);
     } else {
         userInfo.innerHTML = '';
+        userButton.classList.remove('focus-button');
+        userButton.classList.remove('no-hover');
         userButton.blur();
         currentOpenUser = null;
+        console.log('in der else',currentOpenUser);
     }
 }
 
 function deselectUser() {
-    let userInfo = document.getElementById('contactInfo');
-    let userButton = document.getElementById('userButton' + currentOpenUser);
-    userInfo.innerHTML = '';
-    currentOpenUser = null;
+    if (currentOpenUser !== null) {
+        let userInfo = document.getElementById('contactInfo');
+        let userButton = document.getElementById('userButton' + currentOpenUser);
+        userInfo.innerHTML = '';
+        userButton.classList.remove('focus-button', 'no-hover');
+        currentOpenUser = null;
+    }
 }
 
-function test() {
-    document.getElementById('userButton' + currentOpenUser).focus();
-}
 
 async function submitForm(event, i, contactId, path) {
     event.preventDefault();
@@ -373,6 +385,21 @@ function closeUserDeleteEditWindow() {
     document.getElementById('userDeleteHandy').innerHTML = '';
 }
 
+//function mobileMenuOpenUserInfo(user, index){
+//    let users = document.getElementById('contact');
+//    let userInfo = document.getElementById('contactInfoContainer');
+
+
+
+//    if(window.innerWidth <= 700){
+
+//       users.innerHTML = ''; 
+//    }else{
+//        return false;
+//    }
+
+//}
+
 /**
  * Asynchronously displays a confirmation message after a new contact has been added.
  * The confirmation message is displayed for 3 seconds.
@@ -401,6 +428,7 @@ function slideInPopup(popupId) {
 
     popup.classList.add('slide-in');
 }
+
 
 async function contactinit() {
     await loadContact();
