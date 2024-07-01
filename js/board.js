@@ -368,6 +368,7 @@ async function createTask(event) {
 }
 
 function clearTaskForm() {
+    clearAssignedCheckboxes();
     resetPriority();
     clearCategorySelection();
     document.getElementById('taskTitle').value = '';
@@ -392,6 +393,13 @@ function resetPriority() {
         button.classList.remove('selected');
         const img = button.querySelector('img');
         img.src = button.getAttribute('data-original-image'); // Set to original image
+    });
+}
+
+function clearAssignedCheckboxes() {
+    const assignedCheckboxes = document.querySelectorAll('#assigned input[type="checkbox"]');
+    assignedCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
     });
 }
 
