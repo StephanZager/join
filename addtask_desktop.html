@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="addtaks-desktop dropdown">
-                    <button type="button" class="dropdown-button">Dropdown <img
-                            src="assets/img/arrow_drop_down.png" class="dropdown-arrow"></button>
+                    <button type="button" class="dropdown-button" onclick="openDropdown()">Dropdown <img
+                            src="assets/img/arrow_drop_down.png" class="dropdown-arrow" id="dropdownArrowAssign"></button>
                     <div class="dropdown-content" id="assigned">
                         <!-- Die Optionen mit Checkboxen werden hier generiert -->
                     </div>
@@ -75,15 +75,22 @@
                     </div>
                 </div>
 
-                <div class="addtaks-desktop">
+                <div class="addtaks-desktop dropdown">
                     <span>Category<span style="color: red;">*</span></span>
-                    <div class="select-container" id="arrow" onclick="rotateArrow()">
-                        <select id="category" class="addtask-popup-category" required>
-                            <option disabled selected hidden>Select task category</option>
-                            <option>Technical Task</option>
-                            <option>User Story</option>
-                        </select>
+                    <button type="button" class="dropdown-button-category" id="category" onclick="openDropdownContentCategory()"><span id="categoryText">Categroy</span> <img src="assets/img/arrow_drop_down.png" class="dropdown-arrow-category" id="dropdownArrowCategory"></button>
+                    <div class="dropdown-content-category" id="categoryContent" >
+                        <label class="dropdown-option">
+                            <input type="radio" name="category" value="Technical Task" class="hidden-radio" id="option1">
+                            <span class="option-name">Technical Task</span>
+                        </label>
+                        <label class="dropdown-option">
+                            <input type="radio" name="category" value="User Story" class="hidden-radio" id="option2">
+                            <span class="option-name">User Story</span>
+                        </label>
                     </div>
+                </div>                 
+
+                    
                     <span id="category-error" class="required-info">This field is required</span>
                 </div>
 

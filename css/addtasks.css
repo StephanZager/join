@@ -18,13 +18,15 @@
 .maincontainer-desktop {
     display: flex;
     justify-content: space-between;
-    width: 976px;   
+    max-width: 976px;
+    width: auto;
     height: 424px;
     margin-left: 328px;
 }
 
 .left-field-section {
-   
+    width: 440px;
+    max-height: 376px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -39,7 +41,8 @@
 }
 
 .right-field-section {
-    
+    width: 440px;
+    height: 376px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -168,7 +171,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 976px;
-    
+    margin-left: 328px;
     align-items: end;
     margin-top: 138px;
 }
@@ -340,45 +343,7 @@
 }
 
 
-.select-container {
-    position: relative;
-    height: 48px; /* Setze die Höhe des Containers */
-}
 
-select:focus {
-    outline: none;
-    border-color: #29ABE2 !important;
-
-}
-
-.select-container::after {
-    content: '';
-    position: absolute;
-    display: flex;
-    top: 55%;
-    right: 10px;
-    transform: translateY(-50%);
-    transform-origin: center; /* Setzt den Drehpunkt in die Mitte des Pfeils */
-    background-image: url('../assets/img/arrow_drop_down.png');
-    background-repeat: no-repeat;
-    background-size: 8px 5px;
-    width: 8px;  /* Breite des Bildes */
-    height: 8px; /* Höhe des Bildes */
-    pointer-events: none; /* Damit das Bild keine Klicks blockiert */
-    padding-right: 8px;
-}
-
-.select-container select {
-    -webkit-appearance: none; /* Für Safari */
-    -moz-appearance: none;    /* Für Firefox */
-    appearance: none;         /* Standard */
-    width: 100%; /* Stellen Sie sicher, dass das <select> den gesamten Container ausfüllt */
-    height: 100%; /* Stellt sicher, dass das <select> die Höhe des Containers ausfüllt */
-}
-
-.select-container.arrow-rotate::after {
-    transform: translateY(-100%) translateX(-50%) rotate(180deg);
-}
 
 /*DOPPDOWN*/
 
@@ -392,6 +357,8 @@ select:focus {
 .rotate {
     transform: rotate(180deg);
 }
+
+
 
 .dropdown-button {
     background-color: #ffffff;
@@ -412,6 +379,25 @@ select:focus {
     align-items: center;
     position: relative;
     /* Füge relative Positionierung hinzu */
+}
+
+.dropdown-button-category {
+    background-color: #ffffff;
+    color: black;
+    z-index: 2; /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    width: 100%;
+    height: 48px;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Füge relative Positionierung hinzu */
 }
 
 .dropdown-edit-button {
@@ -448,7 +434,21 @@ select:focus {
     max-height: 320px;
     top: calc(100% - 8px);
     /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
-    left: 0;
+    
+}
+
+.dropdown-content-category {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 99.5%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    top: calc(100% - 8px);
+    padding-top: 8px;
+    /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
 }
 
 .dropdown-edit-content {
@@ -467,11 +467,11 @@ select:focus {
     left: 0;
 }
 
-.dropdown-content.show {
+.show-assign {
     display: block;
 }
 
-.dropdown-edit-content.show {
+.show {
     display: block;
 }
 
@@ -535,8 +535,6 @@ select:focus {
 
 .addTask-interaction-container{
     display: flex;
-    justify-content: center;
-    width: 100%;
     
 }
 
@@ -562,91 +560,7 @@ select:focus {
     display: block; /* Wird angezeigt, wenn über das .subtask-item gehovert wird */
 }
 
-
-@media (max-height: 600px) {
-    /* CSS-Regeln hier, die angewendet werden, wenn die Höhe des Viewports 600px oder weniger beträgt */
-  }
-
-
-
-@media (max-width: 1380px){
-
-    .task-headline {
-        margin-left: 250px;
-    }
-
-    .maincontainer-desktop{
-        margin-left: 250px;
-    }
-}
-
-@media (max-width: 1240px){
-
-    .task-headline {
-        margin-left: 328px;
-    }
-
-    .prio-buttons{
-        gap: 0px;
-        justify-content: space-between;
-    }
-
-    .addTask-form{
-        height: calc(100vh - 275px);
-        margin-left: 328px;
-       
-        overflow: auto;
-    }
-
-    .maincontainer-desktop{
-        margin-left: 0px;
-        width: 100%;
-        max-width: 600px;
-        height: 100vh;
-        
-    }
-
-    .last-section {
-        max-width: 600px;
-        align-items: center;
-        width: 100%;
-        height: 88px;
-        margin-top: 0px;
-        position: fixed;
-        bottom: 0;
-        background-color: #f6f7f8;
-    }
-
-    .addTask-textarea{
-        max-width: 100%;
-        min-width: 100%;
-    }
-
-    .parting-line {
-        display: none;
-    }
-
-    .addTask-interaction-container{
-        flex-direction: column;
-    }
-}
-
-
-@media (max-width: 1000px){
-    .task-headline {
-        margin-left: 250px;
-    }
-    
-    .addTask-form{
-        margin-left: 250px;
-        
-    }
-}
-
-
-
 @media (max-width: 866px) {
-    
 
     .addTask-interaction-container{
         
@@ -686,7 +600,7 @@ select:focus {
     .maincontainer-desktop {
         flex-direction: column;
         margin: 0;
-        padding-right: 60px; 
+        padding-right: 60px; /*--Setzt den scroll balken an den äußeren rand--bei bedarf auch gerne löschen--*/
     }
 
     .addTask-form {
@@ -696,13 +610,12 @@ select:focus {
     .maincontainer-desktop {
         height: calc(100% - 195px);
         overflow-x: auto;
-        width: auto; 
-        min-width: 100%; 
+        width: auto; /* Ensures that the width can grow beyond the parent if content overflows */
+        min-width: 100%; /* Ensures that the container is at least as wide as its parent */
         
     }
 
     .last-section {
-        z-index: 3;
         height: 88px;
         position: fixed;
         left: 0;
@@ -712,7 +625,6 @@ select:focus {
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        max-width: 100%;
         margin-top: 0px;
         margin-left: 0px;
         margin-top: 30px;
@@ -744,7 +656,7 @@ select:focus {
     }
 
     .task-headline {
-        margin-left: 60px;  
+        margin-left: 60px;
         font-size: 40px;
         line-height: 14px;
         height: 56px;
@@ -836,7 +748,7 @@ select:focus {
     }
 }
 
-@media (min-width: 320px) and (max-width: 867px) {
+@media (min-width: 320px) and (max-width: 869px) {
 
     .title-select-or-input {
         height: 40px;
@@ -887,3 +799,26 @@ select:focus {
 
 
 
+
+
+
+.hidden-radio {
+    opacity: 0;
+    position: absolute;
+}
+
+.dropdown-option {
+    display: block;
+    position: relative;
+    padding-left: 35px; /* Anpassen, um genug Platz für den unsichtbaren Radiobutton zu lassen */
+    cursor: pointer;
+}
+
+.dropdown-option .option-name {
+    display: block;
+}
+
+.dropdown-option:hover {
+    background-color: #2a3647;
+    color: white;
+}

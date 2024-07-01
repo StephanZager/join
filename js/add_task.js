@@ -1,25 +1,8 @@
-/**
- * Array to hold assigned tasks.
- * @type {Array}
- */
 let assign = [];
-
 let globalSubtasks = [];
-/**
- * Index of the current assigned task.
- * @type {number}
- */
 let currentAssignIndex = 0;
-/**
- * The selected priority level.
- * @type {string|null}
- */
 let selectedPriority = null;
 
-/**
- * Removes the 'selected' class and resets the image for each button.
- * @param {Array} buttons - The buttons to reset.
- */
 function resetButtons(buttons) {
     buttons.forEach(button => {
         button.classList.remove('selected');
@@ -27,12 +10,8 @@ function resetButtons(buttons) {
         img.src = button.getAttribute('data-original-image'); // Set to original image
     });
 }
-/**
- * Returns the button corresponding to the given priority.
- * @param {Element} container - The container element.
- * @param {string} priority - The priority level.
- * @returns {Element} The button element.
- */
+
+
 function getButtonByPriority(container, priority) {
     let button;
     if (priority === 'Urgent') {
@@ -46,11 +25,8 @@ function getButtonByPriority(container, priority) {
     }
     return button;
 }
-/**
- * Adds the 'selected' class and changes the image for the given button.
- * @param {Element} button - The button to modify.
- * @param {string} priority - The priority level.
- */
+
+
 function setButtonAsSelected(button, priority) {
     if (button) {
         button.classList.add('selected');
@@ -59,10 +35,8 @@ function setButtonAsSelected(button, priority) {
         selectedPriority = priority;
     }
 }
-/**
- * Sets the priority level for each button container.
- * @param {string} priority - The priority level.
- */
+
+
 function setPriority(priority) {
     const containers = document.querySelectorAll('.prio-buttons, .addtask-popup-prio-buttons');
     containers.forEach(container => {
@@ -72,35 +46,7 @@ function setPriority(priority) {
         setButtonAsSelected(button, priority);
     });
 }
-/**
- * Validates the required fields.
- * @param {Array} requiredFields - The required fields.
- * @returns {boolean} Whether the fields are valid.
- */
-function validateFields(requiredFields) {
-    let isValid = true;
-    requiredFields.forEach(field => {
-        const input = document.getElementById(field.id);
-        const error = document.getElementById(field.errorId);
-        if (!input.value) {
-            if (error) {
-                error.style.display = 'block';
-            } else {
-                console.error(`Element with id ${field.errorId} not found`);
-            }
-            isValid = false;
-        } else {
-            if (error) {
-                error.style.display = 'none';
-            }
-        }
-    });
-    return isValid;
-}
-/**
- * Returns the details of the assigned tasks.
- * @returns {Array} The details of the assigned tasks.
- */
+
 function getAssignedDetails() {
     let assignedElement = document.getElementById('assigned');
     let assignCheckboxes = assignedElement ? assignedElement.querySelectorAll('input[type="checkbox"]:checked') : [];
@@ -133,10 +79,6 @@ function filterNameAlphabet() {
     assign.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-/**
- * Returns the subtasks.
- * @returns {Array} The subtasks.
- */
 function getSubtasks() {
     let subtaskItems = document.querySelectorAll('#subtaskList li');
     let subtasks = [];
@@ -147,17 +89,7 @@ function getSubtasks() {
     globalSubtasks = subtasks;
     return subtasks;
 }
-/**
- * Creates a user task.
- * @param {string} title - The title of the task.
- * @param {string} description - The description of the task.
- * @param {string} date - The due date of the task.
- * @param {string} userCategory - The category of the task.
- * @param {Array} assignDetails - The details of the assigned tasks.
- * @param {Array} subtasks - The subtasks.
- * @param {string} selectedPriority - The priority level.
- * @returns {Object} The created task.
- */
+
 function createUserTask(title, description, date, userCategory, assignDetails, subtasks, selectedPriority) {
     return {
         title: title,
@@ -170,27 +102,14 @@ function createUserTask(title, description, date, userCategory, assignDetails, s
         priority: selectedPriority
     };
 }
-/**
- * Submits a task.
- * @param {Event} event - The event object.
- */
+
 async function submitTask(event) {
     event.preventDefault();
-
-    const requiredFields = [
-        { id: 'title', errorId: 'title-error' },
-        { id: 'dueDate', errorId: 'dueDate-error' },
-        { id: 'category', errorId: 'category-error' }
-    ];
-
-    if (!validateFields(requiredFields)) {
-        return;
-    }
 
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let date = document.getElementById('dueDate').value;
-    let userCategory = document.getElementById('category').value;
+    let userCategory = document.querySelector('input[name="category"]:checked')?.value;
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
     let userTask = createUserTask(title, description, date, userCategory, assignDetails, subtasks, selectedPriority);
@@ -203,10 +122,6 @@ async function submitTask(event) {
     }
 }
 
-
-/**
- * Adds a subtask to the list.
- */
 function addSubtaskToList() {
     let subtaskInput = document.getElementById('subtasks');
     let subtaskText = subtaskInput.value.trim();
@@ -215,7 +130,6 @@ function addSubtaskToList() {
         // Hinzufügen des neuen Subtasks zu globalSubtasks
         let subtaskId = globalSubtasks.length; // Eindeutiger ID für das neue Subtask
         globalSubtasks.push({ title: subtaskText, done: false, id: subtaskId });
-
         // Liste neu rendern
         renderSubtasks();
         resetSubtaskFocus()
@@ -236,12 +150,10 @@ function resetSubtaskFocus() {
     document.getElementById('placeholderImgSubtask').style.display = 'flex';
 }
 
-function editSubtaskAddTask(id) {
+function editSubtask(id) {
     let subtaskToEdit = globalSubtasks[id];
     let editElement = document.getElementById(`subtaskToEdit${id}`);
-    
-    editElement.innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"> | <img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div>`;
-   
+    editElement.innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"> | <img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div>`; 
 }
 
 function confirmAddTaskSubtaskEdit(id) {
@@ -259,13 +171,10 @@ function clearSubtask() {
     document.getElementById('subtasks').value = ''; 
 }
 
-
-function deleteSubtaskAddTask(id) {
-    // Logik zum Löschen eines Subtasks
+function deleteSubtask(id) {
     globalSubtasks.splice(id, 1);
-    // Aktualisieren Sie hier die Anzeige der Subtask-Liste
     console.log('Löschen:', id);
-    renderSubtasks(); // Funktion zum erneuten Rendern der Subtasks
+    renderSubtasks(); // 
 }
 
 function renderSubtasks() {
@@ -277,8 +186,8 @@ function renderSubtasks() {
             <div id="subtaskToEdit${index}" class="subtask-item">
                 <li class="addtask-subtask-li">${subtaskToEdit.title}</li>
                  <div class="edit-delete-img">
-                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtaskAddTask(${index})"> | 
-                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtaskAddTask(${index})">
+                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${index})"> | 
+                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">
                 </div>
             </div>`;
             subtaskList.innerHTML += subtaskItem;
@@ -286,26 +195,14 @@ function renderSubtasks() {
     }
 }
 
-
 function scrollToBottomAddtask() {
     const maincontainerAddtask = document.getElementById('maincontainerAddtask');
     if (maincontainerAddtask) {
-        // Scrollt zum Ende des Containers
         maincontainerAddtask.scrollTop = maincontainerAddtask.scrollHeight;
     }
 }
 
 
-/**
- * Sends a POST request to a specified path with the provided data.
- * The data is converted to a JSON string before being sent.
- * If the response is not ok, an error is logged to the console and the function returns.
- * Otherwise, the response is converted to JSON and returned.
- *
- * @param {string} path - The path to which to send the POST request.
- * @param {Object} data - The data to be sent in the body of the POST request.
- * @returns {Promise<Object>} A Promise that resolves with the JSON response, or undefined if the response was not ok.
- */
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -325,14 +222,6 @@ async function postData(path, data) {
 }
 
 
-/**
- * Fetches data from a specified path, converts the response to JSON, and adds the values to the `assign` array.
- * After the data is loaded, the `generateAssign` function is called.
- * If an error occurs during the process, it is caught and logged to the console.
- *
- * @param {string} [path="/contact"] - The path from which to fetch the data. Defaults to "/contact".
- * @returns {Promise<void>} A Promise that resolves when the operation is completed.
- */
 async function loadAssign(path = "/contact") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -354,16 +243,7 @@ async function loadAssign(path = "/contact") {
     }
 }
 
-/**
- * Creates a label element with a checkbox and two spans for initials and name.
- * The checkbox's value and the background color of the initials span are set based on the provided assignContacts object.
- * The created label is returned.
- *
- * @param {Object} assignContacts - The object containing the name and background color.
- * @param {string} assignContacts.name - The name to be set as the checkbox value and the text content of the name span.
- * @param {string} assignContacts.bgNameColor - The background color to be set for the initials span and as a data attribute of the checkbox.
- * @returns {HTMLLabelElement} The created label element.
- */
+
 function createLabel(assignContacts) {
     let label = document.createElement('label');
     let checkbox = document.createElement('input');
@@ -392,15 +272,7 @@ function createLabel(assignContacts) {
     return label;
 }
 
-//function cleanNameForInitials(name) {
-    //return name.replace(" (YOU)", "");
-//}
 
-/**
- * Clears the inner HTML of the element with id 'assigned' and appends a label for each object in the assign array.
- * Each label is created by calling the createLabel function with the current assignContacts object.
- * If no element with id 'assigned' is found, an error is logged and the function returns.
- */
 function generateAssign() {
     let assignContact = document.getElementById('assigned');
     let loggedInUser = localStorage.getItem('loggedInUser'); // Dies sollte durch den tatsächlichen Namen des eingeloggten Benutzers ersetzt werden
@@ -422,10 +294,7 @@ function generateAssign() {
     }
 }
 
-/**
- * Moves the logged-in user to the top of the assign array and marks it as "YOU".
- * @param {string} loggedInUser - The name of the logged-in user.
- */
+
 function moveLoggedInUserToTop(assign, loggedInUser) {
     console.log('Logged In User:', loggedInUser);
     // Suche nach dem Benutzer, auch wenn der Name geändert wurde
@@ -445,14 +314,6 @@ function moveLoggedInUserToTop(assign, loggedInUser) {
     }
 }
 
-
-
-/**
- * Extracts the first letter from each word in a given string, converts them to uppercase and concatenates them.
- *
- * @param {string} name - The string from which to extract the first letters.
- * @returns {string} The concatenated uppercase first letters of each word in the input string.
- */
 function filterFirstLetters(name) {
     // Entfernen spezifischer Zeichenfolgen wie "(YOU)"
     let cleanedName = name.replace(/\(YOU\)/ig, '');
@@ -461,50 +322,57 @@ function filterFirstLetters(name) {
     return firstLetters;
 }
 
-/**
- * Sets up event listeners for a dropdown menu.
- * 
- * This function is executed once the DOM is fully loaded. It sets up event listeners for the dropdown button and content, 
- * as well as a global click event listener to close the dropdown when clicked outside.
- * 
- * The dropdown button toggles the visibility of the dropdown content when clicked.
- * Clicking on the dropdown content does not close the dropdown.
- * Clicking anywhere outside the dropdown content and the dropdown button closes the dropdown.
- */
-document.addEventListener('DOMContentLoaded', () => {
-    const dropdownButton = document.querySelector('.dropdown-button');
-    const dropdownContent = document.querySelector('.dropdown-content');
-    const dropdownArrow = document.querySelector('.dropdown-arrow');
+function openDropdownContentCategory() {
+    let categoryContent = document.getElementById('categoryContent');
+    let dropdownArrowCategory = document.getElementById('dropdownArrowCategory');
+    categoryContent.classList.toggle('show');
+    dropdownArrowCategory.classList.toggle('rotate');
 
-    dropdownButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        dropdownContent.classList.toggle('show');
-        dropdownArrow.classList.toggle('rotate');
-    });
-
-    dropdownContent.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
-
-    window.addEventListener('click', (event) => {
-        if (!dropdownContent.contains(event.target) && !dropdownButton.contains(event.target)) {
-            dropdownContent.classList.remove('show');
-            dropdownArrow.classList.remove('rotate');
+    function handleClickOutside(event) {
+        if (!categoryContent.contains(event.target)) {
+            categoryContent.classList.remove('show'); // Verbergen des Dropdown-Inhalts
+            dropdownArrowCategory.classList.remove('rotate');
+            document.removeEventListener('click', handleClickOutside); // Entfernen des Event Listeners
         }
-    });
-});
+    }
 
-function rotateArrow() {
-    document.querySelector('.select-container').classList.toggle('arrow-rotate');
+    document.querySelectorAll('.dropdown-option input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            let selectedText = this.nextElementSibling.innerText; 
+    
+            document.getElementById('categoryText').innerText = selectedText;
+    
+            document.getElementById('categoryContent').classList.remove('show');
+            dropdownArrowCategory.classList.remove('rotate');
+            document.removeEventListener('click', handleClickOutside);
+        });
+    });
+    if (categoryContent.classList.contains('show')) {
+        setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
+    }
 }
 
+function openDropdown() {
+    let dropdownContent = document.getElementById('assigned');
+    let dropdownArrowAssign = document.getElementById('dropdownArrowAssign');
+    dropdownContent.classList.toggle('show-assign'); // Toggle die Klasse, um den Dropdown-Inhalt anzuzeigen oder zu verbergen
+    dropdownArrowAssign.classList.toggle('rotate'); // Drehe den Dropdown-Pfeil
+    
+    function handleClickOutside(event) {
+        if (!dropdownContent.contains(event.target)) {
+            dropdownContent.classList.remove('show-assign'); // Verbergen des Dropdown-Inhalts
+            dropdownArrowAssign.classList.remove('rotate');
+            document.removeEventListener('click', handleClickOutside); // Entfernen des Event Listeners
+        }
+    }
 
+    if (dropdownContent.classList.contains('show-assign')) {
+        setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
+    } else {
+        document.removeEventListener('click', handleClickOutside);
+    }
+}
 
-
-/**
- * Clears the subtask list both in memory and in the UI.
- * It empties the `subtaskList` array and also clears the HTML content of the element with id 'subtaskList'.
- */
 function clearSubtasks() {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
@@ -518,11 +386,6 @@ function clearSubtasks() {
     document.getElementById('assignedInitial').innerHTML = '';
 }
 
-/**
- * Sets the minimum date that can be selected in the date picker elements with IDs 'dueDate' and 'editDate' to the current date.
- * The current date is converted to the 'yyyy-mm-dd' format expected by HTML date picker elements.
- * If the 'dueDate' or 'editDate' elements do not exist, the minimum date is not set.
- */
 function setMinDate() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
