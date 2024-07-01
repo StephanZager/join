@@ -146,11 +146,15 @@ function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
-    console.log(currentOpenUser);
+    console.log('erste',currentOpenUser);
     
-    
+    if (currentOpenUser !== null) {
+        let oldUserButton = document.getElementById('userButton' + currentOpenUser);
+        oldUserButton.classList.remove('focus-button');
+        oldUserButton.classList.remove('no-hover');
+    }
     //bottonFocus(userButton, index);
-
+   
 
     if (userInfo.innerHTML === '' || currentOpenUser !== index) {
         userInfo.innerHTML = userInfoHTML(user, index);
@@ -158,13 +162,14 @@ function openUserInfo(index) {
         userButton.classList.add('focus-button');
         userButton.classList.add('no-hover');
         currentOpenUser = index;
-        console.log(currentOpenUser);
+        console.log('in der if',currentOpenUser);
     } else {
         userInfo.innerHTML = '';
         userButton.classList.remove('focus-button');
         userButton.classList.remove('no-hover');
         userButton.blur();
         currentOpenUser = null;
+        console.log('in der else',currentOpenUser);
     }
 }
 
@@ -173,7 +178,7 @@ function deselectUser() {
     let userButton = document.getElementById('userButton' + currentOpenUser);
     userInfo.innerHTML = '';
     userButton.classList.remove('focus-button');
-        userButton.classList.remove('no-hover');
+    userButton.classList.remove('no-hover');
     currentOpenUser = null;
 }
 
