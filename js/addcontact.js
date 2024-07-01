@@ -3,7 +3,6 @@ let groupedContactsLetters = {};
 let currentOpenUser = null;
 let currentUser = [];
 
-
 /**
  * This prevents the window from closing when I press the pop-up button
  * 
@@ -142,29 +141,24 @@ async function generateContacts() {
 }
 
 function openUserInfo(index) {
-    //mobileMenuOpenUserInfo();
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
-    console.log('erste',currentOpenUser);
-    deselectUser();
     
-   
+    deselectUser();
 
     if (userInfo.innerHTML === '' || currentOpenUser !== index) {
         userInfo.innerHTML = userInfoHTML(user, index);
         userButton.focus();
         userButton.classList.add('focus-button');
         userButton.classList.add('no-hover');
-        currentOpenUser = index;
-        console.log('in der if',currentOpenUser);
+        currentOpenUser = index;        
     } else {
         userInfo.innerHTML = '';
         userButton.classList.remove('focus-button');
         userButton.classList.remove('no-hover');
         userButton.blur();
-        currentOpenUser = null;
-        console.log('in der else',currentOpenUser);
+        currentOpenUser = null;       
     }
 }
 
@@ -177,7 +171,6 @@ function deselectUser() {
         currentOpenUser = null;
     }
 }
-
 
 async function submitForm(event, i, contactId, path) {
     event.preventDefault();
@@ -200,11 +193,10 @@ async function addContactUbdate(i, contactId, updatedContact, path) {
 
     if (newIndex !== -1) {
         updatedContact.originalIndex = newIndex;
-
         openUserInfo(newIndex);
     }
-    cloeAddUbdateContactwindow();
 
+    cloeAddUbdateContactwindow();
     filterNameAlphabet();
     filterContactAlphabet();
     await generateContacts();
@@ -236,7 +228,6 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
         body: JSON.stringify(updatedContact)
     });
     return response;
-
 }
 
 async function editUser(i, path = "/contact") {
@@ -264,7 +255,6 @@ async function deleteUser(i, path = "/contact") {
     document.getElementById('contactInfo').innerHTML = '';
     currentOpenUser = null;
     generateContacts();
-
 }
 
 /**
@@ -325,8 +315,6 @@ function openAddNewContactwindow() {
 
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
-
-
 }
 
 /**
@@ -334,7 +322,6 @@ function openAddNewContactwindow() {
  * 
  */
 function cloeAddNewContactwindow() {
-
     document.getElementById('bg_add_new_contact').classList.add('d-none');
 }
 
@@ -356,7 +343,6 @@ function cloeAddUbdateContactwindow() {
 
 function openUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'block';
-
 }
 
 function closeUserInfoWindow() {
@@ -386,21 +372,6 @@ function closeUserDeleteEditWindow() {
     document.getElementById('userDeleteHandy').innerHTML = '';
 }
 
-//function mobileMenuOpenUserInfo(user, index){
-//    let users = document.getElementById('contact');
-//    let userInfo = document.getElementById('contactInfoContainer');
-
-
-
-//    if(window.innerWidth <= 700){
-
-//       users.innerHTML = ''; 
-//    }else{
-//        return false;
-//    }
-
-//}
-
 /**
  * Asynchronously displays a confirmation message after a new contact has been added.
  * The confirmation message is displayed for 3 seconds.
@@ -418,7 +389,6 @@ async function addNewContactConfirmation() {
     }, 3000);
 }
 
-
 /**
  * Adds the 'slide-in' class to the popup element with the specified ID to initiate a slide-in animation.
  * 
@@ -429,7 +399,6 @@ function slideInPopup(popupId) {
 
     popup.classList.add('slide-in');
 }
-
 
 async function contactinit() {
     await loadContact();
