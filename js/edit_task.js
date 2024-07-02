@@ -20,10 +20,9 @@ function showTaskDetails() {
     document.getElementById('editTitle').value = currentTask.title;
     document.getElementById('editDescription').value = currentTask.description;
     document.getElementById('editAssigned').value = currentTask.assign;
-    document.getElementById('editDate').value = currentTask.dueDate;
-    document.querySelector('input[name="category"]:checked')?.value;
+    document.getElementById('editDate').value = currentTask.date;
     document.getElementById('subtaskListEdit').innerHTML = '';
-    
+    document.getElementById('categoryTextEdit').innerText = currentTask.userCategory;
 
     showInitialsEditTask();
     showSubtasksEditTask();
@@ -298,23 +297,22 @@ function openEditDropdownContentCategory() {
 
     function handleClickOutside(event) {
         if (!categoryContent.contains(event.target)) {
-            categoryContent.classList.remove('show'); // Verbergen des Dropdown-Inhalts
+            categoryContent.classList.remove('show');
             dropdownArrowCategory.classList.remove('rotate');
-            document.removeEventListener('click', handleClickOutside); // Entfernen des Event Listeners
+            document.removeEventListener('click', handleClickOutside);
         }
     }
 
     document.querySelectorAll('.dropdown-option input[type="radio"]').forEach(radio => {
         radio.addEventListener('change', function() {
-            let selectedText = this.nextElementSibling.innerText; 
-    
+            let selectedText = this.nextElementSibling.innerText;
             document.getElementById('categoryTextEdit').innerText = selectedText;
-    
-            document.getElementById('dropdownArrowCategoryEdit').classList.remove('show');
+            categoryContent.classList.remove('show');
             dropdownArrowCategory.classList.remove('rotate');
             document.removeEventListener('click', handleClickOutside);
         });
     });
+
     if (categoryContent.classList.contains('show')) {
         setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
     }
