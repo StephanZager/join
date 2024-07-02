@@ -21,7 +21,7 @@ function showTaskDetails() {
     document.getElementById('editDescription').value = currentTask.description;
     document.getElementById('editAssigned').value = currentTask.assign;
     document.getElementById('editDate').value = currentTask.dueDate;
-    document.getElementById('editCategory').value = currentTask.userCategory;
+    document.querySelector('input[name="category"]:checked')?.value;
     document.getElementById('subtaskListEdit').innerHTML = '';
     
 
@@ -196,7 +196,7 @@ function updateCurrentTask() {
     currentTask.title = document.getElementById('editTitle').value;
     currentTask.description = document.getElementById('editDescription').value;
     currentTask.dueDate = document.getElementById('editDate').value;
-    currentTask.userCategory = document.getElementById('editCategory').value;
+    currentTask.userCategory = document.querySelector('input[name="category"]:checked')?.value;
 
     let assignContact = document.getElementById('editAssigned');
     if (assignContact) {
@@ -261,7 +261,7 @@ function generateEditAssign() {
     markCheckedCheckboxes();
 }
 
-function openDropdown() {
+function openDropdownEditAssign() {
     let dropdown = document.querySelector('.dropdown-edit-content');
     document.getElementById('dropdownArrow').classList.toggle('rotate');
     dropdown.classList.toggle('show');
