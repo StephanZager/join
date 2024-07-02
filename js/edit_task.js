@@ -290,5 +290,33 @@ async function updateTask(firebaseId, updatedUserTask) {
    
 }
 
+function openEditDropdownContentCategory() {
+    let categoryContent = document.getElementById('categoryContentEdit');
+    let dropdownArrowCategory = document.getElementById('dropdownArrowCategoryEdit');
+    categoryContent.classList.toggle('show');
+    dropdownArrowCategory.classList.toggle('rotate');
 
+    function handleClickOutside(event) {
+        if (!categoryContent.contains(event.target)) {
+            categoryContent.classList.remove('show'); // Verbergen des Dropdown-Inhalts
+            dropdownArrowCategory.classList.remove('rotate');
+            document.removeEventListener('click', handleClickOutside); // Entfernen des Event Listeners
+        }
+    }
+
+    document.querySelectorAll('.dropdown-option input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            let selectedText = this.nextElementSibling.innerText; 
+    
+            document.getElementById('categoryTextEdit').innerText = selectedText;
+    
+            document.getElementById('dropdownArrowCategoryEdit').classList.remove('show');
+            dropdownArrowCategory.classList.remove('rotate');
+            document.removeEventListener('click', handleClickOutside);
+        });
+    });
+    if (categoryContent.classList.contains('show')) {
+        setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
+    }
+}
 
