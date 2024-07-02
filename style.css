@@ -189,6 +189,11 @@ a {
 
 @media (max-width: 866px) {
 
+    .dropdown-profil{
+        right: 10px !important;
+        top: 70px !important;
+    }
+
     .menuBar {
         display: flex;
         justify-content: space-between;
