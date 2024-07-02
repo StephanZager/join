@@ -1,7 +1,11 @@
 body {
     background-color: #F6F7F8;
-    margin: 0;
+    margin: 0 auto;
     height: 100vh;
+}
+
+.fonz-size-sing-up{
+    font-size: 20px;
 }
 
 .logo {
@@ -120,7 +124,7 @@ form {
 .accept-policy label a:hover {
     color: #29ABE2;
     text-decoration: underline;
-    font-size: 17px;
+    font-size: 16px !important;
 
 }
 
@@ -315,7 +319,7 @@ footer a {
     }
 
     .accept-policy {
-        margin-top: 32px;
+        margin-top: 25px;
         display: flex;
         justify-content: center;
     }
@@ -331,12 +335,14 @@ footer a {
     .accept-policy a:hover {
         cursor: pointer;
         text-decoration: underline;
+        font-size: 16px !important;
+        
     }
 
     .signup-btn-headsection {
         display: flex;
         justify-content: center;
-        margin-top: 32px;
+        margin-top: 25px;
     }
 
     form button {
@@ -354,5 +360,72 @@ footer a {
     .footer {
         gap: 0;
         font-size: 15px;
+    }
+}
+
+@media (max-height: 910px){
+    .signup-form{
+        margin-top: 25px;
+    }
+
+    .footer{
+        bottom: 20px;
+    }
+
+    .logo{
+        margin-top: 20px;
+        margin-left: 20px;
+        width: 54px;
+        height: 68px;
+    }
+}
+
+
+
+@media (max-height: 812px){
+    .signupform-headline{
+        margin-top: 0px;
+    }
+
+    .underline-headline{
+        margin-top: 0px;
+    }
+
+    .back-btn{
+        top: -32px;
+    }
+
+    .signup-form{
+        height: 520px;
+    }
+
+    .inputfield-area{
+        gap: 16px;
+    }
+
+    .fonz-size-sing-up{
+        font-size: 16px;
+    }
+}
+
+@media (max-height: 732px){
+    .signup-form{
+        height: 480px;
+    }
+
+    .inputfield-area input{
+        height: 40px;
+    }
+
+    .logo{
+        
+        width: 44px;
+        height: 58px;
+    }
+}
+
+@media (max-height: 732px){
+    .footer{
+        bottom: 5px;
     }
 }
