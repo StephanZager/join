@@ -103,9 +103,28 @@ function createUserTask(title, description, date, userCategory, assignDetails, s
     };
 }
 
+
+function requiredFields() {
+    let title = document.getElementById('title').value;
+    let date = document.getElementById('dueDate').value;
+    let userCategory = document.querySelector('input[name="category"]:checked')?.value;
+
+    if (title === '' || date === '' || userCategory === undefined) {
+        alert('Please fill in all required fields');
+        return false;
+    }
+    return true;
+}
+
+
+
 async function submitTask(event) {
     event.preventDefault();
 
+    if (!requiredFields()) {
+        console.log('Erforderliche Felder fehlen. Formular wird nicht abgesendet.');
+        return;
+    }
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let date = document.getElementById('dueDate').value;
@@ -119,6 +138,7 @@ async function submitTask(event) {
         window.location.href = "board.html";
         
     } catch (error) {
+        
         console.error("Fehler beim Posten der Daten:", error);
     }
 }
@@ -283,7 +303,6 @@ function createLabel(assignContacts) {
 
     return label;
 }
-
 
 function generateAssign() {
     let assignContact = document.getElementById('assigned');

@@ -898,3 +898,9 @@
     background-color: #2a3647;
     color: white;
 }
+
+
+
+.required-mark {
+    border: 2px solid red;
+}
