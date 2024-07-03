@@ -105,16 +105,48 @@ function createUserTask(title, description, date, userCategory, assignDetails, s
 
 
 function requiredFields() {
-    let title = document.getElementById('title').value;
-    let date = document.getElementById('dueDate').value;
-    let userCategory = document.querySelector('input[name="category"]:checked')?.value;
+    let isValid = true; // Gültigkeitsstatus initial auf true setzen
+    let title = document.getElementById('title');
+    let date = document.getElementById('dueDate');
+    let userCategory = document.querySelector('input[name="category"]:checked');
 
-    if (title === '' || date === '' || userCategory === undefined) {
-        alert('Please fill in all required fields');
-        return false;
+    // Zurücksetzen der Styles für alle Felder, um frühere Markierungen zu entfernen
+    title.style.border = '';
+    date.style.border = '';
+
+    if (title.value === '') {
+        title.style.border = '1px solid red';
+        isValid = false; 
+    } if (date.value === '') {
+        date.style.border = '1px solid red';
+        isValid = false; 
+    } if (!userCategory) {
+        document.getElementById('category').style.border = '1px solid red';
+        isValid = false;
+    } else {
+        document.getElementById('category').style.border = '';
     }
-    return true;
+
+    return isValid; // Den gesamten Gültigkeitsstatus zurückgeben
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    setPriority('Medium');
+    let titleInput = document.getElementById('title');
+    let dateInput = document.getElementById('dueDate');
+
+    titleInput.addEventListener('input', function() {
+        if (this.value !== '') {
+            this.style.border = ''; // Entfernt die rote Umrandung, wenn das Feld nicht leer ist
+        }
+    });
+
+    dateInput.addEventListener('input', function() {
+        if (this.value !== '') {
+            this.style.border = ''; // Entfernt die rote Umrandung, wenn das Feld nicht leer ist
+        }
+    });
+});
 
 
 
@@ -365,7 +397,7 @@ function openDropdownContentCategory() {
             let selectedText = this.nextElementSibling.innerText; 
     
             document.getElementById('categoryText').innerText = selectedText;
-    
+            document.getElementById('category').style.border = '';
             document.getElementById('categoryContent').classList.remove('show');
             dropdownArrowCategory.classList.remove('rotate');
             document.removeEventListener('click', handleClickOutside);
