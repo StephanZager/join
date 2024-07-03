@@ -64,14 +64,25 @@ function getAssignedDetails() {
 function showAssignInitials(assignDetails) {
     let assignedInitial = document.getElementById('assignedInitial');
     assignedInitial.innerHTML = '';
-    for (let i = 0; i < assignDetails.length; i++) {
-        let initials = filterFirstLetters(assignDetails[i].name); // Bereinigter Name für Initialen //cleanNameForInitials(assignDetails[i].name);
+    let maxInitialsToShow = 6;
+    let numberOfAssignDetails = assignDetails.length;
+
+    for (let i = 0; i < Math.min(numberOfAssignDetails, maxInitialsToShow); i++) {
+        let initials = filterFirstLetters(assignDetails[i].name); // Bereinigter Name für Initialen
         let bgNameColor = assignDetails[i].bgNameColor;
         let assignInitials = document.createElement('span');
         assignInitials.textContent = initials;
         assignInitials.style.backgroundColor = bgNameColor;
         assignInitials.classList.add('assign-initials');
         assignedInitial.appendChild(assignInitials);
+    }
+
+    if (numberOfAssignDetails > maxInitialsToShow) {
+        let additionalCount = numberOfAssignDetails - maxInitialsToShow;
+        let additionalInitials = document.createElement('span');
+        additionalInitials.textContent = `+${additionalCount}`;
+        additionalInitials.classList.add('additional-initials'); // Eine Klasse für das Styling des "zusätzlichen" Span
+        assignedInitial.appendChild(additionalInitials);
     }
 }
 
@@ -123,8 +134,6 @@ function requiredFields() {
     } if (!userCategory) {
         document.getElementById('category').style.border = '1px solid red';
         isValid = false;
-    } else {
-        document.getElementById('category').style.border = '';
     }
 
     return isValid; // Den gesamten Gültigkeitsstatus zurückgeben
@@ -203,7 +212,7 @@ function resetSubtaskFocus() {
     document.getElementById('placeholderImgSubtask').style.display = 'flex';
 }
 
-function editSubtask(id) {
+function editSubtaskAddtask(id) {
     let subtaskToEdit = globalSubtasks[id];
     let editElement = document.getElementById(`subtaskToEdit${id}`);
     editElement.innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"> | <img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div>`; 
@@ -250,7 +259,7 @@ function renderSubtasks() {
             <div id="subtaskToEdit${index}" class="subtask-item">
                 <li class="addtask-subtask-li">${subtaskToEdit.title}</li>
                  <div class="edit-delete-img">
-                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtask(${index})"> | 
+                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtaskAddtask(${index})"> | 
                     <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">
                 </div>
             </div>`;
