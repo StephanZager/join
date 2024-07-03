@@ -23,16 +23,13 @@ function showTaskDetails() {
     document.getElementById('editDate').value = currentTask.date;
     document.getElementById('subtaskListEdit').innerHTML = '';
     document.getElementById('categoryTextEdit').innerText = currentTask.userCategory;
-
-     // Auswahl aller Radio-Buttons
-     const radios = document.querySelectorAll('.dropdown-option input[type="radio"]');
-     radios.forEach(radio => {
-         // Überprüfen, ob der Wert des Radio-Buttons mit currentTask.userCategory übereinstimmt
-         if (radio.value === currentTask.userCategory) {
-             // Zustand des Radio-Buttons aktualisieren
-             radio.checked = true;
-         }
-     });
+    setCurrentPriority(currentTask.priority);
+    const radios = document.querySelectorAll('.dropdown-option input[type="radio"]');
+    radios.forEach(radio => {
+        if (radio.value === currentTask.userCategory) {
+            radio.checked = true;
+        }
+    });
 
     showInitialsEditTask();
     showSubtasksEditTask();
