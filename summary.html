@@ -17,17 +17,19 @@
 
 <body onload="includeHTML(), initSummary()">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
-    <main>
-        <div id="greetingSummaryMobile"></div>
-        <div class="headline-summary">
-            <h2 class="headline-summary-h2">Join 360</h2>
-            <div class="headline-summary-seperator"></div>            
-            <span class="headline-summary-info">Key Merricas at a Glance</span>
-            <div class="headline-summary-seperator-mobile"></div>
-        </div>
+    <div id="greetingSummaryMobile"></div>
+    <main class="summary-main">
+        
+        
 
         <!-- this is for java script, innnerHTML. id have not yet been assigned -->
         <div class="summary-section-2">
+            <div class="headline-summary">
+                <h2 class="headline-summary-h2">Join 360</h2>
+                <div class="headline-summary-seperator"></div>            
+                <span class="headline-summary-info">Key Merricas at a Glance</span>
+                <div class="headline-summary-seperator-mobile"></div>
+            </div>
             <div class="summary-stats">
                 <div style="display: flex;justify-content: space-between;">
                     <div class="summary-todo-info">
@@ -80,11 +82,12 @@
 
             <!-- this is for java script, innnerHTML. id have not yet been assigned -->
             
-            <div class="summary-greeting">
-                <h3 id="greetingSummary" class="summary-day-greeting">Good morning,</h3>
-                <span class="summary-person-greeting"></span>
-            </div>            
+                   
         </div>
+        <div class="summary-greeting">
+            <h3 id="greetingSummary" class="summary-day-greeting">Good morning,</h3>
+            <span class="summary-person-greeting"></span>
+        </div>     
     </main>
     
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
