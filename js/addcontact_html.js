@@ -7,7 +7,7 @@ function addNewContactPopUp() {
 
    
         <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact-destop"
-            src="/assets/img/close-addcontact.png" alt="check">
+            src="assets/img/close-addcontact.png" alt="check">
 
         <img onclick="cloeAddNewContactwindow()" class="close-botton-addcontact"
             src="assets/img/close.button.addcontact.png" alt="" srcset="">
@@ -72,7 +72,7 @@ function addUbdateContactPopUp(i, path = "/contact") {
         <div class="addcontact-container">
 
         <img onclick="cloeAddUbdateContactwindow()" class="close-botton-addcontact-destop"
-            src="/assets/img/close-addcontact.png" alt="check">
+            src="assets/img/close-addcontact.png" alt="check">
 
         <img onclick="cloeAddUbdateContactwindow()" class="close-botton-addcontact"
             src="assets/img/close.button.addcontact.png" alt="" srcset="">
