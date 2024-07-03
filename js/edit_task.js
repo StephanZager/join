@@ -24,6 +24,16 @@ function showTaskDetails() {
     document.getElementById('subtaskListEdit').innerHTML = '';
     document.getElementById('categoryTextEdit').innerText = currentTask.userCategory;
 
+     // Auswahl aller Radio-Buttons
+     const radios = document.querySelectorAll('.dropdown-option input[type="radio"]');
+     radios.forEach(radio => {
+         // Überprüfen, ob der Wert des Radio-Buttons mit currentTask.userCategory übereinstimmt
+         if (radio.value === currentTask.userCategory) {
+             // Zustand des Radio-Buttons aktualisieren
+             radio.checked = true;
+         }
+     });
+
     showInitialsEditTask();
     showSubtasksEditTask();
 }
@@ -182,7 +192,6 @@ function openEditTask(firebaseId) {
     document.getElementById('editTaskcard').classList.remove('edit-task-display-none');
     generateEditAssign();
     showTaskDetails();
-    //document.getElementById('closeEditPopupButton').addEventListener('click', closeEditTaskPopup);
     document.getElementById('postEditBtn').addEventListener('click', updateCurrentTask);  
 }
 
@@ -267,7 +276,8 @@ function openDropdownEditAssign() {
 }
 
 
-async function updateTask(firebaseId, updatedUserTask) {
+async function updateTask( firebaseId, updatedUserTask) {
+    
     try {
         let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
             method: 'PUT',
