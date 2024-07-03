@@ -393,10 +393,12 @@
     .headline-summary {
         display: flex;
         justify-content: center;
-        margin-left: 20px;
-        margin-top: 30px;
-        margin-right: 20px;
-        margin-bottom: 30px;
+        margin-left: 20px;        
+        margin-right: 20px;       
+    }
+
+    .headline-summary-h2{
+        font-size: 61px;
     }
 
     .summary-section-2{
@@ -405,6 +407,16 @@
     .summary-stats {
         margin-left: 20px;
         margin-right: 20px;
+    }
+
+    .summary-greeting-mobile{
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 630px){
+    .headline-summary-h2{
+        font-size: 41px;
     }
 }
 
@@ -559,29 +571,20 @@
 }
 
 @media (min-width: 320px) and (max-width: 399px){
-    .headline-summary{
-        margin-bottom: 20px;
-        margin-top: 0px;
-        gap: 0px;
-    }
+    
 
     .summary-urgent-info{
         width: 120px;
     }
 
-    .summary-stats-urgent{
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 100px;
-        gap: 15px;
-    }
+    
 
     .summary-done-info{
-        height: 100px;
+        
         width: 140px;
     }
     .summary-todo-info{
-        height: 100px;
+        
         width: 140px;
     }
 
@@ -590,21 +593,78 @@
     }
 
     .summary-stats-below-container{
+        
+    }
+
+    .summary-urgent-seperator{
+        
+    }
+    .summary-stats-below-howmuch{
+        
+    }
+
+    .summary-stats-below-tasks{
+        
+    }
+
+    .summary-how-much{
+        
+    }
+}
+
+@media (max-height : 810px){
+    .headline-summary{
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-height : 810px){
+
+    .summary-urgent-info{
+        height: 80px;
+    }
+
+    .headline-summary-h2{
+        line-height: 40px;
+        margin-top: 10px;
+    }
+
+    
+
+    .summary-done-info{
+        
         height: 100px;
+    }
+    .summary-todo-info{
+        
+        height: 100px;
+    }
+
+    .summary-stats-urgent{
+        height: 100px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .summary-stats-below-container{
+        height: 100px;
+        
     }
 
     .summary-urgent-seperator{
         height: 80px;
+        
     }
     .summary-stats-below-howmuch{
-        line-height: 40px;
+        height: 100px;
+        
     }
 
     .summary-stats-below-tasks{
-        line-height: 20px;
+        height: 100px;
+        
     }
 
-    .summary-how-much{
-        line-height: 40px;
-    }
+    
 }
