@@ -62,7 +62,7 @@ main form {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin-top: 87px;
+    
     position: relative;
 }
 
@@ -248,7 +248,7 @@ footer a {
         display: flex;
         flex-direction: column;
         padding: 20px;
-        margin-top: 87px;
+        margin-top: 50px;
         position: relative;
     }
 
@@ -382,7 +382,7 @@ footer a {
 
 
 
-@media (max-height: 812px){
+@media (max-height: 830px){
     .signupform-headline{
         margin-top: 0px;
     }
