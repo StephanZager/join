@@ -75,9 +75,7 @@ function showAssignInitials(assignDetails) {
         assignInitials.style.backgroundColor = bgNameColor;
         assignInitials.classList.add('assign-initials');
         assignedInitial.appendChild(assignInitials);
-    }
-
-    if (numberOfAssignDetails > maxInitialsToShow) {
+    }if (numberOfAssignDetails > maxInitialsToShow) {
         let additionalCount = numberOfAssignDetails - maxInitialsToShow;
         let additionalInitials = document.createElement('span');
         additionalInitials.textContent = `+${additionalCount}`;

@@ -39,11 +39,18 @@ function showTaskDetails() {
 function showInitialsEditTask() {
     let initialsElement = document.getElementById('editAssignedInitials');
     initialsElement.innerHTML = '';
+    const maxInitialsToShow = 6;
     if (Array.isArray(currentTask.assign)) {
-        for (let i = 0; i < currentTask.assign.length; i++) {
+        let assignCount = currentTask.assign.length;
+        for (let i = 0; i < Math.min(assignCount, maxInitialsToShow); i++) {
             let assignData = currentTask.assign[i];
             let spanElement = `<span class="show-initials-edit" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`;
             initialsElement.innerHTML += spanElement;
+        }
+        if (assignCount > maxInitialsToShow) {
+            let additionalCount = assignCount - maxInitialsToShow;
+            let additionalSpanElement = `<span class="show-initials-edit additional">+${additionalCount}</span>`;
+            initialsElement.innerHTML += additionalSpanElement;
         }
     }
 }
