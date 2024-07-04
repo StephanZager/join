@@ -113,12 +113,11 @@ function showSubtasksEditTask() {
         for (let i = 0; i < currentTask.subtasks.length; i++) {
             let subtask = currentTask.subtasks[i];
             let liElement = `
-            <div id="subtask${i}">
-                <li class="edit-list-row">${subtask.title}
+            <div class="editSub" id="subtask${i}">
+                <li class="edit-list-row">${subtask.title}</li>
                 <div class="edit-delete-img-edit-task">
                     <img src="assets/img/edit.png" onclick="editSubtask(${i})"> | <img src="assets/img/delete.png" onclick="deleteEditSubtask(${i})">
                 </div>
-                </li>
             </div>`;
             subtaskList.innerHTML += liElement;
         }
@@ -184,7 +183,7 @@ function deleteEditSubtask(i) {
 function editSubtask(i) {
     let subtask = currentTask.subtasks[i];
     console.log(i, subtask);
-    document.getElementById(`subtask${i}`).innerHTML = `<input type="text" id="edit-input${i}" value="${subtask.title}"> <div><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div>`;
+    document.getElementById(`subtask${i}`).innerHTML = `<div class="editSub"><input type="text" class="editInputSub" id="edit-input${i}" value="${subtask.title}"> <div class="editSubImg"><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div></div>`;
 }
 
 function clearEditSubtaskInput() {
@@ -206,6 +205,7 @@ function confirmEditSubtask(i) {
         currentTask.subtasks[i].title = inputValue;
     }
     openEditTask(currentTask.firebaseId);
+    scrollToBottom();
 }
 
 function openEditTask(firebaseId) {

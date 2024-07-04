@@ -275,7 +275,10 @@ textarea {
 }
 
 .edit-delete-img-edit-task {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
 }
 
 .input-button-img {
@@ -540,4 +543,32 @@ textarea {
     .close {
         padding-right: 8px;
     }
+}
+
+
+
+
+
+
+
+
+
+.editSub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.editInputSub {
+    width: 100%;
+    height: 48px;
+    background-color: transparent;
+}
+
+.editSubImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
 }
