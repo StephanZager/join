@@ -279,6 +279,7 @@ textarea {
     justify-content: center;
     align-items: center;
     margin-left: auto;
+    gap: 8px;
 }
 
 .input-button-img {
@@ -561,7 +562,7 @@ textarea {
 }
 
 .editInputSub {
-    width: 100%;
+    width: 80%;
     height: 48px;
     background-color: transparent;
 }
@@ -570,5 +571,6 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
     margin-left: auto;
 }
