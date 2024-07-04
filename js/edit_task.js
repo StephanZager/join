@@ -99,7 +99,7 @@ function editInputSetFocus() {
     document.getElementById('placeholderEditImgSubtask').style.display = 'none';
 }
 
-function resetSubtaskFocus() {
+function resetEditSubtaskFocus() {
     document.getElementById('editSubtasks').blur();
     document.getElementById('confirmAndDeleteEditBtnSubtask').style.display = 'none';
     document.getElementById('placeholderEditImgSubtask').style.display = 'flex';
@@ -161,7 +161,8 @@ function addSubtask() {
         currentTask.subtasks = [];
     }
     currentTask.subtasks.push({ title: subtaskTitle });
-    
+    document.getElementById('editSubtasks').value = '';
+    resetEditSubtaskFocus();
     showSubtasksEditTask();
     
     scrollToBottom();
