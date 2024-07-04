@@ -41,13 +41,24 @@ function highlightActiveLinks() {
     links.forEach(function(link) {
         // Zugriff auf den übergeordneten Container des Links
         var linkSection = link.closest('.linkSection');
+        // Zugriff auf das img-Element innerhalb des Links
+        var img = link.querySelector('img');
+        
         if (currentUrl.includes(link.getAttribute('href'))) {
             if (linkSection) {
                 linkSection.classList.add('activeLink');
+                link.classList.add('activeText'); // Klasse zum Link hinzufügen
+                if (img) {
+                    img.classList.add('activeImage'); // Klasse zum img hinzufügen
+                }
             }
         } else {
             if (linkSection) {
                 linkSection.classList.remove('activeLink');
+                link.classList.remove('activeText'); // Klasse vom Link entfernen
+                if (img) {
+                    img.classList.remove('activeImage'); // Klasse vom img entfernen
+                }
             }
         }
     });

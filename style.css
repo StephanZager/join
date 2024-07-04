@@ -452,3 +452,11 @@ HELP DESK CSS
     background-color: #091931;
     color: #ffffff;
 }
+
+.activeText {
+    color: white;
+}
+
+.activeImage {
+    filter:  brightness(135%) contrast(150%);
+}
