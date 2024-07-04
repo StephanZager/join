@@ -245,6 +245,7 @@ a {
         justify-content: space-between;
         flex-direction: column;
         gap: 5px;
+        border-radius: 16px;
     }
 
     .link {
@@ -277,7 +278,7 @@ a {
     }
 
     .linkSection {
-        padding: 0;
+        /*padding: 0; */
     }
 
     li a {
