@@ -46,8 +46,7 @@ function showInitialsEditTask() {
             let assignData = currentTask.assign[i];
             let spanElement = `<span class="show-initials-edit" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`;
             initialsElement.innerHTML += spanElement;
-        }
-        if (assignCount > maxInitialsToShow) {
+        } if (assignCount > maxInitialsToShow) {
             let additionalCount = assignCount - maxInitialsToShow;
             let additionalSpanElement = `<span class="show-initials-edit additional">+${additionalCount}</span>`;
             initialsElement.innerHTML += additionalSpanElement;

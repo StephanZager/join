@@ -320,10 +320,13 @@ function updateTaskCardSubtasks(taskItem) {
 
 async function createTask(event) {
     event.preventDefault();
-
-    let taskTitle = document.getElementById('taskTitle').value;
+    if (!requiredFields()) {
+        console.log('Erforderliche Felder fehlen. Formular wird nicht abgesendet.');
+        return;
+    }
+    let taskTitle = document.getElementById('title').value;
     let taskDescription = document.getElementById('taskDescription').value;
-    let date = document.getElementById('taskDueDate').value;
+    let date = document.getElementById('dueDate').value;
     let userCategory = document.querySelector('input[name="category"]:checked')?.value;
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
@@ -371,10 +374,10 @@ function clearTaskForm() {
     clearAssignedCheckboxes();
     resetPriority();
     clearCategorySelection();
-    document.getElementById('taskTitle').value = '';
+    document.getElementById('title').value = '';
     document.getElementById('taskDescription').value = '';
     document.getElementById('assignedInitial').innerHTML = '';
-    document.getElementById('taskDueDate').value = '';
+    document.getElementById('dueDate').value = '';
     document.getElementById('subtaskList').innerHTML = '';
     globalSubtasks = [];
 }

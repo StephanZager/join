@@ -114,43 +114,52 @@ function createUserTask(title, description, date, userCategory, assignDetails, s
 
 
 function requiredFields() {
-    let isValid = true; // Gültigkeitsstatus initial auf true setzen
+    console.log('Überprüfung der erforderlichen Felder gestartet'); // Log 1
+    let isValid = true;
     let title = document.getElementById('title');
     let date = document.getElementById('dueDate');
     let userCategory = document.querySelector('input[name="category"]:checked');
 
-    // Zurücksetzen der Styles für alle Felder, um frühere Markierungen zu entfernen
     title.style.border = '';
     date.style.border = '';
 
     if (title.value === '') {
+        console.log('Titel ist erforderlich'); // Log 2
         title.style.border = '1px solid red';
         isValid = false; 
     } if (date.value === '') {
+        console.log('Datum ist erforderlich'); // Log 3
         date.style.border = '1px solid red';
         isValid = false; 
     } if (!userCategory) {
+        console.log('Kategorie ist erforderlich'); // Log 4
         document.getElementById('category').style.border = '1px solid red';
         isValid = false;
     }
 
-    return isValid; // Den gesamten Gültigkeitsstatus zurückgeben
+    console.log('Gültigkeitsstatus:', isValid); // Log 5
+    return isValid;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM vollständig geladen und analysiert'); // Log 6
     setPriority('Medium');
+    console.log('Standardpriorität auf Medium gesetzt'); // Log 7
+
     let titleInput = document.getElementById('title');
     let dateInput = document.getElementById('dueDate');
 
     titleInput.addEventListener('input', function() {
+        console.log('Titel-Eingabe erkannt:', this.value); // Log 8
         if (this.value !== '') {
-            this.style.border = ''; // Entfernt die rote Umrandung, wenn das Feld nicht leer ist
+            this.style.border = '';
         }
     });
 
     dateInput.addEventListener('input', function() {
+        console.log('Datum-Eingabe erkannt:', this.value); // Log 9
         if (this.value !== '') {
-            this.style.border = ''; // Entfernt die rote Umrandung, wenn das Feld nicht leer ist
+            this.style.border = '';
         }
     });
 });
@@ -428,9 +437,7 @@ function openDropdown() {
             dropdownArrowAssign.classList.remove('rotate');
             document.removeEventListener('click', handleClickOutside); // Entfernen des Event Listeners
         }
-    }
-
-    if (dropdownContent.classList.contains('show-assign')) {
+    } if (dropdownContent.classList.contains('show-assign')) {
         setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
     } else {
         document.removeEventListener('click', handleClickOutside);
