@@ -298,9 +298,12 @@ textarea {
 }
 
 .edit-subtask-confirm-btn {
-    border: none;
-    padding: 0;
-    background-color: transparent;
+    width: 14px;
+    height: 14px;
+    padding-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*DOPPDOWN*/

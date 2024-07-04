@@ -92,6 +92,20 @@ function filterFirstLetters(name) {
 }
 
 
+
+function editInputSetFocus() {
+    document.getElementById('editSubtasks').focus();
+    document.getElementById('confirmAndDeleteEditBtnSubtask').style.display = 'flex';
+    document.getElementById('placeholderEditImgSubtask').style.display = 'none';
+}
+
+function resetSubtaskFocus() {
+    document.getElementById('editSubtasks').blur();
+    document.getElementById('confirmAndDeleteEditBtnSubtask').style.display = 'none';
+    document.getElementById('placeholderEditImgSubtask').style.display = 'flex';
+}
+
+
 function showSubtasksEditTask() {
     let subtaskList = document.getElementById('subtaskListEdit');
     subtaskList.innerHTML = '';
@@ -102,8 +116,7 @@ function showSubtasksEditTask() {
             <div id="subtask${i}">
                 <li class="edit-list-row">${subtask.title}
                 <div class="edit-delete-img-edit-task">
-                    <img src="assets/img/edit.png" onclick="editSubtask(${i})"> | <img src="assets/img/delete.png" onclick="deleteSubtask(${i})">
-                    
+                    <img src="assets/img/edit.png" onclick="editSubtask(${i})"> | <img src="assets/img/delete.png" onclick="deleteEditSubtask(${i})">
                 </div>
                 </li>
             </div>`;
@@ -148,8 +161,9 @@ function addSubtask() {
         currentTask.subtasks = [];
     }
     currentTask.subtasks.push({ title: subtaskTitle });
+    
     showSubtasksEditTask();
-
+    
     scrollToBottom();
 }
 
@@ -161,7 +175,7 @@ function scrollToBottom() {
     }
 }
 
-function deleteSubtask(i) {
+function deleteEditSubtask(i) {
     currentTask.subtasks.splice(i, 1);
     showSubtasksEditTask()
 }
@@ -170,6 +184,10 @@ function editSubtask(i) {
     let subtask = currentTask.subtasks[i];
     console.log(i, subtask);
     document.getElementById(`subtask${i}`).innerHTML = `<input type="text" id="edit-input${i}" value="${subtask.title}"> <div><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div>`;
+}
+
+function clearEditSubtaskInput() {
+    document.getElementById('editSubtasks').value = '';
 }
 
 function clearEditSubtask(i) {

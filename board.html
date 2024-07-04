@@ -173,8 +173,13 @@
                         <div class="addtaks-desktop">
                             <span>Subtasks</span>
                             <div class="input-with-button">
-                                <input id="editSubtasks" class="title-select-or-input" placeholder="Add new Subtasks">
-                                <button class="edit-subtask-confirm-btn" type="button" onclick="addSubtask()"><img class="input-button-img" src="assets/img/add.png" alt=""></button>
+                                <input id="editSubtasks" onclick="editInputSetFocus()" class="title-select-or-input" placeholder="Add new Subtasks">
+                                <img id="placeholderEditImgSubtask" class="edit-subtask-confirm-btn" style="display: flex;" src="assets/img/add.png">
+                                <div id="confirmAndDeleteEditBtnSubtask" style="display: none;">
+                                    <button type="button" class="clear-confirm-btn" onclick="clearEditSubtaskInput()"><img class="subtask-clear-confirm-img" src="assets/img/cancel-addcontact.png"></button>
+                                    <img class="subtask-parting-line" src="assets/img/parting-line-small.png">
+                                    <button type="button" class="clear-confirm-btn" onclick="addSubtask()"><img class="subtask-clear-confirm-img" src="assets/img/check-dark.png"></button>
+                                </div>
                             </div>
                             <ul id="subtaskListEdit"></ul>
                         </div>
