@@ -123,7 +123,7 @@ nav {
 
 .linkSection:hover {
     cursor: pointer;
-    background-color: gray;
+    background-color: #2a3d59;
 }
 
 
@@ -434,4 +434,21 @@ HELP DESK CSS
     .responsive-help {
         display: flex !important;
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.activeLink {
+    background-color: #091931;
+    color: #ffffff;
 }

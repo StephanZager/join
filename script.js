@@ -13,6 +13,7 @@ async function includeHTML() {
         }
     }
     showLoginInitial(); // Call showLoginInitial after the HTML has been included
+    highlightActiveLinks()
 }
 
 
@@ -31,6 +32,25 @@ window.onclick = function(event) {
             }
         }
     }
+}
+
+
+function highlightActiveLinks() {
+    var currentUrl = window.location.href;
+    var links = document.querySelectorAll('.navbar .link');
+    links.forEach(function(link) {
+        // Zugriff auf den übergeordneten Container des Links
+        var linkSection = link.closest('.linkSection');
+        if (currentUrl.includes(link.getAttribute('href'))) {
+            if (linkSection) {
+                linkSection.classList.add('activeLink');
+            }
+        } else {
+            if (linkSection) {
+                linkSection.classList.remove('activeLink');
+            }
+        }
+    });
 }
 
 
