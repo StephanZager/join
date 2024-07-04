@@ -39,21 +39,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 
 
 }
 
-.bg-edit-delete {
-    background-color: rgba(76, 70, 70, 0.137);
-    z-index: 1000;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#bg-edit-delete, #userDeleteHandy {
     display: none;
 }
 
@@ -564,7 +555,9 @@ h3 {
     display: none;
 }
 
-
+#userDeleteHandy{
+    display: none;
+}
 
 
 
@@ -920,6 +913,22 @@ h3 {
 
 
 @media (max-width: 700px) {
+
+    #bg-edit-delete {
+        display: flex;
+        background-color: rgba(76, 70, 70, 0);
+        z-index: 1000;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        align-items: center;
+        justify-content: center;
+    }
+    #userDeleteHandy {
+        display: block;
+    }
 
     @keyframes slideInFromRight {
         0% {

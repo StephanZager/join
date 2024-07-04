@@ -350,9 +350,9 @@ function closeUserInfoWindow() {
 }
 
 function openUserDeleteEditWindow() {
-    document.getElementById('userDeleteHandy').style.display = 'block';
+   
     document.getElementById('userDeleteHandy').innerHTML = `
-            <div class="bg">
+            <div  id="bg-edit-delete">
                <div id="containerEditDeleteHandy" class="container-edit-delete-handy" onclick="doNotClose(event)">
                 <div class="user-edit-delete-handy" id="buttonEditDeleteHandy">
                     <div onclick="editUser(${currentOpenUser}), slideInPopup('popUpUbdateContact'), closeUserDeleteEditWindow()" class="user-edit-delete-section-handy" >
@@ -365,7 +365,9 @@ function openUserDeleteEditWindow() {
                     </div>
                 </div>
                </div>            
-        </div> `;
+        </div> `;    
+    document.getElementById('bg-edit-delete').style.display = 'flex'; 
+    document.getElementById('userDeleteHandy').style.display = 'block';
 }
 
 function closeUserDeleteEditWindow() {
