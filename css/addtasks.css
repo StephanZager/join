@@ -639,6 +639,11 @@
 
 @media (max-width: 866px) {
 
+    .task-headline {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
     .addTask-interaction-container{
         
         flex-direction: column;
@@ -692,6 +697,18 @@
         
     }
 
+    .left-field-section {
+        
+    }
+
+    .right-field-section {
+        gap: 0;
+    }
+
+    .category-dropdown-txt {
+        margin-bottom: 0 !important;
+    }
+
     .last-section {
         height: 88px;
         position: fixed;
@@ -717,7 +734,8 @@
 
     .left-field-section {
         width: 100%;
-        margin-bottom: 48px;
+        gap: 0;
+
     }
 
     .last-section {
@@ -913,3 +931,4 @@
 .required-mark {
     border: 2px solid red;
 }
+

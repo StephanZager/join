@@ -64,7 +64,7 @@ function getAssignedDetails() {
 function showAssignInitials(assignDetails) {
     let assignedInitial = document.getElementById('assignedInitial');
     assignedInitial.innerHTML = '';
-    let maxInitialsToShow = 6;
+    let maxInitialsToShow = 5;
     let numberOfAssignDetails = assignDetails.length;
 
     for (let i = 0; i < Math.min(numberOfAssignDetails, maxInitialsToShow); i++) {

@@ -673,10 +673,19 @@ input {
         padding-left: 0;
     }
 
+    .board-headline{
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
     .content {
         padding: 0 16px;
         overflow-y: scroll;
         height: calc(100vh - 176px);
+    }
+
+    .task-column {
+        gap: 0;
     }
 
     .display-none {
