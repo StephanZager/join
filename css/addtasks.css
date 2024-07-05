@@ -639,11 +639,6 @@
 
 @media (max-width: 866px) {
 
-    .task-headline {
-        margin-top: 8px;
-        margin-bottom: 8px;
-    }
-
     .addTask-interaction-container{
         
         flex-direction: column;
@@ -694,10 +689,6 @@
         overflow-x: auto;
         width: auto; /* Ensures that the width can grow beyond the parent if content overflows */
         min-width: 100%; /* Ensures that the container is at least as wide as its parent */
-        
-    }
-
-    .left-field-section {
         
     }
 
@@ -753,10 +744,8 @@
         line-height: 14px;
         height: 56px;
         position: static;
-        margin-top: 48px;
-
-
-
+        margin-top: 24px;
+        margin-bottom: 0;
     }
 
     .addTask-textarea {
