@@ -113,6 +113,13 @@
     background-color: transparent;
 }
 
+.smallBtn-mobile {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    display: none;
+}
+
 input {
     display: flex;
     justify-content: center;
@@ -684,6 +691,14 @@ input {
         height: 40px;
         width: 40px;
         margin-right: 16px;
+    }
+
+    .smallBtn {
+        display: none;
+    }
+
+    .smallBtn-mobile {
+        display: flex;
     }
 
     #addTaskModal .modal {

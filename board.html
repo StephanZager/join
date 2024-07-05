@@ -45,6 +45,7 @@
                     <div class="taskHeadline">
                         <h3>To do</h3>
                         <button class="smallBtn" onclick="openTaskPopup('toDo')"><img src="assets/img/board.plus.png"></button>
+                        <button class="smallBtn-mobile" onclick="openTaskWindow()"><img src="assets/img/board.plus.png"></button>
                     </div>
                     <div id="toDo" class="showTasksBoard" draggable="true" ondrop="moveTo('toDo')"ondragover="allowDrop(event)"></div>
                 </div>  
@@ -52,6 +53,7 @@
                     <div class="taskHeadline">
                         <h3>In progress</h3>
                         <button class="smallBtn" onclick="openTaskPopup('inProgress')"><img src="assets/img/board.plus.png"></button>
+                        <button class="smallBtn-mobile" onclick="openTaskWindow()"><img src="assets/img/board.plus.png"></button>
                     </div>
                     <div id="inProgress" class="showTasksBoard" draggable="true" ondrop="moveTo('inProgress')"ondragover="allowDrop(event)"></div>
                 </div>
@@ -59,6 +61,7 @@
                     <div class="taskHeadline">
                         <h3>Await feedback</h3>
                         <button class="smallBtn" onclick="openTaskPopup('awaitFeedback')"><img src="assets/img/board.plus.png"></button>
+                        <button class="smallBtn-mobile" onclick="openTaskWindow()"><img src="assets/img/board.plus.png"></button>
                     </div>
                     <div id="awaitFeedback" class="showTasksBoard" draggable="true" ondrop="moveTo('awaitFeedback')"ondragover="allowDrop(event)"></div>
                 </div>    
