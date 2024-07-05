@@ -110,19 +110,15 @@ function createUserTask(title, description, date, userCategory, assignDetails, s
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM vollständig geladen und analysiert'); // Log 6
     setPriority('Medium');
-    console.log('Standardpriorität auf Medium gesetzt'); // Log 7
     let titleInput = document.getElementById('title');
     let dateInput = document.getElementById('dueDate');
     titleInput.addEventListener('input', function() {
-        console.log('Titel-Eingabe erkannt:', this.value); // Log 8
         if (this.value !== '') {
             this.style.border = '';
         }
     });
     dateInput.addEventListener('input', function() {
-        console.log('Datum-Eingabe erkannt:', this.value); // Log 9
         if (this.value !== '') {
             this.style.border = '';
         }
@@ -133,7 +129,6 @@ async function submitTask(event) {
     event.preventDefault();
 
     if (!requiredFields()) {
-        console.log('Erforderliche Felder fehlen. Formular wird nicht abgesendet.');
         return;
     }
     let title = document.getElementById('title').value;
@@ -379,7 +374,6 @@ function openDropdownContentCategory() {
 }
 
 function openDropdown() {
-    console.log('openDropdown');
     let dropdownContent = document.getElementById('assigned');
     let dropdownArrowAssign = document.getElementById('dropdownArrowAssign');
     dropdownContent.classList.toggle('show-assign'); // Toggle die Klasse, um den Dropdown-Inhalt anzuzeigen oder zu verbergen

@@ -101,7 +101,6 @@ function generateSubtasksProgressHTML(taskItem) {
         </div>`;
 }
 
-// Drag-and-Drop-Funktionen
 function startDragging(ev, firebaseId) {
     currentDraggedElement = firebaseId;
     ev.dataTransfer.setData("text/plain", firebaseId);
@@ -280,12 +279,14 @@ function updateTaskCardSubtasks(taskItem) {
     }
 }
 
-async function createTask(event) {
-    event.preventDefault();
+function validateRequiredFields() {
     if (!requiredFields()) {
-        console.log('Erforderliche Felder fehlen. Formular wird nicht abgesendet.');
-        return;
+        return false;
     }
+    return true;
+}
+
+function createTaskObject() {
     let taskTitle = document.getElementById('title').value;
     let taskDescription = document.getElementById('taskDescription').value;
     let date = document.getElementById('dueDate').value;
@@ -293,7 +294,7 @@ async function createTask(event) {
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
 
-    const newTask = {
+    return {
         title: taskTitle,
         description: taskDescription,
         date: date,
@@ -303,33 +304,53 @@ async function createTask(event) {
         subtasks: subtasks,
         priority: selectedPriority
     };
+}
+
+async function postNewTask(newTask) {
+    const response = await fetch(`${BASE_URL}/userTask.json`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+}
+
+function finalizeTaskCreation(newTask) {
+    task.push(newTask); // Hinzufügen des neuen Tasks zur lokalen Task-Liste
+    generateTask(); // Aktualisieren der Anzeige
+    closeTaskPopup(); // Schließen des Popups nach der Erstellung
+    clearTaskForm(); // Leeren des Formulars nach der Erstellung
+}
+
+async function createTask(event) {
+    event.preventDefault();
+    if (!validateRequiredFields()) return;
+
+    const newTask = createTaskObject();
 
     try {
-        const response = await fetch(`${BASE_URL}/userTask.json`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newTask),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const responseData = await response.json();
+        const responseData = await postNewTask(newTask);
         newTask.firebaseId = responseData.name; // Setzen der Firebase-ID des neuen Tasks
-
-        task.push(newTask); // Hinzufügen des neuen Tasks zur lokalen Task-Liste
-        generateTask(); // Aktualisieren der Anzeige
-        closeTaskPopup(); // Schließen des Popups nach der Erstellung
-        clearTaskForm(); // Leeren des Formulars nach der Erstellung
-
+        finalizeTaskCreation(newTask);
     } catch (error) {
         alert(`Fehler beim Erstellen der Aufgabe: ${error.message}`);
     }
 }
-
+/**
+ * Clears the selection of category radio buttons and resets the category display text.
+ * This function performs two main actions:
+ * 1. It selects all radio input elements within elements with the class 'dropdown-content-category'
+ *    and sets their 'checked' property to false, effectively unselecting them.
+ * 2. It then finds the element with the ID 'categoryText' and sets its text content to 'Category',
+ *    which is presumably the default or placeholder text.
+ */
 function clearCategorySelection() {
     const categoryOptions = document.querySelectorAll('.dropdown-content-category input[type="radio"]');
     categoryOptions.forEach(option => {
@@ -337,7 +358,14 @@ function clearCategorySelection() {
     });
     document.getElementById('categoryText').textContent = 'Category';
 }
-
+/**
+ * Resets the visual priority state of buttons within elements with the class 'prio-buttons'.
+ * This function performs the following actions for each button:
+ * 1. Removes the 'selected' class, visually indicating the button is not selected.
+ * 2. Finds the child <img> element of the button and sets its 'src' attribute to the value
+ *    of the button's 'data-original-image' attribute. This typically changes the image
+ *    displayed on the button back to its original state.
+ */
 function resetPriority() {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
@@ -346,15 +374,17 @@ function resetPriority() {
         img.src = button.getAttribute('data-original-image'); // Set to original image
     });
 }
-
+/**
+ * Clears all checked states of checkboxes within the element with the ID 'assigned'.
+ * This function selects all input elements of type checkbox under the specified ID
+ * and sets their 'checked' property to false, effectively unchecking them.
+ */
 function clearAssignedCheckboxes() {
     const assignedCheckboxes = document.querySelectorAll('#assigned input[type="checkbox"]');
     assignedCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
     });
 }
-
-
 
 /**
  * Deletes a task with the given Firebase ID by sending a DELETE request to the server.
@@ -450,5 +480,3 @@ function endSlideInPopupTask(popupId) {
     let popup = document.getElementById(popupId);    
     popup.classList.remove('slide-in'); 
 }
-
-
