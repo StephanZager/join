@@ -11,7 +11,6 @@ function resetButtons(buttons) {
     });
 }
 
-
 function getButtonByPriority(container, priority) {
     let button;
     if (priority === 'Urgent') {
@@ -26,7 +25,6 @@ function getButtonByPriority(container, priority) {
     return button;
 }
 
-
 function setButtonAsSelected(button, priority) {
     if (button) {
         button.classList.add('selected');
@@ -35,7 +33,6 @@ function setButtonAsSelected(button, priority) {
         selectedPriority = priority;
     }
 }
-
 
 function setPriority(priority) {
     const containers = document.querySelectorAll('.prio-buttons, .addtask-popup-prio-buttons');
@@ -112,50 +109,18 @@ function createUserTask(title, description, date, userCategory, assignDetails, s
     };
 }
 
-
-function requiredFields() {
-    console.log('Überprüfung der erforderlichen Felder gestartet'); // Log 1
-    let isValid = true;
-    let title = document.getElementById('title');
-    let date = document.getElementById('dueDate');
-    let userCategory = document.querySelector('input[name="category"]:checked');
-
-    title.style.border = '';
-    date.style.border = '';
-
-    if (title.value === '') {
-        console.log('Titel ist erforderlich'); // Log 2
-        title.style.border = '1px solid red';
-        isValid = false; 
-    } if (date.value === '') {
-        console.log('Datum ist erforderlich'); // Log 3
-        date.style.border = '1px solid red';
-        isValid = false; 
-    } if (!userCategory) {
-        console.log('Kategorie ist erforderlich'); // Log 4
-        document.getElementById('category').style.border = '1px solid red';
-        isValid = false;
-    }
-
-    console.log('Gültigkeitsstatus:', isValid); // Log 5
-    return isValid;
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM vollständig geladen und analysiert'); // Log 6
     setPriority('Medium');
     console.log('Standardpriorität auf Medium gesetzt'); // Log 7
-
     let titleInput = document.getElementById('title');
     let dateInput = document.getElementById('dueDate');
-
     titleInput.addEventListener('input', function() {
         console.log('Titel-Eingabe erkannt:', this.value); // Log 8
         if (this.value !== '') {
             this.style.border = '';
         }
     });
-
     dateInput.addEventListener('input', function() {
         console.log('Datum-Eingabe erkannt:', this.value); // Log 9
         if (this.value !== '') {
@@ -163,8 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
 
 async function submitTask(event) {
     event.preventDefault();
@@ -180,7 +143,6 @@ async function submitTask(event) {
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
     let userTask = createUserTask(title, description, date, userCategory, assignDetails, subtasks, selectedPriority);
-
     try {
         await postData("/userTask", userTask);
         window.location.href = "board.html";
@@ -194,16 +156,13 @@ async function submitTask(event) {
 function addSubtaskToList() {
     let subtaskInput = document.getElementById('subtasks');
     let subtaskText = subtaskInput.value.trim();
-
     if (subtaskText !== '') {
-        // Hinzufügen des neuen Subtasks zu globalSubtasks
-        let subtaskId = globalSubtasks.length; // Eindeutiger ID für das neue Subtask
+        let subtaskId = globalSubtasks.length; 
         globalSubtasks.push({ title: subtaskText, done: false, id: subtaskId });
-        // Liste neu rendern
         renderSubtasks();
         resetSubtaskFocus()
-        subtaskInput.value = ''; // Eingabefeld leeren
-        scrollToBottomAddtask(); // Zum Ende der Liste scrollen
+        subtaskInput.value = ''; 
+        scrollToBottomAddtask(); 
     }
 }
 
@@ -240,15 +199,12 @@ function clearSubtask() {
 }
 
 function clearCategorySelection() {
-    // Auswahl aller Radio-Buttons innerhalb des Dropdown-Menüs für Kategorien
     const categoryOptions = document.querySelectorAll('.dropdown-content-category input[type="radio"]');
     
-    // Durchlaufen aller Radio-Buttons und Setzen ihrer `checked`-Eigenschaft auf `false`
     categoryOptions.forEach(option => {
         option.checked = false;
     });
     
-    // Optional: Zurücksetzen des Textes des Dropdown-Buttons auf den Standardwert
     document.getElementById('categoryText').textContent = 'Category';
 }
 
@@ -281,7 +237,6 @@ function scrollToBottomAddtask() {
         maincontainerAddtask.scrollTop = maincontainerAddtask.scrollHeight;
     }
 }
-
 
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
@@ -373,7 +328,6 @@ function generateAssign() {
     }
 }
 
-
 function moveLoggedInUserToTop(assign, loggedInUser) {
     let userIndex = assign.findIndex(contact => contact.name.replace(/\s\(YOU\)$/i, '') === loggedInUser);
     
@@ -442,21 +396,6 @@ function openDropdown() {
     } else {
         document.removeEventListener('click', handleClickOutside);
     }
-}
-
-function clearSubtasks() {
-    const buttons = document.querySelectorAll('.prio-buttons button');
-    buttons.forEach(button => {
-        button.classList.remove('selected');
-        const img = button.querySelector('img');
-        img.src = button.getAttribute('data-original-image'); // Set to original image
-    });
-    
-    globalSubtasks = [];
-    document.getElementById('subtaskList').innerHTML = '';
-    assignDetails = [];
-    document.getElementById('assignedInitial').innerHTML = '';
-    clearCategorySelection();
 }
 
 function setMinDate() {
