@@ -565,6 +565,7 @@ textarea {
     width: 80%;
     height: 48px;
     background-color: transparent;
+    font-size: 20px;
 }
 
 .editSubImg {

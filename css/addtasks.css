@@ -25,7 +25,7 @@
 }
 
 .left-field-section {
-    width: 440px;
+    width: 100%;
     max-height: 376px;
     height: auto;
     display: flex;
@@ -41,7 +41,7 @@
 }
 
 .right-field-section {
-    width: 440px;
+    width: 100%;
     height: 376px;
     display: flex;
     flex-direction: column;
@@ -364,7 +364,7 @@
 .dropdown-button {
     background-color: #ffffff;
     color: black;
-    z-index: 2;
+    z-index: 99;
     /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
     padding: 16px;
     font-size: 16px;
@@ -426,13 +426,13 @@
     display: none;
     position: absolute;
     background-color: #FFFFFF;
-    width: 438px;
+    width: 99.8%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 98;
     border-radius: 8px;
     border: 1px solid lightgray;
     overflow-y: auto;
-    max-height: 320px;
+    max-height: 214px;
     top: calc(100% - 8px);
     /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
     
@@ -607,6 +607,7 @@
         position: fixed;
         bottom: 0;
         background-color: #f6f7f8;
+        margin-left: 0;
     }
 
     .addTask-textarea{
@@ -727,9 +728,6 @@
         width: 100%;
     }
 
-    .dropdown-content {
-        width: 100%;
-    }
 
     .task-headline {
         margin-left: 60px;

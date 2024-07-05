@@ -685,6 +685,12 @@ input {
         width: 40px;
         margin-right: 16px;
     }
+
+    #addTaskModal .modal {
+        display: none;
+    }
+
+    
 }
 
 
