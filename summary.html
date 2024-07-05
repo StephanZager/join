@@ -32,16 +32,16 @@
             </div>
             <div class="summary-stats">
                 <div style="display: flex;justify-content: space-between;">
-                    <div class="summary-todo-info">
+                    <div class="summary-todo-info" onclick="nextPage()">
                         <img class="summary-todo-pen" src="assets/img/summary-pen.png" alt="pen">
                         <img class="summary-todo-pen-hover" src="assets/img/summary-pen-hover.png" alt="pen">
 
-                        <div class="summary-info-open">
+                        <div class="summary-info-open" >
                             <span id="howMuchTodos" class="summary-how-much">1</span>
                             <span class="summary-how-much-art">To-do</span>
                         </div>
                     </div>
-                    <div class="summary-done-info">
+                    <div class="summary-done-info" onclick="nextPage()">
                         <img class="summary-todo-check" src="assets/img/summary-check.png" alt="check">
                         <img class="summary-todo-check-hover" src="assets/img/summary-hover-check.png" alt="check">
                         <div class="summary-info-open">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="summary-stats-urgent">
+                <div class="summary-stats-urgent" onclick="nextPage()">
                     <div class="summary-urgent-info">
                         <img src="assets/img/summary-urgent-logo.png" alt="">
                         <div class="summary-info-open">
@@ -65,15 +65,15 @@
                     </div>
                 </div>
                 <div class="summary-stats-below">
-                    <div class="summary-stats-below-container">
+                    <div class="summary-stats-below-container" onclick="nextPage()">
                         <span id="howMuchTaskinBoard" class="summary-stats-below-howmuch">5</span>
                         <span class="summary-stats-below-tasks">Tasks in Board</span>
                     </div>
-                    <div class="summary-stats-below-container">
+                    <div class="summary-stats-below-container" onclick="nextPage()">
                         <span id="howMuchInProgress" class="summary-stats-below-howmuch">2</span>
                         <span class="summary-stats-below-tasks">Task in Progress</span>
                     </div>
-                    <div class="summary-stats-below-container">
+                    <div class="summary-stats-below-container" onclick="nextPage()">
                         <span id="howMuchAwaitFeedback" class="summary-stats-below-howmuch">2</span>
                         <span class="summary-stats-below-tasks">Awaiting Feedback</span>
                     </div>

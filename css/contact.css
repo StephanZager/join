@@ -44,12 +44,13 @@ body {
 
 }
 
-#bg-edit-delete, #userDeleteHandy {
+#bg-edit-delete, #userDeleteHandy, .container-edit-delete-handy {
     display: none;
 }
 
 .contact-info-container {
     height: 100vh;
+    
 }
 
 
@@ -913,6 +914,10 @@ h3 {
 
 
 @media (max-width: 700px) {
+
+    .container-edit-delete-handy {
+        display: flex;
+    }
 
     #bg-edit-delete {
         display: flex;

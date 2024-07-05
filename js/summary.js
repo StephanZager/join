@@ -149,6 +149,10 @@ function greetingSummaryMobile() {
 }
 }
 
+function nextPage() {
+    window.location.href = 'board.html';
+}
+
 
 
 
