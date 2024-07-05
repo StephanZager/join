@@ -26,7 +26,7 @@ function addNewContactPopUp() {
         <img class="profilImgAddContact" src="assets/img/profil.img.addcontact.png.png" alt="" srcset="">
 
         <form id="form" action="" method="post" onsubmit="submitContact(); return false;">
-            <input type="text" class="addcontact-name" id="addcontact_name" name="name" required pattern="^[\\p{L}]+\\s[\\p{L}]+$" placeholder="Name" maxlength="20" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Bitte Vor- und Zuname eingeben')">
+            <input type="text" class="addcontact-name" id="addcontact_name" name="name" required pattern="^[\\p{L}]+\\s[\\p{L}]+$" placeholder="Name" maxlength="25" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Bitte Vor- und Zuname eingeben')">
             <input type="email" class="addcontact-email" id="addcontact_email" name="email" required placeholder="Email" maxlength="25">            
             <input type="tel" class="addcontact-phone" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
@@ -84,8 +84,9 @@ function addUbdateContactPopUp(i, path = "/contact") {
                 <div class="seperator"></div>
             </div>
         </div>
+        <div>
         <div class="profilImgAddContact edit-contact-profil-icon" style="background-color:${user.bgNameColor};" class="initial-user">${user.firstLetters}</div>
-        
+        </div>
         <!-- Änderung im Formular Tag -->
         <form id="form" action="" method="put" onsubmit="submitForm(event, ${i}, '${user.id}', '${path}'); return false;">
             <input type="text" class="addcontact-name" id="addcontact_edit_name" name="name" required placeholder="Name" maxlength="20">

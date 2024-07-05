@@ -599,14 +599,14 @@ h3 {
 
     .seperator-alphabet-container {
 
-        margin-right: 20px;
-        margin-left: 20px;
+        margin-right: 10px;
+        margin-left: 10px;
     }
 
     .show-contact {
         gap: 20px;
-        margin-right: 20px;
-        margin-left: 20px;
+        margin-right: 7px;
+        margin-left: 7px;
     }
 
     .initial-contact {
@@ -816,9 +816,7 @@ h3 {
         width: 100%;
     }
 
-    .letter {
-        margin-left: 20px;
-    }
+   
 
     .show-contact {
         max-width: 352px;
@@ -1059,6 +1057,10 @@ h3 {
 @media (max-width: 400px) {
     .show-contact {
         gap: 20px;
+    }
+
+    .show-contact-email{
+        width: 85%;
     }
 }
 
