@@ -246,6 +246,7 @@ a {
         flex-direction: column;
         gap: 5px;
         border-radius: 16px;
+        padding: 13px;
     }
 
     .link {
@@ -278,7 +279,7 @@ a {
     }
 
     .linkSection {
-        /*padding: 0; */
+        padding: 15px; 
     }
 
     li a {
@@ -286,13 +287,13 @@ a {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     body {
         padding-bottom: 80px;
     }
 
     .link {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .menuBar {
@@ -308,6 +309,52 @@ a {
         width: 100%;
     }
 
+    .linkSection {
+        padding: 16px;
+    }
+
+}
+
+@media (max-width: 380px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 0;
+        gap: 3px;
+    }
+
+    .linkSection {
+        padding: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .link {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 345px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 0;
+        gap: 0;
+    }
+
+    .linkSection {
+        padding: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .link {
+        font-size: 13px;
+    }
 }
 
 
