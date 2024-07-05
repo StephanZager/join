@@ -38,11 +38,7 @@ function generateTask() {
             });
         }
     });
-
-    // Debugging-Ausgabe
-    console.log("Tasks generiert:", task);
 }
-
 
 function generatePlaceholderHTML(category) {
     return `<div class="placeholder"><span>No tasks ${category}</span></div>`;
@@ -165,26 +161,6 @@ async function updateTaskInFirebase(firebaseId, newData) {
     }
 }
 
-// Modal-bezogener Code
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("taskModal");
-    const span = document.getElementsByClassName("close")[0];
-
-    span.onclick = () => {
-        modal.style.display = "none";
-        endSlideInPopupTask('taskCardPoupAnimation'); // Call your additional function here
-        resetTaskCardColors();
-    }; 
-    
-
-    document.addEventListener("click", function (event) {
-        if (event.target.classList.contains("taskCard")) {
-            const firebaseId = event.target.getAttribute("data-firebase-id");
-            const taskItem = task.find(t => t.firebaseId === firebaseId);
-            if (taskItem) showModal(taskItem);
-        }
-    });
-});
 
 function setModalTitle(taskItem) {
     const modalTitle = document.getElementById("modalTitle");
@@ -204,14 +180,7 @@ function setModalContent(taskItem) {
     document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;
 }
 
-function displayModal() {
-    const modal = document.getElementById("taskModal");
-    modal.style.display = "block";
-    document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
-    setTimeout(() => {
-        slideInPopupTask('taskCardPoupAnimation');
-    }, 10);
-}
+
 
 function showModal(taskItem) {
     setModalTitle(taskItem);
@@ -335,7 +304,7 @@ async function createTask(event) {
         title: taskTitle,
         description: taskDescription,
         date: date,
-        category: currentCategory, // Verwenden der aktuellen Kategorie
+        category: currentCategory,
         userCategory: userCategory,
         assign: assignDetails,
         subtasks: subtasks,
@@ -364,22 +333,8 @@ async function createTask(event) {
         clearTaskForm(); // Leeren des Formulars nach der Erstellung
 
     } catch (error) {
-        console.error('Fehler beim Erstellen der Aufgabe:', error);
-        console.log('Fehler beim Erstellen der Aufgabe:', error.message);
         alert(`Fehler beim Erstellen der Aufgabe: ${error.message}`);
     }
-}
-
-function clearTaskForm() {
-    clearAssignedCheckboxes();
-    resetPriority();
-    clearCategorySelection();
-    document.getElementById('title').value = '';
-    document.getElementById('taskDescription').value = '';
-    document.getElementById('assignedInitial').innerHTML = '';
-    document.getElementById('dueDate').value = '';
-    document.getElementById('subtaskList').innerHTML = '';
-    globalSubtasks = [];
 }
 
 function clearCategorySelection() {
@@ -407,39 +362,6 @@ function clearAssignedCheckboxes() {
 }
 
 
-
-function clearSubtasks() {
-    const buttons = document.querySelectorAll('.prio-buttons');
-    buttons.forEach(button => {
-        button.classList.remove('selected');
-        const img = button.querySelector('img');
-        img.src = button.getAttribute('data-original-image'); // Set to original image
-    });
-    subtaskList = [];
-    document.getElementById('subtaskList').innerHTML = '';
-    assignDetails = [];
-    document.getElementById('assignedInitial').innerHTML = '';
-    clearCategorySelection();
-}
-
-
-
-
-/**
- * Opens the 'addTaskModel' popup by setting its display style to 'block'.
- */
-function openTaskPopup(category) {
-    currentCategory = category;
-    console.log('Kategorie gesetzt:', currentCategory); // Debugging-Ausgabe
-    document.getElementById("addTaskModel").style.display = "block";
-}
-
-/**
- * Closes the 'addTaskModel' popup by setting its display style to 'none'.
- */
-function closeTaskPopup() {
-    document.getElementById("addTaskModel").style.display = "none";
-}
 
 /**
  * Deletes a task with the given Firebase ID by sending a DELETE request to the server.
@@ -489,7 +411,6 @@ function searchTasks() {
             const title = taskItem.title.toLowerCase();
             const description = taskItem.description.toLowerCase();
             const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
-
             if (title.includes(searchTerm) || description.includes(searchTerm)) {
                 taskCard.style.backgroundColor = 'yellow';
             } else {
@@ -511,7 +432,6 @@ function resetTaskCardColors() {
     });
 }
 
-// Add the event listener when the document is loaded
 document.addEventListener('DOMContentLoaded', (event) => {
     /**
      * Closes the task popup when the 'closePopupButton' is clicked.
