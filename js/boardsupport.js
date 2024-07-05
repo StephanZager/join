@@ -68,3 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+/**
+ * Opens the task window by navigating to 'addtask_desktop.html'.
+ */
+function openTaskWindow() {
+    window.location.href = "addtask_desktop.html";
+}

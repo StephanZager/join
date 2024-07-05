@@ -2,7 +2,6 @@ let currentDraggedElement;
 let currentCategory = '';
 let task = [];
 
-// Laden der Aufgaben aus Firebase
 async function loadTask(path = "/userTask") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -18,7 +17,6 @@ async function loadTask(path = "/userTask") {
     }
 }
 
-// Generieren der Aufgabenlisten
 function generateTask() {
     const categories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
     
@@ -44,7 +42,6 @@ function generatePlaceholderHTML(category) {
     return `<div class="placeholder"><span>No tasks ${category}</span></div>`;
 }
 
-// Generieren des HTML für eine einzelne Aufgabe
 function generateTaskHTML(taskItem) {
     let assignArray = taskItem.assign || [];
     let initialCount = assignArray.length;
@@ -144,7 +141,6 @@ async function moveTo(category) {
     }
 }
 
-// Aktualisieren der Aufgabe in Firebase
 async function updateTaskInFirebase(firebaseId, newData) {
     try {
         await fetch(`${BASE_URL}/userTask/${firebaseId}.json`, {
@@ -154,7 +150,6 @@ async function updateTaskInFirebase(firebaseId, newData) {
             },
             body: JSON.stringify(newData)
         });
-        console.log("Aufgabe in Firebase erfolgreich aktualisiert.");
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Aufgabe in Firebase:", error);
         throw error;
@@ -179,8 +174,6 @@ function setModalContent(taskItem) {
     document.getElementById("deleteTaskBtn").innerHTML = `<button onclick="deleteTask('${taskItem.firebaseId}')"><img src="assets/img/delete.png" alt="delete task">Delete</button>`;
     document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;
 }
-
-
 
 function showModal(taskItem) {
     setModalTitle(taskItem);
@@ -458,9 +451,4 @@ function endSlideInPopupTask(popupId) {
     popup.classList.remove('slide-in'); 
 }
 
-/**
- * Opens the task window by navigating to 'addtask_desktop.html'.
- */
-function openTaskWindow() {
-    window.location.href = "addtask_desktop.html";
-}
+
