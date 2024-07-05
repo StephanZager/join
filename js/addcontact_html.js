@@ -27,7 +27,7 @@ function addNewContactPopUp() {
 
         <form id="form" action="" method="post" onsubmit="submitContact(); return false;">
             <input type="text" class="addcontact-name" id="addcontact_name" name="name" required pattern="^[\\p{L}]+\\s[\\p{L}]+$" placeholder="Name" maxlength="20" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Bitte Vor- und Zuname eingeben')">
-            <input type="email" class="addcontact-email" id="addcontact_email" name="email" required placeholder="Email" maxlength="20">            
+            <input type="email" class="addcontact-email" id="addcontact_email" name="email" required placeholder="Email" maxlength="25">            
             <input type="tel" class="addcontact-phone" id="addcontact_phone" name="phone" pattern="0[\d\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
                 <button type="button" class="addcontact_cancel_Button" onclick="cloeAddNewContactwindow()">
@@ -89,7 +89,7 @@ function addUbdateContactPopUp(i, path = "/contact") {
         <!-- Änderung im Formular Tag -->
         <form id="form" action="" method="put" onsubmit="submitForm(event, ${i}, '${user.id}', '${path}'); return false;">
             <input type="text" class="addcontact-name" id="addcontact_edit_name" name="name" required placeholder="Name" maxlength="20">
-            <input type="email" class="addcontact-email" id="addcontact_edit_email" name="email" required placeholder="Email" maxlength="20">            
+            <input type="email" class="addcontact-email" id="addcontact_edit_email" name="email" required placeholder="Email" maxlength="25">            
             <input type="tel" class="addcontact-phone" id="addcontact_edit_phone" name="phone" pattern="0[\\d\\s-]{9,13}" placeholder="01234567890" required maxlength="14">
             <div class="form-button">
                 <button type="button" class="addcontact_cancel_Button" onclick="cloeAddUbdateContactwindow()">
@@ -163,7 +163,11 @@ function userInfoHTML(user, index) {
 function contactHTML(contact) {
     return `
     <div id="userButton${contact.originalIndex}" class="show-contact" tabindex="0" onclick="slideInPopup('contactInfo');openUserInfo(${contact.originalIndex});openUserInfoWindow();doNotClose(event)">               
-        <div style="background-color:${contact.bgNameColor} ;" class="initial-contact" >${contact.firstLetters}</div>
+        <div>
+        <div style="background-color:${contact.bgNameColor} " class="initial-contact" >
+            <span>${contact.firstLetters}</span>
+        </div>
+        </div>
         <div class="show-contact-details">
             <span>${contact.name}</span> 
             <span class="show-contact-email">${contact.email}</span>

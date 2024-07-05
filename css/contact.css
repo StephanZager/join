@@ -232,8 +232,14 @@ h3 {
 }
 
 .show-contact-email {
+    width: 100%;
     color: #007cee;
     font-size: 16px;
+    overflow: hidden; /* Verhindert, dass der Inhalt über den Rand hinausgeht */
+    text-overflow: ellipsis; /* Zeigt "..." am Ende des Textes, wenn er abgeschnitten wird */
+    white-space: nowrap; /* Verhindert, dass der Text in eine neue Zeile umbricht */
+    display: block; /* Stellt sicher, dass die Breite des Containers voll ausgenutzt wird */
+    max-width: 100%; /* Begrenzt die maximale Breite auf die des Containers */
 }
 
 /*contact user Info right*/
@@ -613,6 +619,17 @@ h3 {
 
     }
 
+    .show-contact-email {
+        width: 85%;
+        color: #007cee;
+        font-size: 16px;
+        overflow: hidden; /* Verhindert, dass der Inhalt über den Rand hinausgeht */
+        text-overflow: ellipsis; /* Zeigt "..." am Ende des Textes, wenn er abgeschnitten wird */
+        white-space: nowrap; /* Verhindert, dass der Text in eine neue Zeile umbricht */
+        display: block; /* Stellt sicher, dass die Breite des Containers voll ausgenutzt wird */
+        max-width: 100%; /* Begrenzt die maximale Breite auf die des Containers */
+    }
+
 }
 
 @media (max-width: 1180px) {
@@ -885,6 +902,10 @@ h3 {
     .initial-user {
         width: 80px;
         height: 80px;
+    }
+
+    .show-contact-email{
+        width: 100%;
     }
 
 
