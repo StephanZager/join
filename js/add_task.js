@@ -140,13 +140,19 @@ async function submitTask(event) {
     let userTask = createUserTask(title, description, date, userCategory, assignDetails, subtasks, selectedPriority);
     try {
         await postData("/userTask", userTask);
-        window.location.href = "board.html";
+       
+        const confirmMsg = document.getElementById('confirmMsg');
+        confirmMsg.style.display = 'block';
+        
+        setTimeout(() => {
+            window.location.href = "board.html";
+        }, 1000);
         
     } catch (error) {
-        
         console.error("Fehler beim Posten der Daten:", error);
     }
 }
+
 
 function addSubtaskToList() {
     let subtaskInput = document.getElementById('subtasks');

@@ -596,6 +596,27 @@
     border-radius: 50%; /* Macht das Element rund */
 }
 
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.confirm-msg {
+    animation: slideInFromBottom 0.5s ease-out forwards;
+    display: none; /* Start with the message hidden */
+    position: fixed; /* Position it on top of the page content */
+    bottom: 20px; /* Position it at the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center it */
+}
+
+
 @media (max-width: 1380px){
 
     .task-headline {
