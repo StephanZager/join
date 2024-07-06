@@ -50,6 +50,7 @@ body {
 
 .contact-info-container {
     height: 100vh;
+  
     
 }
 
@@ -162,7 +163,7 @@ h3 {
 
 #contactInfo {
     margin-left: 62px;
-
+    
 }
 
 /*contact html css*/
@@ -701,6 +702,10 @@ h3 {
 }
 
 @media (max-width: 900px) {
+
+    .contactList{
+        display: block;
+    }
     .menuBar {
         display: flex;
         justify-content: space-between;
@@ -783,15 +788,15 @@ h3 {
         background-color: #FFFFFF;
     }*/
 
-    .contact-info-container {
+    .contact-info-container {      
         height: auto;
         width: 50%;
         left: 0;
         right: 0;
         top: 96px;
         bottom: 80px;
-
-
+        opacity: 1;
+        
     }
 
     .contactList-container {
@@ -982,16 +987,16 @@ h3 {
 
     .contact-info-container {
         width: 100%;
-        display: none;
+        
         height: auto;
         z-index: 999;
         position: fixed;
         left: 0;
         right: 0;
         top: 103px;
-        bottom: 80px;
-        background-color: #FFFFFF;
+        bottom: 80px;        
         opacity: 1;
+        
     }
 
     .contact-arrow-blue {

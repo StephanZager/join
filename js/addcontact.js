@@ -144,7 +144,7 @@ function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
-    
+
     deselectUser();
 
     if (userInfo.innerHTML === '' || currentOpenUser !== index) {
@@ -152,13 +152,13 @@ function openUserInfo(index) {
         userButton.focus();
         userButton.classList.add('focus-button');
         userButton.classList.add('no-hover');
-        currentOpenUser = index;        
+        currentOpenUser = index;
     } else {
         userInfo.innerHTML = '';
         userButton.classList.remove('focus-button');
         userButton.classList.remove('no-hover');
         userButton.blur();
-        currentOpenUser = null;       
+        currentOpenUser = null;
     }
 }
 
@@ -343,14 +343,24 @@ function cloeAddUbdateContactwindow() {
 
 function openUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'block';
+
+    if (window.innerWidth < 700) {
+        document.getElementById('userList').style.display = 'none';
+
+    }
 }
 
 function closeUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'none';
+
+    if (window.innerWidth < 700) {
+        document.getElementById('userList').style.display = 'flex';
+
+    }
 }
 
 function openUserDeleteEditWindow() {
-   
+
     document.getElementById('userDeleteHandy').innerHTML = `
             <div  id="bg-edit-delete">
                <div id="containerEditDeleteHandy" class="container-edit-delete-handy" onclick="doNotClose(event)">
@@ -365,8 +375,8 @@ function openUserDeleteEditWindow() {
                     </div>
                 </div>
                </div>            
-        </div> `;    
-    document.getElementById('bg-edit-delete').style.display = 'flex'; 
+        </div> `;
+    document.getElementById('bg-edit-delete').style.display = 'flex';
     document.getElementById('userDeleteHandy').style.display = 'block';
 }
 
@@ -402,9 +412,31 @@ function slideInPopup(popupId) {
     popup.classList.add('slide-in');
 }
 
+function adjustVisibilityBasedOnScreenSize() {
+    if (currentOpenUser !== null) {
+        document.getElementById('userList').style.display = 'none';
+    }
+
+    if (window.innerWidth < 700) {
+        if (currentOpenUser === null) {
+            document.getElementById('contactInfoContainer').style.display = 'none';
+        }
+    }
+
+    if (window.innerWidth > 700) {
+        document.getElementById('userList').style.display = 'flex';
+        document.getElementById('contactInfoContainer').style.display = 'block';
+    }
+}
+
+window.onload = adjustVisibilityBasedOnScreenSize;
+window.onresize = adjustVisibilityBasedOnScreenSize;
+
+
 async function contactinit() {
     await loadContact();
     filterNameAlphabet();
     filterContactAlphabet();
     await generateContacts();
+    adjustVisibilityBasedOnScreenSize();
 }
