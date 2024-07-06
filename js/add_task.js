@@ -176,7 +176,7 @@ function resetSubtaskFocus() {
 function editSubtaskAddtask(id) {
     let subtaskToEdit = globalSubtasks[id];
     let editElement = document.getElementById(`subtaskToEdit${id}`);
-    editElement.innerHTML = `<input type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"> | <img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div>`; 
+    editElement.innerHTML = `<li class="edit-li"><input class="editInputSubtask" type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div class="edit-and-delete-img"><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"> | <img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div></li>`; 
 }
 
 function confirmAddTaskSubtaskEdit(id) {
