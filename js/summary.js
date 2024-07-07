@@ -1,5 +1,6 @@
 let numberOfBoard = [];
 let urgentTasks = [];
+
 /**
  * Generates the greeting depending on the time of day.
  * 
@@ -17,8 +18,6 @@ function greeting() {
     } else if (hours >= 6 && hours <= 18) {
         return grettingSummary.innerHTML = 'Good Day,';
     }
-
-
 }
 
 /**
@@ -51,7 +50,6 @@ async function loadCategory(path = "/userTask") {
                 console.log(task);
 
                 if (task.priority === 'Urgent') {
-
                     urgentTasks.push({
                         urgent: task.priority,
                         date: task.date,
@@ -65,7 +63,7 @@ async function loadCategory(path = "/userTask") {
         }
         console.log('urgentTasks:', urgentTasks);
     } catch (error) {
-        console.error("Fehler beim Laden der Daten:", error);
+        console.error("Error loading data:", error);
         return null;
     }
 }
@@ -114,6 +112,11 @@ async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback,
     document.getElementById('howMuchTaskinBoard').innerHTML = numberOfBoard.length;
 }
 
+/**
+ * Displays the urgent tasks.
+ * 
+ * @returns {void}
+ */
 function sohwUgretnTask() {
     if (urgentTasks && urgentTasks.length > 0) {
         urgentTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -127,34 +130,41 @@ function sohwUgretnTask() {
     }
 }
 
+/**
+ * Displays the greeting summary in mobile view.
+ * 
+ * @returns {void}
+ */
 function greetingSummaryMobile() {
-    if (window.matchMedia("(max-width: 1200px)").matches) {       
-    if (localStorage.getItem('showGreetings') !== 'true') { 
-        return;
-    }    
-    localStorage.setItem('showGreetings', 'false'); 
+    if (window.matchMedia("(max-width: 1200px)").matches) {
+        if (localStorage.getItem('showGreetings') !== 'true') {
+            return;
+        }
+        localStorage.setItem('showGreetings', 'false');
 
-    let grettingMobile = document.getElementById('greetingSummaryMobile');
-    let grettingTime = greeting();
-    let greetingName = displayGreetingWithName();    
+        let grettingMobile = document.getElementById('greetingSummaryMobile');
+        let grettingTime = greeting();
+        let greetingName = displayGreetingWithName();
 
-    grettingMobile.innerHTML = grettingMobileHTML(grettingTime, greetingName);
+        grettingMobile.innerHTML = grettingMobileHTML(grettingTime, greetingName);
 
-    setTimeout(() => {
-        grettingMobile.classList.add('hide');
         setTimeout(() => {
-            grettingMobile.style.display = 'none';
-        }, 900);
-    }, 2000);
-}
+            grettingMobile.classList.add('hide');
+            setTimeout(() => {
+                grettingMobile.style.display = 'none';
+            }, 900);
+        }, 2000);
+    }
 }
 
+/**
+ * Redirects to the next page.
+ * 
+ * @returns {void}
+ */
 function nextPage() {
     window.location.href = 'board.html';
 }
-
-
-
 
 /**
  * Initializes the summary page by setting the greeting, displaying the user's name, 
@@ -165,15 +175,21 @@ function nextPage() {
 async function initSummary() {
     console.log("Initializing summary...");
     greeting();
-
     displayGreetingWithName();
-    greetingSummaryMobile()
+    greetingSummaryMobile();
     await loadCategory();
     taskAssignment();
     sohwUgretnTask();
 }
 
-function grettingMobileHTML(grettingTime, greetingName){
+/**
+ * Generates the HTML for the mobile greeting.
+ * 
+ * @param {string} grettingTime - The greeting message.
+ * @param {string} greetingName - The name of the user.
+ * @returns {string} - The HTML string for the mobile greeting.
+ */
+function grettingMobileHTML(grettingTime, greetingName) {
     return `
     <div class="summary-greeting-mobile">
         <h3 class="summary-day-greeting">${grettingTime}</h3>
