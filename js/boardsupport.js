@@ -29,7 +29,7 @@ function clearTaskForm() {
  */
 function openTaskPopup(category) {
     currentCategory = category;
-    document.getElementById("addTaskModel").style.display = "block";
+    document.getElementById("addTaskModel").style.display = "flex";
 }
 
 /**

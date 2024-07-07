@@ -423,7 +423,7 @@ function adjustVisibilityBasedOnScreenSize() {
         }
     }
 
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 700) { 
         document.getElementById('userList').style.display = 'flex';
         document.getElementById('contactInfoContainer').style.display = 'block';
     }
