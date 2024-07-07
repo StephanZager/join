@@ -4,17 +4,16 @@ let currentOpenUser = null;
 let currentUser = [];
 
 /**
- * This prevents the window from closing when I press the pop-up button
+ * Prevents the window from closing when the pop-up button is pressed.
  * 
- * @param {string} event -  
+ * @param {Event} event - The event object.
  */
 function doNotClose(event) {
     event.stopPropagation();
 }
 
 /**
- * Gets the input from the form and adds it to the json array, contacts
- * 
+ * Gets the input from the form and adds it to the contacts array.
  * 
  */
 async function submitContact() {
@@ -33,10 +32,15 @@ async function submitContact() {
         await addContact(contact);
 
     } catch (error) {
-        console.error("Fehler beim Posten der Daten:", error);
+        console.error("Error posting data:", error);
     }
 }
 
+/**
+ * Adds a new contact to the database and updates the contact list.
+ * 
+ * @param {Object} newContact - The new contact object.
+ */
 async function addContact(newContact) {
     const response = await postData("/contact", newContact);
     newContact.id = response.name;
@@ -52,7 +56,6 @@ async function addContact(newContact) {
  * Selects the most recent contact that was created.
  * 
  * @param {Object} newContact - The most recently created contact.
- * @param {number} newContact.originalIndex - The index of the new contact in the contacts array.
  */
 function selectionTheLastCreatedUser(newContact) {
     openUserInfo(newContact.originalIndex);
@@ -62,14 +65,13 @@ function selectionTheLastCreatedUser(newContact) {
 }
 
 /**
- * adds the array contact from submitContact() on firebase
+ * Posts the data to the specified path in the database.
  * 
- * @param {path} path - this is the path where it should save in firebase 
- * @param {json array} data - under which array it should save on firebase
- * @returns 
+ * @param {string} path - The path where the data should be saved in the database.
+ * @param {Object} data - The data to be saved.
+ * @returns {Object} - The response from the database.
  */
 async function postData(path, data) {
-
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         headers: {
@@ -83,13 +85,10 @@ async function postData(path, data) {
 }
 
 /**
+ * Loads contacts from the database.
  * 
- * Downloads the contacts from firebease again.
- * Key is a variable that represents the current key in the responseToJson object iterated through.
- * The hasOwnProperty() method of Object instances returns a boolean indicating whether this object has the specified property as its own property (as opposed to inheriting it).
- * 
- * @param {path} path - This is the path where the data from contact is inside  
- * @returns 
+ * @param {string} [path="/contact"] - The path where the contacts are stored in the database.
+ * @returns {Promise<void>} 
  */
 async function loadContact(path = "/contact") {
     try {
@@ -111,13 +110,13 @@ async function loadContact(path = "/contact") {
             }
         }
     } catch (error) {
-        console.error("Fehler beim Laden der Daten:", error);
+        console.error("Error loading data:", error);
         return null;
     }
 }
 
 /**
- * This function inserts the contacts into the HTML page
+ * Inserts the contacts into the HTML page.
  * 
  */
 async function generateContacts() {
@@ -140,28 +139,54 @@ async function generateContacts() {
     }
 }
 
+/**
+ * Opens the user information panel for the specified user.
+ * 
+ * @param {number} index - The index of the user in the contacts array.
+ */
 function openUserInfo(index) {
     let userInfo = document.getElementById('contactInfo');
     let userButton = document.getElementById('userButton' + index);
     let user = contacts[index];
-
     deselectUser();
 
     if (userInfo.innerHTML === '' || currentOpenUser !== index) {
         userInfo.innerHTML = userInfoHTML(user, index);
         userButton.focus();
-        userButton.classList.add('focus-button');
-        userButton.classList.add('no-hover');
+        userButtonClassListAdd(userButton);
         currentOpenUser = index;
     } else {
         userInfo.innerHTML = '';
-        userButton.classList.remove('focus-button');
-        userButton.classList.remove('no-hover');
+        userButtonClassListRemove(userButton)
         userButton.blur();
         currentOpenUser = null;
     }
 }
 
+/**
+ * Adds focus and no-hover classes to the user button.
+ * 
+ * @param {HTMLElement} userButton - The user button element.
+ */
+function userButtonClassListAdd(userButton) {
+    userButton.classList.add('focus-button');
+    userButton.classList.add('no-hover');
+}
+
+/**
+ * Removes focus and no-hover classes from the user button.
+ * 
+ * @param {HTMLElement} userButton - The user button element.
+ */
+function userButtonClassListRemove(userButton) {
+    userButton.classList.remove('focus-button');
+    userButton.classList.remove('no-hover');
+}
+
+/**
+ * Deselects the currently selected user.
+ * 
+ */
 function deselectUser() {
     if (currentOpenUser !== null) {
         let userInfo = document.getElementById('contactInfo');
@@ -172,6 +197,14 @@ function deselectUser() {
     }
 }
 
+/**
+ * Submits the form with updated contact information.
+ * 
+ * @param {Event} event - The form submission event.
+ * @param {number} i - The index of the contact in the contacts array.
+ * @param {string} contactId - The ID of the contact.
+ * @param {string} path - The path where the contact is stored in the database.
+ */
 async function submitForm(event, i, contactId, path) {
     event.preventDefault();
 
@@ -186,6 +219,14 @@ async function submitForm(event, i, contactId, path) {
     await addContactUbdate(i, contactId, updatedContact, path);
 }
 
+/**
+ * Updates a contact in the database and the contacts array.
+ * 
+ * @param {number} i - The index of the contact in the contacts array.
+ * @param {string} contactId - The ID of the contact.
+ * @param {Object} updatedContact - The updated contact object.
+ * @param {string} path - The path where the contact is stored in the database.
+ */
 async function addContactUbdate(i, contactId, updatedContact, path) {
     await updateContact(contactId, updatedContact, path);
     contacts[i] = updatedContact;
@@ -218,8 +259,16 @@ function findContactIndexById(contactId) {
     return -1;
 }
 
+/**
+ * Updates a contact in the database.
+ * 
+ * @param {string} contactId - The ID of the contact to update.
+ * @param {Object} updatedContact - The updated contact object.
+ * @param {string} [path="/contact"] - The path where the contact is stored in the database.
+ * @returns {Promise<Response>} The response from the database.
+ */
 async function updateContact(contactId, updatedContact, path = "/contact") {
-    console.log('ubdate', contactId);
+    console.log('update', contactId);
     let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
         method: "PUT",
         headers: {
@@ -230,6 +279,12 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     return response;
 }
 
+/**
+ * Opens the edit user window with the current contact information.
+ * 
+ * @param {number} i - The index of the contact in the contacts array.
+ * @param {string} [path="/contact"] - The path where the contact is stored in the database.
+ */
 async function editUser(i, path = "/contact") {
     let contactId = contacts[i].id;
     document.getElementById('addUbdateContactPopUp').innerHTML = addUbdateContactPopUp(i, path);
@@ -240,10 +295,10 @@ async function editUser(i, path = "/contact") {
 }
 
 /**
- * This function deletes the user
+ * Deletes a user from the contacts array and the database.
  * 
- * @param {*} i is the index from the user
- * @param {*} path is the path where the contacts are stored
+ * @param {number} i - The index of the user in the contacts array.
+ * @param {string} [path="/contact"] - The path where the contacts are stored in the database.
  */
 async function deleteUser(i, path = "/contact") {
     let contactId = contacts[i].id;
@@ -258,37 +313,40 @@ async function deleteUser(i, path = "/contact") {
 }
 
 /**
- * This function takes the first letters of the first and last name 
+ * Takes the first letters of the first and last name.
  * 
- * @param {string} name - The name is in there
- * 
+ * @param {string} name - The name of the contact.
+ * @returns {string} - The first letters of the first and last name.
  */
 function filterFirstLetters(name) {
     let words = name.split(' ');
     let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
-
     return firstLetters;
 }
 
 /**
- * The function generates a random color, from the array userNameColor, for the name Logo
+ * Generates a random color for the name logo from the userNameColor array.
  * 
- * @returns - The random color
+ * @returns {string} - The random color.
  */
 function toAssignColorNameLogo() {
     let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
-
     return backgroundcolor;
 }
 
 /**
- * Filter the contacts by the alphabet
+ * Sorts the contacts by name in alphabetical order.
  * 
  */
 function filterNameAlphabet() {
     contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/**
+ * Groups contacts by the first letter of their name.
+ * 
+ * @returns {Object} - The grouped contacts by the first letter.
+ */
 function filterContactAlphabet() {
     groupedContactsLetters = {};
 
@@ -307,31 +365,34 @@ function filterContactAlphabet() {
 }
 
 /**
- * Open the contact window and add contacts
+ * Opens the add new contact window.
  * 
  */
 function openAddNewContactwindow() {
     addNewContactPopUp();
-
     document.getElementById('bg_add_new_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
 }
 
 /**
- * closes the contact window again and clears the input fields
+ * Closes the add new contact window and clears the input fields.
  * 
  */
 function cloeAddNewContactwindow() {
     document.getElementById('bg_add_new_contact').classList.add('d-none');
 }
 
+/**
+ * Opens the add/update contact window.
+ * 
+ */
 function openAddUbdateContactwindow() {
     document.getElementById('bg_add_ubdate_contact').classList.remove('d-none');
     document.getElementById('btn-create-addcontact').classList.remove('d-none');
 }
 
 /**
- * Open the contact window and add contacts
+ * Closes the add/update contact window and clears the input fields.
  * 
  */
 function cloeAddUbdateContactwindow() {
@@ -341,15 +402,22 @@ function cloeAddUbdateContactwindow() {
     document.getElementById('addcontact_edit_phone').value = '';
 }
 
+/**
+ * Opens the user information window.
+ * 
+ */
 function openUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'block';
 
     if (window.innerWidth < 700) {
         document.getElementById('userList').style.display = 'none';
-
     }
 }
 
+/**
+ * Closes the user information window.
+ * 
+ */
 function closeUserInfoWindow() {
     document.getElementById('contactInfoContainer').style.display = 'none';
 
@@ -359,36 +427,27 @@ function closeUserInfoWindow() {
     }
 }
 
+/**
+ * Opens the user delete/edit window.
+ * 
+ */
 function openUserDeleteEditWindow() {
-
-    document.getElementById('userDeleteHandy').innerHTML = `
-            <div  id="bg-edit-delete">
-               <div id="containerEditDeleteHandy" class="container-edit-delete-handy" onclick="doNotClose(event)">
-                <div class="user-edit-delete-handy" id="buttonEditDeleteHandy">
-                    <div onclick="editUser(${currentOpenUser}), slideInPopup('popUpUbdateContact'), closeUserDeleteEditWindow()" class="user-edit-delete-section-handy" >
-                        <img src="assets/img/edit-contacts.png" alt="edit">
-                        <p>Edit</p>
-                    </div>
-                    <div onclick="deleteUser(${currentOpenUser}), closeUserDeleteEditWindow(), closeUserInfoWindow()" class="user-edit-delete-section-handy">
-                        <img src="assets/img/delete-contacts.png" alt="edit">
-                        <p>Delete</p>
-                    </div>
-                </div>
-               </div>            
-        </div> `;
+    document.getElementById('userDeleteHandy').innerHTML = getUserEditDeleteHTML(currentOpenUser);
     document.getElementById('bg-edit-delete').style.display = 'flex';
     document.getElementById('userDeleteHandy').style.display = 'block';
 }
 
+/**
+ * Closes the user delete/edit window.
+ * 
+ */
 function closeUserDeleteEditWindow() {
     document.getElementById('userDeleteHandy').innerHTML = '';
 }
 
 /**
- * Asynchronously displays a confirmation message after a new contact has been added.
- * The confirmation message is displayed for 3 seconds.
+ * Displays a confirmation message after a new contact has been added.
  * 
- * @async
  */
 async function addNewContactConfirmation() {
     let contactConfirmation = document.getElementById('contactConfirmation');
@@ -408,10 +467,13 @@ async function addNewContactConfirmation() {
  */
 function slideInPopup(popupId) {
     let popup = document.getElementById(popupId);
-
     popup.classList.add('slide-in');
 }
 
+/**
+ * Adjusts the visibility of elements based on the screen size.
+ * 
+ */
 function adjustVisibilityBasedOnScreenSize() {
     if (currentOpenUser !== null) {
         document.getElementById('userList').style.display = 'none';
@@ -422,8 +484,7 @@ function adjustVisibilityBasedOnScreenSize() {
             document.getElementById('contactInfoContainer').style.display = 'none';
         }
     }
-
-    if (window.innerWidth > 700) { 
+    if (window.innerWidth > 700) {
         document.getElementById('userList').style.display = 'flex';
         document.getElementById('contactInfoContainer').style.display = 'block';
     }
@@ -432,7 +493,10 @@ function adjustVisibilityBasedOnScreenSize() {
 window.onload = adjustVisibilityBasedOnScreenSize;
 window.onresize = adjustVisibilityBasedOnScreenSize;
 
-
+/**
+ * Initializes the contacts, filters, and generates the contacts list.
+ * 
+ */
 async function contactinit() {
     await loadContact();
     filterNameAlphabet();
