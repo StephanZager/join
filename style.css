@@ -262,7 +262,11 @@ a {
         gap: 45px;
     }
 
-    
+    .main-container-policy {
+        margin-left: 0 !important;
+        margin-top: 25px !important;
+        padding: 0px 50px !important;
+    }
 
     .links {
         display: none;
