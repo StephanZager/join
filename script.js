@@ -65,3 +65,14 @@ function highlightActiveLinks() {
 }
 
 
+
+function openPrivacyPolicy() {
+    window.location.href = "privacy-police.html";
+    disableLoginHelp();
+}
+
+function disableLoginHelp() {
+    document.getElementById('loginHelp').classList.add('display-none');
+}
+
+
