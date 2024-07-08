@@ -49,7 +49,7 @@ async function loginSignupPolicies() {
     changeUrl();
     if (window.location.pathname.includes('policy_over_signup.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
-        let contentMenu = document.getElementById('contentMenu');
+        let contentMenu = document.getElementById('navbar');
         let policeElements = document.getElementById('policeLinks');
         if (loginHelpElement && contentMenu && policeElements) {
             loginHelpElement.style.display = 'none';
@@ -59,7 +59,7 @@ async function loginSignupPolicies() {
     }
     if (window.location.pathname.includes('legal_notice_over_signup.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
-        let contentMenu = document.getElementById('contentMenu');
+        let contentMenu = document.getElementById('navbar');
         let policeElements = document.getElementById('policeLinks');
         if (loginHelpElement && contentMenu) {
             loginHelpElement.style.display = 'none';
@@ -87,10 +87,6 @@ async function changeUrl(){
         }
     }   
 }
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    afterHTMLIncluded();
-});
 
 
 function dropdownMenu() {
