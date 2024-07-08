@@ -463,18 +463,25 @@ input {
 
 /* The Close Button */
 
-.close-addtask-section{
+.close-addtask-section {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-.hover-close:hover  {
-    background-color: lightgrey;
-    height: 24px;
-    width: 24px;
-    border-radius: 32px;
-    
+.hover-close {
+    display: flex; /* Ermöglicht die Zentrierung des Inhalts */
+    align-items: center; /* Zentriert den Inhalt vertikal */
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+    transition: background-color 0.3s ease; /* Glatter Übergang für den Hintergrund */
+    border-radius: 100%;
+    padding: 5px;
+}
+
+.hover-close:hover {
+    background-color: rgba(128, 128, 128, 0.171);;
+    cursor: pointer;
+    border-radius: 32px; /* Für einen perfekten Kreis, stellen Sie sicher, dass width und height gleich sind und border-radius mindestens die Hälfte davon */
 }
 
 .close-edit-section {

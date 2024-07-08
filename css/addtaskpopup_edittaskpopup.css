@@ -509,6 +509,10 @@ textarea {
 
 }
 
+@media (max-width: 1130px){
+    
+}
+
 @media (max-width: 900px){
     .modal-addtask-popup {
        display: none;

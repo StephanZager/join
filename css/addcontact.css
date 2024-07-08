@@ -265,22 +265,22 @@ form {
 
 .close-botton-addcontact-destop {
     position: absolute;
-    width: 13.5px;
-    height: 13.5px;
-    top: 57px;
-    right: 48px;
-
-
+    width: 16px; /* Erhöht, um Platz für den Border zu schaffen */
+    height: 16px; /* Erhöht, um Platz für den Border zu schaffen */
+    top: 50px; /* Anpassung, um die Position nach der Größenänderung zu korrigieren */
+    right: 41px; /* Anpassung, um die Position nach der Größenänderung zu korrigieren */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    padding: 5px; /* Abstand zwischen Bild und Border */
 }
 
 .close-botton-addcontact-destop:hover {
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.171);
-    border-radius: 100%;
-    padding: 5px;
-
-    margin-top: -5px;
-    margin-right: -5px;
 }
 
 .edit-contact-profil-icon {
