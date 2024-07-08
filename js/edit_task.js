@@ -3,13 +3,9 @@ let currentTask;
 
 
 function loadTaskForEdit(firebaseId) {
-    console.log('Passed firebaseId:', firebaseId);
-    console.log('Task array:', task);
     for (let i = 0; i < task.length; i++) {
         let editTask = task[i];
-        console.log('Current task:', editTask);
         if (editTask.firebaseId === firebaseId) {
-            console.log(editTask.firebaseId);
             currentTask = editTask;
             break;
         }
@@ -63,17 +59,16 @@ function markCheckedCheckboxes() {
     }
 
     let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
-    console.log('currentTask.assign:', currentTask.assign); // Debugging-Informationen
+
+    let assignArray = Array.isArray(currentTask.assign) ? currentTask.assign : [];
 
     for (let checkbox of checkboxes) {
-        console.log('checkbox value:', checkbox.value); // Debugging-Informationen
 
         let [name, initials, bgColor] = checkbox.value.split('|');
         let cleanedName = cleanNameForInitials(name);
         let generatedInitials = filterFirstLetters(cleanedName);
 
-        // Stellen Sie sicher, dass der Vergleich mit bereinigten Namen erfolgt
-        if (currentTask.assign.some(assign => cleanNameForInitials(assign.name).trim().toLowerCase() === cleanedName.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgNameColor === bgColor)) {
+        if (assignArray.some(assign => cleanNameForInitials(assign.name).trim().toLowerCase() === cleanedName.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgNameColor === bgColor)) {
             checkbox.checked = true;
         }
     }
@@ -151,7 +146,6 @@ function setCurrentPriority(priority) {
         const img = button.querySelector('img');
         img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
     }
-    console.log(priority);
 }
 
 function addSubtask() {
@@ -182,7 +176,6 @@ function deleteEditSubtask(i) {
 
 function editSubtask(i) {
     let subtask = currentTask.subtasks[i];
-    console.log(i, subtask);
     document.getElementById(`subtask${i}`).innerHTML = `<div class="editSub"><input type="text" class="editInputSub" id="edit-input${i}" value="${subtask.title}"> <div class="editSubImg"><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div></div>`;
 }
 
@@ -244,9 +237,6 @@ function updateCurrentTask() {
             }
         }
     }
-
-    // Debugging: Überprüfen des Datums vor dem Update
-    console.log('Aktualisiertes Datum:', currentTask.date);
 
     updateTask(currentTask.firebaseId, currentTask);
 }
