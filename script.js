@@ -19,6 +19,7 @@ async function includeHTML() {
 async function afterHTMLIncluded() {
     showLoginInitial(); // Call showLoginInitial after the HTML has been included
     highlightActiveLinks();
+    
     console.log("Überprüfung der URL:", window.location.pathname.includes('legalnotice.html'));
     console.log("Aktueller Pfad:", window.location.pathname);
     
@@ -40,12 +41,56 @@ async function afterHTMLIncluded() {
         }
         // Fügen Sie hier weitere Aktionen hinzu, die spezifisch für legalnotice.html sind
     }
+
+    loginSignupPolicies();
 }
 
+async function loginSignupPolicies() {
+    changeUrl();
+    if (window.location.pathname.includes('policy_over_signup.html')) {
+        let loginHelpElement = document.getElementById('loginHelp');
+        let contentMenu = document.getElementById('contentMenu');
+        let policeElements = document.getElementById('policeLinks');
+        if (loginHelpElement && contentMenu && policeElements) {
+            loginHelpElement.style.display = 'none';
+            contentMenu.style.display = 'none';
+            policeElements.style.marginTop = 'auto';
+        }
+    }
+    if (window.location.pathname.includes('legal_notice_over_signup.html')) {
+        let loginHelpElement = document.getElementById('loginHelp');
+        let contentMenu = document.getElementById('contentMenu');
+        let policeElements = document.getElementById('policeLinks');
+        if (loginHelpElement && contentMenu) {
+            loginHelpElement.style.display = 'none';
+            contentMenu.style.display = 'none';
+            policeElements.style.marginTop = 'auto';
+        }
+    }
+}
 
-document.addEventListener('DOMContentLoaded', includeHTML);
+async function changeUrl(){
+    if (window.location.pathname.includes('policy_over_signup.html')) {
+        let privacyUrl = document.getElementById('privacyPolice');
+        let legalUrl = document.getElementById('legalNotice');
+        if (privacyUrl && legalUrl) {
+            privacyUrl.href = 'policy_over_signup.html';
+            legalUrl.href = 'legal_notice_over_signup.html';
+        }
+    }
+    if (window.location.pathname.includes('legal_notice_over_signup.html')) {
+        let privacyUrl = document.getElementById('privacyPolice');
+        let legalUrl = document.getElementById('legalNotice');
+        if (privacyUrl && legalUrl) {
+            privacyUrl.href = 'policy_over_signup.html';
+            legalUrl.href = 'legal_notice_over_signup.html';
+        }
+    }   
+}
 
-
+document.addEventListener('DOMContentLoaded', (event) => {
+    afterHTMLIncluded();
+});
 
 
 function dropdownMenu() {
@@ -66,43 +111,38 @@ window.onclick = function(event) {
 
 
 function highlightActiveLinks() {
-    var currentUrl = window.location.href;
-    var links = document.querySelectorAll('.navbar .link');
+    let currentUrl = window.location.href;
+    let links = document.querySelectorAll('.navbar .link, .links .link-to');
     links.forEach(function(link) {
-        // Zugriff auf den übergeordneten Container des Links
-        var linkSection = link.closest('.linkSection');
-        // Zugriff auf das img-Element innerhalb des Links
-        var img = link.querySelector('img');
+        let linkSection = link.closest('.linkSection');
+        let img = link.querySelector('img');
         
         if (currentUrl.includes(link.getAttribute('href'))) {
+            // Prüfung, ob der Link eine 'link-to' Klasse hat und innerhalb eines '.links' Containers ist
+            if (link.classList.contains('link-to') && link.closest('.links')) {
+                link.classList.add('activeLink'); // 'activeLink' Klasse zum Link hinzufügen
+            }
             if (linkSection) {
                 linkSection.classList.add('activeLink');
-                link.classList.add('activeText'); // Klasse zum Link hinzufügen
-                if (img) {
-                    img.classList.add('activeImage'); // Klasse zum img hinzufügen
-                }
+            }
+            link.classList.add('activeText');
+            if (img) {
+                img.classList.add('activeImage');
             }
         } else {
+            if (link.classList.contains('link-to') && link.closest('.links')) {
+                link.classList.remove('activeLink'); // 'activeLink' Klasse vom Link entfernen
+            }
             if (linkSection) {
                 linkSection.classList.remove('activeLink');
-                link.classList.remove('activeText'); // Klasse vom Link entfernen
-                if (img) {
-                    img.classList.remove('activeImage'); // Klasse vom img entfernen
-                }
+            }
+            link.classList.remove('activeText');
+            if (img) {
+                img.classList.remove('activeImage');
             }
         }
     });
 }
 
-
-
-//function openPrivacyPolicy() {
-//    window.location.href = "privacy-police.html"; 
-//    disableLoginHelp();
-//}
-
-//function disableLoginHelp() {
-//    document.getElementById('loginHelp').classList.add('display-none');
-//}
 
 

@@ -131,18 +131,18 @@ nav {
     display: flex;
     justify-content: space-between;
     gap: 15px;
+    margin-bottom: 72px;
     flex-direction: column;
-    position: fixed;
     top: 85%;
     box-sizing: border-box;
     font-size: 16px;
+    width: 100%;
 }
 
 .link-to {
     text-decoration: none;
     color: #cdcdcd;
-    display: inline-block;
-    width: 150px;
+    padding: 0px 20px;
 }
 
 .link-to:hover {
