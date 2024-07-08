@@ -225,7 +225,7 @@ function closeEditTaskPopup() {
 function updateCurrentTask() {
     currentTask.title = document.getElementById('editTitle').value;
     currentTask.description = document.getElementById('editDescription').value;
-    currentTask.dueDate = document.getElementById('editDate').value;
+    currentTask.date = document.getElementById('editDate').value;
     currentTask.userCategory = document.querySelector('input[name="category"]:checked')?.value;
 
     let assignContact = document.getElementById('editAssigned');
@@ -233,10 +233,8 @@ function updateCurrentTask() {
         let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
         currentTask.assign = []; // Leeren Sie die aktuelle Zuweisungsliste
 
-        // Fügen Sie die ausgewählten Kontakte zur Zuweisungsliste hinzu
         for (let checkbox of checkboxes) {
             if (checkbox.checked) {
-                console.log('Checkbox value:', checkbox.value); // Debugging-Informationen
                 let [name, initials, bgColor] = checkbox.value.split('|');
                 currentTask.assign.push({
                     name: name,
@@ -246,6 +244,9 @@ function updateCurrentTask() {
             }
         }
     }
+
+    // Debugging: Überprüfen des Datums vor dem Update
+    console.log('Aktualisiertes Datum:', currentTask.date);
 
     updateTask(currentTask.firebaseId, currentTask);
 }
@@ -308,7 +309,7 @@ async function updateTask( firebaseId, updatedUserTask) {
             },
             body: JSON.stringify(updatedUserTask),
         });
-
+        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -320,6 +321,8 @@ async function updateTask( firebaseId, updatedUserTask) {
     }
    
 }
+
+
 
 function openEditDropdownContentCategory() {
     let categoryContent = document.getElementById('categoryContentEdit');

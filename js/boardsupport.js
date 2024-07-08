@@ -50,16 +50,6 @@ function displayModal() {
 
 // Modal-bezogener Code
 document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("taskModal");
-    const span = document.getElementsByClassName("close")[0];
-
-    span.onclick = () => {
-        modal.style.display = "none";
-        endSlideInPopupTask('taskCardPoupAnimation'); // Call your additional function here
-        resetTaskCardColors();
-    }; 
-    
-
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("taskCard")) {
             const firebaseId = event.target.getAttribute("data-firebase-id");
@@ -68,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
 
 
 /**
