@@ -265,8 +265,7 @@ form {
 
 .close-botton-addcontact-destop {
     position: absolute;
-    width: 16px; /* Erhöht, um Platz für den Border zu schaffen */
-    height: 16px; /* Erhöht, um Platz für den Border zu schaffen */
+    
     top: 50px; /* Anpassung, um die Position nach der Größenänderung zu korrigieren */
     right: 41px; /* Anpassung, um die Position nach der Größenänderung zu korrigieren */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;

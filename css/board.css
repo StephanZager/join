@@ -87,6 +87,14 @@
     background-color: #2a3647;
 }
 
+.addTaskBtn:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
+
+}
+
 .highlight {
     background-color: yellow;
 }
