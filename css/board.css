@@ -463,9 +463,25 @@ input {
 
 /* The Close Button */
 
+.close-addtask-section{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.hover-close:hover  {
+    background-color: lightgrey;
+    height: 24px;
+    width: 24px;
+    border-radius: 32px;
+    
+}
 
 .close-edit-section {
     height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .close-edit {

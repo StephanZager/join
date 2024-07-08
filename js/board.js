@@ -455,13 +455,15 @@ function resetTaskCardColors() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    /**
-     * Closes the task popup when the 'closePopupButton' is clicked.
-     * Assumes that a function named `closeTaskPopup` is defined elsewhere.
-     */
-    document.getElementById('closePopupButton').addEventListener('click', closeTaskPopup);
-});
+
+function closeTaskCard() {
+    document.getElementById('taskModal').style.display = 'none';
+}
+
+
+function closeAddTaskPopup() {
+    document.getElementById('addTaskModel').style.display = 'none';
+}
 
 /**
  * Slides in a popup with the given ID.

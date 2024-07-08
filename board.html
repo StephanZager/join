@@ -83,7 +83,8 @@
             <div id="modalTaskcard" class="modal-task-popup-display-block modal-task-popup-display-none">
                 <div class="popup-headline">
                     <h4 id="modalTitle"></h4>
-                    <span class="close">&times;</span>
+                    <img src="assets/img/close-addcontact.png" alt="Schließen" onclick="closeTaskCard()">
+                    <!--<span class="close">&times;</span>-->
                 </div>
                 <p id="modalUserTitle"></p>
                 <p id="modalDescription"></p>
@@ -116,7 +117,7 @@
             
                 <div id="editTaskcard" class="edit-task-display-none">
                     <div class="close-edit-section">
-                    <span id="closeEditPopupButton" onclick="closeEditTaskPopup()" class="close-edit">&times;</span>
+                    <img class="closeBUttonEditTask" src="assets/img/close-addcontact.png" id="closeEditPopupButton" onclick="closeEditTaskPopup()">
                     </div>
                     <div class="edit-task-menü" id="editTaskMainContainer">
                     <div class="left-field-section">
@@ -202,7 +203,9 @@
 
     <div id="addTaskModel" class="modal">
         <div class="modal-addtask-popup" id="popup_add_task">
-            <span id="closePopupButton" class="close">&times;</span>
+            <div class="close-addtask-section">
+                <div class="hover-close"><img src="assets/img/close-addcontact.png" alt="Schließen" onclick="closeAddTaskPopup()"></div>
+            </div>
             <h1 class="addtask-popup-headline">Add Task</h1>
             <form action="" onsubmit="createTask(event)">
                 <main class="addtask-popup-maincontainer-desktop" id="maincontainerAddTask">
