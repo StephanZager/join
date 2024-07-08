@@ -20,9 +20,6 @@ async function afterHTMLIncluded() {
     showLoginInitial(); // Call showLoginInitial after the HTML has been included
     highlightActiveLinks();
     
-    console.log("Überprüfung der URL:", window.location.pathname.includes('legalnotice.html'));
-    console.log("Aktueller Pfad:", window.location.pathname);
-    
     // Prüfen, ob die URL privacy-police.html enthält
     if (window.location.pathname.includes('privacy-police.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
