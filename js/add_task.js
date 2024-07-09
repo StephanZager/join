@@ -276,6 +276,21 @@ function addSubtaskToList() {
     }
 }
 /**
+ * Adds an event listener to the document that waits for the DOM to be fully loaded.
+ * Once the DOM is loaded, it attaches another event listener to the element with the ID 'subtasks'.
+ * This inner event listener listens for keydown events and checks if the 'Enter' key was pressed.
+ * If the 'Enter' key is pressed, it prevents the default action (form submission) and calls the
+ * addSubtaskToList function to add the subtask to the list.
+ */
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('subtasks').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            addSubtaskToList();
+        }
+    });
+});
+/**
  * Sets focus on the subtask input field, displays the confirm and delete buttons, and hides the placeholder image.
  * This function performs three main actions:
  * 1. Calls the focus() method on the input element with the ID 'subtasks' to set focus on it.
