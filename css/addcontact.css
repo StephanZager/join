@@ -244,6 +244,7 @@ form {
     cursor: pointer;
     border: 2px solid #29ABE2;
     color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .addcontact_cancel_Button:hover .img-cancel-x {

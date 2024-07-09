@@ -55,14 +55,57 @@
     height: 31px;
 }
 
+.hover-close {
+    display: flex; /* Ermöglicht die Zentrierung des Inhalts */
+    align-items: center; /* Zentriert den Inhalt vertikal */
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+    transition: background-color 0.3s ease; /* Glatter Übergang für den Hintergrund */
+    border-radius: 100%;
+    padding: 5px;
+}
+
+.hover-close:hover {
+    background-color: rgba(128, 128, 128, 0.171);;
+    cursor: pointer;
+    border-radius: 32px; /* Für einen perfekten Kreis, stellen Sie sicher, dass width und height gleich sind und border-radius mindestens die Hälfte davon */
+}
+
+
+
+
 .searchTaskBtn {
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
-    height: 48px;
+    
     background-color: transparent;
+    border-radius: 100%;
+    padding: 5px;
 }
+
+.searchTaskBtn:hover {
+    background-color: rgba(128, 128, 128, 0.171);;
+    cursor: pointer;
+     
+}
+
+.search-img-btn{
+    display: block;
+}
+
+.search-img-btn-click{
+    display: none;
+}
+
+.searchTaskBtn:active .search-img-btn{
+    display: none;
+}
+
+.searchTaskBtn:active .search-img-btn-click{
+    display: block;
+}
+
 
 .add-task-button-area {
     display: flex;
@@ -126,6 +169,54 @@
     border: none;
     background-color: transparent;
     display: none;
+}
+
+.smallBtn:hover {
+    cursor: pointer;
+}
+
+.smallBtn-mobile:hover {
+    cursor: pointer;
+}
+
+.borad-plus-btn{
+    display: block;
+}
+
+.borad-plus-hover-btn{
+    display: none;
+}
+
+.smallBtn-mobile:hover .borad-plus-btn{
+    display: none;
+}
+
+.smallBtn-mobile:hover .borad-plus-hover-btn{
+    display: block;
+}
+
+.smallBtn-mobile:hover {
+    cursor: pointer;
+}
+
+.smallBtn-mobile:hover {
+    cursor: pointer;
+}
+
+.borad-plus-btn{
+    display: block;
+}
+
+.borad-plus-hover-btn{
+    display: none;
+}
+
+.smallBtn:hover .borad-plus-btn{
+    display: none;
+}
+
+.smallBtn:hover .borad-plus-hover-btn{
+    display: block;
 }
 
 input {

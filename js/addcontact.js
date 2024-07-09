@@ -455,8 +455,8 @@ async function addNewContactConfirmation() {
     contactConfirmation.innerHTML = `<img class="show-overlay-menu-user-info" src="assets/img/add-user-confirmation.png" alt="check">`;
 
     setTimeout(() => {
-        contactConfirmation.innerHTML = '';
-        contactConfirmation.classList.remove('show-overlay-menu-user-info');
+       contactConfirmation.innerHTML = '';
+       contactConfirmation.classList.remove('show-overlay-menu-user-info');
     }, 3000);
 }
 

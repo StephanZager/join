@@ -94,7 +94,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 23px;
-    box-shadow: 0px 4px 4px 0px #00000040;
+    
 
 }
 
@@ -106,7 +106,7 @@ body {
 .add-new-contact-button:hover {
     cursor: pointer;
     background-color: #29ABE2;
-
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .seperator {
@@ -703,6 +703,14 @@ h3 {
 
 @media (max-width: 900px) {
 
+    #contactConfirmation.show-overlay-menu-user-info {
+        position: absolute;
+        bottom: 100px;
+        right: 100px;
+        transform: translateX(0);
+        transition: transform 400ms ease-in-out;
+    }
+
     .contactList{
         display: block;
     }
@@ -1057,6 +1065,22 @@ h3 {
 
 
 
+}
+
+@media (max-width: 450px){
+    #contactConfirmation.show-overlay-menu-user-info {
+        position: absolute;
+        width: 50px;
+        bottom: 90px;
+        right: 0px;
+        left: 10px;
+        transform: translateX(0);
+        transition: transform 400ms ease-in-out;
+    }
+
+    #contactConfirmation img{
+        width: 220px;
+    }
 }
 
 @media (max-width: 400px) {
