@@ -196,8 +196,8 @@ function checkOrientation() {
 }
 
 
-window.addEventListener('load', checkOrientation);
-window.addEventListener('resize', checkOrientation);
+window.onload = checkOrientation;
+window.onresize = checkOrientation;
 
 
 
