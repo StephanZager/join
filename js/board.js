@@ -483,17 +483,3 @@ function endSlideInPopupTask(popupId) {
     popup.classList.remove('slide-in'); 
 }
 
-window.addEventListener('resize', function() {
-    var maxWidth = 900; // Setzen Sie die max-width, bei der der Container ausgeblendet werden soll
-    var container = document.getElementById('addTaskModel');
-    if (container) { // Überprüfen, ob das Element existiert
-        if (window.innerWidth <= maxWidth) {
-            container.style.display = 'none'; // Container ausblenden
-        } else {
-            container.style.display = ''; // Container wieder anzeigen
-        }
-    }
-});
-
-// Führen Sie die Überprüfung auch beim initialen Laden der Seite aus
-window.dispatchEvent(new Event('resize'));
