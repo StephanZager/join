@@ -486,7 +486,7 @@
     width: 183px;
     height: 56px;
     border-radius: 10px;
-    border: 1px solid lightgrey;
+    border: 0px solid lightgrey;
     padding: 16px;
     box-sizing: border-box;
     background-color: #2A3647;
@@ -494,6 +494,12 @@
     font-size: 21px;
     font-weight: 700px;
     gap: 4px;
+}
+
+.create-edit-task-button:hover{
+    cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 .task-popup-x{
