@@ -514,8 +514,8 @@ textarea {
 }
 
 @media (max-width: 900px){
-    #addTaskModel {
-       display: none;
+    .hidden-responsive {
+       display: none !important;
     }
 
     

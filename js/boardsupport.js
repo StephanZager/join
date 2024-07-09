@@ -29,8 +29,32 @@ function clearTaskForm() {
  */
 function openTaskPopup(category) {
     currentCategory = category;
-    document.getElementById("addTaskModel").style.display = "flex";
+    let addTaskModel = document.getElementById("addTaskModel");
+    // Überprüfen Sie die Fenstergröße, bevor Sie das Popup anzeigen
+    if (window.innerWidth > 900) {
+        addTaskModel.style.display = "flex";
+    } else {
+        addTaskModel.classList.add("hidden-responsive");
+    }
 }
+
+function checkWindowSize() {
+    let addTaskModel = document.getElementById("addTaskModel");
+    if (window.innerWidth <= 900) {
+        // Fügen Sie die Klasse 'hidden-responsive' hinzu, wenn die Fensterbreite 900px oder weniger beträgt
+        addTaskModel.classList.add("hidden-responsive");
+    } else {
+        // Entfernen Sie die Klasse 'hidden-responsive', wenn die Fensterbreite größer als 900px ist
+        // Stellen Sie sicher, dass das Element nur angezeigt wird, wenn es auch angezeigt werden soll
+        if (addTaskModel.style.display === "flex") {
+            addTaskModel.classList.remove("hidden-responsive");
+        }
+    }
+}
+
+// Überprüfen Sie die Fenstergröße beim Laden der Seite und bei Größenänderungen
+window.addEventListener('load', checkWindowSize);
+window.addEventListener('resize', checkWindowSize);
 
 /**
  * Closes the 'addTaskModel' popup by setting its display style to 'none'.
