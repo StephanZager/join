@@ -624,10 +624,26 @@ input {
 }
 
 .close-edit-section {
-    height: 48px;
+    height: 18px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    
+}
+
+.closeBUttonEditTask{
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    padding: 5px; 
+}
+
+
+.closeBUttonEditTask:hover {
+    background-color: rgba(128, 128, 128, 0.171);
+    cursor: pointer;
 }
 
 .close-edit {
