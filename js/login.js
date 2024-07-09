@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById('passwordInput');
     const errorMessage = document.getElementById('error-message');
 
-    // Load saved email and password if 'Remember me' was checked
     if (localStorage.getItem('rememberMe') === 'true') {
       emailInput.value = localStorage.getItem('email');
       passwordInput.value = localStorage.getItem('password');
@@ -53,7 +52,6 @@ function setupPasswordToggle(passwordInputField) {
       clickCount = 0;
     }
 
-    // Restore the cursor position
     passwordInputField.setSelectionRange(cursorPosition, cursorPosition);
     passwordInputField.focus();
   });
@@ -126,8 +124,8 @@ async function login() {
 }
 
 async function guestLogin() {
-  const guestEmail = "guest@example.de"; // Ersetzen Sie dies durch die E-Mail des Gastaccounts
-  const guestPassword = "Test12.."; // Ersetzen Sie dies durch das Passwort des Gastaccounts
+  const guestEmail = "guest@example.de"; 
+  const guestPassword = "Test12.."; 
 
   try {
     let userData = await getData("/userData");
@@ -144,7 +142,7 @@ async function guestLogin() {
       localStorage.setItem('email', guestEmail);
       localStorage.setItem('userName', guestUser.name);
       localStorage.setItem('userFirstLetters', guestUser.firstLetters);
-      localStorage.setItem('guestLogin', 'true'); // Markieren Sie den Login als Gastlogin
+      localStorage.setItem('guestLogin', 'true'); 
 
       console.log("Gastbenutzer angemeldet:", guestUser.name);
 

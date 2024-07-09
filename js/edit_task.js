@@ -229,7 +229,7 @@ function setCurrentPriority(priority) {
     buttons.forEach(button => {
         button.classList.remove('selected');
         const img = button.querySelector('img');
-        img.src = button.getAttribute('data-original-image'); // Set to original image
+        img.src = button.getAttribute('data-original-image'); 
     });
 
     let button;
@@ -248,7 +248,7 @@ function setCurrentPriority(priority) {
         button.classList.add('selected');
         selectedPriority = priority;
         const img = button.querySelector('img');
-        img.src = button.getAttribute('data-clicked-image'); // Change to clicked image
+        img.src = button.getAttribute('data-clicked-image');
     }
 }
 /**
@@ -289,7 +289,6 @@ function addSubtask() {
 function scrollToBottom() {
     const editTaskMainContainer = document.getElementById('editTaskMainContainer');
     if (editTaskMainContainer) {
-        // Scroll to the bottom of the container
         editTaskMainContainer.scrollTop = editTaskMainContainer.scrollHeight;
     }
 }
@@ -410,8 +409,17 @@ function closeEditTaskPopup() {
     document.getElementById('editTaskcard').classList.add('edit-task-display-none');
     document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
 }
-
-
+/**
+ * Updates the current task with new values from the task editing form and saves the changes.
+ * This function collects updated task information from various input fields and checkboxes in the task editing form, updates the `currentTask` object with these new values, and then calls `updateTask` to save the changes.
+ * 
+ * @remarks
+ * - Assumes the existence of a global `currentTask` object that represents the task currently being edited.
+ * - The task's title, description, date, and user category are updated based on the values from their respective input fields.
+ * - The task's assigned contacts are updated based on the checked state of checkboxes within the 'editAssigned' element. Each contact is expected to have a value formatted as 'name|initials|bgColor'.
+ * - Calls `updateTask` with the `currentTask.firebaseId` and the updated `currentTask` object to save the changes.
+ * - Assumes the presence of `updateTask` function, which handles the persistence of the updated task data.
+ */
 function updateCurrentTask() {
     currentTask.title = document.getElementById('editTitle').value;
     currentTask.description = document.getElementById('editDescription').value;
@@ -421,7 +429,7 @@ function updateCurrentTask() {
     let assignContact = document.getElementById('editAssigned');
     if (assignContact) {
         let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
-        currentTask.assign = []; // Clear the current assign list
+        currentTask.assign = []; 
 
         for (let checkbox of checkboxes) {
             if (checkbox.checked) {
@@ -437,8 +445,17 @@ function updateCurrentTask() {
 
     updateTask(currentTask.firebaseId, currentTask);
 }
-
-
+/**
+ * Dynamically generates and populates the assignment section in the task editing form with contacts.
+ * This function creates a list of contacts, each represented by a checkbox, allowing the user to assign contacts to a task. Each contact's information includes their name, initials, and a background color for the initials.
+ * 
+ * @remarks
+ * - Assumes the existence of a global `assign` array containing the contacts to be listed, with each contact having `name` and `bgNameColor` properties.
+ * - Utilizes a `filterFirstLetters` function to extract initials from the contact's name, which should be defined elsewhere.
+ * - Clears the content of the 'editAssigned' element before populating it to ensure it's updated with the latest contacts information.
+ * - For each contact in the `assign` array, it creates a checkbox input and two spans for displaying the initials and name, styling the initials span with the contact's background color.
+ * - After populating the contacts, it calls `markCheckedCheckboxes` to ensure previously selected contacts are marked as checked, assuming this function is defined elsewhere and handles the logic for checking the appropriate checkboxes based on some criteria.
+ */
 function generateEditAssign() {
     let assignContact = document.getElementById('editAssigned');
 
@@ -476,15 +493,34 @@ function generateEditAssign() {
     }
     markCheckedCheckboxes();
 }
-
-
+/**
+ * Toggles the visibility of the assignment dropdown and the rotation of the dropdown arrow in the task editing form.
+ * This function selects the assignment dropdown and the dropdown arrow elements from the DOM. It then toggles a 'show' class on the dropdown to control its visibility and a 'rotate' class on the arrow to indicate whether the dropdown is open or closed.
+ * 
+ * @remarks
+ * - Assumes the presence of an element with the class 'dropdown-edit-content' in the DOM, representing the assignment dropdown.
+ * - Assumes the presence of an element with the ID 'dropdownArrow' in the DOM, representing the arrow icon of the dropdown.
+ * - The 'show' class is used to control the visibility of the dropdown, and the 'rotate' class is used to control the rotation state of the arrow icon.
+ */
 function openDropdownEditAssign() {
     let dropdown = document.querySelector('.dropdown-edit-content');
     document.getElementById('dropdownArrow').classList.toggle('rotate');
     dropdown.classList.toggle('show');
 }
-
-
+/**
+ * Asynchronously updates a user task in the database using its Firebase ID and redirects to the board page upon success.
+ * This function sends an HTTP PUT request to update a specific task identified by its Firebase ID with new data provided in `updatedUserTask`. Upon successful update, it redirects the user to the board page. If the update fails, it logs the error and displays an alert with the error message.
+ * 
+ * @param {string} firebaseId - The Firebase ID of the task to be updated.
+ * @param {Object} updatedUserTask - An object containing the updated properties of the task.
+ * 
+ * @remarks
+ * - Assumes the existence of a global `BASE_URL` variable that holds the base URL of the Firebase database.
+ * - The `Content-Type` header in the request is set to 'application/json' to indicate that the request body format is JSON.
+ * - Uses a `try...catch` block to handle any errors that occur during the fetch operation.
+ * - Redirects to "board.html" using `window.location.href` upon successful update.
+ * - Logs the error to the console and displays an alert if the update operation fails.
+ */
 async function updateTask(firebaseId, updatedUserTask) {
     try {
         let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
@@ -505,8 +541,17 @@ async function updateTask(firebaseId, updatedUserTask) {
         alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
     }
 }
-
-
+/**
+ * Toggles the visibility of the category dropdown content and its arrow rotation in the task editing form, and handles selection and outside clicks.
+ * This function is responsible for controlling the category dropdown's visibility in the task editing form. It toggles the dropdown and the rotation of its arrow icon. Additionally, it sets up event listeners to handle selection of a category and to close the dropdown when clicking outside of it.
+ * 
+ * @remarks
+ * - Assumes the presence of elements with IDs 'categoryContentEdit' and 'dropdownArrowCategoryEdit' in the DOM for the category dropdown content and its arrow icon, respectively.
+ * - The 'show' class controls the visibility of the dropdown, and the 'rotate' class controls the rotation of the arrow icon.
+ * - Defines a `handleClickOutside` function to close the dropdown if a click occurs outside of it. This function is added as an event listener when the dropdown is shown and removed after it's hidden or an option is selected.
+ * - Iterates over all radio inputs within elements with the class 'dropdown-option', setting up an event listener for the 'change' event to update the selected category text and close the dropdown.
+ * - Uses `setTimeout` to defer the addition of the `click` event listener to ensure it does not immediately trigger after opening the dropdown.
+ */
 function openEditDropdownContentCategory() {
     let categoryContent = document.getElementById('categoryContentEdit');
     let dropdownArrowCategory = document.getElementById('dropdownArrowCategoryEdit');

@@ -125,7 +125,6 @@ function sohwUgretnTask() {
         let month = date.toLocaleString('default', { month: 'long' });
         document.getElementById('summaryUrgendDate').innerHTML = month + ' ' + date.getDate() + ',' + ' ' + date.getFullYear();
     } else {
-        // Handle the case when there are no urgent tasks
         document.getElementById('howMuchInUrgent').innerHTML = 0;
     }
 }

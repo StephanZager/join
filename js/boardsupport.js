@@ -15,7 +15,7 @@ function clearSubtasks() {
     buttons.forEach(button => {
         button.classList.remove('selected');
         const img = button.querySelector('img');
-        img.src = button.getAttribute('data-original-image'); // Set to original image
+        img.src = button.getAttribute('data-original-image'); 
     });
     subtaskList = [];
     document.getElementById('subtaskList').innerHTML = '';
@@ -55,7 +55,6 @@ function clearTaskForm() {
 function openTaskPopup(category) {
     currentCategory = category;
     let addTaskModel = document.getElementById("addTaskModel");
-    // Überprüfen Sie die Fenstergröße, bevor Sie das Popup anzeigen
     if (window.innerWidth > 900) {
         addTaskModel.style.display = "flex";
     } else {
@@ -70,11 +69,8 @@ function openTaskPopup(category) {
 function checkWindowSize() {
     let addTaskModel = document.getElementById("addTaskModel");
     if (window.innerWidth <= 900) {
-        // Fügen Sie die Klasse 'hidden-responsive' hinzu, wenn die Fensterbreite 900px oder weniger beträgt
         addTaskModel.classList.add("hidden-responsive");
     } else {
-        // Entfernen Sie die Klasse 'hidden-responsive', wenn die Fensterbreite größer als 900px ist
-        // Stellen Sie sicher, dass das Element nur angezeigt wird, wenn es auch angezeigt werden soll
         if (addTaskModel.style.display === "flex") {
             addTaskModel.classList.remove("hidden-responsive");
         }

@@ -4,7 +4,7 @@
  * @returns {Promise<void>}
  */
 async function submitData(event) {
-    event.preventDefault(); // Prevents the default form submission behavior
+    event.preventDefault(); 
 
     let name = document.getElementById('userName').value;
     let email = document.getElementById('userEmail').value;
@@ -14,12 +14,10 @@ async function submitData(event) {
     let criteriaMessage = document.getElementById('criteriaMessage');
     let emailExistsMessage = document.getElementById('emailExistsMessage');
 
-    // Hide all error messages
     errorMessage.style.display = 'none';
     criteriaMessage.style.display = 'none';
     emailExistsMessage.style.display = 'none';
 
-    // Check password criteria
     if (!isValidPassword(password)) {
         criteriaMessage.style.display = 'block';
         return;
@@ -52,17 +50,14 @@ async function submitData(event) {
     };
 
     try {
-        // Send data to Firebase
-        await postData("/userData", userData); // Path to the DB where the record should be saved
+        await postData("/userData", userData);
 
         await postData("/contact", contact);
 
-        // Show success popup
         showSuccessPopup();
 
-        // Redirect to the new page after 3 seconds
         setTimeout(() => {
-            window.location.href = "index.html"; // Change this to the desired URL
+            window.location.href = "index.html"; 
         }, 2000);
 
     } catch (error) {
@@ -152,7 +147,6 @@ async function postData(path, data) {
     });
 
     if (!response.ok) {
-        // Add error handling
         console.error("Error posting data:", response.statusText);
         return;
     }
@@ -199,7 +193,7 @@ function setupPasswordFieldToggle(inputFieldId) {
             clickCount = 0;
         }
 
-        // Restore the cursor position
+        
         passwordInputField.setSelectionRange(cursorPosition, cursorPosition);
         passwordInputField.focus();
     });
@@ -218,6 +212,5 @@ function setupPasswordFieldToggle(inputFieldId) {
     });
 }
 
-// Initialize password field toggles
 setupPasswordFieldToggle("password");
 setupPasswordFieldToggle("confirmPassword");

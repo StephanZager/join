@@ -459,10 +459,10 @@ async function postNewTask(newTask) {
  * @param {Object} newTask - The new task object to be added to the task list.
  */
 function finalizeTaskCreation(newTask) {
-    task.push(newTask); // Hinzufügen des neuen Tasks zur lokalen Task-Liste
-    generateTask(); // Aktualisieren der Anzeige
-    closeTaskPopup(); // Schließen des Popups nach der Erstellung
-    clearTaskForm(); // Leeren des Formulars nach der Erstellung
+    task.push(newTask); 
+    generateTask(); 
+    closeTaskPopup(); 
+    clearTaskForm(); 
 }
 /**
  * Handles the task creation process by validating required fields, creating a new task object,
@@ -478,7 +478,7 @@ async function createTask(event) {
 
     try {
         const responseData = await postNewTask(newTask);
-        newTask.firebaseId = responseData.name; // Setzen der Firebase-ID des neuen Tasks
+        newTask.firebaseId = responseData.name; 
         finalizeTaskCreation(newTask);
     } catch (error) {
         alert(`Fehler beim Erstellen der Aufgabe: ${error.message}`);
@@ -512,7 +512,7 @@ function resetPriority() {
     buttons.forEach(button => {
         button.classList.remove('selected');
         const img = button.querySelector('img');
-        img.src = button.getAttribute('data-original-image'); // Set to original image
+        img.src = button.getAttribute('data-original-image'); 
     });
 }
 /**
