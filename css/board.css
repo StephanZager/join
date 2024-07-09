@@ -624,6 +624,8 @@ input {
     padding: 5px;
 }
 
+
+
 .hover-close:hover {
     background-color: rgba(128, 128, 128, 0.171);;
     cursor: pointer;
