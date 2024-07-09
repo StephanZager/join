@@ -1,5 +1,11 @@
 const BASE_URL = "https://join-ac3b9-default-rtdb.europe-west1.firebasedatabase.app/";
-
+/**
+ * Dynamically includes HTML content into elements based on the "w3-include-html" attribute.
+ * This function searches for all elements with the "w3-include-html" attribute and attempts to fetch the HTML content
+ * specified in the attribute's value. If the fetch operation is successful, the content is included into the element.
+ * If the fetch fails (e.g., due to a 404 error), a "Page not found" message is displayed instead.
+ * After processing all elements, the function calls `afterHTMLIncluded` to perform any necessary follow-up actions.
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -12,36 +18,42 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    // Verschieben Sie die Logik, die von dem eingefügten HTML abhängt, in eine separate Funktion
     await afterHTMLIncluded();
 }
-
+/**
+ * Executes a series of functions after the HTML content is fully loaded, adjusting the UI based on the current URL.
+ * This function is designed to be called once the HTML document's content is fully loaded to ensure that all DOM elements
+ * are accessible. It performs initial UI setup tasks such as showing the login state, highlighting active links, and checking
+ * user authentication. Additionally, it adjusts the visibility of certain elements based on the current page, specifically
+ * for privacy policy and legal notice pages, and applies further UI adjustments for login and signup policies.
+ */
 async function afterHTMLIncluded() {
-    showLoginInitial(); // Call showLoginInitial after the HTML has been included
+    showLoginInitial(); 
     highlightActiveLinks();
+    checkAuthentication();
     
-    // Prüfen, ob die URL privacy-police.html enthält
     if (window.location.pathname.includes('privacy-police.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
         if (loginHelpElement) {
-            // Direktes Ändern des Stils, um das Element auszublenden
             loginHelpElement.style.display = 'none';
         }
     }
    
-    // Prüfen, ob die URL legalnotice.html enthält
     if (window.location.pathname.includes('legalnotice.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
         if (loginHelpElement) {
-            // Direktes Ändern des Stils, um das Element auszublenden
             loginHelpElement.style.display = 'none';
         }
-        // Fügen Sie hier weitere Aktionen hinzu, die spezifisch für legalnotice.html sind
     }
 
     loginSignupPolicies();
 }
-
+/**
+ * Adjusts the visibility and positioning of certain page elements during the signup process based on the current URL.
+ * This function first calls `changeUrl` to adjust link URLs as necessary. Then, it checks the current page's pathname.
+ * If the user is on the privacy policy or legal notice pages during signup, it hides the login help and content menu elements
+ * and adjusts the margin of the policy links element. This is intended to streamline the user interface on these specific pages.
+ */
 async function loginSignupPolicies() {
     changeUrl();
     if (window.location.pathname.includes('policy_over_signup.html')) {
@@ -65,7 +77,12 @@ async function loginSignupPolicies() {
         }
     }
 }
-
+/**
+ * Dynamically changes the URLs of privacy and legal notice links based on the current page.
+ * This function checks the current page's pathname. If the user is on either the privacy policy or legal notice signup pages,
+ * it updates the href attributes of the privacy policy and legal notice links to point to the respective pages.
+ * This ensures that users are directed to the correct information pages during the signup process.
+ */
 async function changeUrl(){
     if (window.location.pathname.includes('policy_over_signup.html')) {
         let privacyUrl = document.getElementById('privacyPolice');
@@ -84,12 +101,20 @@ async function changeUrl(){
         }
     }   
 }
-
-
+/**
+ * Toggles the visibility of the dropdown menu.
+ * This function adds or removes the "show" class to the element with the ID "dropdownMenu",
+ * effectively showing or hiding the dropdown menu.
+ */
 function dropdownMenu() {
     document.getElementById("dropdownMenu").classList.toggle("show");
 }
-
+/**
+ * Closes the dropdown menu when clicking outside of it.
+ * This function is attached to the window's click event and checks if the clicked element matches the specified selector.
+ * If the clicked element does not match, it iterates through all elements with the class "dropdown-content"
+ * and removes the "show" class from any that have it, closing any open dropdown menus.
+ */
 window.onclick = function(event) {
     if (!event.target.matches('#joinProfil')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -101,8 +126,12 @@ window.onclick = function(event) {
         }
     }
 }
-
-
+/**
+ * Highlights active links in the navigation based on the current URL.
+ * This function iterates through all links within the navigation bar and additional link sections,
+ * compares the current URL with the href attribute of the links, and adds or removes specific CSS classes
+ * to visually indicate the active state. This includes highlighting the text, associated sections, and images.
+ */
 function highlightActiveLinks() {
     let currentUrl = window.location.href;
     let links = document.querySelectorAll('.navbar .link, .links .link-to');
@@ -111,9 +140,8 @@ function highlightActiveLinks() {
         let img = link.querySelector('img');
         
         if (currentUrl.includes(link.getAttribute('href'))) {
-            // Prüfung, ob der Link eine 'link-to' Klasse hat und innerhalb eines '.links' Containers ist
             if (link.classList.contains('link-to') && link.closest('.links')) {
-                link.classList.add('activeLink'); // 'activeLink' Klasse zum Link hinzufügen
+                link.classList.add('activeLink'); 
             }
             if (linkSection) {
                 linkSection.classList.add('activeLink');
@@ -124,7 +152,7 @@ function highlightActiveLinks() {
             }
         } else {
             if (link.classList.contains('link-to') && link.closest('.links')) {
-                link.classList.remove('activeLink'); // 'activeLink' Klasse vom Link entfernen
+                link.classList.remove('activeLink');
             }
             if (linkSection) {
                 linkSection.classList.remove('activeLink');
@@ -136,6 +164,23 @@ function highlightActiveLinks() {
         }
     });
 }
+/**
+ * Checks if the current user is authenticated or has access to allowed paths.
+ * If the user is not logged in, does not have guest access, and the current path is not allowed,
+ * the user is redirected to the login page.
+ */
+function checkAuthentication() {
+    const allowedPaths = ['/index.html', '/policy_over_signup.html', '/legal_notice_over_signup.html'];
+    const currentPath = window.location.pathname;
 
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const isGuest = localStorage.getItem('isGuest');
+
+    const isAllowedPath = allowedPaths.includes(currentPath);
+
+    if (!isLoggedIn && !isGuest && !isAllowedPath) {
+        window.location.href = 'index.html';
+    }
+}
 
 
