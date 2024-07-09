@@ -30,25 +30,15 @@ async function includeHTML() {
 async function afterHTMLIncluded() {
     showLoginInitial(); 
     highlightActiveLinks();
-<<<<<<< HEAD
-
-    // Prüfen, ob die URL privacy-police.html enthält
-=======
     checkAuthentication();
     
->>>>>>> a5ef0531fc15d311cd45a8776a0ff4652fbcd2a5
     if (window.location.pathname.includes('privacy-police.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
         if (loginHelpElement) {
             loginHelpElement.style.display = 'none';
         }
     }
-<<<<<<< HEAD
-
-    // Prüfen, ob die URL legalnotice.html enthält
-=======
    
->>>>>>> a5ef0531fc15d311cd45a8776a0ff4652fbcd2a5
     if (window.location.pathname.includes('legalnotice.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
         if (loginHelpElement) {
@@ -87,10 +77,6 @@ async function loginSignupPolicies() {
         }
     }
 }
-<<<<<<< HEAD
-
-async function changeUrl() {
-=======
 /**
  * Dynamically changes the URLs of privacy and legal notice links based on the current page.
  * This function checks the current page's pathname. If the user is on either the privacy policy or legal notice signup pages,
@@ -98,7 +84,6 @@ async function changeUrl() {
  * This ensures that users are directed to the correct information pages during the signup process.
  */
 async function changeUrl(){
->>>>>>> a5ef0531fc15d311cd45a8776a0ff4652fbcd2a5
     if (window.location.pathname.includes('policy_over_signup.html')) {
         let privacyUrl = document.getElementById('privacyPolice');
         let legalUrl = document.getElementById('legalNotice');
@@ -124,10 +109,6 @@ async function changeUrl(){
 function dropdownMenu() {
     document.getElementById("dropdownMenu").classList.toggle("show");
 }
-<<<<<<< HEAD
-
-window.onclick = function (event) {
-=======
 /**
  * Closes the dropdown menu when clicking outside of it.
  * This function is attached to the window's click event and checks if the clicked element matches the specified selector.
@@ -135,7 +116,6 @@ window.onclick = function (event) {
  * and removes the "show" class from any that have it, closing any open dropdown menus.
  */
 window.onclick = function(event) {
->>>>>>> a5ef0531fc15d311cd45a8776a0ff4652fbcd2a5
     if (!event.target.matches('#joinProfil')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
