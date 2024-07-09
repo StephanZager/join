@@ -192,6 +192,13 @@
     gap: 4px;
 }
 
+.addtask-popup-clear-button:hover{
+    cursor: pointer;
+    color: #29ABE2;
+    filter: brightness(0) saturate(100%) invert(32%) sepia(92%) saturate(1352%) hue-rotate(174deg) brightness(99%) contrast(101%);
+    opacity: 0.9;
+}
+
 .addtask-popup-create-task-button {
     display: flex;
     justify-content: center;
@@ -199,7 +206,7 @@
     width: 183px;
     height: 56px;
     border-radius: 10px;
-    border: 1px solid lightgrey;
+    border: 0px solid #fefefe;
     padding: 16px;
     box-sizing: border-box;
     background-color: #2A3647;
@@ -207,6 +214,12 @@
     font-size: 21px;
     font-weight: 700px;
     gap: 4px;
+}
+
+.addtask-popup-create-task-button:hover{
+    cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 .clear-button:hover {
