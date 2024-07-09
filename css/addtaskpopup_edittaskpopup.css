@@ -38,7 +38,7 @@
 }
 
 .addtask-popup-right-field-section {
-    width: 100%;
+    width: 46%;
     height: 376px;
     display: flex;
     flex-direction: column;
@@ -514,8 +514,8 @@ textarea {
 }
 
 @media (max-width: 900px){
-    .modal-addtask-popup {
-       display: none;
+    .hidden-responsive {
+       display: none !important;
     }
 
     
