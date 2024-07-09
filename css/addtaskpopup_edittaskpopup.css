@@ -483,6 +483,19 @@ textarea {
     gap: 4px;
 }
 
+.task-popup-x{
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    padding: 5px; 
+}
+
+.task-popup-x:hover {
+    background-color: rgba(128, 128, 128, 0.171);
+    cursor: pointer;
+}
+
 @media (max-width: 1870px) {
     .addtask-popup-left-field-section {
         width: 100%;

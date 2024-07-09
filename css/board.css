@@ -532,6 +532,10 @@ input {
     align-items: center;
 }
 
+#deleteTaskBtn:hover{
+    cursor: pointer;
+}
+
 #deleteTaskBtn button {
     border: none;
     background-color: transparent;
@@ -539,12 +543,28 @@ input {
     justify-content: center;
     align-items: center;
     gap: 8px;
+    color: initial; /* Setzt die initiale Textfarbe */
+}
+
+#deleteTaskBtn button:hover {
+    cursor: pointer;
+    color: #29ABE2; /* Ändert die Textfarbe beim Hovern */
+}
+
+#deleteTaskBtn button:hover img {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(92%) saturate(1352%) hue-rotate(174deg) brightness(99%) contrast(101%);
+    opacity: 0.6;
+    
 }
 
 #editTaskBtn {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#editTaskBtn:hover{
+    cursor: pointer;
 }
 
 #editTaskBtn button {
@@ -554,6 +574,21 @@ input {
     justify-content: center;
     align-items: center;
     gap: 8px;
+}
+
+#editTaskBtn button:hover{
+    cursor: pointer;
+}
+
+#editTaskBtn button:hover {
+    cursor: pointer;
+    color: #29ABE2; /* Ändert die Textfarbe beim Hovern */
+}
+
+#editTaskBtn button:hover img {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(92%) saturate(1352%) hue-rotate(174deg) brightness(99%) contrast(101%);
+    opacity: 0.6;
+    
 }
 
 
