@@ -1,3 +1,11 @@
+/**
+ * Validates the presence of required fields in a form and visually indicates missing values.
+ * This function checks if the 'title', 'dueDate', and 'category' fields have been filled out or selected.
+ * If any of these fields are empty or not selected, it marks them visually by setting their border to red and sets the isValid flag to false.
+ * The function returns a boolean value indicating whether all required fields have been properly filled out or selected.
+ * 
+ * @returns {boolean} isValid - True if all required fields are filled out or selected, false otherwise.
+ */
 function requiredFields() {
     let isValid = true;
     let title = document.getElementById('title');
@@ -19,7 +27,20 @@ function requiredFields() {
     }
     return isValid;
 }
-
+function clearSubtasks() {
+    const buttons = document.querySelectorAll('.prio-buttons button');
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+        const img = button.querySelector('img');
+        img.src = button.getAttribute('data-original-image'); // Set to original image
+    });
+    
+    globalSubtasks = [];
+    document.getElementById('subtaskList').innerHTML = '';
+    assignDetails = [];
+    document.getElementById('assignedInitial').innerHTML = '';
+    clearCategorySelection();
+}
 function clearSubtasks() {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
