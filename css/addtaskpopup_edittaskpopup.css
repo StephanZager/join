@@ -547,7 +547,7 @@
     
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .modal-addtask-popup {
         width: 100%;
         height: 100%;
@@ -587,6 +587,14 @@
 
     .close {
         padding-right: 8px;
+    }
+
+    .prio-buttons {
+        align-items: center;
+    }
+
+    .prio-buttons button {
+        width: 100%;
     }
 }
 
