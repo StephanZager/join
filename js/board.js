@@ -1,7 +1,14 @@
 let currentDraggedElement;
 let currentCategory = '';
 let task = [];
-
+/**
+ * Asynchronously loads tasks from a specified path in the Firebase database.
+ * It fetches the tasks, converts the response to JSON, and then maps the tasks to an array with their Firebase ID and data.
+ * After loading the tasks, it calls `generateTask` to update the UI with the loaded tasks.
+ * If an error occurs during the fetch operation, it logs the error.
+ * 
+ * @param {string} [path="/userTask"] - The path in the Firebase database from where to load the tasks. Defaults to "/userTask".
+ */
 async function loadTask(path = "/userTask") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -16,7 +23,11 @@ async function loadTask(path = "/userTask") {
         console.error("Fehler beim Laden der Daten:", error);
     }
 }
-
+/**
+ * Populates each task category column with task cards or a placeholder if no tasks are present.
+ * It iterates through predefined categories, filters tasks by category, and generates HTML for each task.
+ * If a category has no tasks, a placeholder is displayed. For tasks with subtasks, it updates the progress bar.
+ */
 function generateTask() {
     const categories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
     
