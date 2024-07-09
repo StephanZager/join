@@ -185,15 +185,19 @@ function checkAuthentication() {
 
 function checkOrientation() {
     const warning = document.querySelector('.rotate-warning');
-    if (window.innerHeight < window.innerWidth) {
-        warning.style.display = 'flex';
-    } else {
-        warning.style.display = 'none';
-    }
+    
+    setTimeout(() => {
+        if (window.innerHeight < window.innerWidth) {
+            warning.style.display = 'flex';
+        } else {
+            warning.style.display = 'none';
+        }
+    }, 100); 
 }
 
-window.onload = checkOrientation;
-window.onresize = checkOrientation;
+
+window.addEventListener('load', checkOrientation);
+window.addEventListener('resize', checkOrientation);
 
 
 
