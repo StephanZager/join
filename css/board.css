@@ -85,24 +85,29 @@
 }
 
 .searchTaskBtn:hover {
-    background-color: rgba(128, 128, 128, 0.171);;
+    background-color: rgba(128, 128, 128, 0.171);
     cursor: pointer;
-     
 }
 
-.search-img-btn{
+/* Entfernt den Hover-Effekt, wenn .searchTaskBtn aktiv ist */
+.searchTaskBtn:active, .searchTaskBtn:active:hover {
+    background-color: transparent; /* oder eine andere gewünschte Farbe */
+}
+
+.search-img-btn {
     display: block;
 }
 
-.search-img-btn-click{
+.search-img-btn-click {
     display: none;
 }
 
-.searchTaskBtn:active .search-img-btn{
+/* Ändert die Anzeige der Bilder, wenn .searchTaskBtn aktiv ist */
+.searchTaskBtn:active .search-img-btn {
     display: none;
 }
 
-.searchTaskBtn:active .search-img-btn-click{
+.searchTaskBtn:active .search-img-btn-click {
     display: block;
 }
 
