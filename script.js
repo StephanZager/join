@@ -192,10 +192,10 @@ function checkOrientation() {
     }
 }
 
-// Event Listener für Änderungen der Bildschirmausrichtung
-window.addEventListener('resize', checkOrientation);
+window.onload = checkOrientation;
+window.onresize = checkOrientation;
 
 
-window.addEventListener('DOMContentLoaded', checkOrientation);
+
 
 
