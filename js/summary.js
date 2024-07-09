@@ -47,7 +47,6 @@ async function loadCategory(path = "/userTask") {
         for (let key in responseToJson) {
             if (responseToJson.hasOwnProperty(key)) {
                 let task = responseToJson[key];
-                console.log(task);
 
                 if (task.priority === 'Urgent') {
                     urgentTasks.push({
@@ -61,7 +60,6 @@ async function loadCategory(path = "/userTask") {
                 });
             }
         }
-        console.log('urgentTasks:', urgentTasks);
     } catch (error) {
         console.error("Error loading data:", error);
         return null;
@@ -172,7 +170,6 @@ function nextPage() {
  * @returns {Promise<void>}
  */
 async function initSummary() {
-    console.log("Initializing summary...");
     greeting();
     displayGreetingWithName();
     greetingSummaryMobile();
