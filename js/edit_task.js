@@ -1,7 +1,10 @@
 let editTaskPopup;
 let currentTask;
 
-
+/**
+ * Loads a task for editing based on its Firebase ID.
+ * @param {string} firebaseId - The Firebase ID of the task to load for editing.
+ */
 function loadTaskForEdit(firebaseId) {
     for (let i = 0; i < task.length; i++) {
         let editTask = task[i];
@@ -12,6 +15,9 @@ function loadTaskForEdit(firebaseId) {
     }
 }
 
+/**
+ * Displays task details in the edit task form.
+ */
 function showTaskDetails() {
     document.getElementById('editTitle').value = currentTask.title;
     document.getElementById('editDescription').value = currentTask.description;
@@ -31,7 +37,9 @@ function showTaskDetails() {
     showSubtasksEditTask();
 }
 
-
+/**
+ * Displays the initials of assigned users in the edit task form.
+ */
 function showInitialsEditTask() {
     let initialsElement = document.getElementById('editAssignedInitials');
     initialsElement.innerHTML = '';
@@ -42,7 +50,8 @@ function showInitialsEditTask() {
             let assignData = currentTask.assign[i];
             let spanElement = `<span class="show-initials-edit" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`;
             initialsElement.innerHTML += spanElement;
-        } if (assignCount > maxInitialsToShow) {
+        }
+        if (assignCount > maxInitialsToShow) {
             let additionalCount = assignCount - maxInitialsToShow;
             let additionalSpanElement = `<span class="show-initials-edit additional">+${additionalCount}</span>`;
             initialsElement.innerHTML += additionalSpanElement;
@@ -50,7 +59,9 @@ function showInitialsEditTask() {
     }
 }
 
-
+/**
+ * Marks checkboxes as checked based on the current task's assigned users.
+ */
 function markCheckedCheckboxes() {
     let assignContact = document.getElementById('editAssigned');
     if (!assignContact) {
@@ -59,11 +70,9 @@ function markCheckedCheckboxes() {
     }
 
     let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
-
     let assignArray = Array.isArray(currentTask.assign) ? currentTask.assign : [];
 
     for (let checkbox of checkboxes) {
-
         let [name, initials, bgColor] = checkbox.value.split('|');
         let cleanedName = cleanNameForInitials(name);
         let generatedInitials = filterFirstLetters(cleanedName);
@@ -74,11 +83,20 @@ function markCheckedCheckboxes() {
     }
 }
 
-
+/**
+ * Cleans a name string for generating initials.
+ * @param {string} name - The name to clean.
+ * @returns {string} The cleaned name.
+ */
 function cleanNameForInitials(name) {
     return name.replace(" (YOU)", "");
 }
 
+/**
+ * Filters the first letters of each word in a name.
+ * @param {string} name - The name to filter.
+ * @returns {string} The initials generated from the name.
+ */
 function filterFirstLetters(name) {
     let cleanedName = cleanNameForInitials(name);
     let words = cleanedName.split(' ');
@@ -86,21 +104,27 @@ function filterFirstLetters(name) {
     return firstLetters;
 }
 
-
-
+/**
+ * Sets focus on the edit subtask input field.
+ */
 function editInputSetFocus() {
     document.getElementById('editSubtasks').focus();
     document.getElementById('confirmAndDeleteEditBtnSubtask').style.display = 'flex';
     document.getElementById('placeholderEditImgSubtask').style.display = 'none';
 }
 
+/**
+ * Resets focus on the edit subtask input field.
+ */
 function resetEditSubtaskFocus() {
     document.getElementById('editSubtasks').blur();
     document.getElementById('confirmAndDeleteEditBtnSubtask').style.display = 'none';
     document.getElementById('placeholderEditImgSubtask').style.display = 'flex';
 }
 
-
+/**
+ * Displays the subtasks in the edit task form.
+ */
 function showSubtasksEditTask() {
     let subtaskList = document.getElementById('subtaskListEdit');
     subtaskList.innerHTML = '';
@@ -119,6 +143,10 @@ function showSubtasksEditTask() {
     }
 }
 
+/**
+ * Sets the current task's priority and updates the UI accordingly.
+ * @param {string} priority - The priority to set.
+ */
 function setCurrentPriority(priority) {
     currentTask.priority = priority;
     const buttons = document.querySelectorAll('.prio-buttons button');
@@ -148,6 +176,9 @@ function setCurrentPriority(priority) {
     }
 }
 
+/**
+ * Adds a subtask to the current task.
+ */
 function addSubtask() {
     let subtaskTitle = document.getElementById('editSubtasks').value;
     if (!currentTask.subtasks) {
@@ -161,39 +192,61 @@ function addSubtask() {
     scrollToBottom();
 }
 
+/**
+ * Scrolls the edit task container to the bottom.
+ */
 function scrollToBottom() {
     const editTaskMainContainer = document.getElementById('editTaskMainContainer');
     if (editTaskMainContainer) {
-        // Scrollt zum Ende des Containers
+        // Scroll to the bottom of the container
         editTaskMainContainer.scrollTop = editTaskMainContainer.scrollHeight;
     }
 }
 
+/**
+ * Deletes a subtask from the current task.
+ * @param {number} i - The index of the subtask to delete.
+ */
 function deleteEditSubtask(i) {
     currentTask.subtasks.splice(i, 1);
     showSubtasksEditTask()
 }
 
+/**
+ * Edits a subtask in the current task.
+ * @param {number} i - The index of the subtask to edit.
+ */
 function editSubtask(i) {
     let subtask = currentTask.subtasks[i];
     document.getElementById(`subtask${i}`).innerHTML = `<div class="editSub"><input type="text" class="editInputSub" id="edit-input${i}" value="${subtask.title}"> <div class="editSubImg"><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div></div>`;
 }
 
+/**
+ * Clears the edit subtask input field.
+ */
 function clearEditSubtaskInput() {
     document.getElementById('editSubtasks').value = '';
 }
 
+/**
+ * Clears a specific subtask input field.
+ * @param {number} i - The index of the subtask input field to clear.
+ */
 function clearEditSubtask(i) {
     document.getElementById(`subtask${i}`).innerHTML = `<input type="text" id="edit-input${i}"><div><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div>`;
 }
 
+/**
+ * Confirms the edit of a specific subtask.
+ * @param {number} i - The index of the subtask to confirm edit.
+ */
 function confirmEditSubtask(i) {
-    // Versuchen Sie, das Element zu holen
+    // Try to get the element
     let inputElement = document.getElementById(`edit-input${i}`);
 
-    // Überprüfen Sie, ob das Element existiert
+    // Check if the element exists
     if (inputElement) {
-        // Verarbeiten Sie das Element
+        // Process the element
         let inputValue = inputElement.value;
         currentTask.subtasks[i].title = inputValue;
     }
@@ -201,6 +254,10 @@ function confirmEditSubtask(i) {
     scrollToBottom();
 }
 
+/**
+ * Opens the edit task form for a specific task.
+ * @param {string} firebaseId - The Firebase ID of the task to open for editing.
+ */
 function openEditTask(firebaseId) {
     loadTaskForEdit(firebaseId);
     document.getElementById('modalTaskcard').classList.add('modal-task-popup-display-none');
@@ -210,11 +267,17 @@ function openEditTask(firebaseId) {
     document.getElementById('postEditBtn').addEventListener('click', updateCurrentTask);  
 }
 
+/**
+ * Closes the edit task popup form.
+ */
 function closeEditTaskPopup() {
     document.getElementById('editTaskcard').classList.add('edit-task-display-none');
     document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
 }
 
+/**
+ * Updates the current task with edited values.
+ */
 function updateCurrentTask() {
     currentTask.title = document.getElementById('editTitle').value;
     currentTask.description = document.getElementById('editDescription').value;
@@ -224,7 +287,7 @@ function updateCurrentTask() {
     let assignContact = document.getElementById('editAssigned');
     if (assignContact) {
         let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
-        currentTask.assign = []; // Leeren Sie die aktuelle Zuweisungsliste
+        currentTask.assign = []; // Clear the current assign list
 
         for (let checkbox of checkboxes) {
             if (checkbox.checked) {
@@ -241,7 +304,9 @@ function updateCurrentTask() {
     updateTask(currentTask.firebaseId, currentTask);
 }
 
-
+/**
+ * Generates the assign list for the edit task form.
+ */
 function generateEditAssign() {
     let assignContact = document.getElementById('editAssigned');
 
@@ -259,7 +324,7 @@ function generateEditAssign() {
         let label = document.createElement('label');
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        // Fügen Sie die Initialen und die Hintergrundfarbe zum Wert hinzu
+        // Add initials and background color to the value
         let initials = filterFirstLetters(assignContacts.name);
         checkbox.value = assignContacts.name + '|' + initials + '|' + assignContacts.bgNameColor;
 
@@ -277,20 +342,25 @@ function generateEditAssign() {
         label.appendChild(checkbox);
 
         assignContact.appendChild(label);
-        
     }
     markCheckedCheckboxes();
 }
 
+/**
+ * Toggles the display of the dropdown for assigning users in the edit task form.
+ */
 function openDropdownEditAssign() {
     let dropdown = document.querySelector('.dropdown-edit-content');
     document.getElementById('dropdownArrow').classList.toggle('rotate');
     dropdown.classList.toggle('show');
 }
 
-
-async function updateTask( firebaseId, updatedUserTask) {
-    
+/**
+ * Updates a task in the Firebase database.
+ * @param {string} firebaseId - The Firebase ID of the task to update.
+ * @param {Object} updatedUserTask - The updated task object.
+ */
+async function updateTask(firebaseId, updatedUserTask) {
     try {
         let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
             method: 'PUT',
@@ -309,11 +379,11 @@ async function updateTask( firebaseId, updatedUserTask) {
         console.error('Fehler beim Aktualisieren der Aufgabe:', error);
         alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
     }
-   
 }
 
-
-
+/**
+ * Toggles the display of the category dropdown in the edit task form.
+ */
 function openEditDropdownContentCategory() {
     let categoryContent = document.getElementById('categoryContentEdit');
     let dropdownArrowCategory = document.getElementById('dropdownArrowCategoryEdit');
@@ -342,4 +412,3 @@ function openEditDropdownContentCategory() {
         setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
     }
 }
-
