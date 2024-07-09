@@ -311,7 +311,7 @@ function generateSubtasksHTML(firebaseId, subtasks) {
     return '<ul class="popup-subtask-ul">' + subtasks.map((subtask, index) => `
         <li class="popup-subtask-list">
             <input type="checkbox" id="subtask-${firebaseId}-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtask('${firebaseId}', ${index})">
-            <label for="subtask-${firebaseId}-${index}">${subtask.title}</label>
+            <label class="break" for="subtask-${firebaseId}-${index}">${subtask.title}</label>
         </li>`
     ).join('') + '</ul>';
 }

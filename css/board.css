@@ -317,6 +317,12 @@ input {
     font-size: 16px;
     font-weight: 700;
     margin: 0;
+    word-wrap: break-word;
+}
+
+.break {
+    word-wrap: break-word;
+
 }
 
 .task-description {
@@ -452,6 +458,7 @@ input {
     font-size: 61px;
     font-weight: 700;
     margin: 0;
+    word-wrap: break-word;
 }
 
 #modalDescription {
