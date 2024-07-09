@@ -19,7 +19,7 @@ async function includeHTML() {
 async function afterHTMLIncluded() {
     showLoginInitial(); // Call showLoginInitial after the HTML has been included
     highlightActiveLinks();
-    
+
     // Prüfen, ob die URL privacy-police.html enthält
     if (window.location.pathname.includes('privacy-police.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
@@ -28,7 +28,7 @@ async function afterHTMLIncluded() {
             loginHelpElement.style.display = 'none';
         }
     }
-   
+
     // Prüfen, ob die URL legalnotice.html enthält
     if (window.location.pathname.includes('legalnotice.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
@@ -66,7 +66,7 @@ async function loginSignupPolicies() {
     }
 }
 
-async function changeUrl(){
+async function changeUrl() {
     if (window.location.pathname.includes('policy_over_signup.html')) {
         let privacyUrl = document.getElementById('privacyPolice');
         let legalUrl = document.getElementById('legalNotice');
@@ -82,7 +82,7 @@ async function changeUrl(){
             privacyUrl.href = 'policy_over_signup.html';
             legalUrl.href = 'legal_notice_over_signup.html';
         }
-    }   
+    }
 }
 
 
@@ -90,7 +90,7 @@ function dropdownMenu() {
     document.getElementById("dropdownMenu").classList.toggle("show");
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (!event.target.matches('#joinProfil')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
@@ -106,10 +106,10 @@ window.onclick = function(event) {
 function highlightActiveLinks() {
     let currentUrl = window.location.href;
     let links = document.querySelectorAll('.navbar .link, .links .link-to');
-    links.forEach(function(link) {
+    links.forEach(function (link) {
         let linkSection = link.closest('.linkSection');
         let img = link.querySelector('img');
-        
+
         if (currentUrl.includes(link.getAttribute('href'))) {
             // Prüfung, ob der Link eine 'link-to' Klasse hat und innerhalb eines '.links' Containers ist
             if (link.classList.contains('link-to') && link.closest('.links')) {
@@ -137,5 +137,20 @@ function highlightActiveLinks() {
     });
 }
 
+
+function checkOrientation() {
+    const warning = document.querySelector('.rotate-warning');
+    if (window.innerHeight < window.innerWidth) {
+        warning.style.display = 'flex';
+    } else {
+        warning.style.display = 'none';
+    }
+}
+
+// Event Listener für Änderungen der Bildschirmausrichtung
+window.addEventListener('resize', checkOrientation);
+
+
+window.addEventListener('DOMContentLoaded', checkOrientation);
 
 

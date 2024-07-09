@@ -200,7 +200,7 @@ function showSubtasksEditTask() {
             <div class="editSub" id="subtask${i}">
                 <li class="edit-list-row">${subtask.title}</li>
                 <div class="edit-delete-img-edit-task">
-                    <img src="assets/img/edit.png" onclick="editSubtask(${i})"> | <img src="assets/img/delete.png" onclick="deleteEditSubtask(${i})">
+                    <img class="btn-hover" src="assets/img/edit.png" onclick="editSubtask(${i})"> | <img class="btn-hover" src="assets/img/delete.png" onclick="deleteEditSubtask(${i})">
                 </div>
             </div>`;
             subtaskList.innerHTML += liElement;
