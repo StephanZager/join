@@ -292,7 +292,7 @@
     justify-content: center;
     align-items: center;
     margin-left: auto;
-    gap: 8px;
+    gap: 3px;
 }
 
 .input-button-img {
@@ -518,17 +518,28 @@
 
 
 
-.btn-hover{   
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;   
-    padding: 5px; 
+.btn-hover {
+    border-radius: 100%; /* Rundet die Ecken */
+    padding: 7px;
+    display: inline-block; /* Stellt sicher, dass Container nebeneinander dargestellt werden */
+    width: 17px; /* Feste Breite des Containers */
+    height: 17px; /* Feste Höhe des Containers */
+}
+
+.btn-hover img {
+    width: 100%; /* Passt die Breite des Bildes an den Container an */
+    height: 100%; /* Passt die Höhe des Bildes an den Container an */
+    object-fit: cover; /* Stellt sicher, dass das Bild den Container ausfüllt */
 }
 
 .btn-hover:hover {
     background-color: rgba(128, 128, 128, 0.171);
     cursor: pointer;
+}
+
+.edit-delete-img-edit-task {
+    display: flex; /* Flexbox für Container */
+    align-items: center; /* Zentriert den Inhalt vertikal */
 }
 
 @media (max-width: 1870px) {
@@ -646,6 +657,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 3px;
     margin-left: auto;
 }

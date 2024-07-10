@@ -315,12 +315,22 @@
 }
 
 .clear-confirm-btn {
+    padding: 5px;
     border: none;
     background-color: transparent;
 }
 
+.clear-confirm-btn:hover {
+    cursor: pointer;
+    border-radius: 100% !important;	
+}
+
 .clear-confirm-subtask {
     display: none;
+}
+
+.height-btn{
+    height: 15px !important;
 }
 
 
@@ -555,8 +565,9 @@
     display: none; /* Standardmäßig versteckt */
 }
 
+
 .subtask-item:hover {
-    background-color: aqua;
+    background-color: #f9f9f9;
     border-radius: 8px;
     
 }

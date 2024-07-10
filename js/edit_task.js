@@ -198,11 +198,17 @@ function showSubtasksEditTask() {
             let subtask = currentTask.subtasks[i];
             let liElement = `
             <div class="editSub" id="subtask${i}">
-                <li class="edit-list-row">${subtask.title}</li>
-                <div class="edit-delete-img-edit-task">
-                    <img class="btn-hover" src="assets/img/edit.png" onclick="editSubtask(${i})"> | <img class="btn-hover" src="assets/img/delete.png" onclick="deleteEditSubtask(${i})">
-                </div>
-            </div>`;
+        <li class="edit-list-row">${subtask.title}</li>
+        <div class="edit-delete-img-edit-task">
+            <div class="btn-hover">
+                <img src="assets/img/edit.png" onclick="editSubtask(${i})">
+            </div>
+            |
+            <div class="btn-hover">
+                <img src="assets/img/delete.png" onclick="deleteEditSubtask(${i})">
+            </div>
+        </div>
+    </div>`;
             subtaskList.innerHTML += liElement;
         }
     }
@@ -322,7 +328,7 @@ function deleteEditSubtask(i) {
  */
 function editSubtask(i) {
     let subtask = currentTask.subtasks[i];
-    document.getElementById(`subtask${i}`).innerHTML = `<div class="editSub"><input type="text" class="editInputSub" id="edit-input${i}" value="${subtask.title}"> <div class="editSubImg"><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div></div>`;
+    document.getElementById(`subtask${i}`).innerHTML = `<div class="editSub"><input type="text" class="editInputSub" id="edit-input${i}" value="${subtask.title}"> <div class="editSubImg "><img class="btn-hover" src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img class="btn-hover height-btn" src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div></div>`;
 }
 /**
  * Clears the input field for editing subtasks.
