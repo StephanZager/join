@@ -1,4 +1,3 @@
-let currentDraggedElement;
 let currentCategory = '';
 let task = [];
 /**
