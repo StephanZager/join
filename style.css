@@ -298,6 +298,8 @@ a {
     li a {
         font-size: 16px;
     }
+
+    
 }
 
 @media (max-width: 420px) {
@@ -521,6 +523,7 @@ HELP DESK CSS
 .activeImage {
     filter:  brightness(135%) contrast(150%);
 }
+
 
 
 @media screen and (orientation: landscape) {

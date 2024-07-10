@@ -188,7 +188,7 @@ function checkOrientation() {
     
     setTimeout(() => {
         // Prüfen, ob die Bildschirmbreite größer oder gleich 1400 Pixel ist
-        if (window.innerWidth >= 44444) {
+        if (window.innerWidth > 1920) {
             warning.innerText = 'Bitte drehen Sie den Bildschirm'; // Nachricht setzen
             warning.style.display = 'flex';
         } else if (window.innerHeight < window.innerWidth) {
