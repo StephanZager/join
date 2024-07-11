@@ -143,7 +143,6 @@ function generateSubtasksProgressHTML(taskItem) {
             </div>
         </div>`;
 }
-
 /**
  * Asynchronously updates a task in Firebase with new data for a given task ID.
  * It sends a PATCH request to the Firebase database to update the task with the specified ID.

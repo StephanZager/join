@@ -1,4 +1,5 @@
-let currentDraggedElement;
+let currentDraggedElement = null;
+
 
 /**
  * Initiates the dragging of an element by setting the current dragged element's Firebase ID,
