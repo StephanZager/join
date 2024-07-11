@@ -79,16 +79,30 @@
     color: white;
 }
 
+
+
+
 .medium-button:hover,
 .medium-button.selected {
     background-color: #FFA800;
     color: white;
 }
 
+
+
 .low-button:hover,
 .low-button.selected {
     background-color: #7AE229;
     color: white;
+}
+
+.urgent-button:hover img,
+.urgent-button.selected img,
+.medium-button:hover img,
+.medium-button.selected img,
+.low-button:hover img,
+.low-button.selected img {
+    filter: brightness(0) invert(1);
 }
 
 .maincontainer-desktop span {
