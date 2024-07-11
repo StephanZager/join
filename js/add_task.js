@@ -327,7 +327,7 @@ function resetSubtaskFocus() {
 function editSubtaskAddtask(id) {
     let subtaskToEdit = globalSubtasks[id];
     let editElement = document.getElementById(`subtaskToEdit${id}`);
-    editElement.innerHTML = `<li class="edit-li"><input class="editInputSubtask" type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div class="edit-and-delete-img"><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"> | <img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div></li>`; 
+    editElement.innerHTML = `<li class="edit-li"><input class="editInputSubtask" type="text" id="addSubtask-input${id}" value="${subtaskToEdit.title}"> <div class="edit-and-delete-img"><div class="btn-hover-task"><img src="assets/img/delete.png" onclick="clearSubtaskInput(${id})"></div> | <div class="btn-hover-task"><img src="assets/img/hook.png" onclick="confirmAddTaskSubtaskEdit(${id})"></div></div></li>`; 
 }
 /**
  * Updates the title of a subtask in the globalSubtasks array with a new value from an input field and re-renders the subtask list.
@@ -401,8 +401,8 @@ function renderSubtasks() {
             <div id="subtaskToEdit${index}" class="subtask-item">
                 <li class="addtask-subtask-li">${subtaskToEdit.title}</li>
                  <div class="edit-delete-img">
-                    <img src="assets/img/edit.png" alt="Edit" onclick="editSubtaskAddtask(${index})"> | 
-                    <img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})">
+                    <div class="btn-hover-task" ><img src="assets/img/edit.png" alt="Edit" onclick="editSubtaskAddtask(${index})"></div> <div style="display: flex; align-items: center;">|</div> 
+                    <div class="btn-hover-task" ><img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})"></div>
                 </div>
             </div>`;
             subtaskList.innerHTML += subtaskItem;

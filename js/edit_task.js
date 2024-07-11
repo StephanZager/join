@@ -328,7 +328,7 @@ function deleteEditSubtask(i) {
  */
 function editSubtask(i) {
     let subtask = currentTask.subtasks[i];
-    document.getElementById(`subtask${i}`).innerHTML = `<div class="editSub"><input type="text" class="editInputSub" id="edit-input${i}" value="${subtask.title}"> <div class="editSubImg "><img class="btn-hover" src="assets/img/delete.png" onclick="clearEditSubtask(${i})"> | <img class="btn-hover height-btn" src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div></div>`;
+    document.getElementById(`subtask${i}`).innerHTML = `<div class="editSub"><input type="text" class="editInputSub" id="edit-input${i}" value="${subtask.title}"> <div class="editSubImg "><div class="btn-hover"><img src="assets/img/delete.png" onclick="clearEditSubtask(${i})"></div> | <div class="btn-hover"><img height-btn" src="assets/img/hook.png" onclick="confirmEditSubtask(${i})"></div></div>`;
 }
 /**
  * Clears the input field for editing subtasks.

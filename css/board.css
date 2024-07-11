@@ -45,6 +45,14 @@
     flex-shrink: 0; /* Verhindert das Schrumpfen */
 }
 
+.inputSearchBar:focus-within {
+    border: 1px solid #29ABE2;
+    
+}
+
+
+
+
 .inputSearchBar input {
     flex-grow: 1;
 }
@@ -229,7 +237,8 @@ input {
     justify-content: center;
     align-items: center;
     border: none;
-    background-color: #f6f7f8;
+    
+    font-size: 20px !important;
 }
 
 .tasksBoard {
@@ -812,6 +821,10 @@ input {
     transform: translateX(0);
 }
 
+.background-color-search{
+    background-color: #f6f7f8;
+}
+
 
 
 @media (max-width: 1700px) {
@@ -897,6 +910,10 @@ input {
 
 
 @media (max-width: 580px) {
+
+    input {
+        font-size: 16px !important;
+    }
     
     body {
         padding-bottom: 80px;

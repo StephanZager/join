@@ -275,7 +275,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f6f7f8;
+    
 }
 
 .input-with-button input {
@@ -335,7 +335,7 @@
     color: black;
     z-index: 2; /* Setze die z-index des Dropdown-Buttons höher als die des Dropdown-Inhalts */
     padding: 16px;
-    font-size: 16px;
+    font-size: 20px;
     border: none;
     cursor: pointer;
     border: 1px solid lightgray;
@@ -524,13 +524,12 @@
     display: inline-block; /* Stellt sicher, dass Container nebeneinander dargestellt werden */
     width: 17px; /* Feste Breite des Containers */
     height: 17px; /* Feste Höhe des Containers */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.btn-hover img {
-    width: 100%; /* Passt die Breite des Bildes an den Container an */
-    height: 100%; /* Passt die Höhe des Bildes an den Container an */
-    object-fit: cover; /* Stellt sicher, dass das Bild den Container ausfüllt */
-}
+
 
 .btn-hover:hover {
     background-color: rgba(128, 128, 128, 0.171);
@@ -649,8 +648,9 @@
 .editInputSub {
     width: 80%;
     height: 48px;
-    background-color: transparent;
+    background-color: white;
     font-size: 20px;
+    border-bottom: 1px #29ABE2 solid;
 }
 
 .editSubImg {
