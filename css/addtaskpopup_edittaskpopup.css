@@ -643,11 +643,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-right: 15px;
 }
 
 .editInputSub {
     width: 80%;
-    height: 48px;
+    height: 32px;
     background-color: white;
     font-size: 20px;
     border-bottom: 1px #29ABE2 solid;

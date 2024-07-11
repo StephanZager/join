@@ -200,6 +200,9 @@ a {
     display: none;
 }
 
+.d-none{
+    display: none;
+}
 
 .log-out-hover:hover {
     cursor: pointer;

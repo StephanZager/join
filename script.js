@@ -186,20 +186,19 @@ function checkAuthentication() {
 function checkOrientation() {
     const warning = document.querySelector('.rotate-warning');
     
-    // Prüfen, ob die Bildschirmbreite kleiner oder gleich 900 Pixel ist und die Höhe größer als die Breite (Hochformat)
+    
     if (window.innerWidth <= 900 && window.innerHeight > window.innerWidth) {
-        // Warnung anzeigen, wenn im Hochformat und die Breite <= 900px
-        warning.innerText = 'Bitte drehen Sie den Bildschirm'; // Nachricht setzen
         warning.style.display = 'flex';
-    } else if (window.innerWidth > 900) {
-        // Warnung ausblenden, wenn die Breite > 900px, unabhängig von der Orientierung
+        warning.innerText = 'Please rotate the screen'; 
+        
+    } else if (window.innerWidth > 1400) {
+        
         warning.style.display = 'none';
     }
-    // Wenn die Bedingungen nicht zutreffen, bleibt die Warnung im aktuellen Zustand (angezeigt/versteckt),
-    // abhängig von der letzten Überprüfung.
+   
 }
 
-// Event-Listener für das Laden der Seite und Größenänderungen des Fensters
+
 window.onload = checkOrientation;
 window.onresize = checkOrientation;
 

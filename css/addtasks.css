@@ -58,6 +58,7 @@
     gap: 20px;
 }
 
+
 .prio-buttons button {
     display: flex;
     justify-content: center;
@@ -73,11 +74,14 @@
 
 }
 
+
+
 .urgent-button:hover,
 .urgent-button.selected {
     background-color: #FF3D00;
     color: white;
 }
+
 
 
 
@@ -94,6 +98,8 @@
 .low-button.selected {
     background-color: #7AE229;
     color: white;
+   
+
 }
 
 .urgent-button:hover img,
@@ -103,6 +109,7 @@
 .low-button:hover img,
 .low-button.selected img {
     filter: brightness(0) invert(1);
+    
 }
 
 .maincontainer-desktop span {
@@ -604,6 +611,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 20px;
 }
 
 .edit-li {
