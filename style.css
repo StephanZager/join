@@ -200,6 +200,11 @@ a {
     display: none;
 }
 
+
+.log-out-hover:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 900px) {
 
     .dropdown-profil{
