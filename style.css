@@ -12,6 +12,16 @@ input:focus {
     outline: none;
 }
 
+.blue-arrow-aktive{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue-arrow-aktive:active {
+    background-color: #EEEEEE;
+    border-radius: 100%;    
+}
 .header {
     width: 100%;
     box-sizing: border-box;

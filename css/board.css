@@ -503,6 +503,7 @@ input {
 
 .modal-task-popup li {
     display: flex;
+    align-items: center;
     gap: 16px;
 }
 

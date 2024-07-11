@@ -1032,8 +1032,7 @@ h3 {
     .contact-arrow-blue:active {
         background-color: #EEEEEE;
         border-radius: 100%;
-        width: 32px;
-        height: 32px;
+        
     }
 
     .button-open-edit-delete-handy-container {
