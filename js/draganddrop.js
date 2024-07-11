@@ -1,6 +1,4 @@
 let currentDraggedElement = null;
-
-
 /**
  * Initiates the dragging of an element by setting the current dragged element's Firebase ID,
  * adding data to the drag event, and applying a 'rotated' class to visually indicate the dragging state.
