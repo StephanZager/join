@@ -85,7 +85,10 @@ function generateTaskHTML(taskItem) {
 
     return `
         <div draggable="true" ondragstart="startDragging(event, '${taskItem.firebaseId}')" ondragend="stopDragging(event)" class="taskCard" data-firebase-id="${taskItem.firebaseId}">
+        <div class="taskCard-headline-board-overview">    
             <h4 class="task-category-${taskItem.userCategory}">${taskItem.userCategory}</h4>
+            <img class="task-popup-arrow" src="assets/img/arrow-down-grey.png" onclick="openMoveMobileMenu('${taskItem.firebaseId}')">
+        </div>    
             <p class="task-title">${taskItem.title}</p>
             <p class="task-description">${taskItem.description}</p>
             ${subtasksHtml}

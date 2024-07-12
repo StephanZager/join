@@ -63,7 +63,7 @@
                             <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
                         </button>
                     </div>
-                    <div id="toDo" class="showTasksBoard dropzone" ondrop="moveTo('toDo')"ondragover="allowDrop(event)"></div>
+                    <div id="toDo" class="showTasksBoard" ondrop="moveTo('toDo')"ondragover="allowDrop(event)"></div>
                 </div>  
                 <div class="task-column">
                     <div class="taskHeadline">
@@ -77,7 +77,7 @@
                             <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
                         </button>
                     </div>
-                    <div id="inProgress" class="showTasksBoard dropzone" ondrop="moveTo('inProgress')"ondragover="allowDrop(event)"></div>
+                    <div id="inProgress" class="showTasksBoard" ondrop="moveTo('inProgress')"ondragover="allowDrop(event)"></div>
                 </div>
                 <div class="task-column">
                     <div class="taskHeadline">
@@ -91,31 +91,31 @@
                             <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
                         </button>
                     </div>
-                    <div id="awaitFeedback" class="showTasksBoard dropzone" ondrop="moveTo('awaitFeedback')"ondragover="allowDrop(event)"></div>
+                    <div id="awaitFeedback" class="showTasksBoard" ondrop="moveTo('awaitFeedback')"ondragover="allowDrop(event)"></div>
                 </div>    
                 <div class="task-column">
                     <div class="taskHeadline">
                         <h3>Done</h3>
                     </div>
-                    <div id="done" class="showTasksBoard dropzone" ondrop="moveTo('done')"ondragover="allowDrop(event)"></div>
+                    <div id="done" class="showTasksBoard" ondrop="moveTo('done')"ondragover="allowDrop(event)"></div>
                 </div>
             </div>
         </div>
     </main>
+    <div class="task-popup-dropdown" id="moveToCategoryDropdown">
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('toDo')">To do</button>
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('inProgress')">In progress</button>
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('awaitFeedback')">Await feedback</button>
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('done')">Done</button>
+    </div>
+
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
     <div id="taskModal" class="modal">
         <div class="modal-task-popup" id="taskCardPoupAnimation">
             <div id="modalTaskcard" class="modal-task-popup-display-block modal-task-popup-display-none">
                 <div class="popup-headline">
                     <h4 id="modalTitle"></h4>
-                    <img class="task-popup-arrow" src="assets/img/arrow-down-grey.png" onclick="openMoveMobileMenu()">
                     <img class="task-popup-x" src="assets/img/close-addcontact.png" alt="Schließen" onclick="closeTaskCard()">
-                        <div class="task-popup-dropdown" id="moveToCategoryDropdown">
-                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('toDo')">To do</button>
-                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('inProgress')">In progress</button>
-                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('awaitFeedback')">Await feedback</button>
-                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('done')">Done</button>
-                        </div>
                 </div>
                 <p id="modalUserTitle"></p>
                 <p id="modalDescription"></p>

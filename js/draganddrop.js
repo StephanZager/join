@@ -1,4 +1,5 @@
 let currentDraggedElement = null;
+let currentTaskFirebaseId = null;
 /**
  * Initiates the dragging of an element by setting the current dragged element's Firebase ID,
  * adding data to the drag event, and applying a 'rotated' class to visually indicate the dragging state.
@@ -62,7 +63,36 @@ async function moveTo(category) {
     }
 }
 
-function openMoveMobileMenu() {
+function openMoveMobileMenu(firebaseId) {
+    currentTaskFirebaseId = firebaseId;
    let dropdownContent = document.getElementById('moveToCategoryDropdown');
    dropdownContent.classList.toggle('show-move-to-category-dropdown');
+}
+
+async function moveToCategory(category) {
+    const firebaseId = currentTaskFirebaseId;
+    if (!firebaseId) {
+        console.error("Keine Aufgabe ausgewählt.");
+        return;
+    }
+
+    const taskIndex = task.findIndex(taskItem => taskItem.firebaseId === firebaseId);
+    if (taskIndex === -1) {
+        console.error("Aufgabe mit der angegebenen Firebase-ID nicht gefunden:", firebaseId);
+        return;
+    }
+
+    try {
+        task[taskIndex].category = category;
+        await updateTaskInFirebase(firebaseId, { category });
+        generateTask();
+        if ((task[taskIndex].subtasks || []).length > 0) {
+            updateProgressBar(task[taskIndex]);
+        }
+        // Schließen des Dropdown-Menüs nach erfolgreichem Verschieben
+        let dropdownContent = document.getElementById('moveToCategoryDropdown');
+        dropdownContent.classList.remove('show-move-to-category-dropdown');
+    } catch (error) {
+        console.error("Fehler beim Verschieben der Aufgabe:", error);
+    }
 }
