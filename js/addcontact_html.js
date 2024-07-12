@@ -22,7 +22,7 @@ function addNewContactPopUp() {
                     <form id="form" action="" method="post" onsubmit="submitContact(); return false;">
                         <input type="text" class="addcontact-name" id="addcontact_name" name="name" required pattern="^[\\p{L}]+\\s[\\p{L}]+$" placeholder="Name" maxlength="25" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter first and last name')">
                         <input type="email" class="addcontact-email" id="addcontact_email" name="email" required placeholder="Email" maxlength="25">            
-                        <input type="tel" class="addcontact-phone" id="addcontact_phone" name="phone" pattern="0[\\d\\s-]{9,13}" placeholder="01234567890" required maxlength="14">
+                        <input type="tel" class="addcontact-phone" id="addcontact_phone" name="phone" placeholder="01234567890" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                         <div class="form-button">
                             <button type="button" class="addcontact_cancel_Button" onclick="cloeAddNewContactwindow()">                    
                                 <img class="img-cancel-x" src="assets/img/cancel-addcontact.png" alt="cancel">
@@ -73,7 +73,7 @@ function addUbdateContactPopUp(i, path = "/contact") {
             <form id="form" action="" method="put" onsubmit="submitForm(event, ${i}, '${user.id}', '${path}'); return false;">
                 <input type="text" class="addcontact-name" id="addcontact_edit_name" name="name" required placeholder="Name" maxlength="20">
                 <input type="email" class="addcontact-email" id="addcontact_edit_email" name="email" required placeholder="Email" maxlength="25">            
-                <input type="tel" class="addcontact-phone" id="addcontact_edit_phone" name="phone" pattern="0[\\d\\s-]{9,13}" placeholder="01234567890" required maxlength="14">
+                <input type="tel" class="addcontact-phone" id="addcontact_edit_phone" name="phone" placeholder="01234567890" required maxlength="14" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                 <div class="form-button">
                     <button type="button" class="addcontact_cancel_Button" onclick="cloeAddUbdateContactwindow()">
                         <img class="img-cancel-x" src="assets/img/cancel-addcontact.png" alt="cancel">
