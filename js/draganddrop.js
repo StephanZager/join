@@ -134,13 +134,14 @@ function hideDropdown() {
 }
 
 /**
- * Moves a task to a specified category.
+ * Asynchronously moves a task to a specified category.
  * 
- * This asynchronous function updates the category of a task both in the local state and in Firebase.
- * After updating, it regenerates the task list and, if applicable, updates the progress bar of the task.
- * Finally, it hides the dropdown menu used for moving tasks.
+ * This function first validates the task using its Firebase ID stored in `currentTaskFirebaseId`.
+ * If the task is valid (exists in the database), it proceeds to update the task's category both locally and in Firebase.
+ * After updating, it regenerates the task display and updates the progress bar if the task has subtasks.
+ * Finally, it hides the dropdown menu and checks for mobile display adjustments.
  * 
- * @param {string} category The target category to move the task to.
+ * @param {string} category - The category to move the task to.
  */
 async function moveToCategory(category) {
     const firebaseId = currentTaskFirebaseId;
@@ -155,7 +156,28 @@ async function moveToCategory(category) {
             updateProgressBar(task[taskIndex]);
         }
         hideDropdown();
+        checkForMobile();
     } catch (error) {
         console.error("Fehler beim Verschieben der Aufgabe:", error);
     }
 }
+
+/**
+ * Checks if the device is mobile and shows or hides buttons based on that.
+ * This function queries all elements with the class 'task-popup-arrow' and
+ * changes their display style depending on the result of the isMobileDevice() function.
+ * On mobile devices, the buttons are displayed (flex). On non-mobile devices, the buttons are hidden (none).
+ * This behavior is triggered both when the window loads and when it is resized.
+ */
+function checkForMobile() {
+    const buttons = document.querySelectorAll('.task-popup-arrow');
+    if (isMobileDevice()) {
+        buttons.forEach(button => button.style.display = 'flex');
+    } else {
+        buttons.forEach(button => button.style.display = 'none');
+    }
+}
+
+window.addEventListener('load', checkForMobile);
+window.addEventListener('resize', checkForMobile);
+
