@@ -67,12 +67,24 @@ function openMoveMobileMenu(firebaseId) {
     currentTaskFirebaseId = firebaseId;
    let dropdownContent = document.getElementById('moveToCategoryDropdown');
    dropdownContent.classList.toggle('show-move-to-category-dropdown');
+
+   function handleClickOutside(event) {
+    if (!dropdownContent.contains(event.target)) {
+        dropdownContent.classList.remove('show-move-to-category-dropdown'); 
+        document.removeEventListener('click', handleClickOutside); 
+    }
+    
+    } if (dropdownContent.classList.contains('show-move-to-category-dropdown')) {
+        setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
+    } else {
+    document.removeEventListener('click', handleClickOutside);
+    }
 }
+
 
 async function moveToCategory(category) {
     const firebaseId = currentTaskFirebaseId;
     if (!firebaseId) {
-        console.error("Keine Aufgabe ausgewählt.");
         return;
     }
 
@@ -89,7 +101,6 @@ async function moveToCategory(category) {
         if ((task[taskIndex].subtasks || []).length > 0) {
             updateProgressBar(task[taskIndex]);
         }
-        // Schließen des Dropdown-Menüs nach erfolgreichem Verschieben
         let dropdownContent = document.getElementById('moveToCategoryDropdown');
         dropdownContent.classList.remove('show-move-to-category-dropdown');
     } catch (error) {

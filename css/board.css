@@ -979,7 +979,7 @@ input {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     background-color: #2a3647;
-    padding: 32px;
+    padding: 10px;
 
 }
 
@@ -990,7 +990,11 @@ input {
 .task-popup-dropdown-btn {
     height: 100%;
     font-size: 16px;
-    padding: 8px 16px;
+    margin: 10px 10px; 
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background-color:#2a3647;
     color: white;
