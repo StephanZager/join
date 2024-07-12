@@ -500,12 +500,15 @@ async function deleteTask(firebaseId) {
     }
 }
 /**
- * Searches tasks based on the input from the 'searchBarInput' element.
- * If the search term is found in the title or description of a task, the task card's background color is set to yellow.
- * If the search term is not found, the task card's background color is reset.
- * If the search term is empty, all task card colors are reset.
- * Assumes that `task` is an array of objects, each with a `title`, `description`, and `firebaseId` property.
- * Also assumes that a function named `resetTaskCardColors` is defined elsewhere.
+ * Filters tasks based on a search term entered into the search bar.
+ * This function retrieves the search term from the input field with the ID 'searchBarInput',
+ * converts it to lowercase, and then iterates over each task in the global `task` array.
+ * For each task, it checks if the task's title or description contains the search term.
+ * - If a match is found, the display style of the corresponding task card is set to its default,
+ *   making it visible.
+ * - If no match is found, the task card's display style is set to 'none', effectively hiding it.
+ * If the search term is empty (after trimming whitespace), the visibility of all task cards is reset
+ * to their default state by calling `resetTaskCardVisibility()`.
  */
 function searchTasks() {
     const searchTerm = document.getElementById('searchBarInput').value.toLowerCase();
@@ -526,20 +529,18 @@ function searchTasks() {
     }
 }
 
+/**
+ * Resets the visibility of all task cards to their default state.
+ * This function iterates over each task item in the global `task` array,
+ * finds the corresponding task card in the DOM using its `firebaseId` attribute,
+ * and sets its display style to an empty string, which effectively removes
+ * any inline display style and allows the task card to inherit its display
+ * property from CSS or default browser styles.
+ */
 function resetTaskCardVisibility() {
     task.forEach(taskItem => {
         const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
         taskCard.style.display = ''; 
-    });
-}
-/**
- * Resets the background color of all task cards.
- * Assumes that `task` is an array of objects, each with a `firebaseId` property.
- */
-function resetTaskCardColors() {
-    task.forEach(taskItem => {
-        const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
-        taskCard.style.backgroundColor = ''; 
     });
 }
 
