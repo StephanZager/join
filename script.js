@@ -173,6 +173,8 @@ function checkAuthentication() {
     const allowedPaths = ['/index.html', '/policy_over_signup.html', '/legal_notice_over_signup.html'];
     const currentPath = window.location.pathname;
 
+    
+
     const isLoggedIn = localStorage.getItem('loggedInUser');
     const isGuest = localStorage.getItem('guestLogin');
 
