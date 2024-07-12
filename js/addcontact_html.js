@@ -172,11 +172,13 @@ function getUserEditDeleteHTML() {
             <div id="containerEditDeleteHandy" class="container-edit-delete-handy" onclick="doNotClose(event)">
                 <div class="user-edit-delete-handy" id="buttonEditDeleteHandy">
                     <div onclick="editUser(${currentOpenUser}), slideInPopup('popUpUbdateContact'), closeUserDeleteEditWindow()" class="user-edit-delete-section-handy">
-                        <img src="assets/img/edit-contacts.png" alt="edit">
+                        <img class="img-delete-contact-handy" src="assets/img/edit-contacts.png" alt="edit">
+                        <img class="img-delete-contact-hover-handy" src="assets/img/pan-edit-hover-contact.png" alt="edit">
                         <p>Edit</p>
                     </div>
                     <div onclick="deleteUser(${currentOpenUser}), closeUserDeleteEditWindow(), closeUserInfoWindow()" class="user-edit-delete-section-handy">
-                        <img src="assets/img/delete-contacts.png" alt="delete">
+                        <img class="img-delete-contact-handy" src="assets/img/delete-contacts.png" alt="delete">
+                        <img class="img-delete-contact-hover-handy" src="assets/img/delete-trash-contact-hover.png" alt="delete">
                         <p>Delete</p>
                     </div>
                 </div>
