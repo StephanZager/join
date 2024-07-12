@@ -832,7 +832,13 @@ input {
     background-color: #f6f7f8;
 }
 
+.task-popup-arrow {
+    display: none;
+}
 
+.task-popup-arrow-hover {
+    display: none;
+}
 
 @media (max-width: 1700px) {
     .content {
@@ -912,6 +918,19 @@ input {
 
     .smallBtn-mobile {
         display: flex;
+    }
+
+    .task-popup-arrow {
+        display: flex;
+    }
+
+    .task-popup-arrow:hover {
+        filter: brightness(0) saturate(100%) invert(32%) sepia(92%) saturate(1352%) hue-rotate(174deg) brightness(99%) contrast(101%);
+        opacity: 0.6;
+    }
+    
+    .task-popup-arrow-hover {
+        display: none;
     }
 }
 

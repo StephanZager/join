@@ -63,6 +63,16 @@ async function moveTo(category) {
     }
 }
 
+/**
+ * Öffnet oder schließt das Dropdown-Menü für die mobile Ansicht, um eine Aufgabe in eine andere Kategorie zu verschieben.
+ * 
+ * Diese Funktion wechselt die Sichtbarkeit des Dropdown-Menüs zum Verschieben von Aufgaben. Wenn das Menü geöffnet wird,
+ * fügt es einen Event-Listener hinzu, der auf Klicks außerhalb des Dropdowns hört, um das Menü zu schließen. Wenn das Menü
+ * geschlossen wird, entfernt es diesen Event-Listener, um unnötige Event-Listener im Dokument zu vermeiden.
+ * 
+ * @param {string} firebaseId - Die Firebase-ID der Aufgabe, die verschoben werden soll. Diese ID wird verwendet,
+ * um die aktuelle Aufgabe zu identifizieren und den Zustand `currentTaskFirebaseId` entsprechend zu setzen.
+ */
 function openMoveMobileMenu(firebaseId) {
     currentTaskFirebaseId = firebaseId;
    let dropdownContent = document.getElementById('moveToCategoryDropdown');
@@ -73,7 +83,7 @@ function openMoveMobileMenu(firebaseId) {
         dropdownContent.classList.remove('show-move-to-category-dropdown'); 
         document.removeEventListener('click', handleClickOutside); 
     }
-    
+
     } if (dropdownContent.classList.contains('show-move-to-category-dropdown')) {
         setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
     } else {
@@ -81,7 +91,15 @@ function openMoveMobileMenu(firebaseId) {
     }
 }
 
-
+/**
+ * Verschiebt eine Aufgabe in eine neue Kategorie.
+ * 
+ * Diese Funktion aktualisiert die Kategorie einer Aufgabe sowohl im lokalen Zustand als auch in Firebase.
+ * Nach der Aktualisierung wird die Aufgabenliste neu generiert und der Fortschrittsbalken aktualisiert,
+ * falls die Aufgabe Unteraufgaben hat. Schließlich wird das Dropdown-Menü zum Verschieben der Kategorien geschlossen.
+ * 
+ * @param {string} category - Die Zielkategorie, in die die Aufgabe verschoben werden soll.
+ */
 async function moveToCategory(category) {
     const firebaseId = currentTaskFirebaseId;
     if (!firebaseId) {
