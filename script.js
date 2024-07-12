@@ -207,13 +207,12 @@ function checkOrientation() {
     const warning = document.querySelector('.rotate-warning');    
     if (window.innerWidth > window.innerHeight || window.innerWidth >= 2200) {
         warning.style.display = 'flex'; // Ensure this is 'flex' to respect CSS 'justify-content' and 'align-items'.
-        warning.innerText = 'Please rotate your screen to portrait mode or reduce the window width';
+        warning.innerText = 'Please rotate your screen';
     } else {
         warning.style.display = 'none';
     }
 }
 
-// Add event listeners to check the orientation on page load and whenever the window is resized.
 window.addEventListener('load', checkOrientation);
 window.addEventListener('resize', checkOrientation);
 
