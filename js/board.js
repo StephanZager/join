@@ -516,20 +516,20 @@ function searchTasks() {
             const description = taskItem.description.toLowerCase();
             const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
             if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                taskCard.style.display = ''; // Stellt sicher, dass die Karte angezeigt wird
+                taskCard.style.display = '';
             } else {
-                taskCard.style.display = 'none'; // Blendet die Karte aus, wenn sie den Suchbegriff nicht enthält
+                taskCard.style.display = 'none';
             }
         });
     } else {
-        resetTaskCardVisibility(); // Stellt die ursprüngliche Sichtbarkeit aller Task-Karten wieder her
+        resetTaskCardVisibility(); 
     }
 }
 
 function resetTaskCardVisibility() {
     task.forEach(taskItem => {
         const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
-        taskCard.style.display = ''; // Stellt die Sichtbarkeit jeder Karte wieder her
+        taskCard.style.display = ''; 
     });
 }
 /**
