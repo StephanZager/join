@@ -61,3 +61,8 @@ async function moveTo(category) {
         console.error("Fehler beim Verschieben der Aufgabe:", error);
     }
 }
+
+function openMoveMobileMenu() {
+   let dropdownContent = document.getElementById('moveToCategoryDropdown');
+   dropdownContent.classList.toggle('show-move-to-category-dropdown');
+}

@@ -108,8 +108,14 @@
             <div id="modalTaskcard" class="modal-task-popup-display-block modal-task-popup-display-none">
                 <div class="popup-headline">
                     <h4 id="modalTitle"></h4>
+                    <img class="task-popup-arrow" src="assets/img/arrow-down-grey.png" onclick="openMoveMobileMenu()">
                     <img class="task-popup-x" src="assets/img/close-addcontact.png" alt="Schließen" onclick="closeTaskCard()">
-                    <!--<span class="close">&times;</span>-->
+                        <div class="task-popup-dropdown" id="moveToCategoryDropdown">
+                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('toDo')">To do</button>
+                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('inProgress')">In progress</button>
+                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('awaitFeedback')">Await feedback</button>
+                            <button class="task-popup-dropdown-btn" onclick="moveToCategory('done')">Done</button>
+                        </div>
                 </div>
                 <p id="modalUserTitle"></p>
                 <p id="modalDescription"></p>

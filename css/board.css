@@ -961,6 +961,41 @@ input {
 }
 
 
+.task-popup-dropdown {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    gap: 8px;
+    flex-direction: column;
+    border: 1px solid #d1d1d1;
+    border-radius: 20px 0px 20px 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background-color: #2a3647;
+    padding: 16px;
+
+}
+
+.show-move-to-category-dropdown {
+    display: flex;
+}
+
+.task-popup-dropdown-btn {
+    height: 100%;
+    font-size: 16px;
+    border: none;
+    background-color:#2a3647;
+    color: white;
+}
+
+.task-popup-dropdown-btn:hover {
+    cursor: pointer;
+    color:#91cde9;
+}
+
+
+
 
 /* Grundlegender Stil für dropZone */
 .dropZone {
