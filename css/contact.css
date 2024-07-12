@@ -359,10 +359,29 @@ h3 {
     width: 159px;
     height: 24px;
     gap: 16px;
-    opacity: 0px;
     margin-top: 8px;
-
 }
+
+.user-edit-delete-section-handy .img-delete-contact-handy {
+    display: block;
+}
+
+.user-edit-delete-section-handy .img-delete-contact-hover-handy {
+    display: none;
+}
+
+.user-edit-delete-section-handy:hover .img-delete-contact-handy {
+    display: none;
+}
+
+.user-edit-delete-section-handy:hover .img-delete-contact-hover-handy {
+    display: block;
+}
+
+.user-edit-delete-section-handy:hover p {
+    color: #29ABE2; /* Blau */
+}
+
 
 
 
