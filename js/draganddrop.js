@@ -31,6 +31,7 @@ function stopDragging(ev) {
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 /**
  * Asynchronously moves a task to a specified category.
  * It updates the task's category both locally and in Firebase.

@@ -840,6 +840,11 @@ input {
     display: none;
 }
 
+
+.highlight {
+    border: 2px dashed #666; /* Beispiel für ein Highlight-Styling */
+  }
+
 @media (max-width: 1700px) {
     .content {
         padding: 0 16px;
