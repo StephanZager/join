@@ -508,7 +508,7 @@ async function deleteTask(firebaseId) {
  * Also assumes that a function named `resetTaskCardColors` is defined elsewhere.
  */
 function searchTasks() {
-    const searchTerm = document.getElementById('searchBarInput').value.toLowerCase(); 
+    const searchTerm = document.getElementById('searchBarInput').value.toLowerCase();
 
     if (searchTerm.trim() !== '') {
         task.forEach(taskItem => {
@@ -516,14 +516,21 @@ function searchTasks() {
             const description = taskItem.description.toLowerCase();
             const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
             if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                taskCard.style.backgroundColor = 'yellow';
+                taskCard.style.display = ''; // Stellt sicher, dass die Karte angezeigt wird
             } else {
-                taskCard.style.backgroundColor = '';
+                taskCard.style.display = 'none'; // Blendet die Karte aus, wenn sie den Suchbegriff nicht enthält
             }
         });
-    } else { 
-        resetTaskCardColors();
+    } else {
+        resetTaskCardVisibility(); // Stellt die ursprüngliche Sichtbarkeit aller Task-Karten wieder her
     }
+}
+
+function resetTaskCardVisibility() {
+    task.forEach(taskItem => {
+        const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
+        taskCard.style.display = ''; // Stellt die Sichtbarkeit jeder Karte wieder her
+    });
 }
 /**
  * Resets the background color of all task cards.
