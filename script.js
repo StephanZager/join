@@ -183,26 +183,38 @@ function checkAuthentication() {
     }
 }
 
-function checkOrientation() {
-    const warning = document.querySelector('.rotate-warning');
-    
-    
-    if (window.innerWidth <= 900 && window.innerHeight > window.innerWidth) {
-        warning.style.display = 'flex';
-        warning.innerText = 'Please rotate the screen'; 
-        
-    } else if (window.innerWidth > 1400) {
-        
-        warning.style.display = 'none';
-    }
-   
+/**
+ * Checks if the current device is a mobile device based on the user agent.
+ * It tests the navigator's userAgent against a regex pattern that matches common mobile device identifiers.
+ * 
+ * @returns {boolean} True if the user agent matches a mobile device, false otherwise.
+ */
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+/**
+ * Checks the orientation of the device and displays a warning if the device is in landscape mode
+ * or if the window width is greater than or equal to 2200 pixels. This function is intended to be used
+ * on mobile devices to advise users to rotate their device to portrait mode for optimal viewing.
+ * The function will exit early if it detects that it is not being run on a mobile device.
+ */
+function checkOrientation() {
+    if (!isMobileDevice()) {
+        return; // Exit if not on a mobile device
+    }
 
-window.onload = checkOrientation;
-window.onresize = checkOrientation;
+    const warning = document.querySelector('.rotate-warning');    
+    if (window.innerWidth > window.innerHeight || window.innerWidth >= 2200) {
+        warning.style.display = 'flex'; // Ensure this is 'flex' to respect CSS 'justify-content' and 'align-items'.
+        warning.innerText = 'Please rotate your screen to portrait mode or reduce the window width';
+    } else {
+        warning.style.display = 'none';
+    }
+}
 
-
-
+// Add event listeners to check the orientation on page load and whenever the window is resized.
+window.addEventListener('load', checkOrientation);
+window.addEventListener('resize', checkOrientation);
 
 
