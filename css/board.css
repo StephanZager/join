@@ -836,9 +836,6 @@ input {
     display: none;
 }
 
-.task-popup-arrow-hover {
-    display: none;
-}
 
 
 .highlight {
@@ -973,20 +970,7 @@ input {
 }
 
 
-@media screen and (min-width: 500px) and (orientation: landscape) {
-    .task-popup-arrow {
-        display: flex;
-    }
 
-    .task-popup-arrow:hover {
-        filter: brightness(0) saturate(100%) invert(32%) sepia(92%) saturate(1352%) hue-rotate(174deg) brightness(99%) contrast(101%);
-        opacity: 0.6;
-    }
-    
-    .task-popup-arrow-hover {
-        display: none;
-    }
-}
 
 .taskCard-headline-board-overview{
     display: flex;
