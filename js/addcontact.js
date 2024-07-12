@@ -214,10 +214,6 @@ async function submitForm(event, i, contactId, path) {
     let email = document.getElementById('addcontact_edit_email').value;
     let phone = document.getElementById('addcontact_edit_phone').value;
 
-    if (!validateContactInfo(phone, email)) {
-        return;
-    }
-
     let updatedContact = {
         id: contactId,
         name: name,
@@ -277,8 +273,7 @@ function findContactIndexById(contactId) {
  * @param {string} [path="/contact"] - The path where the contact is stored in the database.
  * @returns {Promise<Response>} The response from the database.
  */
-async function updateContact(contactId, updatedContact, path = "/contact") {
-    console.log('update', contactId);
+async function updateContact(contactId, updatedContact, path = "/contact") {    
     let response = await fetch(BASE_URL + path + '/' + contactId + '.json', {
         method: "PUT",
         headers: {
