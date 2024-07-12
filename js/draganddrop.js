@@ -65,53 +65,87 @@ async function moveTo(category) {
 }
 
 /**
- * Öffnet oder schließt das Dropdown-Menü für die mobile Ansicht, um eine Aufgabe in eine andere Kategorie zu verschieben.
+ * Toggles the visibility of the "move to category" dropdown for mobile devices.
  * 
- * Diese Funktion wechselt die Sichtbarkeit des Dropdown-Menüs zum Verschieben von Aufgaben. Wenn das Menü geöffnet wird,
- * fügt es einen Event-Listener hinzu, der auf Klicks außerhalb des Dropdowns hört, um das Menü zu schließen. Wenn das Menü
- * geschlossen wird, entfernt es diesen Event-Listener, um unnötige Event-Listener im Dokument zu vermeiden.
+ * This function sets the current task's Firebase ID to the provided ID, then toggles the visibility
+ * of the dropdown menu. If the dropdown becomes visible, it adds an event listener to handle clicks outside
+ * of the dropdown, allowing it to be closed on such an action.
  * 
- * @param {string} firebaseId - Die Firebase-ID der Aufgabe, die verschoben werden soll. Diese ID wird verwendet,
- * um die aktuelle Aufgabe zu identifizieren und den Zustand `currentTaskFirebaseId` entsprechend zu setzen.
+ * @param {string} firebaseId The Firebase ID of the task for which the move menu is being opened.
  */
 function openMoveMobileMenu(firebaseId) {
     currentTaskFirebaseId = firebaseId;
-   let dropdownContent = document.getElementById('moveToCategoryDropdown');
-   dropdownContent.classList.toggle('show-move-to-category-dropdown');
-
-   function handleClickOutside(event) {
-    if (!dropdownContent.contains(event.target)) {
-        dropdownContent.classList.remove('show-move-to-category-dropdown'); 
-        document.removeEventListener('click', handleClickOutside); 
-    }
-
-    } if (dropdownContent.classList.contains('show-move-to-category-dropdown')) {
-        setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
-    } else {
-    document.removeEventListener('click', handleClickOutside);
+    let dropdownContent = document.getElementById('moveToCategoryDropdown');
+    dropdownContent.classList.toggle('show-move-to-category-dropdown');
+   
+    if (dropdownContent.classList.contains('show-move-to-category-dropdown')) {
+        document.addEventListener('click', handleClickOutside, true);
     }
 }
 
 /**
- * Verschiebt eine Aufgabe in eine neue Kategorie.
+ * Handles clicks outside the "move to category" dropdown, closing it if the click is outside.
  * 
- * Diese Funktion aktualisiert die Kategorie einer Aufgabe sowohl im lokalen Zustand als auch in Firebase.
- * Nach der Aktualisierung wird die Aufgabenliste neu generiert und der Fortschrittsbalken aktualisiert,
- * falls die Aufgabe Unteraufgaben hat. Schließlich wird das Dropdown-Menü zum Verschieben der Kategorien geschlossen.
+ * This function checks if the click event occurred outside of the dropdown menu. If so, it removes
+ * the class that displays the dropdown and removes this event listener to stop listening for outside clicks.
  * 
- * @param {string} category - Die Zielkategorie, in die die Aufgabe verschoben werden soll.
+ * @param {Event} event The click event that triggered this function.
  */
-async function moveToCategory(category) {
-    const firebaseId = currentTaskFirebaseId;
-    if (!firebaseId) {
-        return;
+function handleClickOutside(event) {
+    let dropdownContent = document.getElementById('moveToCategoryDropdown');
+    if (!dropdownContent.contains(event.target)) {
+        dropdownContent.classList.remove('show-move-to-category-dropdown');
+        
+        document.removeEventListener('click', handleClickOutside, true);
     }
+}
 
+/**
+ * Validates the existence of a task by its Firebase ID.
+ * 
+ * This asynchronous function checks if a given Firebase ID corresponds to any task in the local task array.
+ * If no Firebase ID is provided or if no task matches the given ID, it logs an error message.
+ * 
+ * @param {string} firebaseId The Firebase ID of the task to validate.
+ * @returns {Promise<number>} The index of the task in the local array if found, -1 otherwise.
+ */
+async function validateTask(firebaseId) {
+    if (!firebaseId) {
+        console.error("Keine Firebase-ID angegeben.");
+        return -1;
+    }
     const taskIndex = task.findIndex(taskItem => taskItem.firebaseId === firebaseId);
     if (taskIndex === -1) {
         console.error("Aufgabe mit der angegebenen Firebase-ID nicht gefunden:", firebaseId);
-        return;
     }
+    return taskIndex;
+}
+
+/**
+ * Hides the dropdown menu for moving tasks to categories.
+ * 
+ * This function selects the dropdown element by its ID and removes the class that makes it visible.
+ * It also removes the event listener that handles clicks outside the dropdown, effectively closing it.
+ */
+function hideDropdown() {
+    let dropdownContent = document.getElementById('moveToCategoryDropdown');
+    dropdownContent.classList.remove('show-move-to-category-dropdown');
+    document.removeEventListener('click', handleClickOutside, true);
+}
+
+/**
+ * Moves a task to a specified category.
+ * 
+ * This asynchronous function updates the category of a task both in the local state and in Firebase.
+ * After updating, it regenerates the task list and, if applicable, updates the progress bar of the task.
+ * Finally, it hides the dropdown menu used for moving tasks.
+ * 
+ * @param {string} category The target category to move the task to.
+ */
+async function moveToCategory(category) {
+    const firebaseId = currentTaskFirebaseId;
+    const taskIndex = await validateTask(firebaseId);
+    if (taskIndex === -1) return;
 
     try {
         task[taskIndex].category = category;
@@ -120,8 +154,7 @@ async function moveToCategory(category) {
         if ((task[taskIndex].subtasks || []).length > 0) {
             updateProgressBar(task[taskIndex]);
         }
-        let dropdownContent = document.getElementById('moveToCategoryDropdown');
-        dropdownContent.classList.remove('show-move-to-category-dropdown');
+        hideDropdown();
     } catch (error) {
         console.error("Fehler beim Verschieben der Aufgabe:", error);
     }
