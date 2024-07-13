@@ -560,8 +560,12 @@
 
 .assign-name {
     display: flex;
-    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    font-family: "inter", sans-serif;
+    font-size: 19px;
     font-weight: 400;
+    line-height: 22.8px;
 }
 
 .d-none {
