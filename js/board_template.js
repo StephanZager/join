@@ -1,3 +1,9 @@
+/**
+ * Generates HTML for a list of subtasks with checkboxes.
+ * @param {string} firebaseId - Unique ID for the task from Firebase.
+ * @param {Array} subtasks - Array of subtask objects.
+ * @returns {string} - HTML string for the subtasks.
+ */
 function buildSubtasksHTML(firebaseId, subtasks) {
     return '<ul class="popup-subtask-ul">' + subtasks.map((subtask, index) => `
         <li class="popup-subtask-list">
@@ -7,7 +13,11 @@ function buildSubtasksHTML(firebaseId, subtasks) {
     ).join('') + '</ul>';
 }
 
-
+/**
+ * Generates HTML for a list of assignees with initials.
+ * @param {Array} sortedArray - Array of assignee data objects.
+ * @returns {string} - HTML string for the assignees.
+ */
 function buildInitialsHTML(sortedArray) {
     return sortedArray.map(assignData => `
         <div class="assign-details">
@@ -19,7 +29,12 @@ function buildInitialsHTML(sortedArray) {
     ).join('');
 }
 
-
+/**
+ * Generates HTML for subtask progress bar.
+ * @param {Object} taskItem - Task object.
+ * @param {number} completedSubtasks - Number of completed subtasks.
+ * @returns {string} - HTML string for the subtask progress.
+ */
 function buildSubtasksProgressHTML(taskItem, completedSubtasks) {
     return `
         <div class="progress-bar-subtask">
@@ -33,14 +48,25 @@ function buildSubtasksProgressHTML(taskItem, completedSubtasks) {
         </div>`;
 }
 
-
+/**
+ * Generates HTML for a list of visible assignees' initials.
+ * @param {Array} visibleInitials - Array of assignee data objects.
+ * @returns {string} - HTML string for the initials.
+ */
 function generateInitialsHtml(visibleInitials) {
     return visibleInitials.map(assignData => 
         `<span class="show-initials" style="background-color: ${assignData.bgNameColor}">${assignData.initials}</span>`
     ).join('');
 }
 
-
+/**
+ * Generates HTML for a task card.
+ * @param {Object} taskItem - Task object.
+ * @param {string} initialsHtml - HTML string for the assignees' initials.
+ * @param {string} priorityIcon - URL for the priority icon image.
+ * @param {string} subtasksHtml - HTML string for the subtasks.
+ * @returns {string} - HTML string for the task card.
+ */
 function buildTaskHTML(taskItem, initialsHtml, priorityIcon, subtasksHtml) {
     return `
         <div draggable="true" ondragstart="startDragging(event, '${taskItem.firebaseId}')" ondragend="stopDragging(event)" class="taskCard" data-firebase-id="${taskItem.firebaseId}">
@@ -58,6 +84,11 @@ function buildTaskHTML(taskItem, initialsHtml, priorityIcon, subtasksHtml) {
         </div>`;
 }
 
+/**
+ * Generates HTML for a placeholder when there are no tasks in a category.
+ * @param {string} category - The category name.
+ * @returns {string} - HTML string for the placeholder.
+ */
 function generatePlaceholderHTML(category) {
     return `<div class="placeholder"><span>No tasks ${category}</span></div>`;
 }

@@ -1,7 +1,14 @@
+/**
+ * Current category and task list.
+ * @type {string}
+ * @type {Array}
+ */
 let currentCategory = '';
 let task = [];
 
-
+/**
+ * Generates and displays tasks for each category.
+ */
 function generateTask() {
     const categories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
     
@@ -23,7 +30,11 @@ function generateTask() {
     });
 }
 
-
+/**
+ * Generates HTML for a task item.
+ * @param {Object} taskItem - Task object.
+ * @returns {string} - HTML string for the task item.
+ */
 function generateTaskHTML(taskItem) {
     let assignArray = taskItem.assign || [];
     let initialCount = assignArray.length;
@@ -42,12 +53,20 @@ function generateTaskHTML(taskItem) {
     return buildTaskHTML(taskItem, initialsHtml, priorityIcon, subtasksHtml);
 }
 
-
+/**
+ * Cleans the assignee name by removing " (YOU)".
+ * @param {string} name - Assignee name.
+ * @returns {string} - Cleaned name.
+ */
 function cleanNameForInitials(name) {
     return name.replace(" (YOU)", "");
 }
 
-
+/**
+ * Returns the URL of the priority icon.
+ * @param {string} priority - Priority level.
+ * @returns {string} - URL of the priority icon.
+ */
 function getPriorityIcon(priority) {
     const icons = {
         Urgent: './assets/img/prio-urgent-icon-unclicked.png',
@@ -57,7 +76,11 @@ function getPriorityIcon(priority) {
     return icons[priority] || icons['Low'];
 }
 
-
+/**
+ * Generates HTML for subtask progress.
+ * @param {Object} taskItem - Task object.
+ * @returns {string} - HTML string for subtask progress.
+ */
 function generateSubtasksProgressHTML(taskItem) {
     if (!taskItem.subtasks || taskItem.subtasks.length === 0) return '';
 
@@ -65,14 +88,20 @@ function generateSubtasksProgressHTML(taskItem) {
     return buildSubtasksProgressHTML(taskItem, completedSubtasks);
 }
 
-
+/**
+ * Sets the modal title based on the task category.
+ * @param {Object} taskItem - Task object.
+ */
 function setModalTitle(taskItem) {
     const modalTitle = document.getElementById("modalTitle");
     modalTitle.innerText = taskItem.userCategory;
     modalTitle.className = `task-category-${taskItem.userCategory.replace(/\s+/g, '-')}`;
 }
 
-
+/**
+ * Sets the modal content based on the task details.
+ * @param {Object} taskItem - Task object.
+ */
 function setModalContent(taskItem) {
     document.getElementById("modalUserTitle").innerText = taskItem.title;
     document.getElementById("modalDescription").innerText = taskItem.description;
@@ -85,38 +114,52 @@ function setModalContent(taskItem) {
     document.getElementById("editTaskBtn").innerHTML = `<button onclick="openEditTask('${taskItem.firebaseId}')"><img src="assets/img/edit.png" alt="edit task">Edit Task</button>`;
 }
 
-
+/**
+ * Displays the task modal with the given task details.
+ * @param {Object} taskItem - Task object.
+ */
 function showModal(taskItem) {
     setModalTitle(taskItem);
     setModalContent(taskItem);
     displayModal();
 }
 
-
+/**
+ * Generates HTML for the initials of assigned users.
+ * @param {Array} assignedInitialsArray - Array of assigned user data.
+ * @returns {string} - HTML string for the initials.
+ */
 function generateInitialsHTML(assignedInitialsArray) {
     const sortedArray = assignedInitialsArray.sort((a, b) => {
         const nameA = cleanNameForInitials(a.name).toUpperCase();
         const nameB = cleanNameForInitials(b.name).toUpperCase(); 
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
+        return nameA < nameB ? -1 : (nameA > nameB ? 1 : 0);
     });
 
     return buildInitialsHTML(sortedArray);
 }
 
-
+/**
+ * Generates HTML for the subtasks of a task.
+ * @param {string} firebaseId - Firebase ID of the task.
+ * @param {Array} subtasks - Array of subtasks.
+ * @returns {string} - HTML string for the subtasks.
+ */
 function generateSubtasksHTML(firebaseId, subtasks) {
     if (!subtasks || subtasks.length === 0) return '';
 
     return buildSubtasksHTML(firebaseId, subtasks);
 }
 
-
+/**
+ * Toggles the completion status of a subtask.
+ * @param {string} firebaseId - Firebase ID of the task.
+ * @param {number} subtaskIndex - Index of the subtask.
+ */
 async function toggleSubtask(firebaseId, subtaskIndex) {
     const taskIndex = task.findIndex(taskItem => taskItem.firebaseId === firebaseId);
     if (taskIndex === -1) {
-        console.error("Aufgabe mit der angegebenen Firebase-ID nicht gefunden:", firebaseId);
+        console.error("Task with the given Firebase ID not found:", firebaseId);
         return;
     }
 
@@ -128,11 +171,14 @@ async function toggleSubtask(firebaseId, subtaskIndex) {
         updateTaskCardSubtasks(task[taskIndex]);
         updatePopupSubtasks(task[taskIndex]);
     } catch (error) {
-        console.error("Fehler beim Aktualisieren der Subtask in Firebase:", error);
+        console.error("Error updating subtask in Firebase:", error);
     }
 }
 
-
+/**
+ * Updates the progress bar of a task.
+ * @param {Object} taskItem - Task object.
+ */
 function updateProgressBar(taskItem) {
     const totalSubtasks = (taskItem.subtasks || []).length;
     if (totalSubtasks === 0) return;
@@ -141,7 +187,7 @@ function updateProgressBar(taskItem) {
     const progressBar = document.getElementById(`progressBar_${taskItem.firebaseId}`);
 
     if (!progressBar) {
-        console.error(`Fortschrittsbalken für taskItem mit ID ${taskItem.firebaseId} nicht gefunden.`);
+        console.error(`Progress bar for taskItem with ID ${taskItem.firebaseId} not found.`);
         return;
     }
 
@@ -154,12 +200,18 @@ function updateProgressBar(taskItem) {
     }
 }
 
-
+/**
+ * Updates the subtasks in the task modal.
+ * @param {Object} taskItem - Task object.
+ */
 function updatePopupSubtasks(taskItem) {
     document.getElementById("modalSubtasks").innerHTML = generateSubtasksHTML(taskItem.firebaseId, taskItem.subtasks);
 }
 
-
+/**
+ * Updates the subtask progress in the task card.
+ * @param {Object} taskItem - Task object.
+ */
 function updateTaskCardSubtasks(taskItem) {
     const taskCardSubtasks = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"] .subtask-progress`);
     if (taskCardSubtasks) {
@@ -168,15 +220,18 @@ function updateTaskCardSubtasks(taskItem) {
     }
 }
 
-
+/**
+ * Validates required fields.
+ * @returns {boolean} - True if all required fields are filled, false otherwise.
+ */
 function validateRequiredFields() {
-    if (!requiredFields()) {
-        return false;
-    }
-    return true;
+    return requiredFields();
 }
 
-
+/**
+ * Creates a task object from form inputs.
+ * @returns {Object} - New task object.
+ */
 function createTaskObject() {
     let taskTitle = document.getElementById('title').value;
     let taskDescription = document.getElementById('taskDescription').value;
@@ -188,7 +243,18 @@ function createTaskObject() {
     return buildTaskObject(taskTitle, taskDescription, date, userCategory, assignDetails, subtasks, currentCategory, selectedPriority);
 }
 
-
+/**
+ * Builds a task object.
+ * @param {string} title - Task title.
+ * @param {string} description - Task description.
+ * @param {string} date - Due date.
+ * @param {string} userCategory - User category.
+ * @param {Array} assignDetails - Assignee details.
+ * @param {Array} subtasks - Subtasks.
+ * @param {string} category - Task category.
+ * @param {string} priority - Priority level.
+ * @returns {Object} - Task object.
+ */
 function buildTaskObject(title, description, date, userCategory, assignDetails, subtasks, category, priority) {
     return {
         title: title,
@@ -202,7 +268,10 @@ function buildTaskObject(title, description, date, userCategory, assignDetails, 
     };
 }
 
-
+/**
+ * Finalizes task creation by updating the UI.
+ * @param {Object} newTask - New task object.
+ */
 function finalizeTaskCreation(newTask) {
     task.push(newTask); 
     generateTask(); 
@@ -210,7 +279,10 @@ function finalizeTaskCreation(newTask) {
     clearTaskForm(); 
 }
 
-
+/**
+ * Creates a new task and saves it to the database.
+ * @param {Event} event - Form submit event.
+ */
 async function createTask(event) {
     event.preventDefault();
     if (!validateRequiredFields()) return;
@@ -222,11 +294,13 @@ async function createTask(event) {
         newTask.firebaseId = responseData.name; 
         finalizeTaskCreation(newTask);
     } catch (error) {
-        alert(`Fehler beim Erstellen der Aufgabe: ${error.message}`);
+        alert(`Error creating task: ${error.message}`);
     }
 }
 
-
+/**
+ * Clears the category selection.
+ */
 function clearCategorySelection() {
     const categoryOptions = document.querySelectorAll('.dropdown-content-category input[type="radio"]');
     categoryOptions.forEach(option => {
@@ -235,7 +309,9 @@ function clearCategorySelection() {
     document.getElementById('categoryText').textContent = 'Category';
 }
 
-
+/**
+ * Resets the priority selection.
+ */
 function resetPriority() {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
@@ -245,7 +321,9 @@ function resetPriority() {
     });
 }
 
-
+/**
+ * Clears the assigned user checkboxes.
+ */
 function clearAssignedCheckboxes() {
     const assignedCheckboxes = document.querySelectorAll('#assigned input[type="checkbox"]');
     assignedCheckboxes.forEach(checkbox => {
@@ -253,7 +331,9 @@ function clearAssignedCheckboxes() {
     });
 }
 
-
+/**
+ * Searches tasks by title or description.
+ */
 function searchTasks() {
     const searchTerm = document.getElementById('searchBarInput').value.toLowerCase();
 
@@ -262,18 +342,16 @@ function searchTasks() {
             const title = taskItem.title.toLowerCase();
             const description = taskItem.description.toLowerCase();
             const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
-            if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                taskCard.style.display = '';
-            } else {
-                taskCard.style.display = 'none';
-            }
+            taskCard.style.display = title.includes(searchTerm) || description.includes(searchTerm) ? '' : 'none';
         });
     } else {
         resetTaskCardVisibility(); 
     }
 }
 
-
+/**
+ * Resets the visibility of all task cards.
+ */
 function resetTaskCardVisibility() {
     task.forEach(taskItem => {
         const taskCard = document.querySelector(`[data-firebase-id="${taskItem.firebaseId}"]`);
