@@ -172,3 +172,43 @@ async function updateContact(contactId, updatedContact, path = "/contact") {
     });
     return response;
 }
+
+
+/**
+ * Fetches data from the specified path.
+ * @param {string} path - The path to fetch data from.
+ * @returns {Promise<Object>} - The fetched data.
+ */
+async function getData(path) {
+    let response = await fetch(BASE_URL + path + ".json");
+    if (!response.ok) {
+      console.error("Error fetching data:", response.statusText);
+      return;
+    }
+    let responseData = await response.json();
+    return responseData;
+  }
+
+  /**
+ * Checks if the given email already exists in the database.
+ * @param {string} email - The email to check.
+ * @returns {Promise<boolean>} True if the email exists, false otherwise.
+ */
+async function emailExists(email) {
+    try {
+        let response = await fetch(BASE_URL + "/userData.json");
+        if (!response.ok) {
+            throw new Error("Error fetching data: " + response.statusText);
+        }
+        let data = await response.json();
+        for (let key in data) {
+            if (data[key].email === email) {
+                return true;
+            }
+        }
+        return false;
+    } catch (error) {
+        console.error("Error checking email existence:", error);
+        return false;
+    }
+}

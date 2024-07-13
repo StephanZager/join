@@ -159,20 +159,7 @@ async function guestLogin() {
 }
 
 
-/**
- * Fetches data from the specified path.
- * @param {string} path - The path to fetch data from.
- * @returns {Promise<Object>} - The fetched data.
- */
-async function getData(path) {
-  let response = await fetch(BASE_URL + path + ".json");
-  if (!response.ok) {
-    console.error("Error fetching data:", response.statusText);
-    return;
-  }
-  let responseData = await response.json();
-  return responseData;
-}
+
 
 function logout() {
   localStorage.removeItem('loggedInUser', 'userName');

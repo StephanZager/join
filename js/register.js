@@ -90,29 +90,7 @@ function isValidPassword(password) {
     return regex.test(password);
 }
 
-/**
- * Checks if the given email already exists in the database.
- * @param {string} email - The email to check.
- * @returns {Promise<boolean>} True if the email exists, false otherwise.
- */
-async function emailExists(email) {
-    try {
-        let response = await fetch(BASE_URL + "/userData.json");
-        if (!response.ok) {
-            throw new Error("Error fetching data: " + response.statusText);
-        }
-        let data = await response.json();
-        for (let key in data) {
-            if (data[key].email === email) {
-                return true;
-            }
-        }
-        return false;
-    } catch (error) {
-        console.error("Error checking email existence:", error);
-        return false;
-    }
-}
+
 
 
 function filterFirstLetters(name) {
