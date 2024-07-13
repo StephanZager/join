@@ -246,7 +246,6 @@ input {
     flex-wrap: wrap; /* Ermöglicht das Umbrechen bei kleinerer Bildschirmbreite */
     width: 80%;
     height: 688px; /* Höhe beibehalten, falls notwendig */
-    gap: 24px;
     box-sizing: border-box; /* Inklusive Padding und Border */
 }
 
@@ -847,6 +846,23 @@ input {
         padding: 0 16px;
         overflow-y: auto;
         height: calc(100vh - 100px);
+    }
+}
+
+@media (max-width: 1525px) {
+    .tasksBoard {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-height: 100%;
+        padding-right: 8px;  
+    }
+
+    .taskHeadline {
+        width: 100%;
+        max-width: 95%;
+        position: sticky;
+        left: 0;
     }
 }
 
