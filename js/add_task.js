@@ -421,33 +421,7 @@ function scrollToBottomAddtask() {
         maincontainerAddtask.scrollTop = maincontainerAddtask.scrollHeight;
     }
 }
-/**
- * Asynchronously posts data to a specified path and returns the JSON response.
- * It sends a POST request with the given data as JSON to the constructed URL using the BASE_URL and path parameters.
- * If the response indicates a failure (response.ok is false), it logs an error with the response status text.
- * Otherwise, it converts the response to JSON and returns it.
- * 
- * @param {string} path - The path to which the data should be posted, appended to BASE_URL.
- * @param {Object} data - The data to be posted, which will be stringified to JSON.
- * @returns {Promise<Object>} The JSON response from the server if the request is successful; otherwise, undefined.
- */
-async function postData(path, data) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
 
-    if (!response.ok) {
-        console.error("Fehler beim Posten der Daten:", response.statusText);
-        return;
-    }
-
-    let responseToJson = await response.json();
-    return responseToJson;
-}
 /**
  * Asynchronously loads assignee data from a specified path and updates the global 'assign' array with the fetched data.
  * After loading, it moves the logged-in user to the top of the 'assign' array if they are present.
