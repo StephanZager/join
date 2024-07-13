@@ -416,12 +416,12 @@ PRIVACY POLICY CSS:
 
 .main-container-policy {
     /*max-width: 1016px;*/
+    /*margin-top: 110px;*/
     margin-left: 328px;
     overflow: auto;
     max-height: 900px;
     overflow-y: auto;  
     overflow-x: hidden;
-    /*margin-top: 110px;*/
     padding: 0 100px;
 }
 
