@@ -293,7 +293,7 @@ async function updateTask(firebaseId, updatedUserTask) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
+        
         closeEditTaskPopup();
     } catch (error) {
         console.error('Fehler beim Aktualisieren der Aufgabe:', error);

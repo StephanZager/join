@@ -82,8 +82,10 @@ function displayModal() {
 
 document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (event) {
-        if (event.target.classList.contains("taskCard")) {
-            const firebaseId = event.target.getAttribute("data-firebase-id");
+        // Verwenden von closest, um zu überprüfen, ob das geklickte Element oder eines seiner übergeordneten Elemente die Klasse 'taskCard' hat
+        const taskCard = event.target.closest(".taskCard");
+        if (taskCard) {
+            const firebaseId = taskCard.getAttribute("data-firebase-id");
             const taskItem = task.find(t => t.firebaseId === firebaseId);
             if (taskItem) showModal(taskItem);
         }
