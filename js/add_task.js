@@ -196,20 +196,6 @@ function filterFirstLetters(name) {
 }
 
 
-/**
- * Clears all subtask-related selections and resets the task form to its initial state.
- * This function performs several actions to reset the state of the task form, specifically targeting subtasks and related selections:
- * - Removes the 'selected' class from all priority buttons, effectively deselecting them, and resets their images to the original ones specified in their 'data-original-image' attribute.
- * - Clears the global `globalSubtasks` array, removing all stored subtask data.
- * - Empties the inner HTML of the 'subtaskList' element, removing all listed subtasks from the UI.
- * - Resets the `assignDetails` array, clearing all stored assignment details.
- * - Clears the inner HTML of the 'assignedInitial' element, removing all visual indications of assigned contacts.
- * - Calls `clearCategorySelection` to reset any category selections made, assuming this function is defined elsewhere and handles the logic for clearing category-related selections.
- * 
- * @remarks
- * - Assumes the presence of elements with the class '.prio-buttons button' for priority buttons, 'subtaskList' for the subtask list container, and 'assignedInitial' for displaying assigned contacts' initials.
- * - The function directly modifies global variables `globalSubtasks` and `assignDetails`, which should be defined in the broader scope.
- */
 function clearSubtasks() {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
