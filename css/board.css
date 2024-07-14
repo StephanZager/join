@@ -286,6 +286,10 @@ input {
 }
 
 .taskCard {
+    height:285px;
+
+
+
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -347,6 +351,8 @@ input {
 }
 
 .task-description {
+    overflow: hidden;
+    height: 100px;
     color: #a8a8a8;
     font-size: 16px;
     font-weight: 400;
