@@ -49,6 +49,7 @@ async function addContact(newContact) {
     generateContacts();
     selectionTheLastCreatedUser(newContact);
     cloeAddNewContactwindow();
+    addNewContactConfirmation();
 }
 
 /**
@@ -187,12 +188,12 @@ async function addContactUbdate(i, contactId, updatedContact, path) {
         updatedContact.originalIndex = newIndex;
         openUserInfo(newIndex);
     }
-
     cloeAddUbdateContactwindow();
     filterNameAlphabet();
     filterContactAlphabet();
     await generateContacts();
     selectionTheLastCreatedUser(updatedContact);
+    addNewContactConfirmation();
 }
 
 /**
