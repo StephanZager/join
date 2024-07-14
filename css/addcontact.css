@@ -115,6 +115,7 @@ form {
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
+    padding-right: 40px;
     width: 422px;
     margin-bottom: 32px;
 
@@ -136,7 +137,6 @@ form {
     background-position: right 18px center;
     border: 1px solid #D1D1D1;
     height: 50px;
-
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;
@@ -145,6 +145,7 @@ form {
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
+    padding-right: 42px;
     width: 422px;
     margin-bottom: 32px;
 }
@@ -173,6 +174,7 @@ form {
     padding-left: 18px;
     padding-top: 4.5px;
     padding-bottom: 4.5px;
+    padding-right: 40px;
     width: 422px;
     margin-bottom: 32px;
 }

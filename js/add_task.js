@@ -325,3 +325,17 @@ function setMinDate() {
     if (editDateElement) editDateElement.min = currentDate;
     if (taskDateElement) taskDateElement.min = currentDate;
 }
+
+/**
+ * 
+Renders the subtask list.*/
+function renderSubtasks() {
+    let subtaskList = document.getElementById('subtaskList');
+    subtaskList.innerHTML = '';
+    if (Array.isArray(globalSubtasks)) {
+        globalSubtasks.forEach((subtaskToEdit, index) => {
+            let subtaskItem = createSubtaskItemHTML(subtaskToEdit, index);
+            subtaskList.innerHTML += subtaskItem;
+        });
+    }
+}

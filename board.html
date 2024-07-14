@@ -120,21 +120,23 @@
                     <img class="task-popup-x" src="assets/img/close-addcontact.png" alt="Schließen" onclick="closeTaskCard()">
                 </div>
                 <p id="modalUserTitle"></p>
+                <div class="task-card-info">
                 <p id="modalDescription"></p>
                 <div class="modalDate">
-                    <p class="popup-date">Due Date:</p>
+                    <p class="popup-date task-info-headline-color">Due Date:</p>
                     <p id="modalDate"></p>
                 </div>
                 <div class="modalPrio">
-                    <p class="priority-line">Priority: <span id="modalPriorityText"></span></p>
+                    <p class="priority-line task-info-headline-color">Priority: <span id="modalPriorityText"></span></p>
                     <img id="modalPriorityIcon" class="prio-icons">
                 </div>
-                <p class="assignet-to">Assigned To:</p>
+                <p class="assignet-to task-info-headline-color">Assigned To:</p>
                 <div id="modalInitials"></div>
                 <div id="modalSubtasksContainer">
-                    <p>Subtasks:</p>
+                    <p class="task-info-headline-color">Subtasks:</p>
                     <!-- Subtasks werden hier als Liste eingefügt -->
                     <ul id="modalSubtasks"></ul>
+                </div>
                 </div>
                 <div class="task-editing-btn">
                     <div id="deleteTaskBtn"></div>

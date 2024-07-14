@@ -20,11 +20,7 @@ async function submitContact() {
     let name = document.getElementById('addcontact_name').value;
     let email = document.getElementById('addcontact_email').value;
     let phone = document.getElementById('addcontact_phone').value;
-
-    if (!validateContactInfo(phone, email)) {
-        return;
-    }
-
+  
     let contact = {
         name: name,
         email: email,
@@ -86,7 +82,6 @@ async function generateContacts() {
 
         for (let i = 0; i < contacts.length; i++) {
             let contact = contacts[i];
-
             contactListContainer.innerHTML += contactHTML(contact);
         }
     }
@@ -404,21 +399,6 @@ async function addNewContactConfirmation() {
 function slideInPopup(popupId) {
     let popup = document.getElementById(popupId);
     popup.classList.add('slide-in');
-}
-
-/**
- * Validates the contact's phone number and email address.
- * The phone number must contain only digits.
- * The email address must contain an "@" symbol and end with ".de" or ".com".
- * 
- * @param {string} phone The contact's phone number to validate.
- * @param {string} email The contact's email address to validate.
- * @returns {boolean} Returns true if both the phone number and email address are valid, otherwise false.
- */
-function validateContactInfo(phone, email) {
-    const isPhoneValid = /^\d+$/.test(phone);
-    const isEmailValid = /^[^@]+@[^@]+\.(de|com)$/.test(email);
-    return isPhoneValid && isEmailValid;
 }
 
 /**

@@ -193,27 +193,7 @@ function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
-/**
- * Checks the orientation of the device and displays a warning if the device is in landscape mode
- * or if the window width is greater than or equal to 2200 pixels. This function is intended to be used
- * on mobile devices to advise users to rotate their device to portrait mode for optimal viewing.
- * The function will exit early if it detects that it is not being run on a mobile device.
- */
-function checkOrientation() {
-    if (!isMobileDevice()) {
-        return; // Exit if not on a mobile device
-    }
 
-    const warning = document.querySelector('.rotate-warning');    
-    if (window.innerWidth > window.innerHeight || window.innerWidth >= 2200) {
-        warning.style.display = 'flex'; // Ensure this is 'flex' to respect CSS 'justify-content' and 'align-items'.
-        warning.innerText = 'Please rotate your screen';
-    } else {
-        warning.style.display = 'none';
-    }
-}
 
-window.addEventListener('load', checkOrientation);
-window.addEventListener('resize', checkOrientation);
 
 
