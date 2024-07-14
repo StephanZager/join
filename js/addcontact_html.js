@@ -156,7 +156,7 @@ function contactHTML(contact) {
             </div>
         </div>
         <div class="show-contact-details">
-            <span>${contact.name}</span> 
+            <span class="show-contact-name">${contact.name}</span> 
             <span class="show-contact-email">${contact.email}</span>
         </div>                       
     </div>

@@ -270,10 +270,16 @@ h3 {
 
 }
 
-
+.show-contact-name{
+    width: 203px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 .user-info-name {
-    width: 100%;
     
+    width: 300px;   
+     
     margin-right: 20px;
 }
 
@@ -282,7 +288,8 @@ h3 {
     margin-block-end: 0em;
     font-size: 47px;
     font-weight: 500;
-
+    
+    overflow-x: auto; 
     text-align: left;
     margin-right: 10px;
 }
@@ -589,10 +596,8 @@ h3 {
     display: none;
 }
 
-@media (max-width: 1300px){
-    .user-info-name{
-        width: 250px;
-    }
+@media (max-width: 1200px){
+    
 
 }
 
@@ -603,21 +608,7 @@ h3 {
     }
 }
 
-@media (max-width: 1180px) {
-    .contact-info-h2 {
-        font-size: 50px;
-    }
 
-    .user-info-header{
-        gap: 0px;
-        justify-content: space-between;
-    }
-
-    .contact-info-span {
-        font-size: 20px;
-        margin-right: 10px;
-    }
-}
 
 
 @media (max-width: 1140px) {
@@ -727,7 +718,12 @@ h3 {
 
 
 
-@media (max-width: 1040px) {}
+@media (max-width: 1000px) {
+
+    .user-info-name{
+        width: 200px;
+    }
+}
 
 @media (max-width: 960px) {
     .contact-info-span {
