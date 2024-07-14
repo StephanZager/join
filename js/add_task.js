@@ -392,23 +392,14 @@ function deleteSubtask(id) {
  * and a div with edit and delete icons, each icon having an onclick event tied to its respective function with the subtask's index as a parameter.
  * The generated HTML for each subtask is appended to the 'subtaskList' container's innerHTML.
  */
-function renderSubtasks() {
-    let subtaskList = document.getElementById('subtaskList');
-    subtaskList.innerHTML = '';
-    if (Array.isArray(globalSubtasks)) {
-        globalSubtasks.forEach((subtaskToEdit, index) => {
-            let subtaskItem = `
-            <div id="subtaskToEdit${index}" class="subtask-item">
-                <li class="addtask-subtask-li">${subtaskToEdit.title}</li>
-                 <div class="edit-delete-img">
-                    <div class="btn-hover-task" ><img src="assets/img/edit.png" alt="Edit" onclick="editSubtaskAddtask(${index})"></div> <div style="display: flex; align-items: center;">|</div> 
-                    <div class="btn-hover-task" ><img src="assets/img/delete.png" alt="Delete" onclick="deleteSubtask(${index})"></div>
-                </div>
-            </div>`;
-            subtaskList.innerHTML += subtaskItem;
-        });
-    }
+function generateSubtasksProgressHTML(taskItem) {
+    if (!taskItem.subtasks || taskItem.subtasks.length === 0) return '';
+
+    let completedSubtasks = taskItem.subtasks.filter(subtask => subtask.done).length;
+    return buildSubtasksProgressHTML(taskItem, completedSubtasks);
 }
+
+
 /**
  * Scrolls the 'maincontainerAddtask' element to its bottom.
  * This function finds the element by its ID and sets its scrollTop property to the value of its scrollHeight,
