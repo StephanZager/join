@@ -351,6 +351,7 @@ input {
 }
 
 .task-description {
+    text-overflow: ellipsis;
     overflow: hidden;
     height: 100px;
     color: #a8a8a8;
@@ -1075,7 +1076,7 @@ input {
     display: none;
     position: absolute;
     right: 1%;
-    top: 6%;
+    top: 70px;
     gap: 8px;
     flex-direction: column;
     border: 1px solid #d1d1d1;
