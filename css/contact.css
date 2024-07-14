@@ -587,7 +587,11 @@ h3 {
 }
 
 
-
+@media (max-width: 1215px) {
+    .contact-info-span {
+        font-size: 20px;
+    }
+}
 @media (max-width: 1140px) {
     .initial-user {
         max-width: 100px;
