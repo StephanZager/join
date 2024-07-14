@@ -29,7 +29,7 @@ body {
 }
 
 .bg {
-    background-color: rgba(76, 70, 70, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 1000;
     position: fixed;
     left: 0;

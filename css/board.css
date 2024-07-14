@@ -359,6 +359,8 @@ input {
     font-weight: 400;
     word-wrap: break-word;
 }
+
+
  
 .show-initials-taskcard {
     display: flex; /* Verwende Flexbox für das Container-Layout */
