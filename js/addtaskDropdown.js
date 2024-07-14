@@ -1,11 +1,12 @@
-
-
+/**
+ * Generates the assignment contact list and displays assigned users.
+ */
 function generateAssign() {
     let assignContact = document.getElementById('assigned');
     let loggedInUser = localStorage.getItem('loggedInUser'); 
 
     if (!assignContact) {
-        console.error("Element mit ID 'assigned' wurde nicht gefunden.");
+        console.error("Element with ID 'assigned' not found.");
         return;
     }
 
@@ -14,14 +15,15 @@ function generateAssign() {
 
     filterNameAlphabet();
     moveLoggedInUserToTop(assign, loggedInUser); 
-    for (let i = 0; i < assign.length; i++) {
-        let assignContacts = assign[i];
-        let label = createLabel(assignContacts);
+    assign.forEach(contact => {
+        let label = createLabel(contact);
         assignContact.appendChild(label);
-    }
+    });
 }
 
-
+/**
+ * Toggles the visibility of the category dropdown and its arrow rotation.
+ */
 function openDropdownContentCategory() {
     let categoryContent = document.getElementById('categoryContent');
     let dropdownArrowCategory = document.getElementById('dropdownArrowCategory');
@@ -39,19 +41,22 @@ function openDropdownContentCategory() {
     document.querySelectorAll('.dropdown-option input[type="radio"]').forEach(radio => {
         radio.addEventListener('change', function() {
             let selectedText = this.nextElementSibling.innerText; 
-    
             document.getElementById('categoryText').innerText = selectedText;
             document.getElementById('category').style.border = '';
-            document.getElementById('categoryContent').classList.remove('show');
+            categoryContent.classList.remove('show');
             dropdownArrowCategory.classList.remove('rotate');
             document.removeEventListener('click', handleClickOutside);
         });
     });
+
     if (categoryContent.classList.contains('show')) {
         setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
     }
 }
 
+/**
+ * Toggles the visibility of the assignment dropdown and its arrow rotation.
+ */
 function openDropdown() {
     let dropdownContent = document.getElementById('assigned');
     let dropdownArrowAssign = document.getElementById('dropdownArrowAssign');
@@ -64,14 +69,20 @@ function openDropdown() {
             dropdownArrowAssign.classList.remove('rotate');
             document.removeEventListener('click', handleClickOutside); 
         }
-    } if (dropdownContent.classList.contains('show-assign')) {
+    }
+
+    if (dropdownContent.classList.contains('show-assign')) {
         setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
     } else {
         document.removeEventListener('click', handleClickOutside);
     }
 }
 
-
+/**
+ * Creates a label for an assigned contact with a checkbox.
+ * @param {Object} assignContacts - Contact details.
+ * @returns {HTMLElement} - The created label element.
+ */
 function createLabel(assignContacts) {
     let label = document.createElement('label');
     let checkbox = document.createElement('input');
@@ -100,12 +111,16 @@ function createLabel(assignContacts) {
     return label;
 }
 
+/**
+ * Moves the logged-in user to the top of the assignment list.
+ * @param {Array} assign - List of assigned contacts.
+ * @param {string} loggedInUser - Name of the logged-in user.
+ */
 function moveLoggedInUserToTop(assign, loggedInUser) {
     let userIndex = assign.findIndex(contact => contact.name.replace(/\s\(YOU\)$/i, '') === loggedInUser);
     
     if (userIndex !== -1) {
         let user = assign.splice(userIndex, 1)[0];
-        
         if (!user.name.endsWith(" (YOU)")) {
             user.name += " (YOU)";
         }
@@ -113,6 +128,13 @@ function moveLoggedInUserToTop(assign, loggedInUser) {
     }
 }
 
+/**
+ * Creates an element for initials with a background color and class.
+ * @param {string} text - The text for the element.
+ * @param {string} bgColor - Background color for the element.
+ * @param {string} className - Class to apply to the element.
+ * @returns {HTMLElement} - The created element.
+ */
 function createInitialElement(text, bgColor, className) {
     let element = document.createElement('span');
     element.textContent = text;
@@ -123,6 +145,12 @@ function createInitialElement(text, bgColor, className) {
     return element;
 }
 
+/**
+ * Appends initials to the assigned initials element.
+ * @param {HTMLElement} assignedInitial - The container for initials.
+ * @param {Object[]} assignDetails - Details of assigned contacts.
+ * @param {number} maxInitialsToShow - Maximum initials to display.
+ */
 function appendInitials(assignedInitial, assignDetails, maxInitialsToShow) {
     for (let i = 0; i < Math.min(assignDetails.length, maxInitialsToShow); i++) {
         let detail = assignDetails[i];
@@ -131,6 +159,11 @@ function appendInitials(assignedInitial, assignDetails, maxInitialsToShow) {
     }
 }
 
+/**
+ * Appends an additional count indicator for more initials.
+ * @param {HTMLElement} assignedInitial - The container for initials.
+ * @param {number} count - Number of additional initials.
+ */
 function appendAdditionalCount(assignedInitial, count) {
     if (count > 0) {
         let additionalInitials = createInitialElement(`+${count}`, '', 'additional-initials');
@@ -138,6 +171,10 @@ function appendAdditionalCount(assignedInitial, count) {
     }
 }
 
+/**
+ * Displays initials of assigned contacts in the UI.
+ * @param {Object[]} assignDetails - Details of assigned contacts.
+ */
 function showAssignInitials(assignDetails) {
     let assignedInitial = document.getElementById('assignedInitial');
     assignedInitial.innerHTML = '';
