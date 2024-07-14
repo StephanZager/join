@@ -887,12 +887,19 @@ input {
 }
 
 @media (max-width: 1525px) {
+
+    .content {
+        padding: 0 16px;
+        overflow-y: scroll;
+        height: calc(100vh - 100px);
+    }
+    
     .tasksBoard {
         flex-direction: column;
         flex-wrap: nowrap;
         width: 100%;
         max-height: 100%;
-        padding-right: 8px;  
+        padding-right: 8px;
     }
 
     .taskHeadline {
@@ -900,6 +907,12 @@ input {
         max-width: 95%;
         position: sticky;
         left: 0;
+        
+    }
+
+    .showTasksBoard {
+        flex-direction: row;
+        overflow-x: auto;  
     }
 }
 
