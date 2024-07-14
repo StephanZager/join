@@ -33,38 +33,7 @@ function displayGreetingWithName() {
     }
 }
 
-/**
- * Loads categories from Firebase and populates the numberOfBoard array.
- * 
- * @param {string} [path="/userTask"] - The path to the Firebase data.
- * @returns {Promise<void>}
- */
-async function loadCategory(path = "/userTask") {
-    try {
-        let response = await fetch(BASE_URL + path + ".json");
-        let responseToJson = await response.json();
 
-        for (let key in responseToJson) {
-            if (responseToJson.hasOwnProperty(key)) {
-                let task = responseToJson[key];
-
-                if (task.priority === 'Urgent') {
-                    urgentTasks.push({
-                        urgent: task.priority,
-                        date: task.date,
-                    });
-                }
-
-                numberOfBoard.push({
-                    todos: task.category
-                });
-            }
-        }
-    } catch (error) {
-        console.error("Error loading data:", error);
-        return null;
-    }
-}
 
 /**
  * Assigns tasks to various categories.
