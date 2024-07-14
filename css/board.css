@@ -305,6 +305,10 @@ input {
 
 }
 
+.task-info-headline-color{
+    color: #2a3647a9 !important
+}
+
 .taskCard h4 {
     width: 113px;
     height: 28px;
@@ -440,7 +444,7 @@ input {
     
     position: fixed;
     z-index: 1;
-    padding-top: 60px;
+    padding-top: 116px;
     left: 0;
     top: 0;
     width: 100%;
@@ -478,6 +482,8 @@ input {
     word-wrap: break-word;
 }
 
+
+
 #modalDescription {
     word-break: break-word;
     font-size: 20px;
@@ -512,6 +518,7 @@ input {
 }
 
 #modalPriorityText {
+    margin-left: 24px;
     font-family: "inter", sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -539,6 +546,7 @@ input {
 }
 
 .assign-details {
+    margin-left: 4px;
     display: flex;
     gap: 16px;
 }
@@ -574,6 +582,7 @@ input {
 }
 
 .task-editing-btn {
+    margin-top: 10px;
     display: flex;
     justify-content: flex-end;
     
@@ -730,6 +739,8 @@ input {
     border: 1px solid #888;
     width: 100%;
     max-width: 525px;
+    
+    
     border-radius: 30px;;
 }
 
@@ -835,6 +846,12 @@ input {
 
 .modal-task-popup-display-block {
     display: block;
+    
+}
+
+.task-card-info{
+    max-height: 577px;
+    overflow-y: auto;
 }
 
 .modal-task-popup-display-none {
@@ -1035,6 +1052,9 @@ input {
     }
 }
 
+@media (max-height: 912px){
+
+}
 
 
 
