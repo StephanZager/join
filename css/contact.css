@@ -156,7 +156,7 @@ h3 {
 .contact-info-span {
     font-size: 27px;
     font-weight: 400;
-
+    margin-right: 10px;
     text-align: center;
 
 }
@@ -270,8 +270,11 @@ h3 {
 
 }
 
+
 .user-info-name {
-    width: 250px;
+    width: 100%;
+    
+    margin-right: 20px;
 }
 
 .user-name {
@@ -586,12 +589,37 @@ h3 {
     display: none;
 }
 
+@media (max-width: 1300px){
+    .user-info-name{
+        width: 250px;
+    }
+
+}
+
 
 @media (max-width: 1215px) {
     .contact-info-span {
         font-size: 20px;
     }
 }
+
+@media (max-width: 1180px) {
+    .contact-info-h2 {
+        font-size: 50px;
+    }
+
+    .user-info-header{
+        gap: 0px;
+        justify-content: space-between;
+    }
+
+    .contact-info-span {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+}
+
+
 @media (max-width: 1140px) {
     .initial-user {
         max-width: 100px;
@@ -611,6 +639,7 @@ h3 {
 
     .user-info-header {
         gap: 40px;
+        justify-content: normal;
     }
 
     #contact {
@@ -644,7 +673,7 @@ h3 {
     }
 
     .show-contact-email {
-        width: 85%;
+        width: 75%;
         color: #007cee;
         font-size: 16px;
         overflow: hidden; /* Verhindert, dass der Inhalt über den Rand hinausgeht */
@@ -656,16 +685,7 @@ h3 {
 
 }
 
-@media (max-width: 1180px) {
-    .contact-info-h2 {
-        font-size: 50px;
-    }
 
-    .contact-info-span {
-        font-size: 20px;
-        margin-right: 10px;
-    }
-}
 
 @media (max-width: 1090px) {
 
