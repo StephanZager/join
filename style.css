@@ -208,6 +208,28 @@ a {
 .log-out-hover:hover {
     cursor: pointer;
 }
+
+.header-section-policy {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 328px;
+    padding: 0 100px;
+    /*max-width: 1016px;*/
+}
+
+
+.header-section-policy button:hover {
+    cursor: pointer;
+}
+
+.header-section-policy button {
+    width: 37px;
+    height: 37px;
+    border-style: none;
+    background-color: transparent;
+}
+
 @media screen and (min-width: 500px) and (orientation: landscape)  {
     .rotate-warning {
     display: none;
@@ -227,7 +249,17 @@ a {
 }
 
 @media (max-width: 900px) {
+    .header-section-policy {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 0;
+        padding: 0 100px;
+        /*max-width: 1016px;*/
+    }
     
+    
+
 
     .dropdown-profil{
         right: 10px !important;
@@ -425,26 +457,7 @@ PRIVACY POLICY CSS:
     padding: 0 100px;
 }
 
-.header-section-policy {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 328px;
-    padding: 0 100px;
-    /*max-width: 1016px;*/
-}
 
-
-.header-section-policy button:hover {
-    cursor: pointer;
-}
-
-.header-section-policy button {
-    width: 37px;
-    height: 37px;
-    border-style: none;
-    background-color: transparent;
-}
 
 /**
 HELP DESK CSS
