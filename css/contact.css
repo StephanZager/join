@@ -592,6 +592,8 @@ h3 {
         font-size: 20px;
     }
 }
+
+
 @media (max-width: 1140px) {
     .initial-user {
         max-width: 100px;
