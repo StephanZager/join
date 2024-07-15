@@ -453,10 +453,11 @@ input {
 /* The Modal (background) */
 .modal {
     display: none;
-    
+    align-items: center;
+    justify-content: center;
     position: fixed;
     z-index: 1;
-    padding-top: 116px;
+    
     left: 0;
     top: 0;
     width: 100%;
@@ -488,6 +489,7 @@ input {
 }
 
 #modalUserTitle {
+    margin-bottom: 10px;
     font-size: 61px;
     font-weight: 700;
     margin: 0;
@@ -617,6 +619,7 @@ input {
 }
 
 #deleteTaskBtn button {
+    font-size: 16px;
     border: none;
     background-color: transparent;
     display: flex;
@@ -648,11 +651,12 @@ input {
 }
 
 #editTaskBtn button {
+    font-size: 16px;
     border: none;
     background-color: transparent;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     gap: 8px;
 }
 
@@ -744,14 +748,12 @@ input {
 }
 
 .modal-task-popup {
-    background-color: #fefefe;
-    margin: 5% auto;
-    margin-top: -20px;
+    background-color: #fefefe;    
     padding: 20px;
     border: 1px solid #888;
     width: 100%;
-    max-width: 525px;
-    
+    max-width: 540px;
+    box-sizing: border-box;
     
     border-radius: 30px;;
 }
@@ -1051,8 +1053,9 @@ input {
     }
 
     .modal-task-popup {
-        width: unset;
+        /*width: unset;
         max-width: unset;
+        */
     }
     
     .modal-task-popup h4 {
@@ -1064,8 +1067,51 @@ input {
     }
 }
 
-@media (max-height: 912px){
 
+
+
+@media (max-height: 763px){
+    .modal-addtask-popup{
+        height: 600px;
+    }
+
+    .task-card-info{
+        max-height: 500px;
+    }
+ 
+
+}
+
+@media (max-height: 763px){
+    .modal-addtask-popup{
+        height: 450px;
+    }
+
+    .task-card-info{
+        max-height: 350px;
+    }
+ 
+
+}
+
+@media (max-height: 750px){
+    .modal-task-popup{
+        height: 650px;
+    }
+
+    .edit-task-menü{
+        max-height: 500px;
+    }
+}
+
+@media (max-height: 690px){
+.modal-task-popup{
+    height: 600px;
+}
+
+.edit-task-menü{
+    max-height: 450px;
+}
 }
 
 

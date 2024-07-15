@@ -73,7 +73,7 @@ function closeTaskPopup() {
  */
 function displayModal() {
     const modal = document.getElementById("taskModal");
-    modal.style.display = "block";
+    modal.style.display = "flex";
     document.getElementById('modalTaskcard').classList.remove('modal-task-popup-display-none');
     setTimeout(() => {
         slideInPopupTask('taskCardPoupAnimation');
