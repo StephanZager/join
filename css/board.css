@@ -351,9 +351,12 @@ input {
 }
 
 .task-description {
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 100px;
+    text-overflow: ellipsis;
+    height: 100px; /* Adjust height as needed */
     color: #a8a8a8;
     font-size: 16px;
     font-weight: 400;

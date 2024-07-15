@@ -75,7 +75,7 @@ function buildTaskHTML(taskItem, initialsHtml, priorityIcon, subtasksHtml) {
             <img class="task-popup-arrow" src="assets/img/arrow-up-down.png" onclick="openMoveMobileMenu('${taskItem.firebaseId}')">
         </div>    
             <p class="task-title">${taskItem.title}</p>
-            <p class="task-description">${taskItem.description}</p>
+            <p id="taskDesctription" class="task-description">${taskItem.description}</p>
             ${subtasksHtml}
             <div class="show-initials-taskcard">
                 <div class="initials-container">${initialsHtml}</div>
