@@ -295,6 +295,8 @@ async function updateTask(firebaseId, updatedUserTask) {
         }
         
         closeEditTaskPopup();
+        
+        
     } catch (error) {
         console.error('Fehler beim Aktualisieren der Aufgabe:', error);
         alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
@@ -329,3 +331,6 @@ function openEditDropdownContentCategory() {
         setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
     }
 }
+
+
+
