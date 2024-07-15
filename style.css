@@ -17,6 +17,7 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 10px;
 }
 
 .blue-arrow-aktive:active {
@@ -215,7 +216,7 @@ a {
     justify-content: space-between;
     margin-left: 328px;
     padding: 0 100px;
-    /*max-width: 1016px;*/
+    max-width: 1016px;
 }
 
 
@@ -248,16 +249,44 @@ a {
     }
 }
 
+@media (max-width: 1400px){
+    .header-section-policy{
+        margin-left: 220px !important;
+    }
+
+    .main-container-policy {
+        margin-left: 220px !important;
+    }
+
+    .help-desk-main {
+        margin-left: 220px !important;
+    }
+
+
+}
+
+
+
 @media (max-width: 900px) {
     .header-section-policy {
         align-items: center;
         display: flex;
         justify-content: space-between;
-        margin-left: 0;
-        padding: 0 100px;
+        margin-left: 0px !important;
+        padding: 0 50px !important;
         /*max-width: 1016px;*/
+        
+    }
+
+    .main-container-policy{
+        height: calc(100vh - 278px) !important;
+        max-height: none !important;
     }
     
+    .help-desk-main{
+        height: calc(100vh - 180px) !important;
+        max-height: none !important;
+    }
     
 
 
@@ -336,7 +365,7 @@ a {
 
     .main-container-policy {
         margin-left: 0 !important;
-        margin-top: 25px !important;
+        margin-top: 0px !important;
         padding: 0px 50px !important;
     }
 
@@ -399,6 +428,20 @@ a {
 
 }
 
+@media (max-width: 400px){
+    .header-section-policy{
+        padding: 0 20px !important;
+    }
+
+    .main-container-policy {
+        padding: 0 20px !important;
+    }
+
+    .help-desk-main {
+        padding: 0 20px !important;
+    }
+}
+
 @media (max-width: 380px) {
     .navbar {
         display: flex;
@@ -447,7 +490,7 @@ PRIVACY POLICY CSS:
 **/
 
 .main-container-policy {
-    /*max-width: 1016px;*/
+    max-width: 1016px;
     /*margin-top: 110px;*/
     margin-left: 328px;
     overflow: auto;
