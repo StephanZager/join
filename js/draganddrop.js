@@ -170,11 +170,11 @@ async function moveToCategory(category) {
  * This behavior is triggered both when the window loads and when it is resized.
  */
 function checkForMobile() {
-    const buttons = document.querySelectorAll('.task-popup-arrow');
+    const imgButton = document.querySelectorAll('.task-popup-arrow');
     if (isMobileDevice()) {
-        buttons.forEach(button => button.style.display = 'flex');
+        imgButton.forEach(button => button.style.setProperty('display', 'flex', 'important'));
     } else {
-        buttons.forEach(button => button.style.display = 'none');
+        imgButton.forEach(button => button.style.display = 'none');
     }
 }
 
