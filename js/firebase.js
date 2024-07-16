@@ -290,3 +290,29 @@ async function loadCategory(path = "/userTask") {
 }
 
 
+async function updateTask(firebaseId, updatedUserTask) {
+    try {
+        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUserTask),
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        // Stellen Sie sicher, dass die API das aktualisierte Task-Objekt zurückgibt
+        let updatedTask = await response.json(); // Konvertiert die Antwort in ein JSON-Objekt
+        
+        closeEditTaskPopup();
+        
+        // Übergeben Sie das aktualisierte Task-Objekt an setModalContent
+        setModalContent(updatedTask);
+    } catch (error) {
+        console.error('Fehler beim Aktualisieren der Aufgabe:', error);
+        alert(`Fehler beim Aktualisieren der Aufgabe: ${error.message}`);
+    }
+}
