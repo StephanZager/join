@@ -311,6 +311,9 @@ function openEditDropdownContentCategory() {
     }
 }
 
+
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('editSubtasks').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
