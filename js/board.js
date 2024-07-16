@@ -366,7 +366,6 @@ function closeTaskCard() {
     document.getElementById('taskModal').style.display = 'none';
     loadTask();
     checkForMobile();
-    console.log(isMobileDevice());
 }
 
 /**

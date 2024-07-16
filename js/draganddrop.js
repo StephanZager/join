@@ -172,7 +172,7 @@ async function moveToCategory(category) {
 function checkForMobile() {
     const imgButton = document.querySelectorAll('.task-popup-arrow');
     if (isMobileDevice()) {
-        imgButton.forEach(button => button.style.setProperty('display', 'flex', 'important'));
+        imgButton.forEach(button => button.style.display = 'flex');
     } else {
         imgButton.forEach(button => button.style.display = 'none');
     }
