@@ -362,9 +362,9 @@ function resetTaskCardVisibility() {
 /**
  * Closes the task card modal by setting its display style to 'none'.
  */
-function closeTaskCard() {
+async function closeTaskCard() {
     document.getElementById('taskModal').style.display = 'none';
-    loadTask();
+    await loadTask();
     checkForMobile();
 }
 
