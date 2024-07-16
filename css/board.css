@@ -1076,7 +1076,7 @@ input {
     }
 
     .task-card-info{
-        max-height: 500px;
+        height: 500px;
     }
  
 
@@ -1088,7 +1088,7 @@ input {
     }
 
     .task-card-info{
-        max-height: 350px;
+        height: 350px;
     }
  
 
@@ -1100,7 +1100,7 @@ input {
     }
 
     .edit-task-menü{
-        max-height: 500px;
+        height: 500px;
     }
 }
 
@@ -1110,7 +1110,7 @@ input {
 }
 
 .edit-task-menü{
-    max-height: 450px;
+    height: 450px;
 }
 }
 
