@@ -633,6 +633,22 @@
     border-radius: 50%; /* Macht das Element rund */
 }
 
+/* Versteckt das zweite Bild standardmäßig */
+.hover-x-blue-hover-addtask {
+    display: none;
+}
+
+/* Beim Hovern über den Button wird das erste Bild versteckt und das zweite angezeigt */
+.clear-button:hover .hover-x-blue-addtask {
+    display: none;
+}
+
+.clear-button:hover .hover-x-blue-hover-addtask {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* oder 'inline' je nach Bedarf */
+}
+
 @keyframes slideInFromBottom {
     from {
         transform: translateY(100%);

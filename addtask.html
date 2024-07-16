@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/addtasks.css">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-    
+
     <script src="script.js"></script>
     <script src="js/firebase.js"></script>
     <script src="js/addtask.js"></script>
@@ -21,112 +21,133 @@
 
 <body onload="includeHTML(), loadAssign(), setMinDate()" class="body-class-addtask">
     <div w3-include-html="assets/templates/mobile_header_template.html"></div>
-    <div class="rotate-warning">             
+    <div class="rotate-warning">
     </div>
     <h1 class="task-headline">Add Task</h1>
     <form action="" onsubmit="submitTask(event)" class="addTask-form" id="test2">
-        <main class="maincontainer-desktop" id="maincontainerAddtask" style="flex-direction: column;"> <!--add flex-direction: column;-->
+        <main class="maincontainer-desktop" id="maincontainerAddtask" style="flex-direction: column;">
+            <!--add flex-direction: column;-->
             <div class="addTask-interaction-container"> <!--add flex-->
                 <div class="left-field-section">
-                <div class="addtaks-desktop">
-                    <span>Title<span style="color: red;">*</span></span>
-                    <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text">
-                    <span id="title-error" class="required-info">This field is required</span>
-                </div>
-
-                <div class="addtaks-desktop">
-                    <span>Description</span>
-                    <textarea id="description"  class="addTask-textarea" placeholder="Enter a Description"
-                        type="text"></textarea>
-                </div>
-
-                <div class="addtaks-desktop dropdown">
-                    <button type="button" class="dropdown-button" onclick="openDropdown()">Assign <img
-                            src="assets/img/arrow_drop_down.png" class="dropdown-arrow" id="dropdownArrowAssign"></button>
-                    <div class="dropdown-content" id="assigned">
-                        <!-- Die Optionen mit Checkboxen werden hier generiert -->
+                    <div class="addtaks-desktop">
+                        <span>Title<span style="color: red;">*</span></span>
+                        <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text">
+                        <span id="title-error" class="required-info">This field is required</span>
                     </div>
-                </div>
+
+                    <div class="addtaks-desktop">
+                        <span>Description</span>
+                        <textarea id="description" class="addTask-textarea" placeholder="Enter a Description"
+                            type="text"></textarea>
+                    </div>
+
+                    <div class="addtaks-desktop dropdown">
+                        <button type="button" class="dropdown-button" onclick="openDropdown()">Assign <img
+                                src="assets/img/arrow_drop_down.png" class="dropdown-arrow"
+                                id="dropdownArrowAssign"></button>
+                        <div class="dropdown-content" id="assigned">
+                            <!-- Die Optionen mit Checkboxen werden hier generiert -->
+                        </div>
+                    </div>
                     <div id="assignedInitial"></div>
                 </div>
 
                 <div class="parting-line"></div>
 
                 <div class="right-field-section">
-                <div class="addtaks-desktop">
-                    <span>Due Date <span style="color: red;">*</span></span>
-                    <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
-                    <span id="dueDate-error" class="required-info">This field is required</span>
-                </div>
-
-                <div class="prio-section addtaks-desktop">
-                    <span class="subheadline"><b>Prio</b></span>
-                    <div class="prio-buttons">
-                        <button class="urgent-button" type="button" onclick="setPriority('Urgent')"
-                            data-original-image="assets/img/prio-urgent-icon-unclicked.png"
-                            data-clicked-image="assets/img/prio-urgent-icon-clicked.png">
-                            Urgent
-                            <img class="prio-icons" src="assets/img/prio-urgent-icon-unclicked.png">
-                        </button>
-                        <button class="medium-button" type="button" onclick="setPriority('Medium')"
-                            data-original-image="assets/img/prio-medium-icon-unclicked.png"
-                            data-clicked-image="assets/img/prio-medium-icon-clicked.png">
-                            Medium
-                            <img class="prio-icons" src="assets/img/prio-medium-icon-unclicked.png">
-                        </button>
-                        <button class="low-button" type="button" onclick="setPriority('Low')"
-                            data-original-image="assets/img/prio-low-icon-unclicked.png"
-                            data-clicked-image="assets/img/prio-low-icon-clicked.png">
-                            Low
-                            <img class="prio-icons" src="assets/img/prio-low-icon-unclicked.png">
-                        </button>
+                    <div class="addtaks-desktop">
+                        <span>Due Date <span style="color: red;">*</span></span>
+                        <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
+                        <span id="dueDate-error" class="required-info">This field is required</span>
                     </div>
-                </div>
 
-                <div class="addtaks-desktop dropdown">
-                    <span>Category<span style="color: red;">*</span></span>
-                    <button type="button" class="dropdown-button-category" id="category" onclick="openDropdownContentCategory()"><span class="category-dropdown-txt" id="categoryText">Categroy</span> <img src="assets/img/arrow_drop_down.png" class="dropdown-arrow-category" id="dropdownArrowCategory"></button>
-                    <div class="dropdown-content-category" id="categoryContent" >
-                        <label class="dropdown-option">
-                            <input type="radio" name="category" value="Technical Task" class="hidden-radio" id="option1">
-                            <span class="option-name">Technical Task</span>
-                        </label>
-                        <label class="dropdown-option">
-                            <input type="radio" name="category" value="User Story" class="hidden-radio" id="option2">
-                            <span class="option-name">User Story</span>
-                        </label>
+                    <div class="prio-section addtaks-desktop">
+                        <span class="subheadline"><b>Prio</b></span>
+                        <div class="prio-buttons">
+                            <button class="urgent-button" type="button" onclick="setPriority('Urgent')"
+                                data-original-image="assets/img/prio-urgent-icon-unclicked.png"
+                                data-clicked-image="assets/img/prio-urgent-icon-clicked.png">
+                                Urgent
+                                <img class="prio-icons" src="assets/img/prio-urgent-icon-unclicked.png">
+                            </button>
+                            <button class="medium-button" type="button" onclick="setPriority('Medium')"
+                                data-original-image="assets/img/prio-medium-icon-unclicked.png"
+                                data-clicked-image="assets/img/prio-medium-icon-clicked.png">
+                                Medium
+                                <img class="prio-icons" src="assets/img/prio-medium-icon-unclicked.png">
+                            </button>
+                            <button class="low-button" type="button" onclick="setPriority('Low')"
+                                data-original-image="assets/img/prio-low-icon-unclicked.png"
+                                data-clicked-image="assets/img/prio-low-icon-clicked.png">
+                                Low
+                                <img class="prio-icons" src="assets/img/prio-low-icon-unclicked.png">
+                            </button>
+                        </div>
                     </div>
-                </div>                 
-                
-                    
+
+                    <div class="addtaks-desktop dropdown">
+                        <span>Category<span style="color: red;">*</span></span>
+                        <button type="button" class="dropdown-button-category" id="category"
+                            onclick="openDropdownContentCategory()"><span class="category-dropdown-txt"
+                                id="categoryText">Categroy</span> <img src="assets/img/arrow_drop_down.png"
+                                class="dropdown-arrow-category" id="dropdownArrowCategory"></button>
+                        <div class="dropdown-content-category" id="categoryContent">
+                            <label class="dropdown-option">
+                                <input type="radio" name="category" value="Technical Task" class="hidden-radio"
+                                    id="option1">
+                                <span class="option-name">Technical Task</span>
+                            </label>
+                            <label class="dropdown-option">
+                                <input type="radio" name="category" value="User Story" class="hidden-radio"
+                                    id="option2">
+                                <span class="option-name">User Story</span>
+                            </label>
+                        </div>
+                    </div>
+
+
                     <span id="category-error" class="required-info">This field is required</span>
 
                     <div class="addtaks-desktop">
                         <span>Subtasks</span>
                         <div class="input-with-button">
-                            <input onclick="inputSetFocus()" id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
-                            <img id="placeholderImgSubtask" class="input-button-img" src="assets/img/add.png" alt="" >
+                            <input onclick="inputSetFocus()" id="subtasks" class="title-select-or-input"
+                                placeholder="Add new Subtasks">
+                            <img id="placeholderImgSubtask" class="input-button-img" src="assets/img/add.png" alt="">
                             <div id="confirmAndDeleteBtnSubtask" class="clear-confirm-subtask">
-                                <button type="button" class="clear-confirm-btn" onclick="clearSubtask()"><img class="subtask-clear-confirm-img" src="assets/img/cancel-addcontact.png"></button>
+                                <button type="button" class="clear-confirm-btn" onclick="clearSubtask()"><img
+                                        class="subtask-clear-confirm-img"
+                                        src="assets/img/cancel-addcontact.png"></button>
                                 <img class="subtask-parting-line" src="assets/img/parting-line-small.png">
-                                <button type="button" class="clear-confirm-btn" onclick="addSubtaskToList()"><img class="subtask-clear-confirm-img" src="assets/img/check-dark.png"></button>
+                                <button type="button" class="clear-confirm-btn" onclick="addSubtaskToList()"><img
+                                        class="subtask-clear-confirm-img" src="assets/img/check-dark.png"></button>
                             </div>
                         </div>
                         <ul id="subtaskList"></ul>
                     </div>
                 </div>
-               
+
             </div>
             <div class="last-section">
                 <span class="required-bottom-info"><span style="color: red; margin-bottom: 0px;">*</span>This field is
                     required</span>
                 <div class="button-last-section">
-                    <button type="reset" class="clear-button" onclick="clearSubtasks()">Clear <img class="hover-x-blue" src="assets/img/close-addcontact.png"></button>
+                    <button type="reset" class="clear-button" onclick="clearSubtasks()">
+                        <div class="hover-x-blue-addtask">Clear
+                            <img src="assets/img/close-addcontact.png">
+                        </div>
+
+                        <div class="hover-x-blue-hover-addtask">Clear
+                            <img src="assets/img/cancel-hover-addcontact.png">
+                        </div>
+
+                        
+                    </button>
                     <button type="submit" class="create-task-button">Create Task <img
                             src="./assets/img/check-button-add-task.png" alt=""></button>
                 </div>
             </div>
-            
+
         </main>
     </form>
     <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
