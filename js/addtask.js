@@ -68,6 +68,17 @@ function setPriority(priority) {
 }
 
 /**
+ * Sorts the assigned contacts alphabetically by name.
+ */
+function sortAssignAlphabetically() {
+    assign.sort((a, b) => {
+        let nameA = a.name.toUpperCase(); 
+        let nameB = b.name.toUpperCase();
+        return nameA.localeCompare(nameB);
+    });
+}
+
+/**
  * Retrieves details of assigned contacts from checked checkboxes.
  * @returns {Object[]} - Array of assigned contact details.
  */
@@ -135,6 +146,9 @@ function createUserTask(title, description, date, userCategory, assignDetails, s
     };
 }
 
+/**
+ * Sets up the initial state and event listeners when the DOM content is loaded.
+ */
 document.addEventListener('DOMContentLoaded', function() {
     setPriority('Medium');
     let titleInput = document.getElementById('title');
@@ -170,6 +184,9 @@ function addSubtaskToList() {
     }
 }
 
+/**
+ * Sets up event listeners when the DOM content is loaded.
+ */
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('subtasks').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {

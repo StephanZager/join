@@ -859,8 +859,10 @@ input {
 }
 
 .modal-task-popup-display-block {
-    display: block;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .task-card-info{
@@ -901,9 +903,7 @@ input {
 
 .task-popup-arrow {
     display: none;
-}
-
-
+}   
 
 .highlight {
     border: 2px dashed #666; /* Beispiel für ein Highlight-Styling */

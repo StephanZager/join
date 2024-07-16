@@ -82,7 +82,11 @@ function displayModal() {
 
 document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (event) {
-        // Verwenden von closest, um zu überprüfen, ob das geklickte Element oder eines seiner übergeordneten Elemente die Klasse 'taskCard' hat
+        const isPopupArrow = event.target.closest(".task-popup-arrow");
+        if (isPopupArrow) {
+            return; 
+        }
+
         const taskCard = event.target.closest(".taskCard");
         if (taskCard) {
             const firebaseId = taskCard.getAttribute("data-firebase-id");

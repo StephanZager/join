@@ -362,8 +362,10 @@ function resetTaskCardVisibility() {
 /**
  * Closes the task card modal by setting its display style to 'none'.
  */
-function closeTaskCard() {
+async function closeTaskCard() {
     document.getElementById('taskModal').style.display = 'none';
+    await loadTask();
+    checkForMobile();
 }
 
 /**
@@ -390,4 +392,3 @@ function endSlideInPopupTask(popupId) {
     let popup = document.getElementById(popupId);    
     popup.classList.remove('slide-in'); 
 }
-

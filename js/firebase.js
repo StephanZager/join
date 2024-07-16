@@ -217,23 +217,18 @@ function generateAssign() {
     }
 }
 
-/**
- * Sorts the assigned contacts alphabetically by name.
- */
-function sortAssignAlphabetically() {
-    assign.sort((a, b) => {
-        let nameA = a.name.toUpperCase(); 
-        let nameB = b.name.toUpperCase();
-        return nameA.localeCompare(nameB);
-    });
-}
 
+/**
+ * Submits a task form, posting the data to the server.
+ * @param {Event} event - The form submit event.
+ */
 async function submitTask(event) {
     event.preventDefault();
 
     if (!requiredFields()) {
         return;
     }
+
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let date = document.getElementById('dueDate').value;
@@ -241,18 +236,18 @@ async function submitTask(event) {
     let assignDetails = getAssignedDetails();
     let subtasks = getSubtasks();
     let userTask = createUserTask(title, description, date, userCategory, assignDetails, subtasks, selectedPriority);
+
     try {
         await postData("/userTask", userTask);
-       
+
         const confirmMsg = document.getElementById('confirmMsg');
         confirmMsg.style.display = 'block';
         
         setTimeout(() => {
             window.location.href = "board.html";
         }, 1000);
-        
     } catch (error) {
-        console.error("Fehler beim Posten der Daten:", error);
+        console.error("Error posting data:", error);
     }
 }
 
@@ -289,4 +284,31 @@ async function loadCategory(path = "/userTask") {
     }
 }
 
+/**
+ * Updates a task in the database.
+ * @param {string} firebaseId - The Firebase ID of the task.
+ * @param {Object} updatedUserTask - The updated task data.
+ */
+async function updateTask(firebaseId, updatedUserTask) {
+    try {
+        let response = await fetch(BASE_URL + `/userTask/${firebaseId}.json`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUserTask),
+        });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let updatedTask = await response.json();
+        
+        closeEditTaskPopup();
+        setModalContent(updatedTask);
+    } catch (error) {
+        console.error('Error updating task:', error);
+        alert(`Error updating task: ${error.message}`);
+    }
+}
