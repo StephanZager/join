@@ -180,4 +180,3 @@ function checkForMobile() {
 
 window.addEventListener('load', checkForMobile);
 window.addEventListener('resize', checkForMobile);
-

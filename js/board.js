@@ -392,4 +392,3 @@ function endSlideInPopupTask(popupId) {
     let popup = document.getElementById(popupId);    
     popup.classList.remove('slide-in'); 
 }
-
