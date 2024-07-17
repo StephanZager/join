@@ -519,6 +519,7 @@
     flex-direction: row;
     /* Ändere die Ausrichtung auf "row", um ein nebeneinander liegendes Layout zu erzwingen */
     margin-top: 8px;
+    border-radius: 10px;
 }
 
 .dropdown-edit-content label {

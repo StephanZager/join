@@ -94,13 +94,12 @@ function createLabel(assignContacts) {
     checkbox.addEventListener('change', () => {
         getAssignedDetails();
         if (checkbox.checked) {
-            // Setzen Sie die Hintergrundfarbe des Labels, wenn die Checkbox angekreuzt ist
             label.style.backgroundColor = '#2a3647';
             label.style.borderRadius = '10px';
             nameSpan.style.color = 'white';
         } else {
-            // Setzen Sie die Hintergrundfarbe des Labels auf Weiß zurück, wenn die Checkbox nicht angekreuzt ist
             label.style.backgroundColor = 'white';
+            nameSpan.style.color = 'black';
         }
     });
 
