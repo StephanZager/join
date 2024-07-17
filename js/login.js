@@ -26,48 +26,83 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
 /**
- * Toggles the visibility of the password input field.
- * @param {HTMLInputElement} passwordInputField - The password input field element.
+ * Initializes password toggle functionality for an input field.
+ * @param {HTMLInputElement} passwordInputField - The password input field to enhance.
  */
 function setupPasswordToggle(passwordInputField) {
   let isPasswordVisible = false;
   let clickCount = 0;
 
-  passwordInputField.addEventListener("mousedown", function (event) {
+  /**
+   * Toggles the password visibility and updates the input type.
+   */
+  function togglePasswordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
+    passwordInputField.type = isPasswordVisible ? "text" : "password";
+    updateBackgroundImage();
+  }
+
+  /**
+   * Resets the click count to zero.
+   */
+  function resetClickCount() {
+    clickCount = 0;
+  }
+
+  /**
+   * Updates the background image of the password input field.
+   */
+  function updateBackgroundImage() {
+    const image = isPasswordVisible ? "visibility_on.png" : "visibility_off_password.png";
+    passwordInputField.style.backgroundImage = `url('../assets/img/${image}')`;
+  }
+
+  /**
+   * Handles mouse down events to toggle visibility or update image.
+   * @param {MouseEvent} event - The mouse down event.
+   */
+  function handleMouseDown(event) {
     event.preventDefault();
     clickCount += 1;
     const cursorPosition = passwordInputField.selectionStart;
 
     if (clickCount === 1) {
-      passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+      updateBackgroundImage();
     } else if (clickCount === 2) {
-      isPasswordVisible = true;
-      passwordInputField.type = "text";
-      passwordInputField.style.backgroundImage = "url('../assets/img/visibility_on.png')";
+      togglePasswordVisibility();
     } else if (clickCount === 3) {
-      isPasswordVisible = false;
-      passwordInputField.type = "password";
-      passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
-      clickCount = 0;
+      togglePasswordVisibility();
+      resetClickCount();
     }
 
     passwordInputField.setSelectionRange(cursorPosition, cursorPosition);
     passwordInputField.focus();
-  });
+  }
 
-  passwordInputField.addEventListener("focus", function () {
+  /**
+   * Handles focus events to update the background image if needed.
+   */
+  function handleFocus() {
     if (!isPasswordVisible) {
-      passwordInputField.style.backgroundImage = "url('../assets/img/visibility_off_password.png')";
+      updateBackgroundImage();
     }
-  });
+  }
 
-  passwordInputField.addEventListener("blur", function () {
+  /**
+   * Handles blur events to reset background image and click count.
+   */
+  function handleBlur() {
     if (!isPasswordVisible) {
       passwordInputField.style.backgroundImage = "url('../assets/img/lock-password-input.png')";
-      clickCount = 0;
+      resetClickCount();
     }
-  });
+  }
+
+  passwordInputField.addEventListener("mousedown", handleMouseDown);
+  passwordInputField.addEventListener("focus", handleFocus);
+  passwordInputField.addEventListener("blur", handleBlur);
 }
 
 /**
