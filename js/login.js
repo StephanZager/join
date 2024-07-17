@@ -123,6 +123,7 @@ async function login() {
   }
 }
 
+
 async function guestLogin() {
   const guestEmail = "guest@example.de"; 
   const guestPassword = "Test12.."; 
@@ -161,6 +162,7 @@ async function guestLogin() {
 
 
 
+
 function logout() {
   localStorage.removeItem('loggedInUser', 'userName');
   localStorage.removeItem('userName');
@@ -168,6 +170,7 @@ function logout() {
   localStorage.removeItem('guestLogin');
   window.location.href = "index.html";
 }
+
 
 function showLoginInitial() {
   let userFirstLetters = localStorage.getItem('userFirstLetters');

@@ -65,84 +65,7 @@ async function submitData(event) {
     }
 }
 
-/**
- * Toggles the visibility of the password field.
- * @param {string} fieldId - The ID of the password field to toggle.
- */
-function togglePasswordVisibility(fieldId) {
-    let passwordField = document.getElementById(fieldId);
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        passwordField.classList.add("visible");
-    } else {
-        passwordField.type = "password";
-        passwordField.classList.remove("visible");
-    }
-}
 
-/**
- * Validates the password against specific criteria.
- * @param {string} password - The password to validate.
- * @returns {boolean} True if the password is valid, false otherwise.
- */
-function isValidPassword(password) {
-    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:])[A-Za-z\d@$!%*?&.,:]{8,}$/;
-    return regex.test(password);
-}
-
-
-
-
-function filterFirstLetters(name) {
-    let words = name.split(' ');
-    let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
-
-    return firstLetters;
-}
-
-
-function toAssignColorNameLogo() {
-    let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
-
-    return backgroundcolor;
-}
-
-
-/**
- * Sends data to the specified path in the Firebase database.
- * @param {string} path - The path in the Firebase database to send the data.
- * @param {Object} data - The data to send.
- * @returns {Promise<Object>} The response from the Firebase database.
- * @throws Will throw an error if the request fails.
- */
-async function postData(path, data) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-
-    if (!response.ok) {
-        console.error("Error posting data:", response.statusText);
-        return;
-    }
-
-    let responseToJson = await response.json();
-    return responseToJson;
-}
-
-/**
- * Displays the success popup and adds a click listener for immediate redirection.
- */
-function showSuccessPopup() {
-    let popup = document.getElementById('successPopup');
-    popup.style.display = 'block';
-    popup.addEventListener('click', () => {
-        window.location.href = "index.html";
-    });
-}
 
 /**
  * Sets up the password field toggle functionality to show/hide the password.
@@ -192,3 +115,55 @@ function setupPasswordFieldToggle(inputFieldId) {
 
 setupPasswordFieldToggle("password");
 setupPasswordFieldToggle("confirmPassword");
+
+
+/**
+ * Toggles the visibility of the password field.
+ * @param {string} fieldId - The ID of the password field to toggle.
+ */
+function togglePasswordVisibility(fieldId) {
+    let passwordField = document.getElementById(fieldId);
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        passwordField.classList.add("visible");
+    } else {
+        passwordField.type = "password";
+        passwordField.classList.remove("visible");
+    }
+}
+
+/**
+ * Validates the password against specific criteria.
+ * @param {string} password - The password to validate.
+ * @returns {boolean} True if the password is valid, false otherwise.
+ */
+function isValidPassword(password) {
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:])[A-Za-z\d@$!%*?&.,:]{8,}$/;
+    return regex.test(password);
+}
+
+
+function filterFirstLetters(name) {
+    let words = name.split(' ');
+    let firstLetters = words.map(word => word.charAt(0).toUpperCase()).join('');
+
+    return firstLetters;
+}
+
+
+function toAssignColorNameLogo() {
+    let backgroundcolor = userNameColor[Math.floor(Math.random() * userNameColor.length)];
+
+    return backgroundcolor;
+}
+
+/**
+ * Displays the success popup and adds a click listener for immediate redirection.
+ */
+function showSuccessPopup() {
+    let popup = document.getElementById('successPopup');
+    popup.style.display = 'block';
+    popup.addEventListener('click', () => {
+        window.location.href = "index.html";
+    });
+}

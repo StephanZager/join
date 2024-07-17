@@ -70,22 +70,28 @@ async function updateTaskInFirebase(firebaseId, newData) {
 }
 
 /**
- * Posts data to the specified path.
- * @param {string} path - Path to post data to.
- * @param {Object} data - Data to post.
- * @returns {Object} - Response JSON.
+ * Sends data to the specified path in the Firebase database.
+ * @param {string} path - The path in the Firebase database to send the data.
+ * @param {Object} data - The data to send.
+ * @returns {Promise<Object>} The response from the Firebase database.
+ * @throws Will throw an error if the request fails.
  */
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify(data)
     });
+
     if (!response.ok) {
         console.error("Error posting data:", response.statusText);
         return;
     }
-    return await response.json();
+
+    let responseToJson = await response.json();
+    return responseToJson;
 }
 
 /**
