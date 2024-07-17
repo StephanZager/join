@@ -10,10 +10,8 @@ async function submitData(event) {
     let email = document.getElementById('userEmail').value;
     let password = document.getElementById('password').value;
     let confirmPassword = document.getElementById('confirmPassword').value;
-   
-    document.getElementById('errorMessage').style.display = 'none';
-    document.getElementById('criteriaMessage').style.display = 'none';
-    document.getElementById('emailExistsMessage').style.display = 'none';    
+
+    hideErrorMessages();
    
     let isValid = await validateForm(password, confirmPassword, email);
     if (!isValid) {
@@ -22,8 +20,17 @@ async function submitData(event) {
    
     let userData = createUserData(name, email, password);
     let contact = createContactData(name, email);
-
     await submitFormData(userData, contact);  
+}
+
+/**
+ * Hides all error messages by setting their display style to 'none'.
+ * 
+ */
+function hideErrorMessages() {
+    document.getElementById('errorMessage').style.display = 'none';
+    document.getElementById('criteriaMessage').style.display = 'none';
+    document.getElementById('emailExistsMessage').style.display = 'none';
 }
 
 /**
