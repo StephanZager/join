@@ -215,7 +215,7 @@ footer a {
     background-repeat: no-repeat;
 }
 
-.username {
+#userName {
     background-image: url('../assets/img/person-addcontact.png');
 }
 

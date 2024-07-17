@@ -113,6 +113,7 @@ async function submitFormData(userData, contact) {
 
 /**
  * Sets up the password field toggle functionality to show/hide the password.
+ * 
  * @param {string} inputFieldId - The ID of the password input field.
  */
 function setupPasswordFieldToggle(inputFieldId) {
@@ -163,6 +164,7 @@ setupPasswordFieldToggle("confirmPassword");
 
 /**
  * Toggles the visibility of the password field.
+ * 
  * @param {string} fieldId - The ID of the password field to toggle.
  */
 function togglePasswordVisibility(fieldId) {
@@ -178,6 +180,7 @@ function togglePasswordVisibility(fieldId) {
 
 /**
  * Validates the password against specific criteria.
+ * 
  * @param {string} password - The password to validate.
  * @returns {boolean} True if the password is valid, false otherwise.
  */
@@ -203,6 +206,7 @@ function toAssignColorNameLogo() {
 
 /**
  * Displays the success popup and adds a click listener for immediate redirection.
+ * 
  */
 function showSuccessPopup() {
     let popup = document.getElementById('successPopup');
