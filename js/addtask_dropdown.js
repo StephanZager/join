@@ -90,8 +90,18 @@ function createLabel(assignContacts) {
     checkbox.value = assignContacts.name;
     checkbox.dataset.bgColor = assignContacts.bgNameColor;
     
+    // Ändern Sie den EventListener, um die Hintergrundfarbe des Labels zu aktualisieren
     checkbox.addEventListener('change', () => {
         getAssignedDetails();
+        if (checkbox.checked) {
+            // Setzen Sie die Hintergrundfarbe des Labels, wenn die Checkbox angekreuzt ist
+            label.style.backgroundColor = '#2a3647';
+            label.style.borderRadius = '10px';
+            nameSpan.style.color = 'white';
+        } else {
+            // Setzen Sie die Hintergrundfarbe des Labels auf Weiß zurück, wenn die Checkbox nicht angekreuzt ist
+            label.style.backgroundColor = 'white';
+        }
     });
 
     let initials = filterFirstLetters(assignContacts.name.replace(" (YOU)", ""));
