@@ -71,10 +71,55 @@ function setupPasswordToggle(passwordInputField) {
 }
 
 /**
- * Handles the login process by validating the user's credentials against stored data.
- * If 'Remember me' is checked, saves the email and password in local storage.
- * Redirects to the summary page on successful login, otherwise displays an error message.
- * @returns {Promise<void>}
+ * Finds a user by email and password.
+ * @param {Object} userData - The user data object.
+ * @param {string} email - The user's email.
+ * @param {string} password - The user's password.
+ * @returns {Object|null} - The matched user or null if not found.
+ */
+async function findUserByEmailAndPassword(userData, email, password) {
+  for (let key in userData) {
+    if (userData[key].email === email && userData[key].password === password) {
+      return userData[key];
+    }
+  }
+  return null;
+}
+
+/**
+ * Handles successful login.
+ * @param {Object} user - The user object.
+ * @param {HTMLInputElement} rememberMeCheckbox - The "Remember Me" checkbox element.
+ * @param {string} email - The user's email.
+ * @param {string} password - The user's password.
+ */
+function handleLoginSuccess(user, rememberMeCheckbox, email, password) {
+  if (rememberMeCheckbox.checked) {
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+    localStorage.setItem('rememberMe', 'true');
+  } else {
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+    localStorage.setItem('rememberMe', 'false');
+  }
+  localStorage.setItem('userName', user.name);
+  localStorage.setItem('userFirstLetters', user.firstLetters);
+  localStorage.setItem('loggedInUser', user.name);
+  localStorage.setItem('showGreetings', 'true');
+  window.location.href = "summary.html";
+}
+
+/**
+ * Displays an error message.
+ * @param {HTMLElement} errorMessageElement - The error message element.
+ */
+function displayError(errorMessageElement) {
+  errorMessageElement.style.display = 'block';
+}
+
+/**
+ * Handles the login process.
  */
 async function login() {
   let email = document.getElementById('emailInput').value;
@@ -84,94 +129,67 @@ async function login() {
 
   try {
     let userData = await getData("/userData");
-
-    let user = null;
-    for (let key in userData) {
-      if (userData[key].email === email && userData[key].password === password) {
-        user = userData[key];
-        break;
-      }
-    }
+    let user = await findUserByEmailAndPassword(userData, email, password);
 
     if (user) {
-      if (rememberMeCheckbox.checked) {
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
-        localStorage.setItem('rememberMe', 'true');
-      } else {
-        localStorage.removeItem('email');
-        localStorage.removeItem('password');
-        localStorage.setItem('rememberMe', 'false');
-      }
-
-      localStorage.setItem('userName', user.name);
-      localStorage.setItem('userFirstLetters', user.firstLetters);
-      localStorage.setItem('loggedInUser', user.name, user.firstLetter, user.bgColor);
-      console.log("Username saved to localStorage:", user.name);
-
-      if (user) {
-
-        localStorage.setItem('showGreetings', 'true');
-        window.location.href = "summary.html";
-      }
-
+      handleLoginSuccess(user, rememberMeCheckbox, email, password);
     } else {
-      errorMessage.style.display = 'block';
+      displayError(errorMessage);
     }
   } catch (error) {
     console.error("Error fetching data from Firebase:", error);
   }
 }
 
-
+/**
+ * Handles guest login.
+ */
 async function guestLogin() {
-  const guestEmail = "guest@example.de"; 
-  const guestPassword = "Test12.."; 
+  const guestEmail = "guest@example.de";
+  const guestPassword = "Test12..";
 
   try {
     let userData = await getData("/userData");
-
-    let guestUser = null;
-    for (let key in userData) {
-      if (userData[key].email === guestEmail && userData[key].password === guestPassword) {
-        guestUser = userData[key];
-        break;
-      }
-    }
+    let guestUser = await findUserByEmailAndPassword(userData, guestEmail, guestPassword);
 
     if (guestUser) {
-      localStorage.setItem('email', guestEmail);
-      localStorage.setItem('userName', guestUser.name);
-      localStorage.setItem('userFirstLetters', guestUser.firstLetters);
-      localStorage.setItem('guestLogin', 'true'); 
-
-      console.log("Gastbenutzer angemeldet:", guestUser.name);
-
-      if (guestUser) {
-        localStorage.setItem('showGreetings', 'true');
-        window.location.href = "summary.html";
-      }
+      handleGuestLoginSuccess(guestUser, guestEmail);
     } else {
-      console.error("Gastaccount nicht gefunden.");
+      console.error("Guest account not found.");
     }
   } catch (error) {
-    console.error("Fehler beim Abrufen der Daten von Firebase:", error);
+    console.error("Error fetching data from Firebase:", error);
   }
 }
 
+/**
+ * Handles successful guest login.
+ * @param {Object} guestUser - The guest user object.
+ * @param {string} guestEmail - The guest email.
+ */
+function handleGuestLoginSuccess(guestUser, guestEmail) {
+  localStorage.setItem('email', guestEmail);
+  localStorage.setItem('userName', guestUser.name);
+  localStorage.setItem('userFirstLetters', guestUser.firstLetters);
+  localStorage.setItem('guestLogin', 'true');
+  localStorage.setItem('showGreetings', 'true');
+  window.location.href = "summary.html";
+}
 
-
-
-
+/**
+ * Logs out the user.
+ */
 function logout() {
-  localStorage.removeItem('loggedInUser', 'userName');
+  localStorage.removeItem('loggedInUser');
   localStorage.removeItem('userName');
   localStorage.removeItem('userFirstLetters');
   localStorage.removeItem('guestLogin');
   window.location.href = "index.html";
 }
 
-
+/**
+ * Displays the user's initials on all pages.
+ */
 function showLoginInitial() {
   let userFirstLetters = localStorage.getItem('userFirstLetters');
   let joinProfilElement = document.getElementById('joinProfil');
