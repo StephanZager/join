@@ -102,8 +102,8 @@ function createLabel(assignContacts) {
 
     let nameSpan = document.createElement('span');
     nameSpan.textContent = assignContacts.name;
-    nameSpan.classList.add('assign-name');
-
+    nameSpan.classList.add('assign-name');  
+   
     label.appendChild(initialsSpan);
     label.appendChild(nameSpan);
     label.appendChild(checkbox);

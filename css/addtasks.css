@@ -625,6 +625,11 @@
     align-items: center;
 }
 
+.label-background{
+    background-color: #29ABE2 !important;
+    
+}
+
 .disc {
     display: inline-block;
     width: 50px;  /* Durchmesser der Disc */
