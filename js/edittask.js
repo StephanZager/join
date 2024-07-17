@@ -67,7 +67,7 @@ function clearElementContent(elementId) {
  * @param {string} [backgroundColor] - The background color for the span.
  * @returns {HTMLElement} The created span element.
  */
-function createSpanElementWithStyle(className, textContent, backgroundColor) {
+function createEditAssignInitialSpan(className, textContent, backgroundColor) {
     let spanElement = document.createElement('span');
     spanElement.className = className;
     spanElement.textContent = textContent;
@@ -88,12 +88,12 @@ function appendInitialsToElement(elementId, assignData, maxInitialsToShow) {
     let assignCount = assignData.length;
     for (let i = 0; i < Math.min(assignCount, maxInitialsToShow); i++) {
         let data = assignData[i];
-        let spanElement = createSpanElementWithStyle("show-initials-edit", data.initials, data.bgNameColor);
+        let spanElement = createEditAssignInitialSpan("show-initials-edit", data.initials, data.bgNameColor);
         element.appendChild(spanElement);
     }
     if (assignCount > maxInitialsToShow) {
         let additionalCount = assignCount - maxInitialsToShow;
-        let additionalSpanElement = createSpanElementWithStyle("show-initials-edit additional", `+${additionalCount}`);
+        let additionalSpanElement = createEditAssignInitialSpan("show-initials-edit additional", `+${additionalCount}`);
         element.appendChild(additionalSpanElement);
     }
 }
@@ -110,29 +110,48 @@ function showInitialsEditTask() {
 }
 
 /**
- * Creates a checkbox element for assigning a contact.
- * @param {Object} assignContact - The contact data.
- * @returns {HTMLInputElement} The created checkbox element.
+ * Creates a checkbox input element for a given contact.
+ * 
+ * @param {Object} assignContact - The contact information.
+ * @param {string} assignContact.name - The name of the contact.
+ * @param {string} assignContact.bgNameColor - The background color for the contact's name.
+ * @returns {HTMLInputElement} The created checkbox input element.
  */
 function createCheckboxForAssign(assignContact) {
     let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.value = `${assignContact.name}|${filterFirstLetters(assignContact.name)}|${assignContact.bgNameColor}`;
+
+    checkbox.addEventListener('change', function() {
+        let label = this.parentElement;
+        if (this.checked) {
+            label.style.backgroundColor = '#2a3647';
+            label.style.borderRadius = '10px';
+            label.style.color = 'white';
+        } else {
+            label.style.backgroundColor = 'white';
+            label.style.color = 'black';
+        }
+    });
+
     return checkbox;
 }
 
 /**
- * Appends assign contacts to an element.
- * @param {string} elementId - The ID of the element to append to.
- * @param {Array} assignContacts - The list of assign contacts.
+ * Creates and appends labels with checkboxes for a list of contacts to a specified element.
+ * 
+ * @param {string} elementId - The ID of the element to append the labels to.
+ * @param {Object[]} assignContacts - The list of contacts to create labels for.
+ * @param {string} assignContacts[].name - The name of the contact.
+ * @param {string} assignContacts[].bgNameColor - The background color for the contact's name.
  */
-function appendAssignContactToElement(elementId, assignContacts) {
+function createLabelEditAssign(elementId, assignContacts) {
     const element = document.getElementById(elementId);
     assignContacts.forEach(contact => {
         let label = document.createElement('label');
         let checkbox = createCheckboxForAssign(contact);
-        let initialsSpan = createSpanElementWithStyle('assign-initials', filterFirstLetters(contact.name), contact.bgNameColor);
-        let nameSpan = createSpanElementWithStyle('assign-name', contact.name);
+        let initialsSpan = createEditAssignInitialSpan('assign-initials', filterFirstLetters(contact.name), contact.bgNameColor);
+        let nameSpan = createEditAssignInitialSpan('assign-name', contact.name);
 
         label.appendChild(initialsSpan);
         label.appendChild(nameSpan);
@@ -148,13 +167,13 @@ function appendAssignContactToElement(elementId, assignContacts) {
 function generateEditAssign() {
     clearElementContent('editAssigned');
     if (assign.length > 0) {
-        appendAssignContactToElement('editAssigned', assign);
+        createLabelEditAssign('editAssigned', assign);
     }
     markCheckedCheckboxes();
 }
 
 /**
- * Marks the checkboxes of the assigned users as checked.
+ * Marks the checkboxes for assigned contacts and styles the corresponding labels.
  */
 function markCheckedCheckboxes() {
     let assignContact = document.getElementById('editAssigned');
@@ -166,15 +185,43 @@ function markCheckedCheckboxes() {
     let checkboxes = assignContact.querySelectorAll('input[type="checkbox"]');
     let assignArray = Array.isArray(currentTask.assign) ? currentTask.assign : [];
 
-    for (let checkbox of checkboxes) {
+    checkboxes.forEach(checkbox => {
         let [name, initials, bgColor] = checkbox.value.split('|');
-        let cleanedName = cleanNameForInitials(name);
-        let generatedInitials = filterFirstLetters(cleanedName);
-
-        if (assignArray.some(assign => cleanNameForInitials(assign.name).trim().toLowerCase() === cleanedName.trim().toLowerCase() && assign.initials === generatedInitials && assign.bgNameColor === bgColor)) {
+        if (isAssigned(assignArray, name, initials, bgColor)) {
             checkbox.checked = true;
+            styleAssignedLabel(checkbox.parentElement);
         }
-    }
+    });
+}
+
+/**
+ * Styles a label for an assigned contact.
+ * 
+ * @param {HTMLElement} label - The label element to style.
+ */
+function styleAssignedLabel(label) {
+    label.style.backgroundColor = '#2a3647';
+    label.style.borderRadius = '10px';
+    label.style.color = 'white';
+}
+
+/**
+ * Checks if a contact is assigned based on the given parameters.
+ * 
+ * @param {Object[]} assignArray - The array of assigned contacts.
+ * @param {string} name - The name of the contact.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} bgColor - The background color for the contact's name.
+ * @returns {boolean} True if the contact is assigned, false otherwise.
+ */
+function isAssigned(assignArray, name, initials, bgColor) {
+    let cleanedName = cleanNameForInitials(name);
+    let generatedInitials = filterFirstLetters(cleanedName);
+    return assignArray.some(assign => 
+        cleanNameForInitials(assign.name).trim().toLowerCase() === cleanedName.trim().toLowerCase() &&
+        assign.initials === generatedInitials &&
+        assign.bgNameColor === bgColor
+    );
 }
 
 /**

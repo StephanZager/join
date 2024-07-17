@@ -85,39 +85,59 @@ function openDropdown() {
  */
 function createLabel(assignContacts) {
     let label = document.createElement('label');
+    let checkbox = createCheckbox(assignContacts, label);
+    let initialsSpan = createInitialsSpan(assignContacts);
+    let nameSpan = createNameSpan(assignContacts);
+
+    label.appendChild(initialsSpan);
+    label.appendChild(nameSpan);
+    label.appendChild(checkbox);
+
+    return label;
+}
+
+function createCheckbox(assignContacts, label) {
     let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.value = assignContacts.name;
     checkbox.dataset.bgColor = assignContacts.bgNameColor;
-    
-    // Ändern Sie den EventListener, um die Hintergrundfarbe des Labels zu aktualisieren
+
     checkbox.addEventListener('change', () => {
         getAssignedDetails();
-        if (checkbox.checked) {
-            label.style.backgroundColor = '#2a3647';
-            label.style.borderRadius = '10px';
-            nameSpan.style.color = 'white';
-        } else {
-            label.style.backgroundColor = 'white';
-            nameSpan.style.color = 'black';
-        }
+        updateLabelStyle(checkbox, label);
     });
 
+    return checkbox;
+}
+
+function createInitialsSpan(assignContacts) {
     let initials = filterFirstLetters(assignContacts.name.replace(" (YOU)", ""));
     let initialsSpan = document.createElement('span');
     initialsSpan.textContent = initials;
     initialsSpan.classList.add('assign-initials');
     initialsSpan.style.backgroundColor = assignContacts.bgNameColor;
 
+    return initialsSpan;
+}
+
+function createNameSpan(assignContacts) {
     let nameSpan = document.createElement('span');
     nameSpan.textContent = assignContacts.name;
-    nameSpan.classList.add('assign-name');  
-   
-    label.appendChild(initialsSpan);
-    label.appendChild(nameSpan);
-    label.appendChild(checkbox);
+    nameSpan.classList.add('assign-name');
 
-    return label;
+    return nameSpan;
+}
+
+function updateLabelStyle(checkbox, label) {
+    let nameSpan = label.querySelector('.assign-name');
+    if (checkbox.checked) {
+        label.style.backgroundColor = '#2a3647';
+        label.style.borderRadius = '10px';
+        nameSpan.style.color = 'white';
+    } else {
+        label.style.backgroundColor = 'white';
+        nameSpan.style.color = 'black';
+    }
 }
 
 /**
