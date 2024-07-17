@@ -33,8 +33,6 @@ function displayGreetingWithName() {
     }
 }
 
-
-
 /**
  * Assigns tasks to various categories.
  * 
