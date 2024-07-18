@@ -118,8 +118,8 @@ function greetingSummaryMobile() {
             grettingMobile.classList.add('hide');
             setTimeout(() => {
                 grettingMobile.style.display = 'none';
-                summaryMain.style.opacity = '1';
-                summaryMain.style.transition = 'opacity 0.9s ease'; //kann bei bedarf wieder gelöscht werden
+               summaryMain.style.opacity = '1';
+                summaryMain.style.transition = 'opacity 0.9s ease';
             }, 900);
         }, 2000);
     }
