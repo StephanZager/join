@@ -108,15 +108,19 @@ async function changeUrl(){
  * display none for the menubar if the innerWidth is less than 900px
  */
 function setInnerWidthPolicies() {
-    let innerWidth = window.innerWidth;
-    let menubar = document.getElementById('menubar');
-    if (innerWidth < 900 && menubar) {
-        menubar.style.display = 'none';
-    } else if (innerWidth >= 900) {
-        menubar.style.display = 'flex';
+    const specificPagePaths = ['/policy_over_signup.html', '/legal_notice_over_signup.html'];    
+    const currentPath = window.location.pathname;
+    
+    if (specificPagePaths.some(pagePath => currentPath.endsWith(pagePath))) {
+        let innerWidth = window.innerWidth;
+        let menubar = document.getElementById('menubar');
+        if (innerWidth < 900 && menubar) {
+            menubar.style.display = 'none';
+        } else if (innerWidth >= 900) {
+            menubar.style.display = 'flex';
+        }
     }
 }
-
 window.onload = setInnerWidthPolicies;
 window.onresize = setInnerWidthPolicies;
 /**
