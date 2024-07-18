@@ -1,21 +1,4 @@
 /**
- * Clears all subtasks, resets priority buttons, assigned details, and category selections.
- */
-function clearSubtasks() {
-    const buttons = document.querySelectorAll('.prio-buttons');
-    buttons.forEach(button => {
-        button.classList.remove('selected');
-        const img = button.querySelector('img');
-        img.src = button.getAttribute('data-original-image'); 
-    });
-    subtaskList = [];
-    document.getElementById('subtaskList').innerHTML = '';
-    assignDetails = [];
-    document.getElementById('assignedInitial').innerHTML = '';
-    clearCategorySelection();
-}
-
-/**
  * Clears all inputs and selections within the task form and resets global subtasks.
  */
 function clearTaskForm() {
@@ -29,16 +12,6 @@ function clearTaskForm() {
     document.getElementById('dueDate').value = '';
     document.getElementById('subtaskList').innerHTML = '';
     globalSubtasks = [];
-}
-
-
-function resetLabels() {
-    let label = label.querySelector('.assign-name');
-    label.forEach(label => {
-        label.style.backgroundColor = 'white';
-        label.style.color = 'black';
-    });
-
 }
 
 /**

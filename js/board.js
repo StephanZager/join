@@ -245,15 +245,6 @@ function createTaskObject() {
 
 /**
  * Builds a task object.
- * @param {string} title - Task title.
- * @param {string} description - Task description.
- * @param {string} date - Due date.
- * @param {string} userCategory - User category.
- * @param {Array} assignDetails - Assignee details.
- * @param {Array} subtasks - Subtasks.
- * @param {string} category - Task category.
- * @param {string} priority - Priority level.
- * @returns {Object} - Task object.
  */
 function buildTaskObject(title, description, date, userCategory, assignDetails, subtasks, category, priority) {
     return {

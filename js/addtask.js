@@ -306,21 +306,67 @@ function filterFirstLetters(name) {
 }
 
 /**
- * Clears all subtasks and resets UI elements.
+ * Deselect all priority buttons and reset their images.
  */
-function clearSubtasks() {
+function clearPriorityButtons() {
     const buttons = document.querySelectorAll('.prio-buttons button');
     buttons.forEach(button => {
         button.classList.remove('selected');
         const img = button.querySelector('img');
         img.src = button.getAttribute('data-original-image');
     });
-    
+}
+
+/**
+ * Clear global subtasks and their display elements.
+ */
+function clearGlobalSubtasks() {
     globalSubtasks = [];
     document.getElementById('subtaskList').innerHTML = '';
     assignDetails = [];
     document.getElementById('assignedInitial').innerHTML = '';
     clearCategorySelection();
+}
+
+/**
+ * Uncheck all checkboxes in dropdowns.
+ */
+function clearCheckboxes() {
+    const checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false; 
+    });
+}
+
+/**
+ * Reset the background color of all dropdown labels to white.
+ */
+function resetLabelBackgrounds() {
+    const labels = document.querySelectorAll('.dropdown-content label');
+    labels.forEach(label => {
+        label.style.backgroundColor = 'white';
+    });
+}
+
+/**
+ * Reset the color of all assigned names to black.
+ */
+function resetAssignNamesColor() {
+    const assignNames = document.querySelectorAll('.assign-name');
+    assignNames.forEach(name => {
+        name.style.color = 'black'; 
+    });
+}
+
+/**
+ * Clear all subtasks and reset related UI elements.
+ */
+function clearSubtasks() {
+    clearPriorityButtons();
+    clearGlobalSubtasks();
+    clearCheckboxes();
+    resetLabelBackgrounds();
+    resetAssignNamesColor();
 }
 
 /**
