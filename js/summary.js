@@ -107,15 +107,19 @@ function greetingSummaryMobile() {
         localStorage.setItem('showGreetings', 'false');
 
         let grettingMobile = document.getElementById('greetingSummaryMobile');
+        let summaryMain = document.getElementById('summaryMain');
         let grettingTime = greeting();
         let greetingName = displayGreetingWithName();
 
         grettingMobile.innerHTML = grettingMobileHTML(grettingTime, greetingName);
 
+        summaryMain.style.opacity = '0';
         setTimeout(() => {
             grettingMobile.classList.add('hide');
             setTimeout(() => {
                 grettingMobile.style.display = 'none';
+                summaryMain.style.opacity = '1';
+                summaryMain.style.transition = 'opacity 0.9s ease'; //kann bei bedarf wieder gelöscht werden
             }, 900);
         }, 2000);
     }
