@@ -29,7 +29,7 @@
             <form id="signupForm" onsubmit="submitData(event)">
                 <div class="inputfield-area">
                     <input class="fonz-size-sing-up" id="userName" required type="text" placeholder="Name" autocomplete="name" class="username">
-                    <input class="fonz-size-sing-up" id="userEmail" required type="email" placeholder="Email" autocomplete="username">
+                    <input class="fonz-size-sing-up" id="userEmail" required type="email" placeholder="Email" autocomplete="username" pattern=".*@[a-zA-Z]{1,}\.(de|com)$" title="The email address must end in '.de' or '.com'.">
                     <input class="fonz-size-sing-up" id="password" required type="password" placeholder="Password" autocomplete="new-password">
                     <input class="fonz-size-sing-up" id="confirmPassword" required type="password" placeholder="Confirm Password" autocomplete="new-password" class="input-field-confirm-pw">
                 </div>
