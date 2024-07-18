@@ -379,7 +379,7 @@
     border-radius: 8px;
     border: 1px solid lightgray;
     overflow-y: auto;
-    max-height: 320px;
+    max-height: 214px;
     top: calc(100% - 8px); /* Positioniere den Dropdown-Inhalt ein wenig über dem Dropdown-Menü */
     left: 0;
     
