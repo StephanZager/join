@@ -906,7 +906,13 @@ input {
 
 .task-popup-arrow {
     display: none;
-}   
+}  
+
+.task-popup-arrow:active{
+    border-radius: 100px;
+    background-color: #EEEEEE
+
+}
 
 .highlight {
     border: 2px dashed #666; /* Beispiel für ein Highlight-Styling */
