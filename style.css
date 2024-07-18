@@ -219,7 +219,6 @@ a {
     max-width: 1016px;
 }
 
-
 .header-section-policy button:hover {
     cursor: pointer;
 }
@@ -229,6 +228,18 @@ a {
     height: 37px;
     border-style: none;
     background-color: transparent;
+}
+
+.main-container-policy {
+    max-width: 1016px;
+    /*margin-top: 110px;*/
+    margin-left: 328px;
+    overflow: auto;
+    max-height: 900px;
+    overflow-y: auto;  
+    overflow-x: hidden;
+    padding: 0 100px;
+    height: calc(100vh - 200px);
 }
 
 @media screen and (min-width: 500px) and (orientation: landscape)  {
@@ -261,11 +272,7 @@ a {
     .help-desk-main {
         margin-left: 220px !important;
     }
-
-
 }
-
-
 
 @media (max-width: 900px) {
     .header-section-policy {
@@ -279,7 +286,6 @@ a {
     }
 
     .main-container-policy{
-        height: calc(100vh - 278px) !important;
         max-height: none !important;
     }
     
@@ -288,8 +294,6 @@ a {
         max-height: none !important;
     }
     
-
-
     .dropdown-profil{
         right: 10px !important;
         top: 70px !important;
@@ -489,16 +493,7 @@ a {
 PRIVACY POLICY CSS:
 **/
 
-.main-container-policy {
-    max-width: 1016px;
-    /*margin-top: 110px;*/
-    margin-left: 328px;
-    overflow: auto;
-    max-height: 900px;
-    overflow-y: auto;  
-    overflow-x: hidden;
-    padding: 0 100px;
-}
+
 
 
 

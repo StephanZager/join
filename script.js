@@ -103,6 +103,10 @@ async function changeUrl(){
     }
 }
 
+
+/**
+ * display none for the menubar if the innerWidth is less than 900px
+ */
 function setInnerWidthPolicies() {
     let innerWidth = window.innerWidth;
     let menubar = document.getElementById('menubar');
