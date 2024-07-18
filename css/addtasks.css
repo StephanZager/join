@@ -652,7 +652,8 @@
 .clear-button:hover .hover-x-blue-hover-addtask {
     display: flex;
     justify-content: center;
-    align-items: center; /* oder 'inline' je nach Bedarf */
+    align-items: center;
+    gap: 1px; /* oder 'inline' je nach Bedarf */
 }
 
 @keyframes slideInFromBottom {
