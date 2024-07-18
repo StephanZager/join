@@ -56,6 +56,7 @@ async function afterHTMLIncluded() {
  */
 async function loginSignupPolicies() {
     changeUrl();
+    setInnerWidthPolicies();
     if (window.location.pathname.includes('policy_over_signup.html')) {
         let loginHelpElement = document.getElementById('loginHelp');
         let contentMenu = document.getElementById('navbar');
@@ -101,6 +102,19 @@ async function changeUrl(){
         }
     }
 }
+
+function setInnerWidthPolicies() {
+    let innerWidth = window.innerWidth;
+    let menubar = document.getElementById('menubar');
+    if (innerWidth < 900 && menubar) {
+        menubar.style.display = 'none';
+    } else if (innerWidth >= 900) {
+        menubar.style.display = 'flex';
+    }
+}
+
+window.onload = setInnerWidthPolicies;
+window.onresize = setInnerWidthPolicies;
 /**
  * Toggles the visibility of the dropdown menu.
  * This function adds or removes the "show" class to the element with the ID "dropdownMenu",
