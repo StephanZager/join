@@ -96,6 +96,14 @@ function createLabel(assignContacts) {
     return label;
 }
 
+/**
+ * Creates a checkbox for assigning contacts.
+ * @param {Object} assignContacts - The contact details.
+ * @param {string} assignContacts.name - The contact's name.
+ * @param {string} assignContacts.bgNameColor - The background color for the name.
+ * @param {HTMLElement} label - The label associated with the checkbox.
+ * @returns {HTMLInputElement} The created checkbox.
+ */
 function createCheckbox(assignContacts, label) {
     let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -110,6 +118,13 @@ function createCheckbox(assignContacts, label) {
     return checkbox;
 }
 
+/**
+ * Creates a span element with the contact's initials.
+ * @param {Object} assignContacts - The contact details.
+ * @param {string} assignContacts.name - The contact's name.
+ * @param {string} assignContacts.bgNameColor - The background color for the initials.
+ * @returns {HTMLSpanElement} The created span with initials.
+ */
 function createInitialsSpan(assignContacts) {
     let initials = filterFirstLetters(assignContacts.name.replace(" (YOU)", ""));
     let initialsSpan = document.createElement('span');
@@ -120,6 +135,12 @@ function createInitialsSpan(assignContacts) {
     return initialsSpan;
 }
 
+/**
+ * Creates a span element with the contact's name.
+ * @param {Object} assignContacts - The contact details.
+ * @param {string} assignContacts.name - The contact's name.
+ * @returns {HTMLSpanElement} The created span with the name.
+ */
 function createNameSpan(assignContacts) {
     let nameSpan = document.createElement('span');
     nameSpan.textContent = assignContacts.name;
@@ -128,6 +149,11 @@ function createNameSpan(assignContacts) {
     return nameSpan;
 }
 
+/**
+ * Updates the label style based on the checkbox state.
+ * @param {HTMLInputElement} checkbox - The checkbox element.
+ * @param {HTMLElement} label - The label element.
+ */
 function updateLabelStyle(checkbox, label) {
     let nameSpan = label.querySelector('.assign-name');
     if (checkbox.checked) {
