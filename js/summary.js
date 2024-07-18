@@ -82,7 +82,7 @@ async function renderSummary(numberOfTodos, numberOfDone, numberOfAwaitFeedback,
  * 
  * @returns {void}
  */
-function sohwUgretnTask() {
+function sohwUgretnTask() {    
     if (urgentTasks && urgentTasks.length > 0) {
         urgentTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
         document.getElementById('howMuchInUrgent').innerHTML = urgentTasks.length;
