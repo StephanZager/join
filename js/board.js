@@ -293,6 +293,7 @@ async function createTask(event) {
         const responseData = await postNewTask(newTask);
         newTask.firebaseId = responseData.name; 
         finalizeTaskCreation(newTask);
+        
     } catch (error) {
         alert(`Error creating task: ${error.message}`);
     }
@@ -322,12 +323,33 @@ function resetPriority() {
 }
 
 /**
+ * Resets the style of a given label element to default values.
+ * It sets the background color to white, border radius to 10px,
+ * and changes the color of the `.assign-name` span element to black.
+ * 
+ * @param {Element} label - The label element to reset the style for.
+ */
+function resetLabelStyle(label) {
+    label.style.backgroundColor = 'white';
+    label.style.borderRadius = '10px';
+    let nameSpan = label.querySelector('.assign-name');
+    if (nameSpan) {
+        nameSpan.style.color = 'black';
+    }
+}
+
+/**
  * Clears the assigned user checkboxes.
  */
 function clearAssignedCheckboxes() {
     const assignedCheckboxes = document.querySelectorAll('#assigned input[type="checkbox"]');
+
     assignedCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
+        const label = checkbox.closest('label');
+        if (label) {
+            resetLabelStyle(label);
+        }
     });
 }
 

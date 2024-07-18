@@ -22,12 +22,23 @@ function clearTaskForm() {
     clearAssignedCheckboxes();
     resetPriority();
     clearCategorySelection();
+    
     document.getElementById('title').value = '';
     document.getElementById('taskDescription').value = '';
     document.getElementById('assignedInitial').innerHTML = '';
     document.getElementById('dueDate').value = '';
     document.getElementById('subtaskList').innerHTML = '';
     globalSubtasks = [];
+}
+
+
+function resetLabels() {
+    let label = label.querySelector('.assign-name');
+    label.forEach(label => {
+        label.style.backgroundColor = 'white';
+        label.style.color = 'black';
+    });
+
 }
 
 /**
