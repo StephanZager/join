@@ -195,6 +195,7 @@
     margin-left: 328px;
     align-items: end;
     margin-top: 138px;
+    z-index: 99;
 }
 
 .button-last-section {
