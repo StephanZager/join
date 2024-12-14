@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="rotate-warning">             
+    </div>
+    <img id="logo" src="./assets/img/Login-img.png" alt="Logo">
+
+
+    <div id="login-form-container">
+        <main>
+            <div>
+                <div class="signup-section-upside">
+                    <span>Not a Join user?</span>
+                    <button class="signup-button" onclick="window.location.href='signup.html';">
+                        Sign Up
+                    </button>
+                </div>
+
+                <div class="form-container">
+                    <form id="login-form">
+                        <div class="headline">
+                            <h1>Log in</h1>
+                            <div class="underline"></div>
+                        </div>
+
+                        <div class="maincontainer-inputfield">
+                            <div class="login-field">
+                                <input id="emailInput" required type="email" placeholder="Email" autocomplete="email">
+                                <input id="passwordInput" required type="password" placeholder="Password"
+                                    autocomplete="current-password">
+                            </div>
+                        </div>
+
+                        <div id="error-message" style="color: red; display: none;">Ups, wrong e-mail adress or password!
+                            Try again.</div>
+
+                        <label class="checkbox">
+                            <input type="checkbox"><span>Remember me</span>
+                        </label>
+                        <div class="button-section-for-entry">
+                            <button type="button" class="login-signup-button" onclick="login()">Log in</button>
+                            <button type="button" class="guest-login-button" formnovalidate onclick="guestLogin()">Guest
+                                Log in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <div class="signup-section-lowside">
+            <span>Not a Join user?</span>
+            <button class="signup-button" onclick="window.location.href='signup.html';">
+                Sign Up
+            </button>
+        </div>
+
+        <footer>
+            <a href="policy_over_signup.html">Privacy Policy</a>
+            <a href="legal_notice_over_signup.html">Legal Notice</a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

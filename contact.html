@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>contact</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/addcontact.css">
+    <link rel="stylesheet" href="css/addtasks.css">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    
+    <script src="script.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/userbgcolor.js"></script>
+    <script src="js/addcontact.js"></script>
+    <script src="js/addcontact_html.js"></script>
+    <script src="js/login.js"></script>
+</head>
+
+<body onload="includeHTML(), contactinit()">
+
+    <div class="rotate-warning">             
+    </div>
+
+
+    <div w3-include-html="assets/templates/mobile_header_template.html" onclick="deselectUser()"></div>
+    <div id="addNewContactPopUp"></div>
+    <div id="addUbdateContactPopUp"></div>
+    <div id="contactConfirmation"></div>
+    <div id="userDeleteHandy" onclick="closeUserDeleteEditWindow()">
+
+    </div>
+
+
+    <div class="contactList-container">
+        <main class="contactList" id="userList" onclick="deselectUser()">
+            <div>
+                <button onclick="openAddNewContactwindow(), slideInPopup('popUpAddContact')"
+                    class="add-new-contact-button" id="add_new_contact" type="button">
+                    <img src="assets/img/person.add.contact.png" alt="Bildbeschreibung">
+                    <span class="button-text">Add new contact</span>
+                </button>
+            </div>
+
+            <div id="contact"></div>
+
+        </main>
+
+        <div class="contact-info-container" id="contactInfoContainer">
+            <div class="button-open-edit-delete-handy-container" id="buttonDelteEditHandyIcon">
+                <div class="button-open-edit-delete-handy" onclick="openUserDeleteEditWindow()">
+                    <img src="assets/img/3-points-user-info-handy.png" alt="">
+                </div>
+            </div>
+            <div class="contact-arrow-blue" onclick="closeUserInfoWindow(), deselectUser()">
+                <img src="assets/img/contact-info-blue.png" alt="">
+            </div>
+            <div class="contact-info">
+                <h3 class="contact-info-h2">Contacts</h3>
+                <div class="seperator-contact-info"></div>
+                <span class="contact-info-span">Better with a team</span>
+                <div class="seperator-contact-info-handy"></div>
+            </div>
+            <div id="contactInfo"></div>
+        </div>
+    </div>
+
+
+    <div w3-include-html="assets/templates/mobile_menubar_template.html" onclick="deselectUser()"></div>
+
+    
+</body>
+
+</html>

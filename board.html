@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/addtasks.css">
+    <link rel="stylesheet" href="css/addtaskpopup_edittaskpopup.css">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <script src="script.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/board_template.js"></script>
+    <script src="js/board_draganddrop.js"></script>
+    <script src="js/board_popup.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/edittask.js"></script>
+    <script src="js/edittask_dropdown.js"></script>
+    <script src="js/edittask_subtask.js"></script>    
+    <script src="js/login.js"></script>
+    <script src="js/addtask.js"></script>
+    <script src="js/addtask_dropdown.js"></script>
+    <script src="js/addtask_validation.js"></script>
+    <script src="js/addtask_template.js"></script>
+    
+
+</head>
+
+<body class="board-total" onload="includeHTML(), loadTask(), loadAssign() , setMinDate();">
+    <div class="rotate-warning">             
+    </div>
+    <div w3-include-html="assets/templates/mobile_header_template.html"></div>
+    <main class="board">
+        <div class="content">
+            <div class="headlineBoard">
+                <h1 class="board-headline">Board</h1>
+                <div class="add-task-button-area display-none-mobile-btn" >
+                    <button class="addTaskBtn" onclick="openTaskWindow()" class="display-none-mobile-btn"><img src="assets/img/board.add.png"></button>
+                </div>
+                <div class="inputSearchBar">
+                    <input id="searchBarInput" class="background-color-search" onkeydown="searchTasks()" type="text" placeholder="Find task">
+                    <div class="seperator"></div>
+                    <button class="searchTaskBtn" >
+                        <img class="search-img-btn" src="assets/img/search.png">
+                        <img class="search-img-btn-click" src="assets/img/search.click.blue.png">
+                    </button>
+                </div>
+                <div class="add-task-button-area display-none">
+                    <button class="addTaskBtn" id="openTaskBtn" onclick="openTaskPopup('toDo')"><span >Add task</span> <img
+                            src="assets/img/board.add.png"></button>
+                </div>
+            </div>
+         
+            <div class="tasksBoard">
+                <div class="task-column"> 
+                    <div class="taskHeadline">
+                        <h3>To do</h3>
+                        <button class="smallBtn" onclick="openTaskPopup('toDo')">
+                            <img class="borad-plus-btn" src="assets/img/board.plus.png">
+                            <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
+                        </button>
+                        <button class="smallBtn-mobile" onclick="openTaskWindow()">
+                            <img class="borad-plus-btn" src="assets/img/board.plus.png">
+                            <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
+                        </button>
+                    </div>
+                    <div id="toDo" class="showTasksBoard" ondrop="moveTo('toDo')"ondragover="allowDrop(event)"></div>
+                </div>  
+                <div class="task-column">
+                    <div class="taskHeadline">
+                        <h3>In progress</h3>
+                        <button class="smallBtn" onclick="openTaskPopup('inProgress')">
+                            <img class="borad-plus-btn" src="assets/img/board.plus.png">
+                            <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
+                        </button>
+                        <button class="smallBtn-mobile" onclick="openTaskWindow()">
+                            <img class="borad-plus-btn" src="assets/img/board.plus.png">
+                            <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
+                        </button>
+                    </div>
+                    <div id="inProgress" class="showTasksBoard" ondrop="moveTo('inProgress')"ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="task-column">
+                    <div class="taskHeadline">
+                        <h3>Await feedback</h3>
+                        <button class="smallBtn" onclick="openTaskPopup('awaitFeedback')">
+                            <img class="borad-plus-btn" src="assets/img/board.plus.png">
+                            <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
+                        </button>
+                        <button class="smallBtn-mobile" onclick="openTaskWindow()">
+                            <img class="borad-plus-btn" src="assets/img/board.plus.png">
+                            <img class="borad-plus-hover-btn" src="assets/img/board.plus.hover.png">
+                        </button>
+                    </div>
+                    <div id="awaitFeedback" class="showTasksBoard" ondrop="moveTo('awaitFeedback')"ondragover="allowDrop(event)"></div>
+                </div>    
+                <div class="task-column">
+                    <div class="taskHeadline">
+                        <h3>Done</h3>
+                    </div>
+                    <div id="done" class="showTasksBoard" ondrop="moveTo('done')"ondragover="allowDrop(event)"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="task-popup-dropdown" id="moveToCategoryDropdown">
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('toDo')">To do</button>
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('inProgress')">In progress</button>
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('awaitFeedback')">Await feedback</button>
+        <button class="task-popup-dropdown-btn" onclick="moveToCategory('done')">Done</button>
+    </div>
+
+    <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
+    <div id="taskModal" class="modal">
+        
+        <div class="modal-task-popup" id="taskCardPoupAnimation">
+            
+            <div id="modalTaskcard" class="modal-task-popup-display-block modal-task-popup-display-none">
+                <div class="popup-headline">
+                    <h4 id="modalTitle"></h4>
+                    <img class="task-popup-x" src="assets/img/close-addcontact.png" alt="Schließen" onclick="closeTaskCard()">
+                </div>
+            
+                <p id="modalUserTitle"></p>
+                <div class="task-card-info">
+                <p id="modalDescription"></p>
+                <div class="modalDate">
+                    <p class="popup-date task-info-headline-color">Due Date:</p>
+                    <p id="modalDate"></p>
+                </div>
+                <div class="modalPrio">
+                    <p class="priority-line task-info-headline-color">Priority: <span id="modalPriorityText"></span></p>
+                    <img id="modalPriorityIcon" class="prio-icons">
+                </div>
+                <p class="assignet-to task-info-headline-color">Assigned To:</p>
+                <div id="modalInitials"></div>
+                <div id="modalSubtasksContainer">
+                    <p class="task-info-headline-color">Subtasks:</p>
+                    <!-- Subtasks werden hier als Liste eingefügt -->
+                    <ul id="modalSubtasks"></ul>
+                </div>
+            
+                </div>
+                <div class="task-editing-btn">
+                    <div id="deleteTaskBtn"></div>
+                
+                    <div class="task-editing-seperator"></div>
+                    <div id="editTaskBtn"></div>
+                </div>
+            </div>
+        
+
+
+
+            
+                <div id="editTaskcard" class="edit-task-display-none">
+                    <div class="close-edit-section">
+                    <img class="closeBUttonEditTask" src="assets/img/close-addcontact.png" id="closeEditPopupButton" onclick="closeEditTaskPopup()">
+                    </div>
+                    <div class="edit-task-menü" id="editTaskMainContainer">
+                    <div class="left-field-section">
+                        <div class="addtaks-desktop">
+                            <span>Title<span style="color: red;">*</span></span>
+                            <input id="editTitle" class="title-select-or-input" placeholder="Enter a title" type="text"> 
+                        </div>
+                        <div class="addtaks-desktop">
+                            <span>Description</span>
+                            <textarea id="editDescription" class="addTask-textarea" placeholder="Enter a Description" type="text"></textarea>
+                        </div>
+                        <div class="addtaks-desktop dropdown">
+                            <button type="button" class="dropdown-button" onclick="openDropdownEditAssign()">Dropdown <img src="assets/img/arrow_drop_down.png" id="dropdownArrow"></button>
+                            <div class="dropdown-edit-content " id="editAssigned"></div>
+                            <div class="show-initials-section" id="editAssignedInitials"></div> 
+                        </div>
+                    </div>
+                    <div class="right-field-section">
+                        <div class="addtaks-desktop">
+                            <span>Due Date <span style="color: red;">*</span></span>
+                            <input id="editDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
+                        </div>
+                        <div class="prio-section addtaks-desktop">
+                            <span class="subheadline"><b>Prio</b></span>
+                            <div class="prio-buttons">
+                                <button class="urgent-button" type="button" onclick="setCurrentPriority('Urgent')"
+                                    data-original-image="assets/img/prio-urgent-icon-unclicked.png"
+                                    data-clicked-image="assets/img/prio-urgent-icon-clicked.png">
+                                    Urgent
+                                    <img class="prio-icons" src="./assets/img/prio-urgent-icon-unclicked.png">
+                                </button>
+                                <button class="medium-button" type="button" onclick="setCurrentPriority('Medium')"
+                                    data-original-image="assets/img/prio-medium-icon-unclicked.png"
+                                    data-clicked-image="assets/img/prio-medium-icon-clicked.png">
+                                    Medium
+                                    <img class="prio-icons" src="./assets/img/prio-medium-icon-unclicked.png">
+                                </button>
+                                <button class="low-button" type="button" onclick="setCurrentPriority('Low')"
+                                    data-original-image="assets/img/prio-low-icon-unclicked.png"
+                                    data-clicked-image="assets/img/prio-low-icon-clicked.png">
+                                    Low
+                                    <img class="prio-icons" src="./assets/img/prio-low-icon-unclicked.png">
+                                </button>
+                            </div>
+                        </div>
+                       
+                        <div class="addtaks-desktop">
+                            <span>Subtasks</span>
+                            <div class="input-with-button">
+                                <input id="editSubtasks" onclick="editInputSetFocus()" class="title-select-or-input" placeholder="Add new Subtasks">
+                                <img id="placeholderEditImgSubtask" class="edit-subtask-confirm-btn" style="display: flex;" src="assets/img/add.png">
+                                <div id="confirmAndDeleteEditBtnSubtask" style="display: none;">
+                                    <button type="button" class="clear-confirm-btn" onclick="clearEditSubtaskInput()"><img class="subtask-clear-confirm-img" src="assets/img/cancel-addcontact.png"></button>
+                                    <img class="subtask-parting-line" src="assets/img/parting-line-small.png">
+                                    <button type="button" class="clear-confirm-btn" onclick="addSubtask()"><img class="subtask-clear-confirm-img" src="assets/img/check-dark.png"></button>
+                                </div>
+                            </div>
+                            <ul id="subtaskListEdit"></ul>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="edit-task-last-section" id="postEditBtnSection">
+                        <div class="edit-btn">
+                            <button type="button" id="postEditBtn" class="create-edit-task-button">Ok <img src="./assets/img/check-button-add-task.png" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="addTaskModel" class="modal">
+        <div class="modal-addtask-popup" id="popup_add_task">
+            <div class="close-addtask-section">
+                <div class="hover-close"><img src="assets/img/close-addcontact.png" alt="Schließen" onclick="closeAddTaskPopup()"></div>
+            </div>
+            <h1 class="addtask-popup-headline">Add Task</h1>
+            <form class="addTask-popup-form" action="" onsubmit="createTask(event)">
+                <main class="addtask-popup-maincontainer-desktop" id="maincontainerAddTask">
+                    <div class="addtask-popup-left-field-section">
+                        <div class="addtaks-desktop">
+                            <span>Title<span style="color: red;">*</span></span>
+                            <input id="title" class="title-select-or-input" placeholder="Enter a title" type="text">
+                            <span class="required-info">This field is required</span>
+                        </div>
+
+                        <div class="addtaks-desktop">
+                            <span>Description</span>
+                            <textarea id="taskDescription" class="addTask-textarea" placeholder="Enter a Description"
+                                type="text"></textarea>
+                        </div>
+
+                        <div class="addtaks-desktop dropdown">
+                            <button type="button" class="dropdown-button" onclick="openDropdown()">Assign <img
+                                    src="assets/img/arrow_drop_down.png" class="dropdown-arrow" id="dropdownArrowAssign"></button>
+                            <div class="dropdown-content" id="assigned">
+                                <!-- Die Optionen mit Checkboxen werden hier generiert -->
+                            </div>
+                        </div>
+                            <div id="assignedInitial"></div>
+                    </div>
+
+                    <div class="addtask-popup-parting-line"></div>
+
+                    <div class="addtask-popup-right-field-section">
+                        <div class="addtaks-desktop">
+                            <span>Due Date <span style="color: red;">*</span></span>
+                            <input id="dueDate" class="title-select-or-input" type="date" placeholder="dd/mm/yyyy">
+                            <span class="required-info">This field is required</span>
+                        </div>
+
+                        <div class="prio-section addtaks-desktop">
+                            <span class="subheadline"><b>Prio</b></span>
+                            <div class="prio-buttons">
+                                <button class="urgent-button" type="button" onclick="setPriority('Urgent')"
+                                    data-original-image="assets/img/prio-urgent-icon-unclicked.png"
+                                    data-clicked-image="assets/img/prio-urgent-icon-clicked.png">
+                                    Urgent
+                                    <img class="prio-icons" src="assets/img/prio-urgent-icon-unclicked.png">
+                                </button>
+                                <button class="medium-button" type="button" onclick="setPriority('Medium')"
+                                    data-original-image="assets/img/prio-medium-icon-unclicked.png"
+                                    data-clicked-image="assets/img/prio-medium-icon-clicked.png">
+                                    Medium
+                                    <img class="prio-icons" src="assets/img/prio-medium-icon-unclicked.png">
+                                </button>
+                                <button class="low-button" type="button" onclick="setPriority('Low')"
+                                    data-original-image="assets/img/prio-low-icon-unclicked.png"
+                                    data-clicked-image="assets/img/prio-low-icon-clicked.png">
+                                    Low
+                                    <img class="prio-icons" src="assets/img/prio-low-icon-unclicked.png">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="addtaks-desktop dropdown">
+                            <span>Category<span style="color: red;">*</span></span>
+                            <button type="button" class="dropdown-button-category" id="category" onclick="openDropdownContentCategory()"><span id="categoryText">Categroy</span> <img src="assets/img/arrow_drop_down.png" class="dropdown-arrow-category" id="dropdownArrowCategory"></button>
+                            <div class="dropdown-content-category" id="categoryContent" >
+                                <label class="dropdown-option">
+                                    <input type="radio" name="category" value="Technical Task" class="hidden-radio" id="option1">
+                                    <span class="option-name">Technical Task</span>
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="radio" name="category" value="User Story" class="hidden-radio" id="option2">
+                                    <span class="option-name">User Story</span>
+                                </label>
+                            </div>
+                        </div>  
+
+                        <div class="addtaks-desktop">
+                            <span>Subtasks</span>
+                            <div class="input-with-button">
+                                <input onclick="inputSetFocus()" id="subtasks" class="title-select-or-input" placeholder="Add new Subtasks">
+                                <img id="placeholderImgSubtask" class="input-button-img" src="assets/img/add.png" alt="" >
+                                <div id="confirmAndDeleteBtnSubtask" class="clear-confirm-subtask">
+                                    <button type="button" class="clear-confirm-btn" onclick="clearSubtask()"><img class="subtask-clear-confirm-img" src="assets/img/cancel-addcontact.png"></button>
+                                    <img class="subtask-parting-line" src="assets/img/parting-line-small.png">
+                                    <button type="button" class="clear-confirm-btn" onclick="addSubtaskToList()"><img class="subtask-clear-confirm-img" src="assets/img/check-dark.png"></button>
+                                </div>
+                            </div>
+                            <ul id="subtaskList" class="addtask-popup-subtasklist"></ul>
+                        </div>
+                    </div>
+
+                </main>
+
+                <div class="addtask-popup-last-section">
+                    <span id="spanRequiredInfo" class="addtask-popup-required-bottom-info"><span style="color: red;">*</span>This
+                        field is required</span>
+                    <div id="buttonLastSection" class="addtask-edit-button-last-section">
+                        <button id="clearBtn" type="reset" class="addtask-popup-clear-button" onclick="clearSubtasks()">Clear <img src="assets/img/close-addcontact.png"></button>
+                        <button id="confirmBtn" type="submit" class="addtask-popup-create-task-button">Create Task <img
+                                src="./assets/img/check-button-add-task.png" alt=""></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</body>
+
+</html>

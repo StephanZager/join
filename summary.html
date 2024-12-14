@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    
+    <script src="script.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/summary.js"></script>   
+    
+   
+</head>
+
+<body onload="includeHTML(), initSummary()">
+    <div w3-include-html="assets/templates/mobile_header_template.html"></div>
+    <div id="greetingSummaryMobile"></div>
+    <main class="summary-main" id="summaryMain">
+        
+        
+
+        <!-- this is for java script, innnerHTML. id have not yet been assigned -->
+        <div class="summary-section-2">
+            <div class="headline-summary">
+                <h2 class="headline-summary-h2">Join 360</h2>
+                <div class="headline-summary-seperator"></div>            
+                <span class="headline-summary-info">Key Merricas at a Glance</span>
+                <div class="headline-summary-seperator-mobile"></div>
+            </div>
+            <div class="summary-stats">
+                <div style="display: flex;justify-content: space-between;">
+                    <div class="summary-todo-info" onclick="nextPage()">
+                        <img class="summary-todo-pen" src="assets/img/summary-pen.png" alt="pen">
+                        <img class="summary-todo-pen-hover" src="assets/img/summary-pen-hover.png" alt="pen">
+
+                        <div class="summary-info-open" >
+                            <span id="howMuchTodos" class="summary-how-much">1</span>
+                            <span class="summary-how-much-art">To-do</span>
+                        </div>
+                    </div>
+                    <div class="summary-done-info" onclick="nextPage()">
+                        <img class="summary-todo-check" src="assets/img/summary-check.png" alt="check">
+                        <img class="summary-todo-check-hover" src="assets/img/summary-hover-check.png" alt="check">
+                        <div class="summary-info-open">
+                            <span id="howMuchDone" class="summary-how-much">1</span>
+                            <span class="summary-how-much-art">Done</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary-stats-urgent" onclick="nextPage()">
+                    <div class="summary-urgent-info">
+                        <img src="assets/img/summary-urgent-logo.png" alt="">
+                        <div class="summary-info-open">
+                            <span id="howMuchInUrgent" class="summary-how-much">1</span>
+                            <span class="summary-how-much-art">Urgent</span>
+                        </div>
+                    </div>
+                    <div class="summary-urgent-seperator"></div>
+                    <div class="summary-urgent-date-container">
+                        <span id="summaryUrgendDate" class="summary-urgent-date"></span>
+                        <span class="summary-urgent-date-deadline">Upcoming Deadline</span>
+                    </div>
+                </div>
+                <div class="summary-stats-below">
+                    <div class="summary-stats-below-container" onclick="nextPage()">
+                        <span id="howMuchTaskinBoard" class="summary-stats-below-howmuch">5</span>
+                        <span class="summary-stats-below-tasks">Tasks in Board</span>
+                    </div>
+                    <div class="summary-stats-below-container" onclick="nextPage()">
+                        <span id="howMuchInProgress" class="summary-stats-below-howmuch">2</span>
+                        <span class="summary-stats-below-tasks">Task in Progress</span>
+                    </div>
+                    <div class="summary-stats-below-container" onclick="nextPage()">
+                        <span id="howMuchAwaitFeedback" class="summary-stats-below-howmuch">2</span>
+                        <span class="summary-stats-below-tasks">Awaiting Feedback</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- this is for java script, innnerHTML. id have not yet been assigned -->
+            
+            <div class="rotate-warning">             
+            </div>     
+        </div>
+        <div class="summary-greeting">
+            <h3 id="greetingSummary" class="summary-day-greeting">Good morning,</h3>
+            <span class="summary-person-greeting"></span>
+        </div>     
+    </main>
+    
+    <div w3-include-html="assets/templates/mobile_menubar_template.html"></div>
+</body>
+
+</html>

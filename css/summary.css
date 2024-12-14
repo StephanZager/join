@@ -1,0 +1,721 @@
+
+
+
+.summary-main{
+    display: flex;
+    
+}
+
+
+/* Summary Headline */
+
+.headline-summary {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 328px;
+    margin-bottom: 56px;
+    margin-top: 110px;
+}
+
+.headline-summary-h2 {
+    color: #000000;
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+    text-align: left;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    white-space: nowrap;
+}
+
+.headline-summary-seperator {
+    width: 0px;
+    height: 59px;
+    border: 3px solid #29ABE2;
+}
+
+.headline-summary-seperator-mobile {    
+    width: 90px;
+    gap: 0px;
+    border: 3px ;
+    border: 3px solid #29ABE2;
+    display: none;
+    
+}
+
+.headline-summary-info {
+    color: #2A3647;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 32.4px;
+    text-align: left;
+    white-space: nowrap;
+
+}
+
+.summary-section-2 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.summary-todo-pen-hover{
+    display: none;
+}
+/* Summary Stats */
+
+.summary-stats {
+    width: 100%;
+    max-width: 560px;
+    height: 562px;
+    margin-left: 328px;
+    box-sizing: border-box;
+}
+
+/* Summary To-do Info */
+
+.summary-todo-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    width: 264px;
+    height: 168px;
+    transition: transform 200ms ease-in-out;
+    padding: 38px 19px;
+    box-sizing: border-box;
+}
+
+.summary-todo-info:hover {
+    cursor: pointer;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    transform: scale(1.03);
+}
+
+.summary-todo-info .summary-todo-pen {
+    display: block; 
+}
+
+.summary-todo-info .summary-todo-pen-hover {
+    display: none; 
+}
+
+.summary-todo-info:hover .summary-todo-pen {
+    display: none; 
+}
+
+.summary-todo-info:hover .summary-todo-pen-hover {
+    display: block; 
+}
+
+/* Summary done  Info */
+
+.summary-done-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    width: 264px;
+    height: 168px;
+    transition: transform 200ms ease-in-out;
+}
+
+.summary-done-info:hover {
+    cursor: pointer;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    transform: scale(1.03);
+}
+
+.summary-done-info .summary-todo-check {
+    display: block; 
+}
+
+.summary-done-info .summary-todo-check-hover {
+    display: none; 
+}
+
+.summary-done-info:hover .summary-todo-check {
+    display: none; 
+}
+
+.summary-done-info:hover .summary-todo-check-hover {
+    display: block; 
+}
+
+/* Summary To-do and done  Info */
+
+.summary-info-open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.summary-how-much {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+    text-align: center;
+}
+
+.summary-how-much-art {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+/* Summary urgent Info */
+
+.summary-stats-urgent {
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 168px;
+    gap: 61px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 61px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+    transition: transform 200ms ease-in-out;
+    padding-top: 28px;
+    padding-right: 48px;
+    padding-bottom: 28px;
+    padding-left: 48px;
+    box-sizing: border-box;
+
+}
+
+.summary-stats-urgent:hover,
+.summary-stats-urgent:hover .summary-urgent-date,
+.summary-stats-urgent:hover .summary-urgent-date-deadline {
+    cursor: pointer;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    transform: scale(1.03);
+}
+
+
+.summary-urgent-info {
+    display: flex;
+    align-items: center;
+    width: 130px;
+    height: 96px;
+    gap: 18px;
+}
+
+.summary-urgent-seperator {
+    border: 2px solid #D1D1D1;
+    height: 102.02px;
+}
+
+.summary-urgent-date-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-urgent-date {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.2px;
+    text-align: left;
+    color: #2A3647;
+}
+
+.summary-urgent-date-deadline {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    color: #2A3647;
+
+}
+
+/* Summary below Info */
+
+.summary-stats-below {
+    display: flex;
+    text-align: center;
+    justify-content: space-between
+}
+
+.summary-stats-below-container {
+    padding: 25px;
+    box-sizing: border-box;
+    width: 168px;
+    height: 168px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 100ms ease-in-out;
+}
+
+.summary-stats-below-container:hover,
+.summary-stats-below-container:hover .summary-stats-below-tasks {
+    cursor: pointer;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    transform: scale(1.05);
+
+}
+
+.summary-stats-below-howmuch {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+    text-align: center;
+}
+
+.summary-stats-below-tasks {
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 25.2px;
+    color: #2A3647;
+}
+
+/* Summary greeting */
+
+.summary-greeting {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.summary-greeting-mobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: 500px;
+    margin-left: 100px;
+    width: 100%;
+    height: calc(100vh - 178px);
+    z-index: 1000;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out; 
+}
+
+#greetingSummaryMobile.hide {
+  
+    opacity: 0;
+}
+
+#greetingSummaryMobile{
+    display: flex;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;  
+
+}
+
+.summary-day-greeting {
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56.4px;
+    text-align: left;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.summary-person-greeting {
+    font-size: 64px;
+    font-weight: 700;
+    margin-right: 10px;
+    text-align: left;
+    color: #29ABE2;
+}
+
+
+/* Summary @media*/
+
+@media (max-width: 1500px){
+    .summary-person-greeting{
+        font-size: 50px;
+    }
+
+   
+
+    
+}
+
+@media (max-width: 1300px) {
+    .headline-summary {
+        margin-left: 275px;
+    }
+
+    .summary-stats {
+        margin-left: 275px;
+    }
+
+    .summary-greeting {
+        margin-left: 55px;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    #greetingSummaryMobile{
+        display: block;
+    }
+
+    .headline-summary {
+        margin-left: 328px;
+    }
+
+    .summary-stats {
+        margin-left: 328px;
+    }
+
+    .summary-greeting {
+        display: none;
+    }
+}
+
+@media (max-width: 960px) {
+    .headline-summary {
+        margin-left: 275px;
+    }
+
+    .summary-stats {
+        margin-left: 275px;
+    }
+}
+
+@media (max-width: 900px) {
+   
+
+    .headline-summary {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 900px){
+
+    .summary-main{
+        justify-content: center;
+    }
+
+    .headline-summary {
+        display: flex;
+        justify-content: center;
+        margin-left: 20px;        
+        margin-right: 20px;
+        margin-top: 35px;       
+    }
+
+    .headline-summary-h2{
+        font-size: 61px;
+    }
+
+    .summary-section-2{
+        align-items: flex-start;
+    }
+    .summary-stats {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .summary-greeting-mobile{
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 630px){
+
+    .summary-stats-below-container {
+        width: 150px;
+    }
+    
+    .summary-todo-info{
+        width: 230px;
+    }
+
+    .summary-done-info{
+        width: 230px;
+    }
+
+    .headline-summary-seperator{
+        display: none;
+    }
+
+    .headline-summary{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 25px;
+    }
+
+    .summary-stats{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .headline-summary-seperator-mobile{
+        display: block;
+    }
+}
+
+@media (max-width: 600px) {
+
+    
+
+    .headline-summary-h2 {
+        font-size: 40px;
+    }
+
+    .headline-summary-info {
+        font-size: 20px;
+    }
+
+    .summary-stats{
+        max-width: 400px;
+    }
+    .summary-todo-info {
+        width: 180px;
+        height: 128px;
+        padding: 28px 9px;
+    }
+    .summary-done-info {
+        width: 180px;
+        height: 128px;
+    }
+
+    .summary-stats-urgent{
+        height: 128px;
+        
+        padding-right: 10px;
+        padding-left: 10px;
+        justify-content: center;
+    }
+
+    .summary-stats-below-tasks {
+        font-size: 18px;
+        line-height: 17px;
+    }
+    
+    .summary-stats-below-container{
+        width: 120px;
+        height: 128px;
+        padding: 20px;
+        
+    }
+
+    .summary-stats-below-howmuch{
+        line-height: 60px;
+    }
+
+    .summary-how-much{
+        font-size: 50px;
+    }
+
+    .summary-stats-below-howmuch {
+        font-size: 50px;
+    }
+
+    .summary-stats img{
+        width: 50px;
+        height: 50px;
+    }
+
+    .summary-urgent-date{
+        font-size: 14px;
+    }
+
+    .summary-urgent-date-deadline{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px){
+    .headline-summary-seperator{
+        display: none;
+    }
+
+    .headline-summary{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .headline-summary-seperator-mobile{
+        display: block;
+    }
+}
+
+@media (max-width: 440px){
+
+    .summary-person-greeting{
+        font-size: 40px;
+        white-space: nowrap;
+    }
+    .headline-summary{
+        margin-top: 20px;
+        
+    }
+
+    .summary-stats{
+       
+        max-width: 320px;        
+    }
+
+    .summary-how-much{
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .summary-stats-below-howmuch {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .summary-how-much-art{
+        font-size: 16px;
+    }
+
+    .summary-todo-info{
+        width: 140px;
+        height: 108px;
+        
+    }
+
+    .summary-done-info{
+        width: 140px;
+        height: 108px;
+    }
+
+    .summary-stats-below-container{
+        width: 90px;
+        height: 108px;
+        padding: 15px;
+    }
+
+    .summary-stats-below-tasks{
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .summary-stats-urgent{
+        gap: 20px;
+    }
+   
+}
+
+@media (min-width: 320px) and (max-width: 399px){
+    
+
+    .summary-urgent-info{
+        width: 120px;
+    }
+
+    
+
+    .summary-done-info{
+        
+        width: 140px;
+    }
+    .summary-todo-info{
+        
+        width: 140px;
+    }
+
+    .summary-stats{
+        max-width: 300px;
+    }
+
+    .summary-stats-below-container{
+        
+    }
+
+    .summary-urgent-seperator{
+        
+    }
+    .summary-stats-below-howmuch{
+        
+    }
+
+    .summary-stats-below-tasks{
+        
+    }
+
+    .summary-how-much{
+        
+    }
+}
+
+@media (max-height : 810px){
+    .headline-summary{
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-height : 810px){
+
+    .summary-urgent-info{
+        height: 80px;
+    }
+
+    .headline-summary-h2{
+        line-height: 40px;
+        margin-top: 10px;
+    }
+
+    
+
+    .summary-done-info{
+        
+        height: 100px;
+    }
+    .summary-todo-info{
+        
+        height: 100px;
+    }
+
+    .summary-stats-urgent{
+        height: 100px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .summary-stats-below-container{
+        height: 100px;
+        
+    }
+
+    .summary-urgent-seperator{
+        height: 80px;
+        
+    }
+    .summary-stats-below-howmuch{
+        height: 100px;
+        
+    }
+
+    .summary-stats-below-tasks{
+        height: 100px;
+        
+    }
+
+    
+}
